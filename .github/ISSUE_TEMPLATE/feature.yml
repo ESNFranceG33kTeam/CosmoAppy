@@ -24,7 +24,7 @@ body:
     id: object
     attributes:
       label: Object description
-      description: In term of parameters how to describe it
+      description: In term of parameters what do you need to create one instance of
       placeholder: Name, date, address, ...
     validations:
       required: false
