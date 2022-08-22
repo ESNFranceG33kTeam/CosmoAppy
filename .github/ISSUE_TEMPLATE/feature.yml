@@ -1,0 +1,30 @@
+name: Feature issue
+description: New feature
+title: "[FEAT]: "
+labels: ["feature"]
+assignees:
+  - octocat
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Module name
+      description: What would be the name of the module
+      placeholder: Buddy family
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Tell us more about it
+    validations:
+      required: true
+  - type: textarea
+    id: Object desc
+    attributes:
+      label: Tell us more about it
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+    validations:
+      required: false
