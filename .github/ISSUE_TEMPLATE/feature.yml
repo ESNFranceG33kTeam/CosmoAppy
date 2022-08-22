@@ -21,10 +21,10 @@ body:
     validations:
       required: true
   - type: textarea
-    id: Object desc
+    id: object
     attributes:
-      label: Tell us more about it
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
+      label: Object description
+      description: In term of parameters how to describe it
+      placeholder: Name, date, address, ...
     validations:
       required: false
