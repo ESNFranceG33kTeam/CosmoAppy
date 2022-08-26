@@ -12,4 +12,27 @@
 *.out
 
 # Dependency directories (remove the comment below to include it)
-# vendor/
+go.mod.local
+go.mod.origin
+vendor/
+
+# Build directories
+bin/
+build/
+cache/
+export/
+tmp/
+
+### Go Patch ###
+/vendor/
+/Godeps/
+
+### Docs ###
+# Cache
+**__pycache__
+
+# Build directories
+public/
+
+### IDEs ###
+.vscode/

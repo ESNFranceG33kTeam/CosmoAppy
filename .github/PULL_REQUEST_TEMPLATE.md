@@ -10,12 +10,9 @@
 - [ ] I have read the CONTRIBUTING document.
 -->
 
-### Summary
+# Summary
 
-
-
-### Details and comments
-
+# Details and comments
 
 ---
 Closes
