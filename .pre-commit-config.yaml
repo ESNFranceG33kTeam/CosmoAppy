@@ -1,0 +1,28 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: check-merge-conflict
+      - id: trailing-whitespace
+        exclude: vendor
+      - id: end-of-file-fixer
+        exclude: vendor
+
+  - repo: https://github.com/dnephin/pre-commit-golang
+    rev: v0.4.0
+    hooks:
+      - id: go-fmt
+      - id: go-imports
+      - id: go-mod-tidy
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.27.1
+    hooks:
+      - id: markdownlint
+        name: markdownlint
+        description: "Checks the style of Markdown/Commonmark files."
+        entry: markdownlint
+        language: node
+        types: [markdown]
+        exclude: vendor
+        minimum_pre_commit_version: 0.15.0
