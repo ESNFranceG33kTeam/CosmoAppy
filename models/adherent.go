@@ -12,7 +12,7 @@ type Adherent struct {
 	Firstname   string    `json:"firstname"`
 	Lastname    string    `json:"lastname"`
 	Email       string    `json:"email"`
-	Dateofbirth time.Time `json:"dateofbirth"`
+	Dateofbirth string    `json:"dateofbirth"`
 	ESNcard     string    `json:"esncard"`
 	Student     bool      `json:"student"`
 	CreatedAt   time.Time `json:"created_at"`
@@ -47,7 +47,7 @@ func FindAdherentById(id int) *Adherent {
 	var adh Adherent
 
 	row := config.Db().QueryRow("SELECT * FROM adherents WHERE id = ?;", id)
-	err := row.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, adh.ESNcard, adh.Student, &adh.CreatedAt, &adh.UpdatedAt)
+	err := row.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.ESNcard, &adh.Student, &adh.CreatedAt, &adh.UpdatedAt)
 
 	if err != nil {
 		log.Fatal(err)
@@ -60,7 +60,7 @@ func FindAdherentByName(firstname string, lastname string) *Adherent {
 	var adh Adherent
 
 	row := config.Db().QueryRow("SELECT * FROM adherents WHERE firstname = ? AND lastname = ?;", firstname, lastname)
-	err := row.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, adh.ESNcard, adh.Student, &adh.CreatedAt, &adh.UpdatedAt)
+	err := row.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.ESNcard, &adh.Student, &adh.CreatedAt, &adh.UpdatedAt)
 
 	if err != nil {
 		log.Fatal(err)
