@@ -3,6 +3,7 @@ package controllers
 import (
 	"bytes"
 	"io"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -32,7 +33,10 @@ func setUp() {
 }
 
 func tearDown() {
-	config.Db().Exec("DROP TABLE adherents;")
+	_, err := config.Db().Exec("DROP TABLE adherents;")
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func TestAdherentsIndex(t *testing.T) {

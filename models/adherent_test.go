@@ -28,7 +28,10 @@ func setUp() {
 }
 
 func tearDown() {
-	config.Db().Exec("DROP TABLE adherents;")
+	_, err := config.Db().Exec("DROP TABLE adherents;")
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func TestNewAdherent(t *testing.T) {
