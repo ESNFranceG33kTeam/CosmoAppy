@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"time"
 
 	"github.com/ESNFranceG33kTeam/sAPI/config"
 	"github.com/ESNFranceG33kTeam/sAPI/models"
@@ -15,8 +14,7 @@ func main() {
 	router := InitializeRouter()
 
 	// Populate database
-	birth_time, _ := time.Parse("2006-01-02", "1992-09-23")
-	models.NewAdherent(&models.Adherent{Firstname: "Titi", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: birth_time, ESNcard: "grgerrbrbreht", Student: false})
+	models.NewAdherent(&models.Adherent{Firstname: "Titi", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", ESNcard: "grgerrbrbreht", Student: false})
 
 	fmt.Println("Finish add to db")
 
