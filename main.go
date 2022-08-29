@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/ESNFranceG33kTeam/sAPI/config"
+	"github.com/ESNFranceG33kTeam/sAPI/logger"
 	"github.com/ESNFranceG33kTeam/sAPI/models"
 )
 
@@ -16,8 +15,8 @@ func main() {
 	// Populate database
 	models.NewAdherent(&models.Adherent{Firstname: "Titi", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", ESNcard: "grgerrbrbreht", Student: false, University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false})
 
-	fmt.Println("Finish add to db")
+	logger.LogInfo("main", "API starting.")
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	logger.LogCritical("main", "listen error", http.ListenAndServe(":8080", router))
 
 }

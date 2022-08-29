@@ -1,10 +1,10 @@
 package models
 
 import (
-	"log"
 	"time"
 
 	"github.com/ESNFranceG33kTeam/sAPI/config"
+	"github.com/ESNFranceG33kTeam/sAPI/logger"
 )
 
 type Adherent struct {
@@ -26,25 +26,18 @@ type Adherent struct {
 type Adherents []Adherent
 
 func NewAdherent(adh *Adherent) {
-	if adh == nil {
-		log.Fatal(adh)
-	}
 	adh.CreatedAt = time.Now()
 	adh.UpdatedAt = time.Now()
 
 	stmt, _ := config.Db().Prepare("INSERT INTO adherents (firstname, lastname, email, dateofbirth, esncard, student, university, homeland, speakabout, newsletter, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);")
-	res, err := stmt.Exec(adh.Firstname, adh.Lastname, adh.Email, adh.Dateofbirth, adh.ESNcard, adh.Student, adh.University, adh.Homeland, adh.Speakabout, adh.Newsletter, adh.CreatedAt, adh.UpdatedAt)
+	_, err := stmt.Exec(adh.Firstname, adh.Lastname, adh.Email, adh.Dateofbirth, adh.ESNcard, adh.Student, adh.University, adh.Homeland, adh.Speakabout, adh.Newsletter, adh.CreatedAt, adh.UpdatedAt)
 	if err != nil {
-		log.Fatalf("Fatal error : %s", err)
+		logger.LogCritical("adherent", "can't create new adherent.", err)
 	}
 
-	lastId, err := res.LastInsertId()
 	if err != nil {
-		log.Fatal(err)
+		logger.LogCritical("adherent", "can't create new adherent.", err)
 	}
-
-	//glog.Infoln(lastId)
-	log.Println(lastId)
 }
 
 func FindAdherentById(id int) *Adherent {
@@ -54,7 +47,7 @@ func FindAdherentById(id int) *Adherent {
 	err := row.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.ESNcard, &adh.Student, &adh.University, &adh.Homeland, &adh.Speakabout, &adh.Newsletter, &adh.CreatedAt, &adh.UpdatedAt)
 
 	if err != nil {
-		log.Fatal(err)
+		logger.LogWarning("adherent", "adherent not found.", err)
 	}
 
 	return &adh
@@ -67,7 +60,7 @@ func FindAdherentByName(firstname string, lastname string) *Adherent {
 	err := row.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.ESNcard, &adh.Student, &adh.University, &adh.Homeland, &adh.Speakabout, &adh.Newsletter, &adh.CreatedAt, &adh.UpdatedAt)
 
 	if err != nil {
-		log.Fatal(err)
+		logger.LogWarning("adherent", "adherent not found.", err)
 	}
 
 	return &adh
@@ -79,7 +72,7 @@ func AllAdherents() *Adherents {
 	rows, err := config.Db().Query("SELECT * FROM adherents")
 
 	if err != nil {
-		log.Fatal(err)
+		logger.LogError("adherent", "problem with the db.", err)
 	}
 
 	// Close rows after all readed
@@ -91,7 +84,7 @@ func AllAdherents() *Adherents {
 		err := rows.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.ESNcard, &adh.Student, &adh.University, &adh.Homeland, &adh.Speakabout, &adh.Newsletter, &adh.CreatedAt, &adh.UpdatedAt)
 
 		if err != nil {
-			log.Fatal(err)
+			logger.LogError("adherent", "adherents not found.", err)
 		}
 
 		adhs = append(adhs, adh)
@@ -106,13 +99,13 @@ func UpdateAdherent(adh *Adherent) {
 	stmt, err := config.Db().Prepare("UPDATE adherents SET firstname=?, lastname=?, email=?, dateofbirth=?, esncard=?, student=?, university=?, homeland=?, speakabout=?, newsletter=?, updated_at=? WHERE id=?;")
 
 	if err != nil {
-		log.Fatal(err)
+		logger.LogError("adherent", "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(adh.Firstname, adh.Lastname, adh.Email, adh.Dateofbirth, adh.ESNcard, adh.Student, adh.University, adh.Homeland, adh.Speakabout, adh.Newsletter, adh.UpdatedAt, adh.Id)
 
 	if err != nil {
-		log.Fatal(err)
+		logger.LogError("adherent", "adherent can't be updated.", err)
 	}
 }
 
@@ -120,10 +113,13 @@ func DeleteAdherentById(id int) error {
 	stmt, err := config.Db().Prepare("DELETE FROM adherents WHERE id=?;")
 
 	if err != nil {
-		log.Fatal(err)
+		logger.LogError("adherent", "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(id)
+	if err != nil {
+		logger.LogError("adherent", "adherent can't be deleted.", err)
+	}
 
 	return err
 }
