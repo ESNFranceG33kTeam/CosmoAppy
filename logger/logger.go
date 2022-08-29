@@ -22,6 +22,8 @@ const ErrorColor = "\033[1;31m"
 const CriticalColor = "\033[0;31m"
 const NoneColor = "\033[0m"
 
+var logLevel = "INFO"
+
 func LogInfo(endpoint string, message string) {
 	var mylog Logger
 
@@ -30,7 +32,10 @@ func LogInfo(endpoint string, message string) {
 	mylog.endpoint = endpoint
 	mylog.message = message
 
-	fmt.Fprintln(os.Stdout, InfoColor, "timestamp=\""+mylog.timestamp.Format("2006-01-02 15:04:05")+"\" level="+mylog.level+" endpoint="+mylog.endpoint+" message=\""+mylog.message+"\"", NoneColor)
+	if logLevel == "INFO" {
+		fmt.Fprintln(os.Stdout, InfoColor, "timestamp=\""+mylog.timestamp.Format("2006-01-02 15:04:05")+"\" level="+mylog.level+" endpoint="+mylog.endpoint+" message=\""+mylog.message+"\"", NoneColor)
+	}
+
 }
 
 func LogWarning(endpoint string, message string, detailes error) {
@@ -42,7 +47,10 @@ func LogWarning(endpoint string, message string, detailes error) {
 	mylog.message = message
 	mylog.detailes = detailes
 
-	fmt.Fprintln(os.Stderr, WarningColor, "timestamp=\""+mylog.timestamp.Format("2006-01-02 15:04:05")+"\" level="+mylog.level+" endpoint="+mylog.endpoint+" message=\""+mylog.message+"\" detailes=\""+mylog.detailes.Error()+"\"", NoneColor)
+	if logLevel == "INFO" || logLevel == "WARNING" {
+		fmt.Fprintln(os.Stderr, WarningColor, "timestamp=\""+mylog.timestamp.Format("2006-01-02 15:04:05")+"\" level="+mylog.level+" endpoint="+mylog.endpoint+" message=\""+mylog.message+"\" detailes=\""+mylog.detailes.Error()+"\"", NoneColor)
+
+	}
 }
 
 func LogError(endpoint string, message string, detailes error) {
