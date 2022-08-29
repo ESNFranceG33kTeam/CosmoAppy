@@ -15,6 +15,10 @@ type Adherent struct {
 	Dateofbirth string    `json:"dateofbirth"`
 	ESNcard     string    `json:"esncard"`
 	Student     bool      `json:"student"`
+	University  string    `json:"university"`
+	Homeland    string    `json:"homeland"`
+	Speakabout  string    `json:"speakabout"`
+	Newsletter  bool      `json:"newsletter"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 }
@@ -28,8 +32,8 @@ func NewAdherent(adh *Adherent) {
 	adh.CreatedAt = time.Now()
 	adh.UpdatedAt = time.Now()
 
-	stmt, _ := config.Db().Prepare("INSERT INTO adherents (firstname, lastname, email, dateofbirth, esncard, student, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?);")
-	res, err := stmt.Exec(adh.Firstname, adh.Lastname, adh.Email, adh.Dateofbirth, adh.ESNcard, adh.Student, adh.CreatedAt, adh.UpdatedAt)
+	stmt, _ := config.Db().Prepare("INSERT INTO adherents (firstname, lastname, email, dateofbirth, esncard, student, university, homeland, speakabout, newsletter, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);")
+	res, err := stmt.Exec(adh.Firstname, adh.Lastname, adh.Email, adh.Dateofbirth, adh.ESNcard, adh.Student, adh.University, adh.Homeland, adh.Speakabout, adh.Newsletter, adh.CreatedAt, adh.UpdatedAt)
 	if err != nil {
 		log.Fatalf("Fatal error : %s", err)
 	}
@@ -47,7 +51,7 @@ func FindAdherentById(id int) *Adherent {
 	var adh Adherent
 
 	row := config.Db().QueryRow("SELECT * FROM adherents WHERE id = ?;", id)
-	err := row.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.ESNcard, &adh.Student, &adh.CreatedAt, &adh.UpdatedAt)
+	err := row.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.ESNcard, &adh.Student, &adh.University, &adh.Homeland, &adh.Speakabout, &adh.Newsletter, &adh.CreatedAt, &adh.UpdatedAt)
 
 	if err != nil {
 		log.Fatal(err)
@@ -60,7 +64,7 @@ func FindAdherentByName(firstname string, lastname string) *Adherent {
 	var adh Adherent
 
 	row := config.Db().QueryRow("SELECT * FROM adherents WHERE firstname = ? AND lastname = ?;", firstname, lastname)
-	err := row.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.ESNcard, &adh.Student, &adh.CreatedAt, &adh.UpdatedAt)
+	err := row.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.ESNcard, &adh.Student, &adh.University, &adh.Homeland, &adh.Speakabout, &adh.Newsletter, &adh.CreatedAt, &adh.UpdatedAt)
 
 	if err != nil {
 		log.Fatal(err)
@@ -84,7 +88,7 @@ func AllAdherents() *Adherents {
 	for rows.Next() {
 		var adh Adherent
 
-		err := rows.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.ESNcard, &adh.Student, &adh.CreatedAt, &adh.UpdatedAt)
+		err := rows.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.ESNcard, &adh.Student, &adh.University, &adh.Homeland, &adh.Speakabout, &adh.Newsletter, &adh.CreatedAt, &adh.UpdatedAt)
 
 		if err != nil {
 			log.Fatal(err)
@@ -99,13 +103,13 @@ func AllAdherents() *Adherents {
 func UpdateAdherent(adh *Adherent) {
 	adh.UpdatedAt = time.Now()
 
-	stmt, err := config.Db().Prepare("UPDATE adherents SET firstname=?, lastname=?, email=?, dateofbirth=?, esncard=?, student=?, updated_at=? WHERE id=?;")
+	stmt, err := config.Db().Prepare("UPDATE adherents SET firstname=?, lastname=?, email=?, dateofbirth=?, esncard=?, student=?, university=?, homeland=?, speakabout=?, newsletter=?, updated_at=? WHERE id=?;")
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	_, err = stmt.Exec(adh.Firstname, adh.Lastname, adh.Email, adh.Dateofbirth, adh.ESNcard, adh.Student, adh.UpdatedAt, adh.Id)
+	_, err = stmt.Exec(adh.Firstname, adh.Lastname, adh.Email, adh.Dateofbirth, adh.ESNcard, adh.Student, adh.University, adh.Homeland, adh.Speakabout, adh.Newsletter, adh.UpdatedAt, adh.Id)
 
 	if err != nil {
 		log.Fatal(err)
