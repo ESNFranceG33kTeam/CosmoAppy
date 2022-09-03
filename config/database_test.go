@@ -4,10 +4,17 @@ import (
 	"database/sql"
 	"log"
 	"testing"
+
+	"github.com/ESNFranceG33kTeam/sAPI/helpers"
+	"github.com/ESNFranceG33kTeam/sAPI/logger"
 )
 
 func TestDatabaseInit(t *testing.T) {
-	DatabaseInit()
+	helpers.InitFile("../conf.yml")
+	helpers.ReadConfig()
+	logger.LogInit(helpers.AppConfig.Loglevel)
+	DatabaseInit(helpers.AppConfig.Userdb, helpers.AppConfig.Passdb, helpers.AppConfig.Ipdb, helpers.AppConfig.Portdb, helpers.AppConfig.Namedb, helpers.AppConfig.Extradb)
+
 }
 
 func TestCreateAdherentTable(t *testing.T) {

@@ -10,16 +10,10 @@ import (
 
 var db *sql.DB
 
-func DatabaseInit() {
+func DatabaseInit(userdb string, passdb string, ipdb string, portdb string, namedb string, extra string) {
 	var err error
 
-	var userdb = "root"
-	var passdb = "root"
-	var ipdb = "127.0.0.1"
-	var portbd = "3306"
-	var namedb = "sapi"
-	var extra = "?parseTime=true"
-	infodb := fmt.Sprintf(userdb + ":" + passdb + "@tcp(" + ipdb + ":" + portbd + ")/" + namedb + extra)
+	infodb := fmt.Sprintf(userdb + ":" + passdb + "@tcp(" + ipdb + ":" + portdb + ")/" + namedb + extra)
 
 	db, err = sql.Open("mysql", infodb)
 	if err != nil {
