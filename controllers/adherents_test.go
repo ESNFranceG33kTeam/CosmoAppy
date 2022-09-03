@@ -10,6 +10,8 @@ import (
 	"testing"
 
 	"github.com/ESNFranceG33kTeam/sAPI/config"
+	"github.com/ESNFranceG33kTeam/sAPI/helpers"
+	"github.com/ESNFranceG33kTeam/sAPI/logger"
 	"github.com/ESNFranceG33kTeam/sAPI/models"
 )
 
@@ -25,7 +27,11 @@ func TestMain(m *testing.M) {
 }
 
 func setUp() {
-	config.DatabaseInit()
+	helpers.InitFile("../conf.yml")
+	helpers.ReadConfig()
+	logger.LogInit(helpers.AppConfig.Loglevel)
+	config.DatabaseInit(helpers.AppConfig.Userdb, helpers.AppConfig.Passdb, helpers.AppConfig.Ipdb, helpers.AppConfig.Portdb, helpers.AppConfig.Namedb, helpers.AppConfig.Extradb)
+
 	models.NewAdherent(&models.Adherent{Firstname: "Test1", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", ESNcard: "grgerrbrbreht", Student: false})
 	models.NewAdherent(&models.Adherent{Firstname: "Test2", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", ESNcard: "grgerrbrbreht", Student: false})
 	models.NewAdherent(&models.Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", ESNcard: "grgerrbrbreht", Student: false})
