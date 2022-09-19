@@ -11,6 +11,15 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// swagger:route GET /adherents adherent listAdherents
+// Get adherents list
+//
+// security:
+// - apiKey: []
+// responses:
+//
+//	401: CommonError
+//	200: GetAdherents
 func AdherentsIndex(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
@@ -23,6 +32,15 @@ func AdherentsIndex(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// swagger:route POST /adherents adherent addAdherent
+// Create a new adherent
+//
+// security:
+// - apiKey: []
+// responses:
+//
+//	401: CommonError
+//	200: GetAdherent
 func AdherentsCreate(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
@@ -49,6 +67,18 @@ func AdherentsCreate(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// swagger:route  GET /adherents/{id} adherent showAdherent
+// Show an adherent
+//
+// consumes:
+//   - application/x-www-form-urlencoded
+//
+// security:
+// - apiKey: []
+// responses:
+//
+//	401: CommonError
+//	200: GetAdherent
 func AdherentsShow(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)

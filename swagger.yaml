@@ -1,0 +1,100 @@
+basePath: /
+definitions:
+    Adherent:
+        x-go-package: _/Users/Mickahell/Documents/VSCode/sAPI/models
+    CommonError:
+        x-go-package: _/Users/Mickahell/Documents/VSCode/sAPI/models
+    CommonSuccess:
+        x-go-package: _/Users/Mickahell/Documents/VSCode/sAPI/models
+    GetAdherent:
+        x-go-package: _/Users/Mickahell/Documents/VSCode/sAPI/docs
+    GetAdherents:
+        x-go-package: _/Users/Mickahell/Documents/VSCode/sAPI/docs
+host: localhost:8080
+info:
+    description: |-
+        the purpose of this application is to provide an application
+        that is using plain go code to define an API
+
+        This should demonstrate all the possible comment annotations
+        that are available to turn go code into a fully compliant swagger 2.0 spec
+    termsOfService: there are no TOS at this moment, use at your own risk we take no responsibility
+    title: ESN super API.
+    version: 0.0.1
+paths:
+    /adherents:
+        get:
+            description: Get adherents list
+            operationId: listAdherents
+            responses:
+                "200":
+                    description: GetAdherents
+                    schema:
+                        $ref: '#/definitions/GetAdherents'
+                "401":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            security:
+                - apiKey:
+                    - '[]'
+            tags:
+                - adherent
+        post:
+            description: Create a new adherent
+            operationId: addAdherent
+            responses:
+                "200":
+                    description: GetAdherent
+                    schema:
+                        $ref: '#/definitions/GetAdherent'
+                "401":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            security:
+                - apiKey:
+                    - '[]'
+            tags:
+                - adherent
+    /adherents/{id}:
+        get:
+            consumes:
+                - application/x-www-form-urlencoded
+            description: Show an adherent
+            operationId: showAdherent
+            parameters:
+                - description: 'name: id'
+                  format: int64
+                  in: path
+                  name: id
+                  required: true
+                  type: integer
+                  x-go-name: Id
+            responses:
+                "200":
+                    description: GetAdherent
+                    schema:
+                        $ref: '#/definitions/GetAdherent'
+                "401":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            security:
+                - apiKey:
+                    - '[]'
+            tags:
+                - adherent
+produces:
+    - application/json
+schemes:
+    - http
+    - https
+security:
+    - api_key: []
+securityDefinitions:
+    api_key:
+        in: header
+        name: KEY
+        type: apiKey
+swagger: "2.0"
