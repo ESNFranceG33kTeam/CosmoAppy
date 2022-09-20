@@ -68,7 +68,12 @@ func NewAdherent(adh *Adherent) {
 	}
 }
 
+// swagger:parameters adherent FindAdherentById
 func FindAdherentById(id int) *Adherent {
+	// name: id
+	// in: path
+	// type: integer
+	// required: true
 	var adh Adherent
 
 	row := config.Db().QueryRow("SELECT * FROM adherents WHERE id = ?;", id)

@@ -19,7 +19,7 @@ import (
 // responses:
 //
 //	401: CommonError
-//	200: GetAdherents
+//	200: CommonSuccess
 func AdherentsIndex(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
@@ -40,7 +40,7 @@ func AdherentsIndex(w http.ResponseWriter, r *http.Request) {
 // responses:
 //
 //	401: CommonError
-//	200: GetAdherent
+//	200: CommonSuccess
 func AdherentsCreate(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
@@ -67,7 +67,7 @@ func AdherentsCreate(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// swagger:route  GET /adherents/{id} adherent showAdherent
+// swagger:route  GET /adherents/{id} adherent FindAdherentById
 // Show an adherent
 //
 // consumes:
@@ -78,7 +78,7 @@ func AdherentsCreate(w http.ResponseWriter, r *http.Request) {
 // responses:
 //
 //	401: CommonError
-//	200: GetAdherent
+//	200: CommonSuccess
 func AdherentsShow(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
