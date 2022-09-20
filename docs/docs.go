@@ -15,6 +15,9 @@
 //	BasePath: /
 //	Version: 0.0.1
 //
+//	Consumes:
+//	- application/json
+//
 //	Produces:
 //	- application/json
 //
@@ -48,12 +51,4 @@ type CommonError struct {
 	// Message of the error
 	// in: string
 	Message string `json:"message"`
-}
-
-// ErrHandler returns error message response
-func ErrHandler(errmessage string) *CommonError {
-	errresponse := CommonError{}
-	errresponse.Status = 0
-	errresponse.Message = errmessage
-	return &errresponse
 }

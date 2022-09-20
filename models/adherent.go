@@ -52,7 +52,6 @@ type Adherent struct {
 
 type Adherents []Adherent
 
-// swagger:parameters adherent addAdherent
 func NewAdherent(adh *Adherent) {
 	adh.CreatedAt = time.Now()
 	adh.UpdatedAt = time.Now()
@@ -68,12 +67,7 @@ func NewAdherent(adh *Adherent) {
 	}
 }
 
-// swagger:parameters adherent FindAdherentById
 func FindAdherentById(id int) *Adherent {
-	// name: id
-	// in: path
-	// type: integer
-	// required: true
 	var adh Adherent
 
 	row := config.Db().QueryRow("SELECT * FROM adherents WHERE id = ?;", id)

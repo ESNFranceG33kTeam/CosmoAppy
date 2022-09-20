@@ -15,14 +15,14 @@ func InitializeRouter() *mux.Router {
 	router.Handle("/swagger.yaml", http.FileServer(http.Dir("./")))
 
 	// documentation for developers
-	opts := middleware.SwaggerUIOpts{SpecURL: "/swagger.yaml"}
+	opts := middleware.SwaggerUIOpts{SpecURL: "/swagger.yaml", Path: "docsdev"}
 	sh := middleware.SwaggerUI(opts, nil)
-	router.Handle("/docs", sh)
+	router.Handle("/docsdev", sh)
 
 	// documentation for share
-	opts1 := middleware.RedocOpts{SpecURL: "/swagger.yaml", Path: "docs1"}
+	opts1 := middleware.RedocOpts{SpecURL: "/swagger.yaml", Path: "docs"}
 	sh1 := middleware.Redoc(opts1, nil)
-	router.Handle("/docs1", sh1)
+	router.Handle("/docs", sh1)
 
 	router.Methods("GET").Path("/adherents").Name("Index").HandlerFunc(controllers.AdherentsIndex)
 	router.Methods("POST").Path("/adherents").Name("Create").HandlerFunc(controllers.AdherentsCreate)

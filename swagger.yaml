@@ -1,15 +1,13 @@
 basePath: /
+consumes:
+    - application/json
 definitions:
     Adherent:
-        x-go-package: _/Users/Mickahell/Documents/VSCode/sAPI/models
+        x-go-package: github.com/ESNFranceG33kTeam/sAPI/models
     CommonError:
-        x-go-package: _/Users/Mickahell/Documents/VSCode/sAPI/models
+        x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
     CommonSuccess:
-        x-go-package: _/Users/Mickahell/Documents/VSCode/sAPI/models
-    GetAdherent:
-        x-go-package: _/Users/Mickahell/Documents/VSCode/sAPI/docs
-    GetAdherents:
-        x-go-package: _/Users/Mickahell/Documents/VSCode/sAPI/docs
+        x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
 host: localhost:8080
 info:
     description: |-
@@ -25,12 +23,12 @@ paths:
     /adherents:
         get:
             description: Get adherents list
-            operationId: listAdherents
+            operationId: AdherentsIndex
             responses:
                 "200":
-                    description: GetAdherents
+                    description: CommonSuccess
                     schema:
-                        $ref: '#/definitions/GetAdherents'
+                        $ref: '#/definitions/CommonSuccess'
                 "401":
                     description: CommonError
                     schema:
@@ -41,13 +39,19 @@ paths:
             tags:
                 - adherent
         post:
-            description: Create a new adherent
-            operationId: addAdherent
+            operationId: AdherentsCreate
+            parameters:
+                - in: body
+                  name: adherent
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Adherent'
+                    type: object
             responses:
                 "200":
-                    description: GetAdherent
+                    description: CommonSuccess
                     schema:
-                        $ref: '#/definitions/GetAdherent'
+                        $ref: '#/definitions/CommonSuccess'
                 "401":
                     description: CommonError
                     schema:
@@ -55,6 +59,7 @@ paths:
             security:
                 - apiKey:
                     - '[]'
+            summary: Create a new adherent.
             tags:
                 - adherent
     /adherents/{id}:
@@ -62,20 +67,17 @@ paths:
             consumes:
                 - application/x-www-form-urlencoded
             description: Show an adherent
-            operationId: showAdherent
+            operationId: AdherentsShow
             parameters:
-                - description: 'name: id'
-                  format: int64
-                  in: path
+                - in: path
                   name: id
                   required: true
                   type: integer
-                  x-go-name: Id
             responses:
                 "200":
-                    description: GetAdherent
+                    description: CommonSuccess
                     schema:
-                        $ref: '#/definitions/GetAdherent'
+                        $ref: '#/definitions/CommonSuccess'
                 "401":
                     description: CommonError
                     schema:
