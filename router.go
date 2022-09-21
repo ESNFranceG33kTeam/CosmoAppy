@@ -12,15 +12,15 @@ func InitializeRouter() *mux.Router {
 	// StrictSlash is true => redirect /adherents/ to /adherents
 	router := mux.NewRouter().StrictSlash(true)
 
-	router.Handle("/swagger.yaml", http.FileServer(http.Dir("./")))
+	router.Handle("/docs/swagger.yaml", http.FileServer(http.Dir("./")))
 
 	// documentation for developers
-	opts := middleware.SwaggerUIOpts{SpecURL: "/swagger.yaml", Path: "docsdev"}
+	opts := middleware.SwaggerUIOpts{SpecURL: "/docs/swagger.yaml", Path: "swagger"}
 	sh := middleware.SwaggerUI(opts, nil)
-	router.Handle("/docsdev", sh)
+	router.Handle("/swagger", sh)
 
 	// documentation for share
-	opts1 := middleware.RedocOpts{SpecURL: "/swagger.yaml", Path: "docs"}
+	opts1 := middleware.RedocOpts{SpecURL: "/docs/swagger.yaml", Path: "docs"}
 	sh1 := middleware.Redoc(opts1, nil)
 	router.Handle("/docs", sh1)
 

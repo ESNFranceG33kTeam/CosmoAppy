@@ -22,7 +22,6 @@ info:
 paths:
     /adherents:
         get:
-            description: Get adherents list
             operationId: AdherentsIndex
             responses:
                 "200":
@@ -36,6 +35,7 @@ paths:
             security:
                 - apiKey:
                     - '[]'
+            summary: Get adherents list.
             tags:
                 - adherent
         post:
@@ -63,10 +63,33 @@ paths:
             tags:
                 - adherent
     /adherents/{id}:
+        delete:
+            consumes:
+                - application/x-www-form-urlencoded
+            operationId: AdherentsDelete
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "401":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            security:
+                - apiKey:
+                    - '[]'
+            summary: Delete an adherent.
+            tags:
+                - adherent
         get:
             consumes:
                 - application/x-www-form-urlencoded
-            description: Show an adherent
             operationId: AdherentsShow
             parameters:
                 - in: path
@@ -85,6 +108,37 @@ paths:
             security:
                 - apiKey:
                     - '[]'
+            summary: Show an adherent.
+            tags:
+                - adherent
+        put:
+            consumes:
+                - application/x-www-form-urlencoded
+            operationId: AdherentsUpdate
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+                - in: body
+                  name: adherent
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Adherent'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "401":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            security:
+                - apiKey:
+                    - '[]'
+            summary: Update an adherent.
             tags:
                 - adherent
 produces:
