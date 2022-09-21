@@ -10,14 +10,16 @@ import (
 //const configPath = "conf.yml"
 
 type Cfg struct {
-	ConfPath string
-	Userdb   string `yaml:"userdb"`
-	Passdb   string `yaml:"passdb"`
-	Ipdb     string `yaml:"ipdb"`
-	Portdb   string `yaml:"portdb"`
-	Namedb   string `yaml:"namedb"`
-	Extradb  string `yaml:"extradb"`
-	Loglevel int    `yaml:"loglevel"`
+	ConfPath  string
+	Userdb    string   `yaml:"userdb"`
+	Passdb    string   `yaml:"passdb"`
+	Ipdb      string   `yaml:"ipdb"`
+	Portdb    string   `yaml:"portdb"`
+	Namedb    string   `yaml:"namedb"`
+	Extradb   string   `yaml:"extradb"`
+	Loglevel  int      `yaml:"loglevel"`
+	Usersapi  []string `yaml:"usersapi"`
+	Tokensapi []string `yaml:"tokensapi"`
 }
 
 var AppConfig Cfg

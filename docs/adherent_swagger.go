@@ -1,16 +1,13 @@
 package docs
 
-// swagger:route GET /adherents adherent AdherentsIndex
+// swagger:route GET /auth/adherents adherent AdherentsIndex
 // Get adherents list.
-//
-// security:
-// - apiKey: []
 //
 // responses:
 //	401: CommonError
 //	200: CommonSuccess
 
-// swagger:route POST /adherents adherent AdherentsCreate
+// swagger:route POST /auth/adherents adherent AdherentsCreate
 // Create a new adherent.
 //
 // parameters:
@@ -19,14 +16,11 @@ package docs
 //   type: Adherent
 //   required: true
 //
-// security:
-// - apiKey: []
-//
 // responses:
 //	401: CommonError
 //	200: CommonSuccess
 
-// swagger:route  GET /adherents/{id} adherent AdherentsShow
+// swagger:route GET /auth/adherents/{id} adherent AdherentsShow
 // Show an adherent.
 //
 // consumes:
@@ -38,14 +32,11 @@ package docs
 //   type: integer
 //   required: true
 //
-// security:
-// - apiKey: []
-//
 // responses:
 //	401: CommonError
 //	200: CommonSuccess
 
-// swagger:route  PUT /adherents/{id} adherent AdherentsUpdate
+// swagger:route PUT /auth/adherents/{id} adherent AdherentsUpdate
 // Update an adherent.
 //
 // consumes:
@@ -61,14 +52,11 @@ package docs
 //   type: Adherent
 //   required: true
 //
-// security:
-// - apiKey: []
-//
 // responses:
 //	401: CommonError
 //	200: CommonSuccess
 
-// swagger:route  DELETE /adherents/{id} adherent AdherentsDelete
+// swagger:route DELETE /auth/adherents/{id} adherent AdherentsDelete
 // Delete an adherent.
 //
 // consumes:
@@ -79,9 +67,6 @@ package docs
 //   in: path
 //   type: integer
 //   required: true
-//
-// security:
-// - apiKey: []
 //
 // responses:
 //	401: CommonError

@@ -20,7 +20,7 @@ info:
     title: ESN super API.
     version: 0.0.1
 paths:
-    /adherents:
+    /auth/adherents:
         get:
             operationId: AdherentsIndex
             responses:
@@ -32,9 +32,6 @@ paths:
                     description: CommonError
                     schema:
                         $ref: '#/definitions/CommonError'
-            security:
-                - apiKey:
-                    - '[]'
             summary: Get adherents list.
             tags:
                 - adherent
@@ -56,13 +53,10 @@ paths:
                     description: CommonError
                     schema:
                         $ref: '#/definitions/CommonError'
-            security:
-                - apiKey:
-                    - '[]'
             summary: Create a new adherent.
             tags:
                 - adherent
-    /adherents/{id}:
+    /auth/adherents/{id}:
         delete:
             consumes:
                 - application/x-www-form-urlencoded
@@ -81,9 +75,6 @@ paths:
                     description: CommonError
                     schema:
                         $ref: '#/definitions/CommonError'
-            security:
-                - apiKey:
-                    - '[]'
             summary: Delete an adherent.
             tags:
                 - adherent
@@ -105,9 +96,6 @@ paths:
                     description: CommonError
                     schema:
                         $ref: '#/definitions/CommonError'
-            security:
-                - apiKey:
-                    - '[]'
             summary: Show an adherent.
             tags:
                 - adherent
@@ -135,9 +123,6 @@ paths:
                     description: CommonError
                     schema:
                         $ref: '#/definitions/CommonError'
-            security:
-                - apiKey:
-                    - '[]'
             summary: Update an adherent.
             tags:
                 - adherent
@@ -147,10 +132,10 @@ schemes:
     - http
     - https
 security:
-    - api_key: []
+    - key: []
 securityDefinitions:
-    api_key:
+    key:
         in: header
-        name: KEY
+        name: X-Session-Token
         type: apiKey
 swagger: "2.0"
