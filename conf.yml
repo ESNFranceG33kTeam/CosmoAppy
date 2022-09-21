@@ -8,3 +8,9 @@ extradb: "?parseTime=true"
 
 # log
 loglevel: 0
+
+# access api
+usersapi: 
+  - "test"
+tokensapi: 
+  - "test"

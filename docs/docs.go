@@ -22,12 +22,12 @@
 //	- application/json
 //
 //	Security:
-//	- api_key:
+//	- key:
 //
 //	SecurityDefinitions:
-//	api_key:
+//	key:
+//	     name: X-Session-Token
 //	     type: apiKey
-//	     name: KEY
 //	     in: header
 //
 // swagger:meta

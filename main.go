@@ -19,7 +19,7 @@ func InitConf() {
 func main() {
 	InitConf()
 	logger.LogInfo("main", "Conf loaded ; app starting.")
-	router := InitializeRouter()
+	router := InitializeRouter(helpers.AppConfig.Usersapi, helpers.AppConfig.Tokensapi)
 
 	// Populate database
 	models.NewAdherent(&models.Adherent{Firstname: "Titi", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", ESNcard: "grgerrbrbreht", Student: false, University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false})
