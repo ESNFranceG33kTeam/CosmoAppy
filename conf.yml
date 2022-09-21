@@ -1,3 +1,4 @@
+---
 # database
 userdb: "root"
 passdb: "root"
@@ -10,7 +11,7 @@ extradb: "?parseTime=true"
 loglevel: 0
 
 # access api
-usersapi: 
+usersapi:
   - "test"
-tokensapi: 
+tokensapi:
   - "test"
