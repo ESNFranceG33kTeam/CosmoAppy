@@ -7,20 +7,47 @@ import (
 	"github.com/ESNFranceG33kTeam/sAPI/logger"
 )
 
+// swagger:model Adherent
 type Adherent struct {
-	Id          int       `json:"id"`
-	Firstname   string    `json:"firstname"`
-	Lastname    string    `json:"lastname"`
-	Email       string    `json:"email"`
-	Dateofbirth string    `json:"dateofbirth"`
-	ESNcard     string    `json:"esncard"`
-	Student     bool      `json:"student"`
-	University  string    `json:"university"`
-	Homeland    string    `json:"homeland"`
-	Speakabout  string    `json:"speakabout"`
-	Newsletter  bool      `json:"newsletter"`
-	CreatedAt   time.Time `json:"created_at"`
-	UpdatedAt   time.Time `json:"updated_at"`
+	// Id of the adherent
+	// in: int64
+	Id int `json:"id"`
+	// Firstname of the adherent
+	// in: string
+	Firstname string `json:"firstname"`
+	// Lastname of the adherent
+	// in: string
+	Lastname string `json:"lastname"`
+	// Email of the adherent
+	// in: string
+	Email string `json:"email"`
+	// Dateofbirth of the adherent
+	// in: string
+	Dateofbirth string `json:"dateofbirth"`
+	// ESNcard of the adherent
+	// in: string
+	ESNcard string `json:"esncard"`
+	// Student status of the adherent
+	// in: bool
+	Student bool `json:"student"`
+	// University of the adherent
+	// in: string
+	University string `json:"university"`
+	// Homeland of the adherent
+	// in: string
+	Homeland string `json:"homeland"`
+	// Speakabout of the adherent
+	// in: string
+	Speakabout string `json:"speakabout"`
+	// Newsletter status of the adherent
+	// in: bool
+	Newsletter bool `json:"newsletter"`
+	// CreatedAt date of the adherent
+	// in: time.Time
+	CreatedAt time.Time `json:"created_at"`
+	// UpdatedAt date of the adherent
+	// in: time.Time
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 type Adherents []Adherent
