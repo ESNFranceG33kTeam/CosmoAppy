@@ -11,10 +11,10 @@ package docs
 // Create a new adherent.
 //
 // parameters:
-// + name: adherent
-//   in: body
-//   type: Adherent
-//   required: true
+//	+ name: adherent
+//    in: body
+//    type: Adherent
+//    required: true
 //
 // responses:
 //	401: CommonError
@@ -27,10 +27,10 @@ package docs
 //   - application/x-www-form-urlencoded
 //
 // parameters:
-// + name: id
-//   in: path
-//   type: integer
-//   required: true
+//	+ name: id
+//    in: path
+//    type: integer
+//    required: true
 //
 // responses:
 //	401: CommonError
@@ -43,14 +43,14 @@ package docs
 //   - application/x-www-form-urlencoded
 //
 // parameters:
-// + name: id
-//   in: path
-//   type: integer
-//   required: true
-// + name: adherent
-//   in: body
-//   type: Adherent
-//   required: true
+//	+ name: id
+//    in: path
+//    type: integer
+//    required: true
+//	+ name: adherent
+//    in: body
+//    type: Adherent
+//    required: true
 //
 // responses:
 //	401: CommonError
@@ -63,10 +63,10 @@ package docs
 //   - application/x-www-form-urlencoded
 //
 // parameters:
-// + name: id
-//   in: path
-//   type: integer
-//   required: true
+//	+ name: id
+//    in: path
+//    type: integer
+//    required: true
 //
 // responses:
 //	401: CommonError

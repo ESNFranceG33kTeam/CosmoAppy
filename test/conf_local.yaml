@@ -1,4 +1,3 @@
----
 # database
 userdb: "root"
 passdb: "root"
@@ -6,10 +5,8 @@ ipdb: "127.0.0.1"
 portdb: "3306"
 namedb: "sapi"
 extradb: "?parseTime=true"
-
 # log
 loglevel: 0
-
 # access api
 usersapi:
   - "test"

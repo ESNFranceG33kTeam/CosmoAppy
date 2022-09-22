@@ -15,6 +15,10 @@ check-swagger: setting-prepare
 swagger: check-swagger
 	swagger generate spec -o ./test/swagger.yaml --scan-models
 
+yamllint:
+	go install github.com/google/yamlfmt/cmd/yamlfmt@latest
+	$(HOME)/go/bin/yamlfmt
+
 setting-prepare:
 	go mod tidy
 	go mod vendor
