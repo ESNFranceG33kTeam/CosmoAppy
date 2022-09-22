@@ -59,7 +59,7 @@ jobs:
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: test/conf.yml
+          file_or_dir: test
 
   pre-commit:
     runs-on: ubuntu-latest

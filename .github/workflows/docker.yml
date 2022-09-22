@@ -1,6 +1,6 @@
 name: Docker image
 
-on: 
+on:
   workflow_dispatch:
   push:
     tags:
