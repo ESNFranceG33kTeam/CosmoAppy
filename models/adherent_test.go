@@ -22,7 +22,7 @@ func TestMain(m *testing.M) {
 }
 
 func setUp() {
-	helpers.InitFile("../conf.yml")
+	helpers.InitFile("../test/conf_local.yaml")
 	helpers.ReadConfig()
 	logger.LogInit(helpers.AppConfig.Loglevel)
 	config.DatabaseInit(helpers.AppConfig.Userdb, helpers.AppConfig.Passdb, helpers.AppConfig.Ipdb, helpers.AppConfig.Portdb, helpers.AppConfig.Namedb, helpers.AppConfig.Extradb)

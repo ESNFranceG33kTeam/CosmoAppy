@@ -7,14 +7,12 @@ repos:
         exclude: vendor
       - id: end-of-file-fixer
         exclude: vendor
-
   - repo: https://github.com/dnephin/pre-commit-golang
     rev: v0.4.0
     hooks:
       - id: go-fmt
       - id: go-imports
       - id: go-mod-tidy
-
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.27.1
     hooks:

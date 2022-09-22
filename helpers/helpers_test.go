@@ -5,6 +5,7 @@ import (
 	"os"
 	"testing"
 
+	"github.com/ESNFranceG33kTeam/sAPI/logger"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -18,14 +19,14 @@ func TestMain(m *testing.M) {
 }
 
 func setUp() {
-	InitFile("../conf.yml")
+	InitFile("../test/conf_local.yaml")
 }
 
 func TestInitFile(t *testing.T) {
-	InitFile("../conf.yml")
+	InitFile("../test/conf_local.yaml")
 	_, err := os.Stat(AppConfig.ConfPath)
 	if err != nil {
-		log.Fatalf("Conf path doesn't exist !")
+		logger.LogCritical("helper", "Conf path doesn't exist !", err)
 	}
 }
 

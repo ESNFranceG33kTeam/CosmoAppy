@@ -10,7 +10,7 @@ import (
 )
 
 func TestDatabaseInit(t *testing.T) {
-	helpers.InitFile("../conf.yml")
+	helpers.InitFile("../test/conf_local.yaml")
 	helpers.ReadConfig()
 	logger.LogInit(helpers.AppConfig.Loglevel)
 	DatabaseInit(helpers.AppConfig.Userdb, helpers.AppConfig.Passdb, helpers.AppConfig.Ipdb, helpers.AppConfig.Portdb, helpers.AppConfig.Namedb, helpers.AppConfig.Extradb)

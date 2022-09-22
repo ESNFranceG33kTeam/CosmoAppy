@@ -1,0 +1,138 @@
+basePath: /
+consumes:
+  - application/json
+definitions:
+  Adherent:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/models
+  CommonError:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
+  CommonSuccess:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
+host: 127.0.0.1:8080
+info:
+  description: |-
+    the purpose of this application is to provide an application
+    that is using plain go code to define an API
+  termsOfService: not yet...
+  title: ESN super API.
+  version: 0.0.1
+paths:
+  /auth/adherents:
+    get:
+      operationId: AdherentsIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "401":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get adherents list.
+      tags:
+        - adherent
+    post:
+      operationId: AdherentsCreate
+      parameters:
+        - in: body
+          name: adherent
+          required: true
+          schema:
+            $ref: '#/definitions/Adherent'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "401":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Create a new adherent.
+      tags:
+        - adherent
+  /auth/adherents/{id}:
+    delete:
+      consumes:
+        - application/x-www-form-urlencoded
+      operationId: AdherentsDelete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "401":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Delete an adherent.
+      tags:
+        - adherent
+    get:
+      consumes:
+        - application/x-www-form-urlencoded
+      operationId: AdherentsShow
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "401":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an adherent.
+      tags:
+        - adherent
+    put:
+      consumes:
+        - application/x-www-form-urlencoded
+      operationId: AdherentsUpdate
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+        - in: body
+          name: adherent
+          required: true
+          schema:
+            $ref: '#/definitions/Adherent'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "401":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Update an adherent.
+      tags:
+        - adherent
+produces:
+  - application/json
+schemes:
+  - http
+  - https
+security:
+  - key: []
+securityDefinitions:
+  key:
+    in: header
+    name: X-Session-Token
+    type: apiKey
+swagger: "2.0"

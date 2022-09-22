@@ -1,8 +1,6 @@
 name: Tests
-
 on:
   pull_request:
-
 jobs:
   golangci:
     name: lint
@@ -23,7 +21,6 @@ jobs:
           if [["${check}" -ne ""]]; then
             exit 1
           fi
-
   unittests:
     name: go_test
     runs-on: ubuntu-latest
@@ -51,7 +48,6 @@ jobs:
             echo "::warning title=not enought tests::${total_cov}%"
             #exit 1
           fi
-
   configlint:
     runs-on: ubuntu-latest
     steps:
@@ -59,8 +55,7 @@ jobs:
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: conf.yml
-
+          file_or_dir: test
   pre-commit:
     runs-on: ubuntu-latest
     steps:
