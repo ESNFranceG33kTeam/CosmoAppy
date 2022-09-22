@@ -1,6 +1,11 @@
 name: Docker image
 
-on: [workflow_dispatch, pull_request, push: [tags]]
+on: 
+  workflow_dispatch:
+  pull_request:
+  push:
+    tags:
+    - '*'
 
 jobs:
   docker:
