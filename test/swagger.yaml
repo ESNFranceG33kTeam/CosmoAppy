@@ -8,7 +8,7 @@ definitions:
         x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
     CommonSuccess:
         x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
-host: localhost:8080
+host: 127.0.0.1:8080
 info:
     description: |-
         the purpose of this application is to provide an application

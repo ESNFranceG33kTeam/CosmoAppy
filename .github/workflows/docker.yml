@@ -1,0 +1,25 @@
+name: Docker image
+
+on: [workflow_dispatch, tags, pull_request]
+
+jobs:
+  docker:
+    name: Build page_home
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    env:
+      IMAGE_NAME: "sapi"
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build image
+      run: docker build . --file docker/Dockerfile --tag ${{ env.IMAGE_NAME }}:latest
+    - name: Log in to registry
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+    - name: Push image
+      run: |
+        IMAGE_ID=ghcr.io/ESNFranceG33kTeam/${{ env.IMAGE_NAME }}
+        IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+        docker tag ${{ env.IMAGE_NAME }} $IMAGE_ID:latest
+        docker push $IMAGE_ID:latest

@@ -43,15 +43,15 @@ func InitializeRouter(usersapi []string, tokensapi []string) *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 
 	// swagger
-	router.Handle("/docs/swagger.yaml", http.FileServer(http.Dir("./")))
+	router.Handle(swaggerpathflag, http.FileServer(http.Dir("./")))
 
 	// documentation for developers
-	opts := middleware.SwaggerUIOpts{SpecURL: "/docs/swagger.yaml", Path: "swagger"}
+	opts := middleware.SwaggerUIOpts{SpecURL: swaggerpathflag, Path: "swagger"}
 	sh := middleware.SwaggerUI(opts, nil)
 	router.Handle("/swagger", sh)
 
 	// documentation for share
-	opts1 := middleware.RedocOpts{SpecURL: "/docs/swagger.yaml", Path: "docs"}
+	opts1 := middleware.RedocOpts{SpecURL: swaggerpathflag, Path: "docs"}
 	sh1 := middleware.Redoc(opts1, nil)
 	router.Handle("/docs", sh1)
 

@@ -1,14 +1,19 @@
+#GOBIN?=.
+GOBIN?=/src/bin
+GO111MODULE?=on
+PROJECT_NAME?=sapi
+
 run-test:
 	go test ./... -covermode=count -coverprofile ./coverage.out
 
 run-fmt:
 	go fmt
 
-check-swagger:
+check-swagger: setting-prepare
 	which swagger || (GO111MODULE=on go get -u github.com/go-swagger/go-swagger/cmd/swagger)
 
 swagger: check-swagger
-	GO111MODULE=on go mod vendor  && GO111MODULE=on swagger generate spec -o ./docs/swagger.yaml --scan-models
+	swagger generate spec -o ./test/swagger.yaml --scan-models
 
 setting-prepare:
 	go mod tidy
@@ -18,7 +23,13 @@ start-app: setting-prepare
 	go run .
 
 build-app: setting-prepare
-	go build .
+	go build -mod=vendor -o $(GOBIN)/$(1)
 
 install-app: build-app
 	go install
+
+docker-build:
+	docker build . -f docker/Dockerfile --tag $(PROJECT_NAME):latest
+
+docker-start: docker-build
+	docker run -v $(PWD)/test:/etc/$(1)/conf -p 8080:8080 $(PROJECT_NAME):latest -conf=/etc/$(1)/conf/conf_docker.yaml -swagger=/etc/$(1)/conf/swagger.yaml
