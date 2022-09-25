@@ -20,6 +20,7 @@ type Cfg struct {
 	Loglevel  int      `yaml:"loglevel"`
 	Usersapi  []string `yaml:"usersapi"`
 	Tokensapi []string `yaml:"tokensapi"`
+	Specimen  bool     `yaml:"specimen"`
 }
 
 var AppConfig Cfg

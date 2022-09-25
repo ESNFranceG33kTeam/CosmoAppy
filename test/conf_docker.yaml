@@ -12,3 +12,6 @@ usersapi:
   - "test"
 tokensapi:
   - "test"
+
+# specimen data
+specimen: true
