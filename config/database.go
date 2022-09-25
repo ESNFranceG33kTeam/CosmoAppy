@@ -27,7 +27,7 @@ func DatabaseInit(userdb string, passdb string, ipdb string, portdb string, name
 }
 
 func createAdherentTable() {
-	_, err := db.Exec("CREATE TABLE IF NOT EXISTS adherents(id serial, firstname varchar(20), lastname varchar(20), email varchar(20), dateofbirth varchar(20), esncard varchar(20), student bool, university varchar(20), homeland varchar(20), speakabout varchar(20), newsletter bool, created_at timestamp default NULL, updated_at timestamp default NULL, constraint pk primary key(id))")
+	_, err := db.Exec("CREATE TABLE IF NOT EXISTS adherents(id serial, firstname varchar(20) NOT NULL, lastname varchar(20) NOT NULL, email varchar(20) NOT NULL, dateofbirth varchar(20) NOT NULL, esncard varchar(20), student bool, university varchar(20), homeland varchar(20) NOT NULL, speakabout varchar(20), newsletter bool, created_at timestamp default NULL, updated_at timestamp default NULL, constraint pk primary key(id))")
 	if err != nil {
 		logger.LogCritical("database", "create table adherent got a problem.", err)
 	} else {

@@ -7,7 +7,6 @@ import (
 	"github.com/ESNFranceG33kTeam/sAPI/config"
 	"github.com/ESNFranceG33kTeam/sAPI/helpers"
 	"github.com/ESNFranceG33kTeam/sAPI/logger"
-	"github.com/ESNFranceG33kTeam/sAPI/models"
 )
 
 // flags
@@ -33,8 +32,10 @@ func main() {
 	logger.LogInfo("main", "Conf loaded ; app starting.")
 	router := InitializeRouter(helpers.AppConfig.Usersapi, helpers.AppConfig.Tokensapi)
 
-	// Populate database
-	models.NewAdherent(&models.Adherent{Firstname: "Titi", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", ESNcard: "grgerrbrbreht", Student: false, University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false})
+	// Specimen data
+	if helpers.AppConfig.Specimen {
+		PopulateDb()
+	}
 
 	logger.LogInfo("main", "API ready.")
 

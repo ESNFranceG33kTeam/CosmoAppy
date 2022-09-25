@@ -4,7 +4,7 @@ package docs
 // Get adherents list.
 //
 // responses:
-//	401: CommonError
+//	400: CommonError
 //	200: CommonSuccess
 
 // swagger:route POST /auth/adherents adherent AdherentsCreate
@@ -17,7 +17,7 @@ package docs
 //    required: true
 //
 // responses:
-//	401: CommonError
+//	400: CommonError
 //	200: CommonSuccess
 
 // swagger:route GET /auth/adherents/{id} adherent AdherentsShow
@@ -33,7 +33,7 @@ package docs
 //    required: true
 //
 // responses:
-//	401: CommonError
+//	400: CommonError
 //	200: CommonSuccess
 
 // swagger:route PUT /auth/adherents/{id} adherent AdherentsUpdate
@@ -53,7 +53,7 @@ package docs
 //    required: true
 //
 // responses:
-//	401: CommonError
+//	400: CommonError
 //	200: CommonSuccess
 
 // swagger:route DELETE /auth/adherents/{id} adherent AdherentsDelete
@@ -69,5 +69,5 @@ package docs
 //    required: true
 //
 // responses:
-//	401: CommonError
+//	400: CommonError
 //	200: CommonSuccess

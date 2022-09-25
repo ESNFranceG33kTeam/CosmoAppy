@@ -25,7 +25,7 @@ paths:
           description: CommonSuccess
           schema:
             $ref: '#/definitions/CommonSuccess'
-        "401":
+        "400":
           description: CommonError
           schema:
             $ref: '#/definitions/CommonError'
@@ -46,7 +46,7 @@ paths:
           description: CommonSuccess
           schema:
             $ref: '#/definitions/CommonSuccess'
-        "401":
+        "400":
           description: CommonError
           schema:
             $ref: '#/definitions/CommonError'
@@ -68,7 +68,7 @@ paths:
           description: CommonSuccess
           schema:
             $ref: '#/definitions/CommonSuccess'
-        "401":
+        "400":
           description: CommonError
           schema:
             $ref: '#/definitions/CommonError'
@@ -89,7 +89,7 @@ paths:
           description: CommonSuccess
           schema:
             $ref: '#/definitions/CommonSuccess'
-        "401":
+        "400":
           description: CommonError
           schema:
             $ref: '#/definitions/CommonError'
@@ -116,7 +116,7 @@ paths:
           description: CommonSuccess
           schema:
             $ref: '#/definitions/CommonSuccess'
-        "401":
+        "400":
           description: CommonError
           schema:
             $ref: '#/definitions/CommonError'
