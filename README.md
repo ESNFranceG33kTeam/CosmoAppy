@@ -4,8 +4,8 @@
 
 - [Setup](#setup)
 - [API Documentation](#api-documentation)  
-    - [Authentication](#authentication)  
-    - [Adherents endpoint](#adherents-endpoint)
+  - [Authentication](#authentication)  
+  - [Adherents endpoint](#adherents-endpoint)
 
 ## Setup
 
