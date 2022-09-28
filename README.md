@@ -30,7 +30,8 @@ docker build . -f docker/Dockerfile --tag sapi:latest
 - **Run**
 
 ```bash
-docker run -v $PWD/conf/folder:/etc/sAPI/conf -p 8080:8080 sapi:latest -conf=/etc/sAPI/conf/conf_docker.yaml -swagger=/etc/sAPI/conf/swagger.yaml
+docker run -v $PWD/conf/folder:/etc/sAPI/conf -p 8080:8080 sapi:latest \
+    -conf=/etc/sAPI/conf/conf_docker.yaml -swagger=/etc/sAPI/conf/swagger.yaml
 ```
 
 ## API Documentation
@@ -70,7 +71,9 @@ Output : (`json`) adherent object
 
 ```bash
 curl -X POST "https://${MYSERVER}/auth/adherents" \
-    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}" -H "Content-Type: application/json" \
+    -H "accept: application/json" \
+    -H "X-Session-Token: ${MYTOKEN}" \
+    -H "Content-Type: application/json" \
     -d '{
         "firstname": "Ash",
         "lastname": "Ketchum",
@@ -93,7 +96,9 @@ Output : (`json`) adherent object
 
 ```bash
 curl -X PUT "https://${MYSERVER}/auth/adherents/3" \
-    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}" -H "Content-Type: application/json" \
+    -H "accept: application/json" \
+    -H "X-Session-Token: ${MYTOKEN}" \
+    -H "Content-Type: application/json" \
     -d ' {
         "firstname": "Ash",
         "lastname": "Ketchum",
