@@ -23,9 +23,6 @@ package docs
 // swagger:route GET /auth/adherents/{id} adherent AdherentsShow
 // Show an adherent.
 //
-// consumes:
-//   - application/x-www-form-urlencoded
-//
 // parameters:
 //	+ name: id
 //    in: path
@@ -38,9 +35,6 @@ package docs
 
 // swagger:route PUT /auth/adherents/{id} adherent AdherentsUpdate
 // Update an adherent.
-//
-// consumes:
-//   - application/x-www-form-urlencoded
 //
 // parameters:
 //	+ name: id
@@ -58,9 +52,6 @@ package docs
 
 // swagger:route DELETE /auth/adherents/{id} adherent AdherentsDelete
 // Delete an adherent.
-//
-// consumes:
-//   - application/x-www-form-urlencoded
 //
 // parameters:
 //	+ name: id

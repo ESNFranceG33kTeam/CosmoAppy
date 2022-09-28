@@ -55,8 +55,6 @@ paths:
         - adherent
   /auth/adherents/{id}:
     delete:
-      consumes:
-        - application/x-www-form-urlencoded
       operationId: AdherentsDelete
       parameters:
         - in: path
@@ -76,8 +74,6 @@ paths:
       tags:
         - adherent
     get:
-      consumes:
-        - application/x-www-form-urlencoded
       operationId: AdherentsShow
       parameters:
         - in: path
@@ -97,8 +93,6 @@ paths:
       tags:
         - adherent
     put:
-      consumes:
-        - application/x-www-form-urlencoded
       operationId: AdherentsUpdate
       parameters:
         - in: path
