@@ -43,7 +43,7 @@ func InitializeRouter(usersapi []string, tokensapi []string) *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 
 	// healthcheck
-	router.Methods("GET").Path("/health").Name("Index").HandlerFunc(controllers.HealthssIndex)
+	router.Methods("GET").Path("/health").Name("Index").HandlerFunc(controllers.HealthsCheck)
 
 	// swagger
 	router.Handle(swaggerpathflag, http.FileServer(http.Dir("./")))

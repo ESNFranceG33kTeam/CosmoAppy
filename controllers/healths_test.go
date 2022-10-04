@@ -10,7 +10,7 @@ import (
 func TestHealthssIndex(t *testing.T) {
 	req := httptest.NewRequest(http.MethodGet, "/health", nil)
 	w := httptest.NewRecorder()
-	HealthssIndex(w, req)
+	HealthsCheck(w, req)
 
 	res := w.Result()
 	defer res.Body.Close()

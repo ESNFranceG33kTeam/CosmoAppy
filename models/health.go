@@ -1,6 +1,6 @@
 package models
 
-// swagger:model Adherent
+// swagger:model Health
 type Health struct {
 	// Title of the api page
 	// in: string

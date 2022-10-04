@@ -8,7 +8,7 @@ import (
 	"github.com/ESNFranceG33kTeam/sAPI/models"
 )
 
-func HealthssIndex(w http.ResponseWriter, r *http.Request) {
+func HealthsCheck(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 
 	w.WriteHeader(http.StatusOK)
