@@ -4,6 +4,7 @@
 
 - [Setup](#setup)
 - [API Documentation](#api-documentation)
+  - [HealthCheck](#healthcheck)
   - [Authentication](#authentication)
   - [Adherents endpoint](#adherents-endpoint)
 
@@ -38,6 +39,10 @@ docker run -v $PWD/conf/folder:/etc/sAPI/conf -p 8080:8080 sapi:latest \
 
 - A build-in interactive documentation is openly available at the `/docs` endpoint.
 - The build-in swagger is available at the `/swagger` endpoint.
+
+### HealthCheck
+
+- The healthcheck is available at the `/health` endpoint.
 
 ### Authentication
 
