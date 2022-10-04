@@ -42,6 +42,9 @@ func (amw *authenticationMiddleware) Middleware(next http.Handler) http.Handler 
 func InitializeRouter(usersapi []string, tokensapi []string) *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 
+	// healthcheck
+	router.Methods("GET").Path("/health").Name("Index").HandlerFunc(controllers.HealthssIndex)
+
 	// swagger
 	router.Handle(swaggerpathflag, http.FileServer(http.Dir("./")))
 
