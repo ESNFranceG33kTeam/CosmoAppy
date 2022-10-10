@@ -140,7 +140,7 @@ Output : no output
 The db schema is available in [config/sapi_db.mwb](https://github.com/ESNFranceG33kTeam/sAPI/blob/main/config/sapi_db.mw).
 It can be edit with [MySQL Workbench](https://www.mysql.com/products/workbench/).
 
-![DB schematique](https://raw.githubusercontent.com/ESNFranceG33kTeam/sAPI/main/config/sapi_db.png)
+![DB schematique](./config/sapi_db.png)
 
 :warning:
 > Actually the db creation is coded by hand.
