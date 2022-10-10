@@ -7,6 +7,8 @@
   - [HealthCheck](#healthcheck)
   - [Authentication](#authentication)
   - [Adherents endpoint](#adherents-endpoint)
+- [Annexes](#annexes)
+  - [Database](#database)
 
 ## Setup
 
@@ -130,3 +132,16 @@ curl -X DELETE "https://${MYSERVER}/auth/adherents/3" \
 ```
 
 Output : no output
+
+## Annexes
+
+### Database
+
+The db schema is available in [config/sapi_db.mwb](config/sapi_db.mwb).
+It can be edit with [MySQL Workbench](https://www.mysql.com/products/workbench/).
+
+![DB schematique](./config/sapi_db.png)
+
+:warning:
+> Actually the db creation is coded by hand.
+> But in a near future we would like to generated it automatically.
