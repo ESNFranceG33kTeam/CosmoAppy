@@ -7,6 +7,8 @@
   - [HealthCheck](#healthcheck)
   - [Authentication](#authentication)
   - [Adherents endpoint](#adherents-endpoint)
+- [Annexes](#annexes)
+  - [Database](#database)
 
 ## Setup
 
@@ -130,3 +132,10 @@ curl -X DELETE "https://${MYSERVER}/auth/adherents/3" \
 ```
 
 Output : no output
+
+## Annexes
+
+### Database
+
+The db schema is available in [config/sapi_db.mwb](https://github.com/ESNFranceG33kTeam/sAPI/blob/main/config/sapi_db.mw) and can be edit with [MySQL Workbench](https://www.mysql.com/products/workbench/).
+<img src="config/sapi_db.png">
