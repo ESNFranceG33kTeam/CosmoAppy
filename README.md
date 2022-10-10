@@ -137,7 +137,7 @@ Output : no output
 
 ### Database
 
-The db schema is available in [config/sapi_db.mwb](config/sapi_db.mw).
+The db schema is available in [config/sapi_db.mwb](config/sapi_db.mwb).
 It can be edit with [MySQL Workbench](https://www.mysql.com/products/workbench/).
 
 ![DB schematique](./config/sapi_db.png)
