@@ -142,4 +142,4 @@ The db schema is available in [config/sapi_db.mwb](https://github.com/ESNFranceG
 <img src="config/sapi_db.png">
 
 :warning:
-> Actually the db creation is coded by hand but in a near future we would like generated it automatically.
+> Actually the db creation is coded by hand but in a near future we would like to generated it automatically.
