@@ -4,6 +4,7 @@ GO111MODULE?=on
 PROJECT_NAME?=sapi
 
 run-test:
+	go clean -testcache
 	go test ./... -covermode=count -coverprofile ./coverage.out
 
 run-fmt:

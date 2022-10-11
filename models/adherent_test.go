@@ -2,46 +2,18 @@ package models
 
 import (
 	"log"
-	"os"
 	"testing"
-
-	"github.com/ESNFranceG33kTeam/sAPI/config"
-	"github.com/ESNFranceG33kTeam/sAPI/helpers"
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
 )
 
-func TestMain(m *testing.M) {
-	setUp()
-
-	//log.Println("Do stuff BEFORE the tests!")
-	exitVal := m.Run()
-	//log.Println("Do stuff AFTER the tests!")
-	tearDown()
-	os.Exit(exitVal)
-
-}
-
-func setUp() {
-	helpers.InitFile("../test/conf_local.yaml")
-	helpers.ReadConfig()
-	logger.LogInit(helpers.AppConfig.Loglevel)
-	config.DatabaseInit(helpers.AppConfig.Userdb, helpers.AppConfig.Passdb, helpers.AppConfig.Ipdb, helpers.AppConfig.Portdb, helpers.AppConfig.Namedb, helpers.AppConfig.Extradb)
-
-	NewAdherent(&Adherent{Firstname: "Test1", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", ESNcard: "grgerrbrbreht", Student: false, University: "Nancy", Homeland: "Pologne", Speakabout: "Facebook", Newsletter: false})
-	NewAdherent(&Adherent{Firstname: "Test2", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", ESNcard: "grgerrbrbreht", Student: false, University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false})
-	NewAdherent(&Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", ESNcard: "grgerrbrbreht", Student: false, University: "Lyon lumiere", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: true})
-	NewAdherent(&Adherent{Firstname: "Test4", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", ESNcard: "grgerrbrbreht", Student: false, University: "MIT", Homeland: "USA", Speakabout: "Twitter", Newsletter: false})
-}
-
-func tearDown() {
-	_, err := config.Db().Exec("DROP TABLE adherents;")
-	if err != nil {
-		log.Fatal(err)
-	}
+func setUpAdherent() {
+	NewAdherent(&Adherent{Firstname: "Test1", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false, University: "Nancy", Homeland: "Pologne", Speakabout: "Facebook", Newsletter: false})
+	NewAdherent(&Adherent{Firstname: "Test2", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false, University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false})
+	NewAdherent(&Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false, University: "Lyon lumiere", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: true})
+	NewAdherent(&Adherent{Firstname: "Test4", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false, University: "MIT", Homeland: "USA", Speakabout: "Twitter", Newsletter: false})
 }
 
 func TestNewAdherent(t *testing.T) {
-	NewAdherent(&Adherent{Firstname: "Test", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", ESNcard: "grgerrbrbreht", Student: false, University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false})
+	NewAdherent(&Adherent{Firstname: "Test", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false, University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false})
 }
 
 func TestFindAdherentById(t *testing.T) {
@@ -70,7 +42,7 @@ func TestAllAdherents(t *testing.T) {
 }
 
 func TestUpdateAdherent(t *testing.T) {
-	adh := Adherent{Id: 3, Firstname: "Mario", Lastname: "Bros", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", ESNcard: "grgerrbrbreht", Student: false, University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false}
+	adh := Adherent{Id: 3, Firstname: "Mario", Lastname: "Bros", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false, University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false}
 	UpdateAdherent(&adh)
 
 	adh_2 := FindAdherentById(3)

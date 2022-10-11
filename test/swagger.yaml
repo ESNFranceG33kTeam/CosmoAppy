@@ -8,6 +8,8 @@ definitions:
     x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
   CommonSuccess:
     x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
+  ESNcard:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/models
   Health:
     x-go-package: github.com/ESNFranceG33kTeam/sAPI/models
 host: 127.0.0.1:8080
@@ -119,6 +121,102 @@ paths:
       summary: Update an adherent.
       tags:
         - adherent
+  /auth/esncards:
+    get:
+      operationId: ESNcardsIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get esncards list.
+      tags:
+        - esncard
+    post:
+      operationId: ESNcardsCreate
+      parameters:
+        - in: body
+          name: esncard
+          required: true
+          schema:
+            $ref: '#/definitions/ESNcard'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Create a new esncard.
+      tags:
+        - esncard
+  /auth/esncards/{id}:
+    delete:
+      operationId: ESNcardsDelete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Delete an esncard.
+      tags:
+        - esncard
+  /auth/esncards/esncard/{esncard}:
+    get:
+      operationId: ESNcardsShow
+      parameters:
+        - in: path
+          name: esncard
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an esncard by the esncard code.
+      tags:
+        - esncard
+  /auth/esncards/id_adherent/{id_adherent}:
+    get:
+      operationId: ESNcardsShow
+      parameters:
+        - in: path
+          name: id_adherent
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an esncard by the id_adherent.
+      tags:
+        - esncard
   /health:
     get:
       operationId: HealthsCheck
