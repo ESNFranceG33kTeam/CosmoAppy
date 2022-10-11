@@ -36,3 +36,6 @@ public/
 
 ### IDEs ###
 .vscode/
+
+### BDD bak
+**/*.bak
