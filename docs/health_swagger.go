@@ -1,7 +1,7 @@
 package docs
 
 // swagger:route GET /health heath HealthsCheck
-// Get the heakth.
+// Get the health.
 //
 // security:
 // - apiKey: []

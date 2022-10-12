@@ -64,12 +64,20 @@ func InitializeRouter(usersapi []string, tokensapi []string) *mux.Router {
 	secure := router.PathPrefix("/auth").Subrouter()
 	secure.Use(amw.Middleware)
 
-	// route /adherents
 	// StrictSlash is true => redirect /adherents/ to /adherents
+	// route /adherents
 	secure.Methods("GET").Path("/adherents").Name("Index").HandlerFunc(controllers.AdherentsIndex)
 	secure.Methods("POST").Path("/adherents").Name("Create").HandlerFunc(controllers.AdherentsCreate)
 	secure.Methods("GET").Path("/adherents/{id}").Name("Show").HandlerFunc(controllers.AdherentsShow)
 	secure.Methods("PUT").Path("/adherents/{id}").Name("Update").HandlerFunc(controllers.AdherentsUpdate)
 	secure.Methods("DELETE").Path("/adherents/{id}").Name("DELETE").HandlerFunc(controllers.AdherentsDelete)
+
+	// route /esncards
+	secure.Methods("GET").Path("/esncards").Name("Index").HandlerFunc(controllers.ESNcardsIndex)
+	secure.Methods("POST").Path("/esncards").Name("Create").HandlerFunc(controllers.ESNcardsCreate)
+	secure.Methods("GET").Path("/esncards/id_adherent/{id_adherent}").Name("Show").HandlerFunc(controllers.ESNcardsShowByIdAdherent)
+	secure.Methods("GET").Path("/esncards/esncard/{esncard}").Name("Show").HandlerFunc(controllers.ESNcardsShowByESNcard)
+	secure.Methods("DELETE").Path("/esncards/{id}").Name("DELETE").HandlerFunc(controllers.ESNcardsDelete)
+
 	return router
 }

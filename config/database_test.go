@@ -26,6 +26,15 @@ func TestCreateAdherentTable(t *testing.T) {
 	}
 }
 
+func TestCreateESNcardTable(t *testing.T) {
+	createESNcardTable()
+
+	_, err := Db().Exec("SHOW TABLES LIKE 'esncards';")
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
 func TestDb(t *testing.T) {
 	var got interface{} = Db()
 

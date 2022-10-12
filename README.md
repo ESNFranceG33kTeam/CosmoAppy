@@ -52,6 +52,8 @@ A session token is need to acceed to each endpoint of the API and to use the swa
 
 ### Adherents endpoint
 
+<details>
+
 #### Get
 
 - Get full list of adherents :
@@ -85,8 +87,7 @@ curl -X POST "https://${MYSERVER}/auth/adherents" \
         "firstname": "Ash",
         "lastname": "Ketchum",
         "email": "dresseur@indigo.com",
-        "dateofbirth": "1987-22-05",
-        "esncard": "negjerngoeron",
+        "dateofbirth": "1987-05-22",
         "student": true,
         "university": "League indigo",
         "homeland": "Kanto",
@@ -106,12 +107,11 @@ curl -X PUT "https://${MYSERVER}/auth/adherents/3" \
     -H "accept: application/json" \
     -H "X-Session-Token: ${MYTOKEN}" \
     -H "Content-Type: application/json" \
-    -d ' {
+    -d '{
         "firstname": "Ash",
         "lastname": "Ketchum",
         "email": "dresseur@indigo.com",
-        "dateofbirth": "1987-22-05",
-        "esncard": "pikapikapikaaaaaa",
+        "dateofbirth": "1987-05-22",
         "student": false,
         "university": "League indigo",
         "homeland": "Kanto",
@@ -132,6 +132,71 @@ curl -X DELETE "https://${MYSERVER}/auth/adherents/3" \
 ```
 
 Output : no output
+
+</details>
+
+### ESNcards endpoint
+
+<details>
+
+#### Get
+
+- Get full list of esncards :
+
+```bash
+curl -X GET "https://${MYSERVER}/auth/esncards" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`[json]`) list of esncards objects
+
+- Get only the esncard of a specific adherent :
+
+```bash
+curl -X  GET "https://${MYSERVER}/auth/esncards/id_adherent/3" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`json`) esncard object
+
+- Get only the esncard with the specific esncard code :
+
+```bash
+curl -X  GET "https://${MYSERVER}/auth/esncards/esncard/my-esncard-code" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`json`) esncard object
+
+#### Post
+
+- To create a new esncard :
+
+```bash
+curl -X POST "https://${MYSERVER}/auth/esncards" \
+    -H "accept: application/json" \
+    -H "X-Session-Token: ${MYTOKEN}" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "id_adherent": 2,
+        "esncard": "aVeryTooLongCode"
+    }'
+```
+
+Output : (`json`) esncard object
+
+#### Delete
+
+- To delete an esncard :
+
+```bash
+curl -X DELETE "https://${MYSERVER}/auth/esncards/3" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : no output
+
+</details>
 
 ## Annexes
 
