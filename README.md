@@ -52,6 +52,8 @@ A session token is need to acceed to each endpoint of the API and to use the swa
 
 ### Adherents endpoint
 
+<details>
+
 #### Get
 
 - Get full list of adherents :
@@ -130,6 +132,8 @@ curl -X DELETE "https://${MYSERVER}/auth/adherents/3" \
 ```
 
 Output : no output
+
+</details>
 
 ## Annexes
 
