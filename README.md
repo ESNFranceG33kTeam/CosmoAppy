@@ -137,6 +137,8 @@ Output : no output
 
 ### ESNcards endpoint
 
+<details>
+
 #### Get
 
 - Get full list of esncards :
@@ -193,6 +195,8 @@ curl -X DELETE "https://${MYSERVER}/auth/esncards/3" \
 ```
 
 Output : no output
+
+</details>
 
 ## Annexes
 
