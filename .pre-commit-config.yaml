@@ -19,7 +19,7 @@ repos:
       - id: markdownlint
         name: markdownlint
         description: "Checks the style of Markdown/Commonmark files."
-        entry: markdownlint
+        entry: markdownlint --disable MD024
         language: node
         types: [markdown]
         exclude: vendor
