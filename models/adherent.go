@@ -56,11 +56,7 @@ func NewAdherent(adh *Adherent) {
 	stmt, _ := config.Db().Prepare("INSERT INTO adherents (firstname, lastname, email, dateofbirth, student, university, homeland, speakabout, newsletter, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?);")
 	_, err := stmt.Exec(adh.Firstname, adh.Lastname, adh.Email, adh.Dateofbirth, adh.Student, adh.University, adh.Homeland, adh.Speakabout, adh.Newsletter, adh.CreatedAt, adh.UpdatedAt)
 	if err != nil {
-		logger.LogCritical("adherent", "can't create new adherent.", err)
-	}
-
-	if err != nil {
-		logger.LogCritical("adherent", "can't create new adherent.", err)
+		logger.LogError("adherent", "can't create new adherent.", err)
 	}
 }
 

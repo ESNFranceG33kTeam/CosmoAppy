@@ -76,7 +76,7 @@ func InitializeRouter(usersapi []string, tokensapi []string) *mux.Router {
 	secure.Methods("GET").Path("/esncards").Name("Index").HandlerFunc(controllers.ESNcardsIndex)
 	secure.Methods("POST").Path("/esncards").Name("Create").HandlerFunc(controllers.ESNcardsCreate)
 	secure.Methods("GET").Path("/esncards/id_adherent/{id_adherent}").Name("Show").HandlerFunc(controllers.ESNcardsShowByIdAdherent)
-	secure.Methods("GET").Path("/esncards/esncard/{esncard}").Name("Show").HandlerFunc(controllers.ESNcardsShowByIdAdherent)
+	secure.Methods("GET").Path("/esncards/esncard/{esncard}").Name("Show").HandlerFunc(controllers.ESNcardsShowByESNcard)
 	secure.Methods("DELETE").Path("/esncards/{id}").Name("DELETE").HandlerFunc(controllers.ESNcardsDelete)
 
 	return router

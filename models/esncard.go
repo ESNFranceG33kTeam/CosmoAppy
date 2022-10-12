@@ -12,7 +12,7 @@ type ESNcard struct {
 	// Id of the esncard
 	// in: int64
 	Id int `json:"id"`
-	// Id of the esncard
+	// Id of the adherent
 	// in: int64
 	Id_adherent int `json:"id_adherent"`
 	// Code of the esncard
@@ -31,11 +31,7 @@ func NewESNcard(card *ESNcard) {
 	stmt, _ := config.Db().Prepare("INSERT INTO esncards (id_adherent, esncard, created_at) VALUES (?,?,?);")
 	_, err := stmt.Exec(card.Id_adherent, card.Esncard, card.CreatedAt)
 	if err != nil {
-		logger.LogCritical("esncard", "can't create new esncard.", err)
-	}
-
-	if err != nil {
-		logger.LogCritical("esncard", "can't create new esncard.", err)
+		logger.LogError("esncard", "can't create new esncard.", err)
 	}
 }
 
