@@ -17,8 +17,8 @@ func TestDatabaseInit(t *testing.T) {
 
 }
 
-func TestCreateAdherentTable(t *testing.T) {
-	createAdherentTable()
+func TestCreateAdherentsTable(t *testing.T) {
+	createAdherentsTable()
 
 	_, err := Db().Exec("SHOW TABLES LIKE 'adherents';")
 	if err != nil {
@@ -26,10 +26,19 @@ func TestCreateAdherentTable(t *testing.T) {
 	}
 }
 
-func TestCreateESNcardTable(t *testing.T) {
-	createESNcardTable()
+func TestCreateESNcardsTable(t *testing.T) {
+	createESNcardsTable()
 
 	_, err := Db().Exec("SHOW TABLES LIKE 'esncards';")
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func TestCreateVolunteersTable(t *testing.T) {
+	createVolunteersTable()
+
+	_, err := Db().Exec("SHOW TABLES LIKE 'volunteers';")
 	if err != nil {
 		log.Fatal(err)
 	}

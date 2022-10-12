@@ -29,8 +29,9 @@ func DatabaseInit(userdb string, passdb string, ipdb string, portdb string, name
 	}
 
 	// Create Tables if not exists
-	createAdherentTable()
-	createESNcardTable()
+	createAdherentsTable()
+	createESNcardsTable()
+	createVolunteersTable()
 }
 
 func initSchema(dbserver *sql.DB, namedb string) {
@@ -42,7 +43,7 @@ func initSchema(dbserver *sql.DB, namedb string) {
 	}
 }
 
-func createAdherentTable() {
+func createAdherentsTable() {
 	_, err := db.Exec(`
 		CREATE TABLE IF NOT EXISTS adherents (
 			id INT NOT NULL AUTO_INCREMENT,
@@ -50,11 +51,11 @@ func createAdherentTable() {
 			lastname VARCHAR(45) NOT NULL,
 			email VARCHAR(45) NOT NULL,
 			dateofbirth VARCHAR(45) NOT NULL,
-			student TINYINT(1) NOT NULL,
+			student TINYINT NOT NULL,
 			university VARCHAR(45) NULL DEFAULT NULL,
 			homeland VARCHAR(45) NOT NULL,
 			speakabout VARCHAR(45) NULL DEFAULT NULL,
-			newsletter TINYINT(1) NOT NULL,
+			newsletter TINYINT NOT NULL,
 			created_at TIMESTAMP NOT NULL,
 			updated_at TIMESTAMP NULL DEFAULT NULL,
 			PRIMARY KEY (id),
@@ -68,7 +69,32 @@ func createAdherentTable() {
 	}
 }
 
-func createESNcardTable() {
+func createVolunteersTable() {
+	_, err := db.Exec(`
+		CREATE TABLE IF NOT EXISTS volunteers (
+			id INT NOT NULL AUTO_INCREMENT,
+			id_adherent INT NOT NULL,
+			actif TINYINT NOT NULL,
+			bureau TINYINT NOT NULL,
+			PRIMARY KEY (id),
+			INDEX idadherents_idx (id_adherent ASC),
+			UNIQUE INDEX id_UNIQUE (id ASC),
+			UNIQUE INDEX id_adherent_UNIQUE (id_adherent ASC),
+			CONSTRAINT id_volunteer_adherent
+				FOREIGN KEY (id_adherent)
+				REFERENCES adherents (id)
+				ON DELETE CASCADE
+				ON UPDATE NO ACTION
+		);
+	`)
+	if err != nil {
+		logger.LogCritical("database", "create table volunteers got a problem.", err)
+	} else {
+		logger.LogInfo("database", "volunteers table successfully created.")
+	}
+}
+
+func createESNcardsTable() {
 	_, err := db.Exec(`
 		CREATE TABLE IF NOT EXISTS esncards(
 			id INT NOT NULL AUTO_INCREMENT,
@@ -79,11 +105,11 @@ func createESNcardTable() {
 			INDEX id_adherent_idx (id_adherent ASC),
 			UNIQUE INDEX id_UNIQUE (id ASC),
 			UNIQUE INDEX esncard_UNIQUE (esncard ASC),
-			CONSTRAINT id_adherent
-			FOREIGN KEY (id_adherent)
-			REFERENCES adherents (id)
-			ON DELETE CASCADE
-			ON UPDATE NO ACTION
+			CONSTRAINT id_esncard_adherent
+				FOREIGN KEY (id_adherent)
+				REFERENCES adherents (id)
+				ON DELETE CASCADE
+				ON UPDATE NO ACTION
 		);
 	`)
 	if err != nil {

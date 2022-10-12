@@ -29,6 +29,7 @@ func testMainSetup() {
 
 	setUpAdherent()
 	setUpESNcard()
+	setUpVolunteer()
 }
 
 func testMainTeardown() {

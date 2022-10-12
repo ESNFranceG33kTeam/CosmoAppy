@@ -49,9 +49,9 @@ func TestDeleteESNcardById(t *testing.T) {
 
 	cards := AllESNcards()
 
-	for _, adh := range *cards {
-		if adh.Esncard == "AveryLittleCode" {
-			log.Fatal("Card_4 didn't be removed !")
+	for _, card := range *cards {
+		if card.Esncard == "AveryLittleCode" {
+			log.Fatal("Card_3 didn't be removed !")
 		}
 	}
 }
