@@ -20,7 +20,7 @@ package docs
 //	400: CommonError
 //	200: CommonSuccess
 
-// swagger:route GET /auth/esncards/id_adherent/{id_adherent} esncard ESNcardsShow
+// swagger:route GET /auth/esncards/id_adherent/{id_adherent} esncard ESNcardsShowByIdAdherent
 // Show an esncard by the id_adherent.
 //
 // parameters:
@@ -33,7 +33,7 @@ package docs
 //	400: CommonError
 //	200: CommonSuccess
 
-// swagger:route GET /auth/esncards/esncard/{esncard} esncard ESNcardsShow
+// swagger:route GET /auth/esncards/esncard/{esncard} esncard ESNcardsShowByESNcard
 // Show an esncard by the esncard code.
 //
 // parameters:

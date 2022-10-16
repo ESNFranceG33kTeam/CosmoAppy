@@ -7,6 +7,8 @@
   - [HealthCheck](#healthcheck)
   - [Authentication](#authentication)
   - [Adherents endpoint](#adherents-endpoint)
+  - [ESNcards endpoint](#esncards-endpoint)
+  - [Volunteers endpoint](#volunteer-endpoint)
 - [Annexes](#annexes)
   - [Database](#database)
 
@@ -51,8 +53,6 @@ docker run -v $PWD/conf/folder:/etc/sAPI/conf -p 8080:8080 sapi:latest \
 A session token is need to acceed to each endpoint of the API and to use the swagger.
 
 ### Adherents endpoint
-
-<details>
 
 #### Get
 
@@ -133,11 +133,7 @@ curl -X DELETE "https://${MYSERVER}/auth/adherents/3" \
 
 Output : no output
 
-</details>
-
 ### ESNcards endpoint
-
-<details>
 
 #### Get
 
@@ -196,7 +192,74 @@ curl -X DELETE "https://${MYSERVER}/auth/esncards/3" \
 
 Output : no output
 
-</details>
+### Volunteers endpoint
+
+#### Get
+
+- Get full list of volunteers :
+
+```bash
+curl -X GET "https://${MYSERVER}/auth/volunteers" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`[json]`) list of volunteers objects
+
+- Get only the volunteer status of a specific adherent :
+
+```bash
+curl -X  GET "https://${MYSERVER}/auth/volunteers/id_adherent/1" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`json`) volunteer object
+
+#### Post
+
+- To create a new volunteer :
+
+```bash
+curl -X POST "https://${MYSERVER}/auth/volunteers" \
+    -H "accept: application/json" \
+    -H "X-Session-Token: ${MYTOKEN}" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "id_adherent": 2,
+        "actif": true,
+        "bureau": false
+    }'
+```
+
+Output : (`json`) volunteer object
+
+#### Put
+
+- To update a volunteer :
+
+```bash
+curl -X POST "https://${MYSERVER}/auth/volunteers/id_adherent/2" \
+    -H "accept: application/json" \
+    -H "X-Session-Token: ${MYTOKEN}" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "id_adherent": 2,
+        "actif": false,
+        "bureau": false
+    }'
+```
+
+Output : (`json`) volunteer object
+
+#### Delete
+
+- To delete an volunteer :
+
+```bash
+curl -X DELETE "https://${MYSERVER}/auth/volunteers/1" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : no output
 
 ## Annexes
 

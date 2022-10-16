@@ -20,6 +20,8 @@ func PopulateDb() {
 	rand.Seed(time.Now().UnixNano())
 	rand_numb := strconv.Itoa(rand.Intn(9999999-1000000) + 1000000)
 	models.NewESNcard(&models.ESNcard{Id_adherent: 1, Esncard: rand_numb})
+	// Volunteers
+	models.NewVolunteer(&models.Volunteer{Id_adherent: 1, Actif: true, Bureau: false})
 
 	logger.LogInfo("Specimen", "Specimen data charged up.")
 }

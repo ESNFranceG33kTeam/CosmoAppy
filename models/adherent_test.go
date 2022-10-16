@@ -45,9 +45,9 @@ func TestUpdateAdherent(t *testing.T) {
 	adh := Adherent{Id: 3, Firstname: "Mario", Lastname: "Bros", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false, University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false}
 	UpdateAdherent(&adh)
 
-	adh_2 := FindAdherentById(3)
-	if adh_2.Firstname != "Mario" {
-		log.Fatal("Adh_2 didn't updated !")
+	adh_3 := FindAdherentById(3)
+	if adh_3.Firstname != "Mario" {
+		log.Fatal("Adh_3 didn't updated !")
 	}
 }
 
@@ -62,7 +62,7 @@ func TestDeleteAdherentById(t *testing.T) {
 
 	for _, adh := range *adhs {
 		if adh.Firstname == "Mario" {
-			log.Fatal("Adh_2 didn't be removed !")
+			log.Fatal("Adh_3 didn't be removed !")
 		}
 	}
 }
