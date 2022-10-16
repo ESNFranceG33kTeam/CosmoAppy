@@ -50,4 +50,6 @@ replace github.com/ESNFranceG33kTeam/sAPI/logger => ../logger
 
 replace github.com/ESNFranceG33kTeam/sAPI/helpers => ../helpers
 
+replace github.com/ESNFranceG33kTeam/sAPI/router => ../router
+
 replace github.com/ESNFranceG33kTeam/sAPI/modules/money => ../money

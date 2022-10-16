@@ -25,6 +25,10 @@ type Cfg struct {
 
 var AppConfig Cfg
 
+// flags
+var Confpathflag string
+var Swaggerpathflag string
+
 func InitFile(confpath string) {
 	AppConfig.ConfPath = confpath
 }
