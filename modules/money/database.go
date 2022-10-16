@@ -7,10 +7,10 @@ import (
 
 func CreateMoneysTable() {
 	_, err := config.Db().Exec(`
-		CREATE TABLE IF NOT EXISTS money (
+		CREATE TABLE IF NOT EXISTS moneys (
 			id INT NOT NULL AUTO_INCREMENT,
 			label VARCHAR(45) NOT NULL,
-			price FLOAT NOT NULL,
+			price DECIMAL NOT NULL,
 			created_at TIMESTAMP NOT NULL,
 			PRIMARY KEY (id),
 			UNIQUE INDEX id_UNIQUE (id ASC)
