@@ -27,6 +27,8 @@ func testMainSetup() {
 	logger.LogInit(helpers.AppConfig.Loglevel)
 	config.DatabaseInit(helpers.AppConfig.Userdb, helpers.AppConfig.Passdb, helpers.AppConfig.Ipdb, helpers.AppConfig.Portdb, helpers.AppConfig.Namedb, helpers.AppConfig.Extradb)
 
+	CreateMoneysTable()
+
 	setUpModel()
 	setUpController()
 }
