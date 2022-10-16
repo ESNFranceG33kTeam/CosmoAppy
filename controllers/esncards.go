@@ -76,9 +76,9 @@ func ESNcardsShowByESNcard(w http.ResponseWriter, r *http.Request) {
 	esncard := vars["esncard"]
 
 	w.WriteHeader(http.StatusOK)
-	adh := models.FindESNcardByESNcard(esncard)
+	card := models.FindESNcardByESNcard(esncard)
 
-	err := json.NewEncoder(w).Encode(adh)
+	err := json.NewEncoder(w).Encode(card)
 	if err != nil {
 		logger.LogError("esncard", "problem with encoder.", err)
 	} else {

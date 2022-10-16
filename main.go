@@ -7,6 +7,7 @@ import (
 	"github.com/ESNFranceG33kTeam/sAPI/config"
 	"github.com/ESNFranceG33kTeam/sAPI/helpers"
 	"github.com/ESNFranceG33kTeam/sAPI/logger"
+	"github.com/ESNFranceG33kTeam/sAPI/modules/money"
 )
 
 // flags
@@ -26,10 +27,16 @@ func InitConf() {
 	config.DatabaseInit(helpers.AppConfig.Userdb, helpers.AppConfig.Passdb, helpers.AppConfig.Ipdb, helpers.AppConfig.Portdb, helpers.AppConfig.Namedb, helpers.AppConfig.Extradb)
 }
 
+func CreateDbTables() {
+	money.CreateMoneysTable()
+}
+
 func main() {
 	startoptions()
 	InitConf()
-	logger.LogInfo("main", "Conf loaded ; app starting.")
+	CreateDbTables()
+	logger.LogInfo("main", "Conf loaded ; app starting...")
+
 	router := InitializeRouter(helpers.AppConfig.Usersapi, helpers.AppConfig.Tokensapi)
 
 	// Specimen data

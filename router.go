@@ -5,6 +5,7 @@ import (
 
 	"github.com/ESNFranceG33kTeam/sAPI/controllers"
 	"github.com/ESNFranceG33kTeam/sAPI/logger"
+	"github.com/ESNFranceG33kTeam/sAPI/modules/money"
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/gorilla/mux"
 )
@@ -85,6 +86,8 @@ func InitializeRouter(usersapi []string, tokensapi []string) *mux.Router {
 	secure.Methods("GET").Path("/volunteers/id_adherent/{id_adherent}").Name("Show").HandlerFunc(controllers.VolunteersShowByIdAdherent)
 	secure.Methods("PUT").Path("/volunteers/id_adherent/{id_adherent}").Name("Update").HandlerFunc(controllers.VolunteersUpdate)
 	secure.Methods("DELETE").Path("/volunteers/{id}").Name("DELETE").HandlerFunc(controllers.VolunteersDelete)
+
+	money.InitRoutes(secure)
 
 	return router
 }
