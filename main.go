@@ -30,6 +30,8 @@ func InitConf() {
 func InitDb() {
 	database.DatabaseInit()
 	adherent.CreateAdherentsTable()
+	volunteer.CreateVolunteerTable()
+	esncard.CreateESNcardsTable()
 	money.CreateMoneysTable()
 }
 
