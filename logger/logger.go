@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"time"
+
+	"github.com/ESNFranceG33kTeam/sAPI/helpers"
 )
 
 type Logger struct {
@@ -23,8 +25,8 @@ const NoneColor = "\033[0m"
 
 var mylog Logger
 
-func LogInit(loglevel int) {
-	mylog.loggerLevel = loglevel
+func LogInit() {
+	mylog.loggerLevel = helpers.TheAppConfig().Loglevel
 }
 
 func LogInfo(endpoint string, message string) {

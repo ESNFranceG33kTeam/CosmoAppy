@@ -5,7 +5,6 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -19,27 +18,28 @@ func TestMain(m *testing.M) {
 }
 
 func setUp() {
-	InitFile("../test/conf_local.yaml")
+	Confpathflag = "../test/conf_local.yaml"
+	InitFile()
 }
 
 func TestInitFile(t *testing.T) {
-	InitFile("../test/conf_local.yaml")
-	_, err := os.Stat(AppConfig.ConfPath)
+	InitFile()
+	_, err := os.Stat(TheAppConfig().ConfPath)
 	if err != nil {
-		logger.LogCritical("helper", "Conf path doesn't exist !", err)
+		log.Fatalf("Conf path doesn't exist !")
 	}
 }
 
 func TestReadconfig(t *testing.T) {
 	ReadConfig()
 
-	userdb := AppConfig.Userdb
-	passdb := AppConfig.Passdb
-	ipdb := AppConfig.Ipdb
-	portdb := AppConfig.Portdb
-	namedb := AppConfig.Namedb
-	extradb := AppConfig.Extradb
-	loglevel := AppConfig.Loglevel
+	userdb := TheAppConfig().Userdb
+	passdb := TheAppConfig().Passdb
+	ipdb := TheAppConfig().Ipdb
+	portdb := TheAppConfig().Portdb
+	namedb := TheAppConfig().Namedb
+	extradb := TheAppConfig().Extradb
+	loglevel := TheAppConfig().Loglevel
 
 	assert.Equal(t, "root", userdb)
 	assert.Equal(t, "root", passdb)

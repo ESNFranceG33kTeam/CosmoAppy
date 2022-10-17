@@ -8,7 +8,7 @@
   - [Authentication](#authentication)
   - [Adherents endpoint](#adherents-endpoint)
   - [ESNcards endpoint](#esncards-endpoint)
-  - [Volunteers endpoint](#volunteer-endpoint)
+  - [Volunteers endpoint](#volunteers-endpoint)
 - [Annexes](#annexes)
   - [Database](#database)
 

@@ -38,14 +38,22 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/ESNFranceG33kTeam/sAPI/config => ../config
+replace github.com/ESNFranceG33kTeam/sAPI/router => ../router
 
-replace github.com/ESNFranceG33kTeam/sAPI/models => ../models
+replace github.com/ESNFranceG33kTeam/sAPI/database => ../database
 
-replace github.com/ESNFranceG33kTeam/sAPI/docs => ../docs
-
-replace github.com/ESNFranceG33kTeam/sAPI/controllers => ../controllers
+replace github.com/ESNFranceG33kTeam/sAPI/helpers => ../helpers
 
 replace github.com/ESNFranceG33kTeam/sAPI/logger => ../logger
 
-replace github.com/ESNFranceG33kTeam/sAPI/helpers => ../helpers
+replace github.com/ESNFranceG33kTeam/sAPI/docs => ../docs
+
+replace github.com/ESNFranceG33kTeam/sAPI/modules/health => ../health
+
+replace github.com/ESNFranceG33kTeam/sAPI/modules/adherent => ../adherent
+
+replace github.com/ESNFranceG33kTeam/sAPI/modules/volunteer => ../volunteer
+
+replace github.com/ESNFranceG33kTeam/sAPI/modules/esncard => ../esncard
+
+replace github.com/ESNFranceG33kTeam/sAPI/modules/money => ../money
