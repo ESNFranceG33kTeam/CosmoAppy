@@ -3,7 +3,7 @@ package money
 import (
 	"time"
 
-	"github.com/ESNFranceG33kTeam/sAPI/config"
+	"github.com/ESNFranceG33kTeam/sAPI/database"
 	"github.com/ESNFranceG33kTeam/sAPI/logger"
 )
 
@@ -28,7 +28,7 @@ type Moneys []Money
 func NewMoney(mon *Money) {
 	mon.CreatedAt = time.Now()
 
-	stmt, _ := config.Db().Prepare("INSERT INTO moneys (label, price, created_at) VALUES (?,?,?);")
+	stmt, _ := database.Db().Prepare("INSERT INTO moneys (label, price, created_at) VALUES (?,?,?);")
 	_, err := stmt.Exec(mon.Label, mon.Price, mon.CreatedAt)
 	if err != nil {
 		logger.LogError("money", "can't create new operation.", err)
@@ -38,7 +38,7 @@ func NewMoney(mon *Money) {
 func FindMoneyByLabel(label string) *Moneys {
 	var mons Moneys
 
-	rows, err := config.Db().Query("SELECT * FROM moneys WHERE label = ?;", label)
+	rows, err := database.Db().Query("SELECT * FROM moneys WHERE label = ?;", label)
 
 	if err != nil {
 		logger.LogWarning("money", "operations with label not found.", err)
@@ -62,7 +62,7 @@ func FindMoneyByLabel(label string) *Moneys {
 func AllMoneys() *Moneys {
 	var mons Moneys
 
-	rows, err := config.Db().Query("SELECT * FROM moneys")
+	rows, err := database.Db().Query("SELECT * FROM moneys")
 
 	if err != nil {
 		logger.LogError("money", "problem with the db.", err)

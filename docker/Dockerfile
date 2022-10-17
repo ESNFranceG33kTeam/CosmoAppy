@@ -4,7 +4,6 @@ FROM golang:1.19-alpine3.16 as builder
 ENV GO111MODULE=on \
     GOOS=linux \
     GOARCH=amd64 \
-    GONOPROXY=none \
     GOCACHE=/tmp \
     HOME=/go \
     PROJECT_NAME=sAPI

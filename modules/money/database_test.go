@@ -4,11 +4,11 @@ import (
 	"log"
 	"testing"
 
-	"github.com/ESNFranceG33kTeam/sAPI/config"
+	"github.com/ESNFranceG33kTeam/sAPI/database"
 )
 
 func TestCreateMoneysTable(t *testing.T) {
-	_, err := config.Db().Exec("SHOW TABLES LIKE 'moneys';")
+	_, err := database.Db().Exec("SHOW TABLES LIKE 'moneys';")
 	if err != nil {
 		log.Fatal(err)
 	}

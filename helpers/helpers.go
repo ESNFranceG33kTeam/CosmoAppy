@@ -29,8 +29,8 @@ var AppConfig Cfg
 var Confpathflag string
 var Swaggerpathflag string
 
-func InitFile(confpath string) {
-	AppConfig.ConfPath = confpath
+func InitFile() {
+	AppConfig.ConfPath = Confpathflag
 }
 
 func ReadConfig() {

@@ -4,10 +4,14 @@ import (
 	"flag"
 	"net/http"
 
-	"github.com/ESNFranceG33kTeam/sAPI/config"
+	"github.com/ESNFranceG33kTeam/sAPI/database"
 	"github.com/ESNFranceG33kTeam/sAPI/helpers"
 	"github.com/ESNFranceG33kTeam/sAPI/logger"
+	"github.com/ESNFranceG33kTeam/sAPI/modules/adherent"
+	"github.com/ESNFranceG33kTeam/sAPI/modules/esncard"
+	"github.com/ESNFranceG33kTeam/sAPI/modules/health"
 	"github.com/ESNFranceG33kTeam/sAPI/modules/money"
+	"github.com/ESNFranceG33kTeam/sAPI/modules/volunteer"
 	"github.com/ESNFranceG33kTeam/sAPI/router"
 )
 
@@ -18,28 +22,35 @@ func startoptions() {
 }
 
 func InitConf() {
-	helpers.InitFile(helpers.Confpathflag)
+	helpers.InitFile()
 	helpers.ReadConfig()
-	logger.LogInit(helpers.AppConfig.Loglevel)
-	config.DatabaseInit(helpers.AppConfig.Userdb, helpers.AppConfig.Passdb, helpers.AppConfig.Ipdb, helpers.AppConfig.Portdb, helpers.AppConfig.Namedb, helpers.AppConfig.Extradb)
+	logger.LogInit()
 }
 
-func CreateDbTables() {
+func InitDb() {
+	database.DatabaseInit()
+	adherent.CreateAdherentsTable()
 	money.CreateMoneysTable()
 }
 
-func CreateRoutes() {
+func InitRouter() {
+	router.InitializeRouter()
+	adherent.InitRoutes()
+	volunteer.InitRoutes()
+	esncard.InitRoutes()
 	money.InitRoutes()
+
+	// always last
+	health.InitRoutes()
 }
 
 func main() {
 	startoptions()
 	InitConf()
-	CreateDbTables()
+	InitDb()
 	logger.LogInfo("main", "Conf loaded ; app starting...")
 
-	router.InitializeRouter()
-	CreateRoutes()
+	InitRouter()
 
 	// Specimen data
 	if helpers.AppConfig.Specimen {

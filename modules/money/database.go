@@ -1,12 +1,12 @@
 package money
 
 import (
-	"github.com/ESNFranceG33kTeam/sAPI/config"
+	"github.com/ESNFranceG33kTeam/sAPI/database"
 	"github.com/ESNFranceG33kTeam/sAPI/logger"
 )
 
 func CreateMoneysTable() {
-	_, err := config.Db().Exec(`
+	_, err := database.Db().Exec(`
 		CREATE TABLE IF NOT EXISTS moneys (
 			id INT NOT NULL AUTO_INCREMENT,
 			label VARCHAR(45) NOT NULL,

@@ -3,17 +3,19 @@ consumes:
   - application/json
 definitions:
   Adherent:
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/models
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/adherent
   CommonError:
     x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
   CommonSuccess:
     x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
   ESNcard:
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/models
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/esncard
   Health:
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/models
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/health
+  Money:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/money
   Volunteer:
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/models
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/volunteer
 host: 127.0.0.1:8080
 info:
   description: |-
@@ -219,6 +221,62 @@ paths:
       summary: Show an esncard by the id_adherent.
       tags:
         - esncard
+  /auth/moneys:
+    get:
+      operationId: MoneysIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get money operations list.
+      tags:
+        - money
+    post:
+      operationId: MoneysCreate
+      parameters:
+        - in: body
+          name: money
+          required: true
+          schema:
+            $ref: '#/definitions/Money'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Create a new money operation.
+      tags:
+        - money
+  /auth/moneys/label/{label}:
+    get:
+      operationId: MoneysShowByLabel
+      parameters:
+        - in: path
+          name: label
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show a money operation.
+      tags:
+        - money
   /auth/volunteers:
     get:
       operationId: VolunteersIndex

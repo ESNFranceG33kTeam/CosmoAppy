@@ -1,4 +1,4 @@
-package money
+package adherent
 
 import (
 	"log"
@@ -27,7 +27,7 @@ func testMainSetup() {
 	logger.LogInit()
 	database.DatabaseInit()
 
-	CreateMoneysTable()
+	CreateAdherentsTable()
 
 	setUpModel()
 	setUpController()

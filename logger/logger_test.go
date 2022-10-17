@@ -17,7 +17,7 @@ func TestMain(m *testing.M) {
 }
 
 func setUp() {
-	LogInit(0)
+	LogInit()
 }
 
 func TestLogInfo(t *testing.T) {
