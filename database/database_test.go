@@ -10,6 +10,7 @@ import (
 )
 
 func TestDatabaseInit(t *testing.T) {
+	helpers.Confpathflag = "../../test/conf_local.yaml"
 	helpers.InitFile()
 	helpers.ReadConfig()
 	logger.LogInit()
