@@ -7,7 +7,7 @@ import (
 
 func CreateESNcardsTable() {
 	_, err := database.Db().Exec(`
-		CREATE TABLE IF NOT EXISTS esncards(
+		CREATE TABLE IF NOT EXISTS esncards (
 			id INT NOT NULL AUTO_INCREMENT,
 			id_adherent INT NOT NULL,
 			esncard VARCHAR(45) NOT NULL,

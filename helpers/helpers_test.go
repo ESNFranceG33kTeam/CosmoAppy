@@ -18,7 +18,7 @@ func TestMain(m *testing.M) {
 }
 
 func setUp() {
-	Confpathflag = "../../test/conf_local.yaml"
+	Confpathflag = "../test/conf_local.yaml"
 	InitFile()
 }
 

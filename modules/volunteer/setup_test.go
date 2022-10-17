@@ -34,6 +34,12 @@ func testMainSetup() {
 	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test2", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
 	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
 	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test4", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test2", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test4", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test2", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test4", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
 
 	setUpModel()
 	setUpController()

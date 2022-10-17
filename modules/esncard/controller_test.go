@@ -9,9 +9,9 @@ import (
 )
 
 func setUpController() {
-	NewESNcard(&ESNcard{Id_adherent: 2, Esncard: "Mario"})
-	NewESNcard(&ESNcard{Id_adherent: 3, Esncard: "Pikachu"})
-	NewESNcard(&ESNcard{Id_adherent: 4, Esncard: "AveryLittleCode"})
+	NewESNcard(&ESNcard{Id_adherent: 2, Esncard: "Luigi"})
+	NewESNcard(&ESNcard{Id_adherent: 3, Esncard: "Salameche"})
+	NewESNcard(&ESNcard{Id_adherent: 4, Esncard: "AveryLongCode"})
 }
 
 func TestESNcardsIndex(t *testing.T) {
@@ -28,7 +28,7 @@ func TestESNcardsIndex(t *testing.T) {
 }
 
 func TestESNcardsCreate(t *testing.T) {
-	var jsonStr = []byte(`{"id_adherent": 2, "esncard": "Bros"}`)
+	var jsonStr = []byte(`{"id_adherent": 2, "esncard": "Brawl"}`)
 
 	req := httptest.NewRequest("POST", "/esncards", bytes.NewBuffer(jsonStr))
 	w := httptest.NewRecorder()

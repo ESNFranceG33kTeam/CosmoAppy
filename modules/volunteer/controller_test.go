@@ -9,9 +9,9 @@ import (
 )
 
 func setUpController() {
-	NewVolunteer(&Volunteer{Id_adherent: 2, Actif: true, Bureau: false})
-	NewVolunteer(&Volunteer{Id_adherent: 3, Actif: false, Bureau: false})
-	NewVolunteer(&Volunteer{Id_adherent: 4, Actif: true, Bureau: true})
+	NewVolunteer(&Volunteer{Id_adherent: 6, Actif: true, Bureau: false})
+	NewVolunteer(&Volunteer{Id_adherent: 7, Actif: false, Bureau: false})
+	NewVolunteer(&Volunteer{Id_adherent: 8, Actif: true, Bureau: true})
 }
 
 func TestVolunteersIndex(t *testing.T) {
@@ -28,7 +28,7 @@ func TestVolunteersIndex(t *testing.T) {
 }
 
 func TestVolunteersCreate(t *testing.T) {
-	var jsonStr = []byte(`{"id_adherent": 1, "actif": true, "bureau": false}`)
+	var jsonStr = []byte(`{"id_adherent": 5, "actif": true, "bureau": false}`)
 
 	req := httptest.NewRequest("POST", "/volunteers", bytes.NewBuffer(jsonStr))
 	w := httptest.NewRecorder()

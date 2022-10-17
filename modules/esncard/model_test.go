@@ -12,7 +12,7 @@ func setUpModel() {
 }
 
 func TestNewESNcard(t *testing.T) {
-	NewESNcard(&ESNcard{Id_adherent: 1, Esncard: "Luigi"})
+	NewESNcard(&ESNcard{Id_adherent: 1, Esncard: "Peach"})
 }
 
 func TestFindESNcardByIdadherent(t *testing.T) {
