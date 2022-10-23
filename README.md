@@ -9,6 +9,7 @@
   - [Adherents endpoint](#adherents-endpoint)
   - [ESNcards endpoint](#esncards-endpoint)
   - [Volunteers endpoint](#volunteers-endpoint)
+  - [Moneys endpoint](#moneys-endpoint)
 - [Annexes](#annexes)
   - [Database](#database)
 

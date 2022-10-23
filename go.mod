@@ -48,6 +48,8 @@ replace github.com/ESNFranceG33kTeam/sAPI/logger => ../logger
 
 replace github.com/ESNFranceG33kTeam/sAPI/docs => ../docs
 
+replace github.com/ESNFranceG33kTeam/sAPI/modules/launcher => ../launcher
+
 replace github.com/ESNFranceG33kTeam/sAPI/modules/health => ../health
 
 replace github.com/ESNFranceG33kTeam/sAPI/modules/adherent => ../adherent

@@ -7,11 +7,7 @@ import (
 	"github.com/ESNFranceG33kTeam/sAPI/database"
 	"github.com/ESNFranceG33kTeam/sAPI/helpers"
 	"github.com/ESNFranceG33kTeam/sAPI/logger"
-	"github.com/ESNFranceG33kTeam/sAPI/modules/adherent"
-	"github.com/ESNFranceG33kTeam/sAPI/modules/esncard"
-	"github.com/ESNFranceG33kTeam/sAPI/modules/health"
-	"github.com/ESNFranceG33kTeam/sAPI/modules/money"
-	"github.com/ESNFranceG33kTeam/sAPI/modules/volunteer"
+	"github.com/ESNFranceG33kTeam/sAPI/modules/launcher"
 	"github.com/ESNFranceG33kTeam/sAPI/router"
 )
 
@@ -24,43 +20,27 @@ func startoptions() {
 func InitConf() {
 	helpers.InitFile()
 	helpers.ReadConfig()
-	logger.LogInit()
-}
-
-func InitDb() {
-	database.DatabaseInit()
-	adherent.CreateAdherentsTable()
-	volunteer.CreateVolunteerTable()
-	esncard.CreateESNcardsTable()
-	money.CreateMoneysTable()
-}
-
-func InitRouter() {
-	router.InitializeRouter()
-	adherent.InitRoutes()
-	volunteer.InitRoutes()
-	esncard.InitRoutes()
-	money.InitRoutes()
-
-	// always last
-	health.InitRoutes()
+	logger.GetLogger().LogInit()
 }
 
 func main() {
 	startoptions()
 	InitConf()
-	InitDb()
-	logger.LogInfo("main", "Conf loaded ; app starting...")
+	database.DatabaseInit()
+	router.InitializeRouter()
 
-	InitRouter()
+	// Loading modules
+	launcher.LauncherModules()
+
+	logger.GetLogger().LogInfo("main", "Conf and modules loaded ; app starting...")
 
 	// Specimen data
-	if helpers.AppConfig.Specimen {
+	if helpers.TheAppConfig().Specimen {
 		PopulateDb()
 	}
 
-	logger.LogInfo("main", "API ready.")
+	logger.GetLogger().LogInfo("main", "API ready.")
 
-	logger.LogCritical("main", "listen error", http.ListenAndServe(":8080", router.GetRouter()))
+	logger.GetLogger().LogCritical("main", "listen error", http.ListenAndServe(":8080", router.GetRouter()))
 
 }

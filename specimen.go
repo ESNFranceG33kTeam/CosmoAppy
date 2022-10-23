@@ -21,5 +21,5 @@ func PopulateDb() {
 	// Moneys
 	money.Specimen()
 
-	logger.LogInfo("Specimen", "Specimen data charged up.")
+	logger.GetLogger().LogInfo("Specimen", "Specimen data charged up.")
 }

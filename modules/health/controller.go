@@ -3,8 +3,6 @@ package health
 import (
 	"encoding/json"
 	"net/http"
-
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
 )
 
 func HealthsCheck(w http.ResponseWriter, r *http.Request) {
@@ -15,8 +13,8 @@ func HealthsCheck(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(health)
 	if err != nil {
-		logger.LogError("health", "problem with encoder.", err)
+		TheLogger().LogError("health", "problem with encoder.", err)
 	} else {
-		logger.LogInfo("health", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo("health", "request GET : "+r.RequestURI)
 	}
 }
