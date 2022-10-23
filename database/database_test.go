@@ -23,7 +23,7 @@ func setUp() {
 	helpers.Confpathflag = "../test/conf_local.yaml"
 	helpers.InitFile()
 	helpers.ReadConfig()
-	logger.LogInit()
+	logger.GetLogger().LogInit()
 }
 
 func TestDatabaseInit(t *testing.T) {

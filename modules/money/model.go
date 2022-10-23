@@ -2,9 +2,6 @@ package money
 
 import (
 	"time"
-
-	"github.com/ESNFranceG33kTeam/sAPI/database"
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
 )
 
 // swagger:model Money
@@ -28,20 +25,20 @@ type Moneys []Money
 func NewMoney(mon *Money) {
 	mon.CreatedAt = time.Now()
 
-	stmt, _ := database.Db().Prepare("INSERT INTO moneys (label, price, created_at) VALUES (?,?,?);")
+	stmt, _ := TheDb().Prepare("INSERT INTO moneys (label, price, created_at) VALUES (?,?,?);")
 	_, err := stmt.Exec(mon.Label, mon.Price, mon.CreatedAt)
 	if err != nil {
-		logger.LogError("money", "can't create new operation.", err)
+		TheLogger().LogError("money", "can't create new operation.", err)
 	}
 }
 
 func FindMoneyByLabel(label string) *Moneys {
 	var mons Moneys
 
-	rows, err := database.Db().Query("SELECT * FROM moneys WHERE label = ?;", label)
+	rows, err := TheDb().Query("SELECT * FROM moneys WHERE label = ?;", label)
 
 	if err != nil {
-		logger.LogWarning("money", "operations with label not found.", err)
+		TheLogger().LogWarning("money", "operations with label not found.", err)
 	}
 
 	for rows.Next() {
@@ -50,7 +47,7 @@ func FindMoneyByLabel(label string) *Moneys {
 		err := rows.Scan(&mon.Id, &mon.Label, &mon.Price, &mon.CreatedAt)
 
 		if err != nil {
-			logger.LogError("money", "operations not found.", err)
+			TheLogger().LogError("money", "operations not found.", err)
 		}
 
 		mons = append(mons, mon)
@@ -62,10 +59,10 @@ func FindMoneyByLabel(label string) *Moneys {
 func AllMoneys() *Moneys {
 	var mons Moneys
 
-	rows, err := database.Db().Query("SELECT * FROM moneys")
+	rows, err := TheDb().Query("SELECT * FROM moneys")
 
 	if err != nil {
-		logger.LogError("money", "problem with the db.", err)
+		TheLogger().LogError("money", "problem with the db.", err)
 	}
 
 	// Close rows after all readed
@@ -77,7 +74,7 @@ func AllMoneys() *Moneys {
 		err := rows.Scan(&mon.Id, &mon.Label, &mon.Price, &mon.CreatedAt)
 
 		if err != nil {
-			logger.LogError("money", "operations not found.", err)
+			TheLogger().LogError("money", "operations not found.", err)
 		}
 
 		mons = append(mons, mon)

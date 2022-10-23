@@ -17,30 +17,30 @@ func TestMain(m *testing.M) {
 }
 
 func setUp() {
-	LogInit()
+	GetLogger().LogInit()
 }
 
 func TestLogInfo(t *testing.T) {
-	LogInfo("test", "this is a unit test with info log.")
+	GetLogger().LogInfo("test", "this is a unit test with info log.")
 }
 
 func TestLogWarning(t *testing.T) {
 	err := errors.New("Warniiiing")
-	LogWarning("test", "this is a unit test with warning log.", err)
+	GetLogger().LogWarning("test", "this is a unit test with warning log.", err)
 }
 
 func TestLogError(t *testing.T) {
 	err := errors.New("Errooooor")
-	LogError("test", "this is a unit test with errror log.", err)
+	GetLogger().LogError("test", "this is a unit test with errror log.", err)
 }
 
 func TestLogCritical(t *testing.T) {
 	err := errors.New("Criticaaaal")
-	LogCritical("test", "this is a unit test with critical log.", err, false)
+	GetLogger().LogCritical("test", "this is a unit test with critical log.", err, false)
 }
 
 func TestTheLogger(t *testing.T) {
-	var got interface{} = TheLogger()
+	var got interface{} = GetLogger()
 
 	_, ok := got.(*Logger)
 

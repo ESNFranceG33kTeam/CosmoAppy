@@ -25,59 +25,57 @@ const NoneColor = "\033[0m"
 
 var mylog Logger
 
-func LogInit() {
-	mylog.loggerLevel = helpers.TheAppConfig().Loglevel
+func (log *Logger) LogInit() {
+	log.loggerLevel = helpers.TheAppConfig().Loglevel
 }
 
-func LogInfo(endpoint string, message string) {
-	mylog.timestamp = time.Now()
-	mylog.level = "INFO"
-	mylog.endpoint = endpoint
-	mylog.message = message
+func (log *Logger) LogInfo(endpoint string, message string) {
+	log.timestamp = time.Now()
+	log.level = "INFO"
+	log.endpoint = endpoint
+	log.message = message
 
-	mylog.loggerLevel = 0
-
-	if mylog.loggerLevel == 0 {
-		fmt.Fprintln(os.Stdout, InfoColor, "timestamp=\""+mylog.timestamp.Format("2006-01-02 15:04:05")+"\" level="+mylog.level+" endpoint="+mylog.endpoint+" message=\""+mylog.message+"\"", NoneColor)
+	if log.loggerLevel == 0 {
+		fmt.Fprintln(os.Stdout, InfoColor, "timestamp=\""+log.timestamp.Format("2006-01-02 15:04:05")+"\" level="+log.level+" endpoint="+log.endpoint+" message=\""+log.message+"\"", NoneColor)
 	}
 }
 
-func LogWarning(endpoint string, message string, detailes error) {
-	mylog.timestamp = time.Now()
-	mylog.level = "WARNING"
-	mylog.endpoint = endpoint
-	mylog.message = message
-	mylog.detailes = detailes
+func (log *Logger) LogWarning(endpoint string, message string, detailes error) {
+	log.timestamp = time.Now()
+	log.level = "WARNING"
+	log.endpoint = endpoint
+	log.message = message
+	log.detailes = detailes
 
-	if mylog.loggerLevel <= 1 {
-		fmt.Fprintln(os.Stderr, WarningColor, "timestamp=\""+mylog.timestamp.Format("2006-01-02 15:04:05")+"\" level="+mylog.level+" endpoint="+mylog.endpoint+" message=\""+mylog.message+"\" detailes=\""+mylog.detailes.Error()+"\"", NoneColor)
+	if log.loggerLevel <= 1 {
+		fmt.Fprintln(os.Stderr, WarningColor, "timestamp=\""+log.timestamp.Format("2006-01-02 15:04:05")+"\" level="+log.level+" endpoint="+log.endpoint+" message=\""+log.message+"\" detailes=\""+log.detailes.Error()+"\"", NoneColor)
 
 	}
 }
 
-func LogError(endpoint string, message string, detailes error) {
-	mylog.timestamp = time.Now()
-	mylog.level = "ERROR"
-	mylog.endpoint = endpoint
-	mylog.message = message
-	mylog.detailes = detailes
+func (log *Logger) LogError(endpoint string, message string, detailes error) {
+	log.timestamp = time.Now()
+	log.level = "ERROR"
+	log.endpoint = endpoint
+	log.message = message
+	log.detailes = detailes
 
-	fmt.Fprintln(os.Stderr, ErrorColor, "timestamp=\""+mylog.timestamp.Format("2006-01-02 15:04:05")+"\" level="+mylog.level+" endpoint="+mylog.endpoint+" message=\""+mylog.message+"\" detailes=\""+mylog.detailes.Error()+"\"", NoneColor)
+	fmt.Fprintln(os.Stderr, ErrorColor, "timestamp=\""+log.timestamp.Format("2006-01-02 15:04:05")+"\" level="+log.level+" endpoint="+log.endpoint+" message=\""+log.message+"\" detailes=\""+log.detailes.Error()+"\"", NoneColor)
 }
 
-func LogCritical(endpoint string, message string, detailes error, exit ...bool) {
-	mylog.timestamp = time.Now()
-	mylog.level = "CRITICAL"
-	mylog.endpoint = endpoint
-	mylog.message = message
-	mylog.detailes = detailes
+func (log *Logger) LogCritical(endpoint string, message string, detailes error, exit ...bool) {
+	log.timestamp = time.Now()
+	log.level = "CRITICAL"
+	log.endpoint = endpoint
+	log.message = message
+	log.detailes = detailes
 
-	fmt.Fprintln(os.Stderr, CriticalColor, "timestamp=\""+mylog.timestamp.Format("2006-01-02 15:04:05")+"\" level="+mylog.level+" endpoint="+mylog.endpoint+" message=\""+mylog.message+"\" detailes=\""+mylog.detailes.Error()+"\"", NoneColor)
+	fmt.Fprintln(os.Stderr, CriticalColor, "timestamp=\""+log.timestamp.Format("2006-01-02 15:04:05")+"\" level="+log.level+" endpoint="+log.endpoint+" message=\""+log.message+"\" detailes=\""+log.detailes.Error()+"\"", NoneColor)
 	if len(exit) == 0 {
 		os.Exit(1)
 	}
 }
 
-func TheLogger() *Logger {
+func GetLogger() *Logger {
 	return &mylog
 }

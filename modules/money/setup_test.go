@@ -7,7 +7,6 @@ import (
 
 	"github.com/ESNFranceG33kTeam/sAPI/database"
 	"github.com/ESNFranceG33kTeam/sAPI/helpers"
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
 )
 
 func TestMain(m *testing.M) {
@@ -25,7 +24,7 @@ func testMainSetup() {
 	helpers.Confpathflag = "../../test/conf_local.yaml"
 	helpers.InitFile()
 	helpers.ReadConfig()
-	logger.LogInit()
+	TheLogger().LogInit()
 	database.DatabaseInit()
 
 	CreateMoneysTable()
@@ -35,7 +34,7 @@ func testMainSetup() {
 }
 
 func testMainTeardown() {
-	_, err := database.Db().Exec("DROP DATABASE IF EXISTS " + helpers.TheAppConfig().Namedb + ";")
+	_, err := TheDb().Exec("DROP DATABASE IF EXISTS " + helpers.TheAppConfig().Namedb + ";")
 	if err != nil {
 		log.Fatal(err)
 	}

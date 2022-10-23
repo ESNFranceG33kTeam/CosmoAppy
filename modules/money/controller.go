@@ -5,7 +5,6 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
 	"github.com/gorilla/mux"
 )
 
@@ -15,9 +14,9 @@ func MoneysIndex(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(AllMoneys())
 	if err != nil {
-		logger.LogError("money", "problem with indexation.", err)
+		TheLogger().LogError("money", "problem with indexation.", err)
 	} else {
-		logger.LogInfo("money", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo("money", "request GET : "+r.RequestURI)
 	}
 }
 
@@ -26,14 +25,14 @@ func MoneysCreate(w http.ResponseWriter, r *http.Request) {
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		logger.LogError("money", "problem with create.", err)
+		TheLogger().LogError("money", "problem with create.", err)
 	}
 
 	var mon Money
 
 	err = json.Unmarshal(body, &mon)
 	if err != nil {
-		logger.LogError("money", "problem with unmarshal.", err)
+		TheLogger().LogError("money", "problem with unmarshal.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -41,9 +40,9 @@ func MoneysCreate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(mon)
 	if err != nil {
-		logger.LogError("money", "problem with encoder.", err)
+		TheLogger().LogError("money", "problem with encoder.", err)
 	} else {
-		logger.LogInfo("money", "request POST : "+r.RequestURI)
+		TheLogger().LogInfo("money", "request POST : "+r.RequestURI)
 	}
 }
 
@@ -58,8 +57,8 @@ func MoneysShowByLabel(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(mons)
 	if err != nil {
-		logger.LogError("money", "problem with encoder.", err)
+		TheLogger().LogError("money", "problem with encoder.", err)
 	} else {
-		logger.LogInfo("money", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo("money", "request GET : "+r.RequestURI)
 	}
 }

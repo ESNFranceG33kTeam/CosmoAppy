@@ -7,7 +7,6 @@ import (
 
 	"github.com/ESNFranceG33kTeam/sAPI/database"
 	"github.com/ESNFranceG33kTeam/sAPI/helpers"
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
 	"github.com/ESNFranceG33kTeam/sAPI/modules/adherent"
 )
 
@@ -26,7 +25,7 @@ func testMainSetup() {
 	helpers.Confpathflag = "../../test/conf_local.yaml"
 	helpers.InitFile()
 	helpers.ReadConfig()
-	logger.LogInit()
+	TheLogger().LogInit()
 	database.DatabaseInit()
 
 	adherent.CreateAdherentsTable()
@@ -41,14 +40,14 @@ func testMainSetup() {
 	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
 	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test4", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
 
-	CreateVolunteerTable()
+	CreateVolunteersTable()
 
 	setUpModel()
 	setUpController()
 }
 
 func testMainTeardown() {
-	_, err := database.Db().Exec("DROP DATABASE IF EXISTS " + helpers.TheAppConfig().Namedb + ";")
+	_, err := TheDb().Exec("DROP DATABASE IF EXISTS " + helpers.TheAppConfig().Namedb + ";")
 	if err != nil {
 		log.Fatal(err)
 	}

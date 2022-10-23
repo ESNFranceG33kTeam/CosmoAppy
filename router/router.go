@@ -30,13 +30,13 @@ func (amw *authenticationMiddleware) Middleware(next http.Handler) http.Handler 
 
 		if user, found := amw.tokenUsers[token]; found {
 			// We found the token in our map
-			logger.LogInfo("auth", "user is connected : "+user)
+			logger.GetLogger().LogInfo("auth", "user is connected : "+user)
 			// Pass down the request to the next middleware (or final handler)
 			next.ServeHTTP(w, r)
 		} else {
 			// Write an error and stop the handler chain
 			http.Error(w, "Forbidden", http.StatusForbidden)
-			logger.LogInfo("auth", "auth failed")
+			logger.GetLogger().LogInfo("auth", "auth failed")
 		}
 	})
 }

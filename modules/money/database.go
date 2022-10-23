@@ -1,12 +1,7 @@
 package money
 
-import (
-	"github.com/ESNFranceG33kTeam/sAPI/database"
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
-)
-
 func CreateMoneysTable() {
-	_, err := database.Db().Exec(`
+	_, err := TheDb().Exec(`
 		CREATE TABLE IF NOT EXISTS moneys (
 			id INT NOT NULL AUTO_INCREMENT,
 			label VARCHAR(45) NOT NULL,
@@ -17,8 +12,8 @@ func CreateMoneysTable() {
 		);
 	`)
 	if err != nil {
-		logger.LogCritical("database", "create table moneys got a problem.", err)
+		TheLogger().LogCritical("database", "create table moneys got a problem.", err)
 	} else {
-		logger.LogInfo("database", "moneys table successfully created.")
+		TheLogger().LogInfo("database", "moneys table successfully created.")
 	}
 }

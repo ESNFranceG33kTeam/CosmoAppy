@@ -1,12 +1,7 @@
 package adherent
 
-import (
-	"github.com/ESNFranceG33kTeam/sAPI/database"
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
-)
-
 func CreateAdherentsTable() {
-	_, err := database.Db().Exec(`
+	_, err := TheDb().Exec(`
 		CREATE TABLE IF NOT EXISTS adherents (
 			id INT NOT NULL AUTO_INCREMENT,
 			firstname VARCHAR(45) NOT NULL,
@@ -25,8 +20,8 @@ func CreateAdherentsTable() {
 		);
 	`)
 	if err != nil {
-		logger.LogCritical("database", "create table adherents got a problem.", err)
+		TheLogger().LogCritical("database", "create table adherents got a problem.", err)
 	} else {
-		logger.LogInfo("database", "adherents table successfully created.")
+		TheLogger().LogInfo("database", "adherents table successfully created.")
 	}
 }

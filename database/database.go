@@ -31,18 +31,18 @@ func DatabaseInit() {
 	infodb := fmt.Sprintf(userdb + ":" + passdb + "@tcp(" + ipdb + ":" + portdb + ")/" + namedb + extradb)
 	db, err = sql.Open("mysql", infodb)
 	if err != nil {
-		logger.LogCritical("database", "connection with database got a problem.", err)
+		logger.GetLogger().LogCritical("database", "connection with database got a problem.", err)
 	} else {
-		logger.LogInfo("database", "Database is connected.")
+		logger.GetLogger().LogInfo("database", "Database is connected.")
 	}
 }
 
 func initSchema(dbserver *sql.DB, namedb string) {
 	_, err := dbserver.Exec("CREATE DATABASE IF NOT EXISTS " + namedb + ";")
 	if err != nil {
-		logger.LogCritical("database", "create database got a problem.", err)
+		logger.GetLogger().LogCritical("database", "create database got a problem.", err)
 	} else {
-		logger.LogInfo("database", "database successfully created.")
+		logger.GetLogger().LogInfo("database", "database successfully created.")
 	}
 }
 

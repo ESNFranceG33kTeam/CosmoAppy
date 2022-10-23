@@ -1,12 +1,7 @@
 package esncard
 
-import (
-	"github.com/ESNFranceG33kTeam/sAPI/database"
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
-)
-
 func CreateESNcardsTable() {
-	_, err := database.Db().Exec(`
+	_, err := TheDb().Exec(`
 		CREATE TABLE IF NOT EXISTS esncards (
 			id INT NOT NULL AUTO_INCREMENT,
 			id_adherent INT NOT NULL,
@@ -24,8 +19,8 @@ func CreateESNcardsTable() {
 		);
 	`)
 	if err != nil {
-		logger.LogCritical("database", "create table esncards got a problem.", err)
+		TheLogger().LogCritical("database", "create table esncards got a problem.", err)
 	} else {
-		logger.LogInfo("database", "esncards table successfully created.")
+		TheLogger().LogInfo("database", "esncards table successfully created.")
 	}
 }
