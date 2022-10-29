@@ -1,637 +1,637 @@
 basePath: /
 consumes:
-    - application/json
+  - application/json
 definitions:
-    Adherent:
-        x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/adherent
-    CommonError:
-        x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
-    CommonSuccess:
-        x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
-    ESNcard:
-        x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/esncard
-    Event:
-        x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/event
-    Event_Attendee:
-        x-go-name: Attendee
-        x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/event
-    Health:
-        x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/health
-    Money:
-        x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/money
-    Volunteer:
-        x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/volunteer
+  Adherent:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/adherent
+  CommonError:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
+  CommonSuccess:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
+  ESNcard:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/esncard
+  Event:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/event
+  Event_Attendee:
+    x-go-name: Attendee
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/event
+  Health:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/health
+  Money:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/money
+  Volunteer:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/volunteer
 host: 127.0.0.1:8080
 info:
-    description: |-
-        the purpose of this application is to provide an application
-        that is using plain go code to define an API
-    termsOfService: not yet...
-    title: ESN super API.
-    version: 0.0.1
+  description: |-
+    the purpose of this application is to provide an application
+    that is using plain go code to define an API
+  termsOfService: not yet...
+  title: ESN super API.
+  version: 0.0.1
 paths:
-    /auth/adherents:
-        get:
-            operationId: AdherentsIndex
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Get adherents list.
-            tags:
-                - adherent
-        post:
-            operationId: AdherentsCreate
-            parameters:
-                - in: body
-                  name: adherent
-                  required: true
-                  schema:
-                    $ref: '#/definitions/Adherent'
-                    type: object
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Create a new adherent.
-            tags:
-                - adherent
-    /auth/adherents/{id}:
-        delete:
-            operationId: AdherentsDelete
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  type: integer
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Delete an adherent.
-            tags:
-                - adherent
-        get:
-            operationId: AdherentsShow
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  type: integer
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Show an adherent.
-            tags:
-                - adherent
-        put:
-            operationId: AdherentsUpdate
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  type: integer
-                - in: body
-                  name: adherent
-                  required: true
-                  schema:
-                    $ref: '#/definitions/Adherent'
-                    type: object
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Update an adherent.
-            tags:
-                - adherent
-    /auth/esncards:
-        get:
-            operationId: ESNcardsIndex
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Get esncards list.
-            tags:
-                - esncard
-        post:
-            operationId: ESNcardsCreate
-            parameters:
-                - in: body
-                  name: esncard
-                  required: true
-                  schema:
-                    $ref: '#/definitions/ESNcard'
-                    type: object
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Create a new esncard.
-            tags:
-                - esncard
-    /auth/esncards/{id}:
-        delete:
-            operationId: ESNcardsDelete
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  type: integer
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Delete an esncard.
-            tags:
-                - esncard
-    /auth/esncards/esncard/{esncard}:
-        get:
-            operationId: ESNcardsShowByESNcard
-            parameters:
-                - in: path
-                  name: esncard
-                  required: true
-                  type: string
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Show an esncard by the esncard code.
-            tags:
-                - esncard
-    /auth/esncards/id_adherent/{id_adherent}:
-        get:
-            operationId: ESNcardsShowByIdAdherent
-            parameters:
-                - in: path
-                  name: id_adherent
-                  required: true
-                  type: integer
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Show an esncard by the id_adherent.
-            tags:
-                - esncard
-    /auth/event_attendees:
-        get:
-            operationId: AttendeesIndex
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Get attendees list.
-            tags:
-                - event_attendee
-        post:
-            operationId: AttendeesCreate
-            parameters:
-                - in: body
-                  name: attendee
-                  required: true
-                  schema:
-                    $ref: '#/definitions/Attendee'
-                    type: object
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Create a new attendee.
-            tags:
-                - event_attendee
-    /auth/event_attendees/{id}:
-        delete:
-            operationId: AttendeesDelete
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  type: integer
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Delete an attendee.
-            tags:
-                - event_attendee
-        put:
-            operationId: AttendeesUpdate
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  type: integer
-                - in: body
-                  name: attendee
-                  required: true
-                  schema:
-                    $ref: '#/definitions/Attendee'
-                    type: object
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Update an attendee.
-            tags:
-                - event_attendee
-    /auth/event_attendees/id_adherent/{id_adherent}:
-        get:
-            operationId: AttendeesShowByIdAdherent
-            parameters:
-                - in: path
-                  name: id_adherent
-                  required: true
-                  type: integer
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Show an attendee by adherent id.
-            tags:
-                - event_attendee
-    /auth/event_attendees/id_event/{id_event}:
-        get:
-            operationId: AttendeesShowByIdEvent
-            parameters:
-                - in: path
-                  name: id_event
-                  required: true
-                  type: integer
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Show an attendee by event id.
-            tags:
-                - event_attendee
-    /auth/events:
-        get:
-            operationId: EventsIndex
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Get events list.
-            tags:
-                - event
-        post:
-            operationId: EventsCreate
-            parameters:
-                - in: body
-                  name: event
-                  required: true
-                  schema:
-                    $ref: '#/definitions/Event'
-                    type: object
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Create a new event.
-            tags:
-                - event
-    /auth/events/{id}:
-        delete:
-            operationId: EventsDelete
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  type: integer
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Delete an event.
-            tags:
-                - event
-        get:
-            operationId: EventsShow
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  type: integer
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Show an event.
-            tags:
-                - event
-        put:
-            operationId: EventsUpdate
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  type: integer
-                - in: body
-                  name: event
-                  required: true
-                  schema:
-                    $ref: '#/definitions/Event'
-                    type: object
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Update an event.
-            tags:
-                - event
-    /auth/moneys:
-        get:
-            operationId: MoneysIndex
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Get money operations list.
-            tags:
-                - money
-        post:
-            operationId: MoneysCreate
-            parameters:
-                - in: body
-                  name: money
-                  required: true
-                  schema:
-                    $ref: '#/definitions/Money'
-                    type: object
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Create a new money operation.
-            tags:
-                - money
-    /auth/moneys/label/{label}:
-        get:
-            operationId: MoneysShowByLabel
-            parameters:
-                - in: path
-                  name: label
-                  required: true
-                  type: string
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Show a money operation.
-            tags:
-                - money
-    /auth/volunteers:
-        get:
-            operationId: VolunteersIndex
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Get volunteers list.
-            tags:
-                - volunteer
-        post:
-            operationId: VolunteersCreate
-            parameters:
-                - in: body
-                  name: volunteer
-                  required: true
-                  schema:
-                    $ref: '#/definitions/Volunteer'
-                    type: object
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Create a new volunteer.
-            tags:
-                - volunteer
-    /auth/volunteers/{id}:
-        delete:
-            operationId: VolunteersDelete
-            parameters:
-                - in: path
-                  name: id
-                  required: true
-                  type: integer
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Delete a volunteer.
-            tags:
-                - volunteer
-    /auth/volunteers/id_adherent/{id_adherent}:
-        get:
-            operationId: VolunteersShowByIdAdherent
-            parameters:
-                - in: path
-                  name: id_adherent
-                  required: true
-                  type: integer
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Show an volunteer by the id_adherent.
-            tags:
-                - volunteer
-        put:
-            operationId: VolunteersUpdate
-            parameters:
-                - in: path
-                  name: id_adherent
-                  required: true
-                  type: integer
-                - in: body
-                  name: volunteer
-                  required: true
-                  schema:
-                    $ref: '#/definitions/Volunteer'
-                    type: object
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Update a volunteer.
-            tags:
-                - volunteer
-    /health:
-        get:
-            operationId: HealthsCheck
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "404":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            security:
-                - apiKey:
-                    - '[]'
-            summary: Get the health.
-            tags:
-                - heath
+  /auth/adherents:
+    get:
+      operationId: AdherentsIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get adherents list.
+      tags:
+        - adherent
+    post:
+      operationId: AdherentsCreate
+      parameters:
+        - in: body
+          name: adherent
+          required: true
+          schema:
+            $ref: '#/definitions/Adherent'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Create a new adherent.
+      tags:
+        - adherent
+  /auth/adherents/{id}:
+    delete:
+      operationId: AdherentsDelete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Delete an adherent.
+      tags:
+        - adherent
+    get:
+      operationId: AdherentsShow
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an adherent.
+      tags:
+        - adherent
+    put:
+      operationId: AdherentsUpdate
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+        - in: body
+          name: adherent
+          required: true
+          schema:
+            $ref: '#/definitions/Adherent'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Update an adherent.
+      tags:
+        - adherent
+  /auth/esncards:
+    get:
+      operationId: ESNcardsIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get esncards list.
+      tags:
+        - esncard
+    post:
+      operationId: ESNcardsCreate
+      parameters:
+        - in: body
+          name: esncard
+          required: true
+          schema:
+            $ref: '#/definitions/ESNcard'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Create a new esncard.
+      tags:
+        - esncard
+  /auth/esncards/{id}:
+    delete:
+      operationId: ESNcardsDelete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Delete an esncard.
+      tags:
+        - esncard
+  /auth/esncards/esncard/{esncard}:
+    get:
+      operationId: ESNcardsShowByESNcard
+      parameters:
+        - in: path
+          name: esncard
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an esncard by the esncard code.
+      tags:
+        - esncard
+  /auth/esncards/id_adherent/{id_adherent}:
+    get:
+      operationId: ESNcardsShowByIdAdherent
+      parameters:
+        - in: path
+          name: id_adherent
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an esncard by the id_adherent.
+      tags:
+        - esncard
+  /auth/event_attendees:
+    get:
+      operationId: AttendeesIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get attendees list.
+      tags:
+        - event_attendee
+    post:
+      operationId: AttendeesCreate
+      parameters:
+        - in: body
+          name: attendee
+          required: true
+          schema:
+            $ref: '#/definitions/Attendee'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Create a new attendee.
+      tags:
+        - event_attendee
+  /auth/event_attendees/{id}:
+    delete:
+      operationId: AttendeesDelete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Delete an attendee.
+      tags:
+        - event_attendee
+    put:
+      operationId: AttendeesUpdate
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+        - in: body
+          name: attendee
+          required: true
+          schema:
+            $ref: '#/definitions/Attendee'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Update an attendee.
+      tags:
+        - event_attendee
+  /auth/event_attendees/id_adherent/{id_adherent}:
+    get:
+      operationId: AttendeesShowByIdAdherent
+      parameters:
+        - in: path
+          name: id_adherent
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an attendee by adherent id.
+      tags:
+        - event_attendee
+  /auth/event_attendees/id_event/{id_event}:
+    get:
+      operationId: AttendeesShowByIdEvent
+      parameters:
+        - in: path
+          name: id_event
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an attendee by event id.
+      tags:
+        - event_attendee
+  /auth/events:
+    get:
+      operationId: EventsIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get events list.
+      tags:
+        - event
+    post:
+      operationId: EventsCreate
+      parameters:
+        - in: body
+          name: event
+          required: true
+          schema:
+            $ref: '#/definitions/Event'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Create a new event.
+      tags:
+        - event
+  /auth/events/{id}:
+    delete:
+      operationId: EventsDelete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Delete an event.
+      tags:
+        - event
+    get:
+      operationId: EventsShow
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an event.
+      tags:
+        - event
+    put:
+      operationId: EventsUpdate
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+        - in: body
+          name: event
+          required: true
+          schema:
+            $ref: '#/definitions/Event'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Update an event.
+      tags:
+        - event
+  /auth/moneys:
+    get:
+      operationId: MoneysIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get money operations list.
+      tags:
+        - money
+    post:
+      operationId: MoneysCreate
+      parameters:
+        - in: body
+          name: money
+          required: true
+          schema:
+            $ref: '#/definitions/Money'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Create a new money operation.
+      tags:
+        - money
+  /auth/moneys/label/{label}:
+    get:
+      operationId: MoneysShowByLabel
+      parameters:
+        - in: path
+          name: label
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show a money operation.
+      tags:
+        - money
+  /auth/volunteers:
+    get:
+      operationId: VolunteersIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get volunteers list.
+      tags:
+        - volunteer
+    post:
+      operationId: VolunteersCreate
+      parameters:
+        - in: body
+          name: volunteer
+          required: true
+          schema:
+            $ref: '#/definitions/Volunteer'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Create a new volunteer.
+      tags:
+        - volunteer
+  /auth/volunteers/{id}:
+    delete:
+      operationId: VolunteersDelete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Delete a volunteer.
+      tags:
+        - volunteer
+  /auth/volunteers/id_adherent/{id_adherent}:
+    get:
+      operationId: VolunteersShowByIdAdherent
+      parameters:
+        - in: path
+          name: id_adherent
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an volunteer by the id_adherent.
+      tags:
+        - volunteer
+    put:
+      operationId: VolunteersUpdate
+      parameters:
+        - in: path
+          name: id_adherent
+          required: true
+          type: integer
+        - in: body
+          name: volunteer
+          required: true
+          schema:
+            $ref: '#/definitions/Volunteer'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Update a volunteer.
+      tags:
+        - volunteer
+  /health:
+    get:
+      operationId: HealthsCheck
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "404":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      security:
+        - apiKey:
+            - '[]'
+      summary: Get the health.
+      tags:
+        - heath
 produces:
-    - application/json
+  - application/json
 schemes:
-    - http
-    - https
+  - http
+  - https
 security:
-    - key: []
+  - key: []
 securityDefinitions:
-    key:
-        in: header
-        name: X-Session-Token
-        type: apiKey
+  key:
+    in: header
+    name: X-Session-Token
+    type: apiKey
 swagger: "2.0"
