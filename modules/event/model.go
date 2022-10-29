@@ -31,22 +31,22 @@ type Event struct {
 type Events []Event
 
 // swagger:model Event_Attendee
-type Attendees struct {
+type Attendee struct {
 	// Id of the attendee
 	// in: int64
 	Id int `json:"id"`
 	// Id of the event
 	// in: int64
-	IdEvent int `json:"id_event"`
+	Id_event int `json:"id_event"`
 	// Id of the adherent
 	// in: int64
-	IdAdherent int `json:"id_adherent"`
+	Id_adherent int `json:"id_adherent"`
 	// Status of the event
 	// in: bool
 	Staff bool `json:"staff"`
 }
 
-type Attendee []Attendees
+type Attendees []Attendee
 
 func NewEvent(eve *Event) {
 
@@ -121,6 +121,131 @@ func DeleteEventById(id int) error {
 	_, err = stmt.Exec(id)
 	if err != nil {
 		TheLogger().LogError("event", "event can't be deleted.", err)
+	}
+
+	return err
+}
+
+func AllAttendees() *Attendees {
+	var atts Attendees
+
+	rows, err := TheDb().Query("SELECT * FROM event_attendees;")
+
+	if err != nil {
+		TheLogger().LogError("attendee", "problem with the db.", err)
+	}
+
+	// Close rows after all readed
+	defer rows.Close()
+
+	for rows.Next() {
+		var att Attendee
+
+		err := rows.Scan(&att.Id, &att.Id_event, &att.Id_adherent, &att.Staff)
+
+		if err != nil {
+			TheLogger().LogError("event", "event not found.", err)
+		}
+
+		atts = append(atts, att)
+	}
+
+	return &atts
+}
+
+func NewAttendee(att *Attendee) {
+	stmt, _ := TheDb().Prepare("INSERT INTO event_attendees (id_event, id_adherent, staff) VALUES (?,?,?);")
+	_, err := stmt.Exec(att.Id_event, att.Id_adherent, att.Staff)
+	if err != nil {
+		TheLogger().LogError("attendee", "can't create new attendee.", err)
+	}
+}
+
+func FindAttendeeById(id int) *Attendee {
+	var att Attendee
+
+	row := TheDb().QueryRow("SELECT * FROM event_attendees WHERE id = ?;", id)
+	err := row.Scan(&att.Id, &att.Id_event, &att.Id_adherent, &att.Staff)
+
+	if err != nil {
+		TheLogger().LogWarning("attendee", "attendee not found.", err)
+	}
+
+	return &att
+}
+
+func FindAttendeeByEventId(id_event int) *Attendees {
+	var atts Attendees
+
+	rows, err := TheDb().Query("SELECT * FROM event_attendees WHERE id_event = ?;", id_event)
+
+	if err != nil {
+		TheLogger().LogWarning("attendee", "attendees with id event not found.", err)
+	}
+
+	for rows.Next() {
+		var att Attendee
+
+		err := rows.Scan(&att.Id, &att.Id_event, &att.Id_adherent, &att.Staff)
+
+		if err != nil {
+			TheLogger().LogError("attendee", "attendee not found.", err)
+		}
+
+		atts = append(atts, att)
+	}
+
+	return &atts
+}
+
+func FindAttendeeByAdherentId(id_adherent int) *Attendees {
+	var atts Attendees
+
+	rows, err := TheDb().Query("SELECT * FROM event_attendees WHERE id_adherent = ?;", id_adherent)
+
+	if err != nil {
+		TheLogger().LogWarning("attendee", "attendees with id event not found.", err)
+	}
+
+	for rows.Next() {
+		var att Attendee
+
+		err := rows.Scan(&att.Id, &att.Id_event, &att.Id_adherent, &att.Staff)
+
+		if err != nil {
+			TheLogger().LogError("attendee", "attendee not found.", err)
+		}
+
+		atts = append(atts, att)
+	}
+
+	return &atts
+}
+
+func UpdateAttendee(att *Attendee) {
+	stmt, err := TheDb().Prepare("UPDATE event_attendees SET id_event=?, id_adherent=?, staff=? WHERE id=?;")
+
+	if err != nil {
+		TheLogger().LogError("attendee", "problem with the db.", err)
+	}
+
+	_, err = stmt.Exec(att.Id_event, att.Id_adherent, att.Staff, att.Id)
+
+	if err != nil {
+		TheLogger().LogError("attendee", "attendee can't be updated.", err)
+	}
+}
+
+func DeleteAttendeeById(id int) error {
+	stmt, err := TheDb().Prepare("DELETE FROM event_attendees WHERE id=?;")
+
+	if err != nil {
+		TheLogger().LogError("attendee", "problem with the db.", err)
+	}
+
+	_, err = stmt.Exec(id)
+	if err != nil {
+		TheLogger().LogError("attendee", "esncard can't be deleted.", err)
 	}
 
 	return err

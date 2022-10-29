@@ -33,12 +33,12 @@ func CreateEventsTable() {
 			UNIQUE INDEX id_UNIQUE (id ASC),
 			CONSTRAINT id_event_att_adherent
 				FOREIGN KEY (id_adherent)
-				REFERENCES .adherents (id)
+				REFERENCES adherents (id)
 				ON DELETE CASCADE
 				ON UPDATE NO ACTION,
 			CONSTRAINT id_att_event
 				FOREIGN KEY (id_event)
-				REFERENCES .events (id)
+				REFERENCES events (id)
 				ON DELETE CASCADE
 				ON UPDATE NO ACTION
 		);

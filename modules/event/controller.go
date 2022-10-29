@@ -137,3 +137,133 @@ func EventsDelete(w http.ResponseWriter, r *http.Request) {
 		TheLogger().LogInfo("event", "request DELETE : "+r.RequestURI)
 	}
 }
+
+func AttendeesIndex(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	err := json.NewEncoder(w).Encode(AllAttendees())
+	if err != nil {
+		TheLogger().LogError("attendee", "problem with indexation.", err)
+	} else {
+		TheLogger().LogInfo("attendee", "request GET : "+r.RequestURI)
+	}
+}
+
+func AttendeesCreate(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		TheLogger().LogError("attendee", "problem with create.", err)
+	}
+
+	var att Attendee
+
+	err = json.Unmarshal(body, &att)
+	if err != nil {
+		TheLogger().LogError("attendee", "problem with unmarshal.", err)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	NewAttendee(&att)
+
+	err = json.NewEncoder(w).Encode(att)
+	if err != nil {
+		TheLogger().LogError("attendee", "problem with encoder.", err)
+	} else {
+		TheLogger().LogInfo("attendee", "request POST : "+r.RequestURI)
+	}
+}
+
+func AttendeesShowByIdEvent(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+
+	vars := mux.Vars(r)
+	id_event, err := strconv.Atoi(vars["id_event"])
+	if err != nil {
+		TheLogger().LogError("attendee", "unable to get id_event.", err)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	vlt := FindAttendeeByEventId(id_event)
+
+	err = json.NewEncoder(w).Encode(vlt)
+	if err != nil {
+		TheLogger().LogError("attendee", "problem with encoder.", err)
+	} else {
+		TheLogger().LogInfo("attendee", "request GET : "+r.RequestURI)
+	}
+}
+
+func AttendeesShowByIdAdherent(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+
+	vars := mux.Vars(r)
+	id_adherent, err := strconv.Atoi(vars["id_adherent"])
+	if err != nil {
+		TheLogger().LogError("attendee", "unable to get id_adherent.", err)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	vlt := FindAttendeeByAdherentId(id_adherent)
+
+	err = json.NewEncoder(w).Encode(vlt)
+	if err != nil {
+		TheLogger().LogError("attendee", "problem with encoder.", err)
+	} else {
+		TheLogger().LogInfo("attendee", "request GET : "+r.RequestURI)
+	}
+}
+
+func AttendeesUpdate(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		TheLogger().LogError("attendee", "unable to get id_adherent.", err)
+	}
+
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		TheLogger().LogError("attendee", "problem with update.", err)
+	}
+
+	att := FindAttendeeById(id)
+
+	err = json.Unmarshal(body, &att)
+	if err != nil {
+		TheLogger().LogError("attendee", "problem with unmarshal.", err)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	UpdateAttendee(att)
+
+	err = json.NewEncoder(w).Encode(att)
+	if err != nil {
+		TheLogger().LogError("attendee", "problem with encoder.", err)
+	} else {
+		TheLogger().LogInfo("attendee", "request PUT : "+r.RequestURI)
+	}
+}
+
+func AttendeesDelete(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+
+	vars := mux.Vars(r)
+
+	// strconv.Atoi is shorthand for ParseInt
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		TheLogger().LogError("attendee", "unable to get id.", err)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	err = DeleteAttendeeById(id)
+	if err != nil {
+		TheLogger().LogError("attendee", "unable to delete attendee.", err)
+	} else {
+		TheLogger().LogInfo("attendee", "request DELETE : "+r.RequestURI)
+	}
+}

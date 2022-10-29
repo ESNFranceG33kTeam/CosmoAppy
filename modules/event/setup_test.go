@@ -7,6 +7,7 @@ import (
 
 	"github.com/ESNFranceG33kTeam/sAPI/database"
 	"github.com/ESNFranceG33kTeam/sAPI/helpers"
+	"github.com/ESNFranceG33kTeam/sAPI/modules/adherent"
 )
 
 func TestMain(m *testing.M) {
@@ -26,6 +27,18 @@ func testMainSetup() {
 	helpers.ReadConfig()
 	TheLogger().LogInit()
 	database.DatabaseInit()
+
+	adherent.CreateAdherentsTable()
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test1", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test2", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test4", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test2", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test4", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test2", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
+	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test4", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false})
 
 	CreateEventsTable()
 
