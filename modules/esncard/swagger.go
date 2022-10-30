@@ -7,19 +7,6 @@ package esncard
 //	400: CommonError
 //	200: CommonSuccess
 
-// swagger:route POST /auth/esncards esncard ESNcardsCreate
-// Create a new esncard.
-//
-// parameters:
-//	+ name: esncard
-//    in: body
-//    type: ESNcard
-//    required: true
-//
-// responses:
-//	400: CommonError
-//	200: CommonSuccess
-
 // swagger:route GET /auth/esncards/id_adherent/{id_adherent} esncard ESNcardsShowByIdAdherent
 // Show an esncard by the id_adherent.
 //
@@ -40,6 +27,19 @@ package esncard
 //	+ name: esncard
 //    in: path
 //    type: string
+//    required: true
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess
+
+// swagger:route POST /auth/esncards esncard ESNcardsCreate
+// Create a new esncard.
+//
+// parameters:
+//	+ name: esncard
+//    in: body
+//    type: ESNcard
 //    required: true
 //
 // responses:
