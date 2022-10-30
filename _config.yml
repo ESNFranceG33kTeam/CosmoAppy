@@ -1,8 +1,1 @@
-#theme: jekyll-theme-architect
-
-navbar-links:
-  Main: "README.md"
-  Modules:
-    - Main: "modules/README.md"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+theme: jekyll-theme-architect
