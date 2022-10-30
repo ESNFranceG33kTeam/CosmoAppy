@@ -10,6 +10,11 @@ definitions:
     x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
   ESNcard:
     x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/esncard
+  Event:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/event
+  Event_Attendee:
+    x-go-name: Attendee
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/event
   Health:
     x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/health
   Money:
@@ -221,6 +226,227 @@ paths:
       summary: Show an esncard by the id_adherent.
       tags:
         - esncard
+  /auth/event_attendees:
+    get:
+      operationId: AttendeesIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get attendees list.
+      tags:
+        - event_attendee
+    post:
+      operationId: AttendeesCreate
+      parameters:
+        - in: body
+          name: attendee
+          required: true
+          schema:
+            $ref: '#/definitions/Event_Attendee'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Create a new attendee.
+      tags:
+        - event_attendee
+  /auth/event_attendees/{id}:
+    delete:
+      operationId: AttendeesDelete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Delete an attendee.
+      tags:
+        - event_attendee
+    put:
+      operationId: AttendeesUpdate
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+        - in: body
+          name: attendee
+          required: true
+          schema:
+            $ref: '#/definitions/Event_Attendee'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Update an attendee.
+      tags:
+        - event_attendee
+  /auth/event_attendees/id_adherent/{id_adherent}:
+    get:
+      operationId: AttendeesShowByIdAdherent
+      parameters:
+        - in: path
+          name: id_adherent
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an attendee by adherent id.
+      tags:
+        - event_attendee
+  /auth/event_attendees/id_event/{id_event}:
+    get:
+      operationId: AttendeesShowByIdEvent
+      parameters:
+        - in: path
+          name: id_event
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an attendee by event id.
+      tags:
+        - event_attendee
+  /auth/events:
+    get:
+      operationId: EventsIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get events list.
+      tags:
+        - event
+    post:
+      operationId: EventsCreate
+      parameters:
+        - in: body
+          name: event
+          required: true
+          schema:
+            $ref: '#/definitions/Event'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Create a new event.
+      tags:
+        - event
+  /auth/events/{id}:
+    delete:
+      operationId: EventsDelete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Delete an event.
+      tags:
+        - event
+    get:
+      operationId: EventsShow
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an event.
+      tags:
+        - event
+    put:
+      operationId: EventsUpdate
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+        - in: body
+          name: event
+          required: true
+          schema:
+            $ref: '#/definitions/Event'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Update an event.
+      tags:
+        - event
   /auth/moneys:
     get:
       operationId: MoneysIndex

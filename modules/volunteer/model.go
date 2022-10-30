@@ -89,7 +89,7 @@ func DeleteVolunteerById(id int) error {
 
 	_, err = stmt.Exec(id)
 	if err != nil {
-		TheLogger().LogError("volunteer", "esncard can't be deleted.", err)
+		TheLogger().LogError("volunteer", "volunteer can't be deleted.", err)
 	}
 
 	return err

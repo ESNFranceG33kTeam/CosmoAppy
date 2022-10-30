@@ -58,4 +58,6 @@ replace github.com/ESNFranceG33kTeam/sAPI/modules/volunteer => ../volunteer
 
 replace github.com/ESNFranceG33kTeam/sAPI/modules/esncard => ../esncard
 
+replace github.com/ESNFranceG33kTeam/sAPI/modules/event => ../event
+
 replace github.com/ESNFranceG33kTeam/sAPI/modules/money => ../money

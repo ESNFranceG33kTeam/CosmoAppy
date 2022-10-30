@@ -2,7 +2,10 @@ package main
 
 import (
 	"flag"
+	"log"
 	"net/http"
+	"os"
+	"path/filepath"
 
 	"github.com/ESNFranceG33kTeam/sAPI/database"
 	"github.com/ESNFranceG33kTeam/sAPI/helpers"
@@ -12,8 +15,14 @@ import (
 )
 
 func startoptions() {
-	flag.StringVar(&helpers.Confpathflag, "conf", "test/conf_local.yaml", "path for the configuration file.")
-	flag.StringVar(&helpers.Swaggerpathflag, "swagger", "/test/swagger.yaml", "path for the swagger file.")
+	path, err := os.Getwd()
+	if err != nil {
+		log.Fatalln("Abs path doesn't exist !")
+	}
+
+	flag.StringVar(&helpers.Confpathflag, "conf", filepath.Join(path, "test/conf_local.yaml"), "path for the configuration file.")
+	flag.StringVar(&helpers.Swaggerpathflag, "swagger", "/swagger.yaml", "relative path for the swagger file.")
+
 	flag.Parse()
 }
 

@@ -7,19 +7,6 @@ package adherent
 //	400: CommonError
 //	200: CommonSuccess
 
-// swagger:route POST /auth/adherents adherent AdherentsCreate
-// Create a new adherent.
-//
-// parameters:
-//	+ name: adherent
-//    in: body
-//    type: Adherent
-//    required: true
-//
-// responses:
-//	400: CommonError
-//	200: CommonSuccess
-
 // swagger:route GET /auth/adherents/{id} adherent AdherentsShow
 // Show an adherent.
 //
@@ -27,6 +14,19 @@ package adherent
 //	+ name: id
 //    in: path
 //    type: integer
+//    required: true
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess
+
+// swagger:route POST /auth/adherents adherent AdherentsCreate
+// Create a new adherent.
+//
+// parameters:
+//	+ name: adherent
+//    in: body
+//    type: Adherent
 //    required: true
 //
 // responses:
