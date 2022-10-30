@@ -62,6 +62,5 @@ It can be edit with [MySQL Workbench](https://www.mysql.com/products/workbench/)
 
 ![DB schematique](./database/sapi_db.png)
 
-:warning:
-> Actually the db creation is coded by hand.
+> ⚠ Actually the db creation is coded by hand.
 > But in a near future we would like to generated it automatically.
