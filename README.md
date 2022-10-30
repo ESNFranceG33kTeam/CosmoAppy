@@ -1,7 +1,3 @@
----
-title: README
----
-
 # sAPI
 
 ## Table of Contents
