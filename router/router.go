@@ -46,7 +46,7 @@ func InitializeRouter() {
 	router = mux.NewRouter().StrictSlash(true)
 
 	// swagger
-	router.Handle(helpers.Swaggerpathflag, http.FileServer(http.Dir("./")))
+	router.Handle(helpers.Swaggerpathflag, http.FileServer(http.Dir(".")))
 
 	// documentation for developers
 	opts := middleware.SwaggerUIOpts{SpecURL: helpers.Swaggerpathflag, Path: "swagger"}
