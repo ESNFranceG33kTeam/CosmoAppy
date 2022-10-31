@@ -1,3 +1,7 @@
+---
+title: Module Adherent
+---
+
 # Adherents endpoint
 
 ## Get

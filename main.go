@@ -45,7 +45,7 @@ func main() {
 
 	// Specimen data
 	if helpers.TheAppConfig().Specimen {
-		PopulateDb()
+		launcher.SpecimenModules()
 	}
 
 	logger.GetLogger().LogInfo("main", "API ready.")
