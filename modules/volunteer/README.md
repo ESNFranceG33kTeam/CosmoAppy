@@ -1,8 +1,12 @@
 ---
-title: Module Volunteers
+title: Module Volunteer
 ---
 
 # Volunteers endpoint
+
+## Requirements
+
+This module is dependant of the `adherent` module and need it to works.
 
 ## Get
 

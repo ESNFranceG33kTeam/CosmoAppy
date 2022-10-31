@@ -1,5 +1,5 @@
 ---
-title: Module Adherents
+title: Module Adherent
 ---
 
 # Adherents endpoint

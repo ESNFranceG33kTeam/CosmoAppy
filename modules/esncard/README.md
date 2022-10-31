@@ -1,8 +1,12 @@
 ---
-title: Module ESNcards
+title: Module ESNcard
 ---
 
 # ESNcards endpoint
+
+## Requirements
+
+This module is dependant of the `adherent` module and need it to works.
 
 ## Get
 
