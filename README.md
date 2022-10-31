@@ -14,7 +14,7 @@ The api is made in `Golang` aka `Go` and can be use from source or using `Docker
 - **Helper**
 
 ```bash
-Usage of /usr/local/bin/sAPI:
+Usage :
     -conf string
         path for the configuration file. (default "test/conf_local.yaml")
     -swagger string
@@ -50,6 +50,10 @@ A session token is need to acceed to each endpoint of the API and to use the swa
 ## New endpoints / modules
 
 To create a new endpoints, check the [documentation module](modules/README.md).
+
+## Contributing
+
+If you want to contribute to the project, please referred yourself at the [contributing doc](CONTRIBUTING.md).
 
 # Annexes
 
