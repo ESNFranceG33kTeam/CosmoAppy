@@ -64,3 +64,9 @@ To run, the app need a configuration file, thoses files can be found in the [`te
 ## Units tests
 
 The goal is to have every part of the API tested `>=80%`, currently some modules doesn't have this minimun testing requirement and so have to be boost up.
+
+To run the unit tests, locally you can run :
+
+```bash
+go test ./... -v
+```
