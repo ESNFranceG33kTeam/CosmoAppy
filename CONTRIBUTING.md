@@ -2,7 +2,8 @@
 title: Contributing
 ---
 
-Thanks for your interest in helping developping this app.  
+Thanks for your interest in helping developping this app.
+
 Here the guidelines and requirements to do it the best way :rocket:
 
 # Project overview

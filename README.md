@@ -4,6 +4,8 @@
 - [API Documentation](#api-documentation)
   - [HealthCheck](#healthcheck)
   - [Authentication](#authentication)
+  - [New endpoints / modules](#new-endpoints--modules)
+  - [Contributing](#contributing)
 - [Annexes](#annexes)
   - [Database](#database)
 
