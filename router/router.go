@@ -3,8 +3,8 @@ package router
 import (
 	"net/http"
 
-	"github.com/ESNFranceG33kTeam/sAPI/helpers"
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/helpers"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/logger"
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/gorilla/mux"
 )

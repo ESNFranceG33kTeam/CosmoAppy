@@ -33,7 +33,7 @@ jobs:
         with:
           host port: 3306
           container port: 3306
-          mysql database: 'sapi'
+          mysql database: 'cosmoappy'
           mysql root password: 'root'
           mysql user: 'root'
           mysql password: 'root'

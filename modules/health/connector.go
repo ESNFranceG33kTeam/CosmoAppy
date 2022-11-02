@@ -1,8 +1,8 @@
 package health
 
 import (
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
-	"github.com/ESNFranceG33kTeam/sAPI/router"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/logger"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/router"
 	"github.com/gorilla/mux"
 )
 

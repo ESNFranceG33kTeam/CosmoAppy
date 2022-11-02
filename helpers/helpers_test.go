@@ -45,7 +45,7 @@ func TestReadconfig(t *testing.T) {
 	assert.Equal(t, "root", passdb)
 	assert.Equal(t, "127.0.0.1", ipdb)
 	assert.Equal(t, "3306", portdb)
-	assert.Equal(t, "sapi", namedb)
+	assert.Equal(t, "cosmoappy", namedb)
 	assert.Equal(t, "?parseTime=true", extradb)
 	assert.Equal(t, 0, loglevel)
 }

@@ -3,7 +3,7 @@ userdb: "root"
 passdb: "root"
 ipdb: "127.0.0.1"
 portdb: "3306"
-namedb: "sapi"
+namedb: "cosmoappy"
 extradb: "?parseTime=true"
 # log
 loglevel: 0

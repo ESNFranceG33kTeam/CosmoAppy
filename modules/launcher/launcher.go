@@ -1,14 +1,14 @@
 package launcher
 
 import (
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
-	"github.com/ESNFranceG33kTeam/sAPI/modules/adherent"
-	"github.com/ESNFranceG33kTeam/sAPI/modules/esncard"
-	"github.com/ESNFranceG33kTeam/sAPI/modules/event"
-	"github.com/ESNFranceG33kTeam/sAPI/modules/health"
-	"github.com/ESNFranceG33kTeam/sAPI/modules/money"
-	"github.com/ESNFranceG33kTeam/sAPI/modules/planning"
-	"github.com/ESNFranceG33kTeam/sAPI/modules/volunteer"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/logger"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/adherent"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/esncard"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/event"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/health"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/money"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/volunteer"
 )
 
 // Modules to launch, the order can be important!

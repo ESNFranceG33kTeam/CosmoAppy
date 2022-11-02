@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/ESNFranceG33kTeam/sAPI/helpers"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/helpers"
 )
 
 type Logger struct {

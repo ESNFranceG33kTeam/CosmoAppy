@@ -12,7 +12,7 @@ jobs:
       packages: write
       contents: read
     env:
-      IMAGE_NAME: "sapi"
+      IMAGE_NAME: "cosmoappy"
     steps:
       - uses: actions/checkout@v2
       - name: Build image

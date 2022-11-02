@@ -6,7 +6,7 @@ ENV GO111MODULE=on \
     GOARCH=amd64 \
     GOCACHE=/tmp \
     HOME=/go \
-    PROJECT_NAME=sAPI
+    PROJECT_NAME=CosmoAppy
 
 LABEL org.opencontainers.image.title="${PROJECT_NAME}}" \
       org.opencontainers.image.authors=${GITHUB_ACTOR} \
@@ -45,5 +45,5 @@ EXPOSE 8080
 
 WORKDIR /usr/local/bin/
 
-ENTRYPOINT [ "/usr/local/bin/sAPI" ]
+ENTRYPOINT [ "/usr/local/bin/CosmoAppy" ]
 CMD [ "--help" ]

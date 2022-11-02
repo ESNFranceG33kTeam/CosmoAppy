@@ -1,7 +1,7 @@
 #GOBIN?=.
 GOBIN?=/src/bin
 GO111MODULE?=on
-PROJECT_NAME?=sapi
+PROJECT_NAME?=cosmoappy
 
 run-test:
 	go clean -testcache

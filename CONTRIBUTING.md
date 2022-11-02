@@ -31,14 +31,14 @@ The project if based on `Go=1.19` (currently the latest on date 2022/11). And it
 - **Build with Docker**
 
 ```bash
-docker build . -f docker/Dockerfile --tag sapi:latest
+docker build . -f docker/Dockerfile --tag cosmoappy:latest
 ```
 
 - **Run with Docker**
 
 ```bash
-docker run -v $PWD/conf/folder:/etc/sAPI/conf -p 8080:8080 sapi:latest \
-    -conf=/etc/sAPI/conf/conf_docker.yaml
+docker run -v $PWD/test/:/etc/CosmoAppy/conf -p 8080:8080 cosmoappy:latest \
+    -conf=/etc/CosmoAppy/conf/conf_docker.yaml
 ```
 
 - **Run locally**

@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/ESNFranceG33kTeam/sAPI/helpers"
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/helpers"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/logger"
 	_ "github.com/go-sql-driver/mysql"
 )
 

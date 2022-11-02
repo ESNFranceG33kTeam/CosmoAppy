@@ -6,8 +6,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ESNFranceG33kTeam/sAPI/helpers"
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/helpers"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/logger"
 )
 
 func TestMain(m *testing.M) {

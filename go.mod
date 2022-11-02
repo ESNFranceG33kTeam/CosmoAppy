@@ -1,4 +1,4 @@
-module github.com/ESNFranceG33kTeam/sAPI
+module github.com/ESNFranceG33kTeam/CosmoAppy
 
 go 1.18
 
@@ -7,13 +7,6 @@ require (
 	github.com/gorilla/mux v1.8.0
 	github.com/stretchr/testify v1.8.0
 	gopkg.in/yaml.v2 v2.4.0
-)
-
-require (
-	github.com/google/go-cmp v0.5.8 // indirect
-	github.com/google/uuid v1.2.0 // indirect
-	github.com/kr/pretty v0.3.0 // indirect
-	github.com/rogpeppe/go-internal v1.9.0 // indirect
 )
 
 require (
@@ -38,28 +31,28 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/ESNFranceG33kTeam/sAPI/router => ../router
+replace github.com/ESNFranceG33kTeam/CosmoAppy/router => ../router
 
-replace github.com/ESNFranceG33kTeam/sAPI/database => ../database
+replace github.com/ESNFranceG33kTeam/CosmoAppy/database => ../database
 
-replace github.com/ESNFranceG33kTeam/sAPI/helpers => ../helpers
+replace github.com/ESNFranceG33kTeam/CosmoAppy/helpers => ../helpers
 
-replace github.com/ESNFranceG33kTeam/sAPI/logger => ../logger
+replace github.com/ESNFranceG33kTeam/CosmoAppy/logger => ../logger
 
-replace github.com/ESNFranceG33kTeam/sAPI/docs => ../docs
+replace github.com/ESNFranceG33kTeam/CosmoAppy/docs => ../docs
 
-replace github.com/ESNFranceG33kTeam/sAPI/modules/launcher => ../launcher
+replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/launcher => ../launcher
 
-replace github.com/ESNFranceG33kTeam/sAPI/modules/health => ../health
+replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/health => ../health
 
-replace github.com/ESNFranceG33kTeam/sAPI/modules/adherent => ../adherent
+replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/adherent => ../adherent
 
-replace github.com/ESNFranceG33kTeam/sAPI/modules/volunteer => ../volunteer
+replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/volunteer => ../volunteer
 
-replace github.com/ESNFranceG33kTeam/sAPI/modules/esncard => ../esncard
+replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/esncard => ../esncard
 
-replace github.com/ESNFranceG33kTeam/sAPI/modules/event => ../event
+replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/event => ../event
 
-replace github.com/ESNFranceG33kTeam/sAPI/modules/planning => ../planning
+replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning => ../planning
 
-replace github.com/ESNFranceG33kTeam/sAPI/modules/money => ../money
+replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/money => ../money
