@@ -11,6 +11,7 @@ import (
 	"github.com/ESNFranceG33kTeam/sAPI/modules/volunteer"
 )
 
+// Modules to launch, the order can be important!
 func LauncherModules() {
 	// Adherent dependant
 	adherent.Launcher()
@@ -26,8 +27,8 @@ func LauncherModules() {
 	health.Launcher()
 }
 
+// Populate database, the order can be important!
 func SpecimenModules() {
-	// Populate database
 	// Adherent dependant
 	adherent.Specimen()
 	volunteer.Specimen()

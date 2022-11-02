@@ -165,3 +165,7 @@ curl -X DELETE "https://${MYSERVER}/${SECURE}/event_attendees/3" \
 ```
 
 Output : no output
+
+## Data Dependances
+
+In case of suppressing the a `planning` or an `adherent` on who has a link an `attendee`, **this `attendee` will be delete as well**.
