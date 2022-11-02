@@ -74,3 +74,7 @@ curl -X DELETE "https://${MYSERVER}/${SECURE}/volunteers/1" \
 ```
 
 Output : no output
+
+## Data Dependances
+
+In case of suppressing an `adherent` on who has a link a `volunteer`, **this `volunteer` will be delete as well**.

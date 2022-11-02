@@ -19,6 +19,11 @@ definitions:
     x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/health
   Money:
     x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/money
+  Planning:
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/planning
+  Planning_Attendee:
+    x-go-name: Attendee
+    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/planning
   Volunteer:
     x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/volunteer
 host: 127.0.0.1:8080
@@ -503,6 +508,227 @@ paths:
       summary: Show a money operation.
       tags:
         - money
+  /auth/planning_attendees:
+    get:
+      operationId: AttendeesIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get attendees list.
+      tags:
+        - planning_attendee
+    post:
+      operationId: AttendeesCreate
+      parameters:
+        - in: body
+          name: attendee
+          required: true
+          schema:
+            $ref: '#/definitions/Planning_Attendee'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Create a new attendee.
+      tags:
+        - planning_attendee
+  /auth/planning_attendees/{id}:
+    delete:
+      operationId: AttendeesDelete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Delete an attendee.
+      tags:
+        - planning_attendee
+    put:
+      operationId: AttendeesUpdate
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+        - in: body
+          name: attendee
+          required: true
+          schema:
+            $ref: '#/definitions/Planning_Attendee'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Update an attendee.
+      tags:
+        - planning_attendee
+  /auth/planning_attendees/id_adherent/{id_adherent}:
+    get:
+      operationId: AttendeesShowByIdAdherent
+      parameters:
+        - in: path
+          name: id_adherent
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an attendee by adherent id.
+      tags:
+        - planning_attendee
+  /auth/planning_attendees/id_planning/{id_planning}:
+    get:
+      operationId: AttendeesShowByIdPlanning
+      parameters:
+        - in: path
+          name: id_planning
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an attendee by planning id.
+      tags:
+        - planning_attendee
+  /auth/plannings:
+    get:
+      operationId: PlanningsIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get plannings list.
+      tags:
+        - planning
+    post:
+      operationId: PlanningsCreate
+      parameters:
+        - in: body
+          name: planning
+          required: true
+          schema:
+            $ref: '#/definitions/Planning'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Create a new planning.
+      tags:
+        - planning
+  /auth/plannings/{id}:
+    delete:
+      operationId: PlanningsDelete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Delete an planning.
+      tags:
+        - planning
+    get:
+      operationId: PlanningsShow
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show an planning.
+      tags:
+        - planning
+    put:
+      operationId: PlanningsUpdate
+      parameters:
+        - in: path
+          name: id
+          required: true
+          type: integer
+        - in: body
+          name: planning
+          required: true
+          schema:
+            $ref: '#/definitions/Planning'
+            type: object
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Update an planning.
+      tags:
+        - planning
   /auth/volunteers:
     get:
       operationId: VolunteersIndex

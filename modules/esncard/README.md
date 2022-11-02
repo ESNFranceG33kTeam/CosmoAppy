@@ -64,3 +64,7 @@ curl -X DELETE "https://${MYSERVER}/${SECURE}/esncards/3" \
 ```
 
 Output : no output
+
+## Data Dependances
+
+In case of suppressing an `adherent` on who has a link an `esncard`, **this `esncard` will be delete as well**.

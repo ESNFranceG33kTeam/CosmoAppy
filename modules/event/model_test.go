@@ -39,7 +39,7 @@ func TestUpdateEvent(t *testing.T) {
 
 	eve_2 := FindEventById(2)
 	if eve_2.Price != 0 {
-		log.Fatal("Eve_3 didn't updated !")
+		log.Fatal("Eve_2 didn't updated !")
 	}
 }
 

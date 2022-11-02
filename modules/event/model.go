@@ -144,7 +144,7 @@ func AllAttendees() *Attendees {
 		err := rows.Scan(&att.Id, &att.Id_event, &att.Id_adherent, &att.Staff)
 
 		if err != nil {
-			TheLogger().LogError("event", "event not found.", err)
+			TheLogger().LogError("attendee", "attendee not found.", err)
 		}
 
 		atts = append(atts, att)
@@ -204,7 +204,7 @@ func FindAttendeeByAdherentId(id_adherent int) *Attendees {
 	rows, err := TheDb().Query("SELECT * FROM event_attendees WHERE id_adherent = ?;", id_adherent)
 
 	if err != nil {
-		TheLogger().LogWarning("attendee", "attendees with id event not found.", err)
+		TheLogger().LogWarning("attendee", "attendees with id adherent not found.", err)
 	}
 
 	for rows.Next() {
@@ -245,7 +245,7 @@ func DeleteAttendeeById(id int) error {
 
 	_, err = stmt.Exec(id)
 	if err != nil {
-		TheLogger().LogError("attendee", "esncard can't be deleted.", err)
+		TheLogger().LogError("attendee", "attendee can't be deleted.", err)
 	}
 
 	return err
