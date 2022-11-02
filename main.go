@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 
 	"github.com/ESNFranceG33kTeam/CosmoAppy/database"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/docs"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/helpers"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/logger"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/launcher"
@@ -33,6 +34,7 @@ func InitConf() {
 }
 
 func main() {
+	docs.DrawStart()
 	startoptions()
 	InitConf()
 	database.DatabaseInit()

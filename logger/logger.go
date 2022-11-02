@@ -10,6 +10,7 @@ import (
 
 type Logger struct {
 	loggerLevel int
+	drawing     string
 	timestamp   time.Time
 	level       string
 	endpoint    string
@@ -17,6 +18,7 @@ type Logger struct {
 	detailes    error
 }
 
+const DrawColor = "\033[96;1m"
 const InfoColor = "\033[0;32m"
 const WarningColor = "\033[0;33m"
 const ErrorColor = "\033[1;31m"
@@ -27,6 +29,12 @@ var mylog Logger
 
 func (log *Logger) LogInit() {
 	log.loggerLevel = helpers.TheAppConfig().Loglevel
+}
+
+func (log *Logger) LogDraw(drawing string) {
+	log.drawing = drawing
+
+	fmt.Fprintln(os.Stdout, DrawColor, string(log.drawing), NoneColor)
 }
 
 func (log *Logger) LogInfo(endpoint string, message string) {
