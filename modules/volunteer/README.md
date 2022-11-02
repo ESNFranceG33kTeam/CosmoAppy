@@ -6,10 +6,10 @@ title: Module Volunteer
 
 **Object description**
 
-- Id            int     `json:"id"`
-- Id_adherent   int     `json:"id_adherent"`
-- Actif         bool    `json:"actif"`
-- Bureau        bool    `json:"bureau"`
+- Id            int     `json:"id"`             - Id of the volunteer
+- Id_adherent   int     `json:"id_adherent"`    - Id of the adherent
+- Actif         bool    `json:"actif"`          - Status of the volunteer
+- Bureau        bool    `json:"bureau"`         - Does the volunteer has a bureau role
 
 The parameters `id` is calculated automatically.
 

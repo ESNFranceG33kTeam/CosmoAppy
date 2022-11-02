@@ -5,7 +5,7 @@ type Planning struct {
 	// Id of the planning
 	// in: int64
 	Id int `json:"id"`
-	// Label of the planning
+	// Name of the planning
 	// in: string
 	Name string `json:"name"`
 	// Location of the planning

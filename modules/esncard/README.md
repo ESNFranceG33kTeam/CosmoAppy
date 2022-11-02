@@ -6,10 +6,10 @@ title: Module ESNcard
 
 **Object description**
 
-- Id            int         `json:"id"`
-- Id_adherent   int         `json:"id_adherent"`
-- Esncard       string      `json:"esncard"`
-- CreatedAt     time.Time   `json:"created_at"`
+- Id            int         `json:"id"`             - Id of the esncard
+- Id_adherent   int         `json:"id_adherent"`    - Id of the adherent
+- Esncard       string      `json:"esncard"`        - Code of the esncard
+- CreatedAt     time.Time   `json:"created_at"`     - Created date of the esncard
 
 The parameters `id` and `created_at`are calculated automatically.
 

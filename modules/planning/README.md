@@ -11,13 +11,13 @@ title: Module Planning / Planning Attendees
 
 **Object description**
 
-- Id            int     `json:"id"`
-- Name          string  `json:"name"`
-- Location      string  `json:"location"`
-- Date_begins   string  `json:"date_begins"`
-- Date_end      string  `json:"date_end"`
-- Hour_begins   string  `json:"hour_begins"`
-- Hour_end      string  `json:"hour_end"`
+- Id            int     `json:"id"`             - Id of the planning
+- Name          string  `json:"name"`           - Name of the planning
+- Location      string  `json:"location"`       - Location of the planning
+- Date_begins   string  `json:"date_begins"`    - Start date of the planning
+- Date_end      string  `json:"date_end"`       - End date of the planning
+- Hour_begins   string  `json:"hour_begins"`    - Start hour of the planning
+- Hour_end      string  `json:"hour_end"`       - End hour of the planning
 
 The parameters `id` is calculated automatically.
 
@@ -98,12 +98,12 @@ Output : no output
 
 **Object description**
 
-- Id            int     `json:"id"`
-- Id_planning   int     `json:"id_planning"`
-- Id_adherent   int     `json:"id_adherent"`
-- Date          string  `json:"date"`
-- Hour_begins   string  `json:"hour_begins"`
-- Hour_end      string  `json:"hour_end"`
+- Id            int     `json:"id"`             - Id of the attendee
+- Id_planning   int     `json:"id_planning"`    - Id of the planning
+- Id_adherent   int     `json:"id_adherent"`    - Id of the adherent
+- Date          string  `json:"date"`           - Date of the shift
+- Hour_begins   string  `json:"hour_begins"`    - Start hour of the shift
+- Hour_end      string  `json:"hour_end"`       - End hour of the shift
 
 The parameters `id` is calculated automatically.
 

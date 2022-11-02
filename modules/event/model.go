@@ -5,7 +5,7 @@ type Event struct {
 	// Id of the event
 	// in: int64
 	Id int `json:"id"`
-	// Label of the event
+	// Name of the event
 	// in: string
 	Name string `json:"name"`
 	// Date of the event

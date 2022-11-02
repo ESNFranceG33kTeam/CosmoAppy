@@ -6,10 +6,10 @@ title: Module Money
 
 **Object description**
 
-- Id        int         `json:"id"`
-- Label     string      `json:"label"`
-- Price     float64     `json:"price"`
-- CreatedAt time.Time   `json:"created_at"`
+- Id        int         `json:"id"`         - Id of the entry
+- Label     string      `json:"label"`      - Label of the operation
+- Price     float64     `json:"price"`      - Price of the operation
+- CreatedAt time.Time   `json:"created_at"` - Created date of the operation
 
 The parameters `id` and `created_at` are calculated automatically.
 

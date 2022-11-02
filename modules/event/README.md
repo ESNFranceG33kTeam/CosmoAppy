@@ -11,14 +11,14 @@ title: Module Event / Event Attendees
 
 **Object description**
 
-- Id        int     `json:"id"`
-- Name      string  `json:"name"`
-- Date      string  `json:"date"`
-- Location  string  `json:"location"`
-- Type      string  `json:"type"`
-- Price     float64 `json:"price"`
-- Url       string  `json:"url_facebook"`
-- Actif     bool    `json:"actif"`
+- Id        int     `json:"id"`             - Id of the event
+- Name      string  `json:"name"`           - Name of the event
+- Date      string  `json:"date"`           - Date of the event
+- Location  string  `json:"location"`       - Location of the event
+- Type      string  `json:"type"`           - Type of the event
+- Price     float64 `json:"price"`          - Price of the event
+- Url       string  `json:"url_facebook"`   - Url of the event
+- Actif     bool    `json:"actif"`          - Status of the event
 
 The parameter `id` is calculated automatically.
 
@@ -101,10 +101,10 @@ Output : no output
 
 **Object description**
 
-- Id            int     `json:"id"`
-- Id_event      int     `json:"id_event"`
-- Id_adherent   int     `json:"id_adherent"`
-- Staff         bool    `json:"staff"`
+- Id            int     `json:"id"`             - Id of the attendee
+- Id_event      int     `json:"id_event"`       - Id of the event
+- Id_adherent   int     `json:"id_adherent"`    - Id of the adherent
+- Staff         bool    `json:"staff"`          - Status of the event
 
 The parameter `id` is calculated automatically.
 
