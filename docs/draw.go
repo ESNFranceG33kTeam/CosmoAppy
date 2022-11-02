@@ -13,7 +13,7 @@ const draw = `
   \_____\___/|___/_| |_| |_|\___/_/    \_\ .__/| .__/ \__, |
                                          | |   | |     __/ |
                                          |_|   |_|    |___/
-by the French ESN G33k Team.
+by the French ESN G33kTeam.
 `
 
 func DrawStart() {

@@ -4,6 +4,24 @@ title: Module Adherent
 
 # Adherents endpoint
 
+**Object description**
+
+- Id            int         `json:"id"`
+- Firstname     string      `json:"firstname"`
+- Lastname      string      `json:"lastname"`
+- Email         string      `json:"email"`
+- Dateofbirth   string      `json:"dateofbirth"`
+- Student       bool        `json:"student"`
+- University    string      `json:"university"`
+- Homeland      string      `json:"homeland"`
+- Speakabout    string      `json:"speakabout"`
+- Newsletter    bool        `json:"newsletter"`
+- CreatedAt     time.Time   `json:"created_at"`
+- UpdatedAt     time.Time   `json:"updated_at"`
+
+The parameters `id`, `created_at` and `updated_at` are calculated automatically.
+
+
 ## Get
 
 - Get full list of adherents :

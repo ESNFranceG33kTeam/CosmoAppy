@@ -4,6 +4,15 @@ title: Module Money
 
 # Moneys endpoint
 
+**Object description**
+
+- Id        int         `json:"id"`
+- Label     string      `json:"label"`
+- Price     float64     `json:"price"`
+- CreatedAt time.Time   `json:"created_at"`
+
+The parameters `id` and `created_at` are calculated automatically.
+
 ## Get
 
 - Get full list of money operations :

@@ -4,6 +4,15 @@ title: Module ESNcard
 
 # ESNcards endpoint
 
+**Object description**
+
+- Id            int         `json:"id"`
+- Id_adherent   int         `json:"id_adherent"`
+- Esncard       string      `json:"esncard"`
+- CreatedAt     time.Time   `json:"created_at"`
+
+The parameters `id` and `created_at`are calculated automatically.
+
 ## Requirements
 
 This module is dependant of the `adherent` module and need it to works.

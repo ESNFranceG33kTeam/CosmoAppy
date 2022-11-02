@@ -9,6 +9,19 @@ title: Module Event / Event Attendees
 
 # Events endpoint
 
+**Object description**
+
+- Id        int     `json:"id"`
+- Name      string  `json:"name"`
+- Date      string  `json:"date"`
+- Location  string  `json:"location"`
+- Type      string  `json:"type"`
+- Price     float64 `json:"price"`
+- Url       string  `json:"url_facebook"`
+- Actif     bool    `json:"actif"`
+
+The parameter `id` is calculated automatically.
+
 ## Get
 
 - Get full list of events :
@@ -85,6 +98,15 @@ curl -X DELETE "https://${MYSERVER}/${SECURE}/events/3" \
 Output : no output
 
 # Event Attendees endpoint
+
+**Object description**
+
+- Id            int     `json:"id"`
+- Id_event      int     `json:"id_event"`
+- Id_adherent   int     `json:"id_adherent"`
+- Staff         bool    `json:"staff"`
+
+The parameter `id` is calculated automatically.
 
 ## Requirements
 
