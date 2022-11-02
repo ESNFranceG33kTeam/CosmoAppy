@@ -1,3 +1,9 @@
+# The Go(smo) API
+
+![Gopher image](docs/gosmix.png)
+
+*Gopher image by [Renee French][rf], licensed under [Creative Commons 3.0 Attributions license][cc3-by].*
+
 # Table of Contents
 
 - [Setup](#setup)
