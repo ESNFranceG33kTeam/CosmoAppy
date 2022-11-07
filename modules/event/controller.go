@@ -77,6 +77,36 @@ func EventsShow(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func EventsUpdateSpotsAvai(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		TheLogger().LogError("event", "unable to get id.", err)
+	}
+
+	eve := FindEventById(id)
+	if eve.NbSpotsAvai <= 0 {
+		TheLogger().LogInfo("event", "No spot available.")
+		http.Error(w, "No spot available.", http.StatusBadRequest)
+
+		return
+	}
+
+	eve.NbSpotsAvai -= 1
+
+	w.WriteHeader(http.StatusOK)
+	UpdateSpotsAvaiEvent(eve)
+
+	err = json.NewEncoder(w).Encode(eve)
+	if err != nil {
+		TheLogger().LogError("event", "problem with encoder.", err)
+	} else {
+		TheLogger().LogInfo("event", "request PUT : "+r.RequestURI)
+	}
+}
+
 func EventsUpdate(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 

@@ -427,6 +427,26 @@ paths:
       summary: Show an event.
       tags:
         - event
+  /auth/events/take_spot/{id}:
+    put:
+      operationId: EventsUpdateSpotsAvai
+      parameters:
+        - in: path
+          name: id
+          type: integer
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Take a spot in an event.
+      tags:
+        - event
+  /auth/events/update/{id}:
     put:
       operationId: EventsUpdate
       parameters:

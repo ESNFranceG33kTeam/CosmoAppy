@@ -11,14 +11,16 @@ title: Module Event / Event Attendees
 
 **Object description**
 
-- Id        int     `json:"id"`             - Id of the event
-- Name      string  `json:"name"`           - Name of the event
-- Date      string  `json:"date"`           - Date of the event
-- Location  string  `json:"location"`       - Location of the event
-- Type      string  `json:"type"`           - Type of the event
-- Price     float64 `json:"price"`          - Price of the event
-- Url       string  `json:"url_facebook"`   - Url of the event
-- Actif     bool    `json:"actif"`          - Status of the event
+- Id            int     `json:"id"`                 - Id of the event
+- Name          string  `json:"name"`               - Name of the event
+- Date          string  `json:"date"`               - Date of the event
+- Location      string  `json:"location"`           - Location of the event
+- NbSpotsMax    int     `json:"nb_spots_max"`       - Number Spots Max of the event
+- NbSpotsAvai   int     `json:"nb_spots_available"` - Number Spots Available of the event
+- Type          string  `json:"type"`               - Type of the event
+- Price         float64 `json:"price"`              - Price of the event
+- Url           string  `json:"url_facebook"`       - Url of the event
+- Actif         bool    `json:"actif"`              - Status of the event
 
 The parameter `id` is calculated automatically.
 
@@ -55,6 +57,8 @@ curl -X POST "https://${MYSERVER}/${SECURE}/events" \
         "name": "Conseil des 4",
         "date": "2023-05-23",
         "location": "Plateau indigo, Johto",
+        "nb_spots_max": 30,
+        "nb_spots_available": 30,
         "type": "sport",
         "price": 0,
         "url_facebook": "https://facebook.com/ligue",
@@ -66,10 +70,19 @@ Output : (`json`) event object
 
 ## Put
 
+- To take a spot :
+
+```bash
+curl -X PUT "https://${MYSERVER}/${SECURE}/events/take_spot/3" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`json`) event object
+
 - To update an event :
 
 ```bash
-curl -X PUT "https://${MYSERVER}/${SECURE}/events/3" \
+curl -X PUT "https://${MYSERVER}/${SECURE}/events/update/3" \
     -H "accept: application/json" \
     -H "X-Session-Token: ${MYTOKEN}" \
     -H "Content-Type: application/json" \
@@ -77,6 +90,8 @@ curl -X PUT "https://${MYSERVER}/${SECURE}/events/3" \
         "name": "Conseil des 4",
         "date": "2023-05-23",
         "location": "Plateau indigo, Kanto",
+        "nb_spots_max": 30,
+        "nb_spots_available": 30,
         "type": "sport",
         "price": 0,
         "url_facebook": "https://facebook.com/ligue",

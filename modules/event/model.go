@@ -14,6 +14,12 @@ type Event struct {
 	// Location of the event
 	// in: string
 	Location string `json:"location"`
+	// Number Spots Max of the event
+	// in: int
+	NbSpotsMax int `json:"nb_spots_max"`
+	// Number Spots Available of the event
+	// in: int
+	NbSpotsAvai int `json:"nb_spots_available"`
 	// Type of the event
 	// in: string
 	Type string `json:"type"`
@@ -50,8 +56,8 @@ type Attendees []Attendee
 
 func NewEvent(eve *Event) {
 
-	stmt, _ := TheDb().Prepare("INSERT INTO events (name, date, location, type, price, url_facebook, actif) VALUES (?,?,?,?,?,?,?);")
-	_, err := stmt.Exec(eve.Name, eve.Date, eve.Location, eve.Type, eve.Price, eve.Url, eve.Actif)
+	stmt, _ := TheDb().Prepare("INSERT INTO events (name, date, location, nb_spots_max, nb_spots_available, type, price, url_facebook, actif) VALUES (?,?,?,?,?,?,?,?,?);")
+	_, err := stmt.Exec(eve.Name, eve.Date, eve.Location, eve.NbSpotsMax, eve.NbSpotsAvai, eve.Type, eve.Price, eve.Url, eve.Actif)
 	if err != nil {
 		TheLogger().LogError("event", "can't create new event.", err)
 	}
@@ -61,7 +67,7 @@ func FindEventById(id int) *Event {
 	var eve Event
 
 	row := TheDb().QueryRow("SELECT * FROM events WHERE id = ?;", id)
-	err := row.Scan(&eve.Id, &eve.Name, &eve.Date, &eve.Location, &eve.Type, &eve.Price, &eve.Url, &eve.Actif)
+	err := row.Scan(&eve.Id, &eve.Name, &eve.Date, &eve.Location, &eve.NbSpotsMax, &eve.NbSpotsAvai, &eve.Type, &eve.Price, &eve.Url, &eve.Actif)
 
 	if err != nil {
 		TheLogger().LogWarning("event", "event not found.", err)
@@ -85,7 +91,7 @@ func AllEvents() *Events {
 	for rows.Next() {
 		var eve Event
 
-		err := rows.Scan(&eve.Id, &eve.Name, &eve.Date, &eve.Location, &eve.Type, &eve.Price, &eve.Url, &eve.Actif)
+		err := rows.Scan(&eve.Id, &eve.Name, &eve.Date, &eve.Location, &eve.NbSpotsMax, &eve.NbSpotsAvai, &eve.Type, &eve.Price, &eve.Url, &eve.Actif)
 
 		if err != nil {
 			TheLogger().LogError("event", "event not found.", err)
@@ -97,14 +103,28 @@ func AllEvents() *Events {
 	return &eves
 }
 
-func UpdateEvent(eve *Event) {
-	stmt, err := TheDb().Prepare("UPDATE events SET name=?, date=?, location=?, type=?, price=?, url_facebook=?, actif=? WHERE id=?;")
+func UpdateSpotsAvaiEvent(eve *Event) {
+	stmt, err := TheDb().Prepare("UPDATE events SET nb_spots_available=? WHERE id=?;")
 
 	if err != nil {
 		TheLogger().LogError("event", "problem with the db.", err)
 	}
 
-	_, err = stmt.Exec(eve.Name, eve.Date, eve.Location, eve.Type, eve.Price, eve.Url, eve.Actif, eve.Id)
+	_, err = stmt.Exec(eve.NbSpotsAvai, eve.Id)
+
+	if err != nil {
+		TheLogger().LogError("event", "nb_spots_available can't be updated.", err)
+	}
+}
+
+func UpdateEvent(eve *Event) {
+	stmt, err := TheDb().Prepare("UPDATE events SET name=?, date=?, location=?, nb_spots_max=?, nb_spots_available=?, type=?, price=?, url_facebook=?, actif=? WHERE id=?;")
+
+	if err != nil {
+		TheLogger().LogError("event", "problem with the db.", err)
+	}
+
+	_, err = stmt.Exec(eve.Name, eve.Date, eve.Location, eve.NbSpotsMax, eve.NbSpotsAvai, eve.Type, eve.Price, eve.Url, eve.Actif, eve.Id)
 
 	if err != nil {
 		TheLogger().LogError("event", "event can't be updated.", err)
