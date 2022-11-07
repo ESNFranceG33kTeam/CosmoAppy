@@ -22,7 +22,8 @@ title: Module Event / Event Attendees
 - Url           string  `json:"url_facebook"`   - Url of the event
 - Actif         bool    `json:"actif"`          - Status of the event
 
-The parameter `id` is calculated automatically.
+> The parameter `id` is calculated automatically.
+> The parameter `nb_spots_taken` is automatically increment or unincrement as an attendee is created or deleted.
 
 ## Get
 
@@ -70,19 +71,10 @@ Output : (`json`) event object
 
 ## Put
 
-- To take a spot :
-
-```bash
-curl -X PUT "https://${MYSERVER}/${SECURE}/events/take_spot/3" \
-    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
-```
-
-Output : (`json`) event object
-
 - To update an event :
 
 ```bash
-curl -X PUT "https://${MYSERVER}/${SECURE}/events/update/3" \
+curl -X PUT "https://${MYSERVER}/${SECURE}/events/3" \
     -H "accept: application/json" \
     -H "X-Session-Token: ${MYTOKEN}" \
     -H "Content-Type: application/json" \
@@ -158,7 +150,7 @@ Output : (`[json]`) list of attendees object
 
 ## Post
 
-- To create a new attendee :
+- To create a new attendee and increment the spot taken of the event :
 
 ```bash
 curl -X POST "https://${MYSERVER}/${SECURE}/event_attendees" \
@@ -194,7 +186,7 @@ Output : (`json`) attendee object
 
 ## Delete
 
-- To delete an attendee :
+- To delete an attendee and desincrement a spot taken in the event :
 
 ```bash
 curl -X DELETE "https://${MYSERVER}/${SECURE}/event_attendees/3" \

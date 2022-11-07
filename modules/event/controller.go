@@ -77,36 +77,6 @@ func EventsShow(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func EventsUpdateSpotsTaken(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-type", "application/json;charset=UTF-8")
-
-	vars := mux.Vars(r)
-	id, err := strconv.Atoi(vars["id"])
-	if err != nil {
-		TheLogger().LogError("event", "unable to get id.", err)
-	}
-
-	eve := FindEventById(id)
-	if eve.NbSpotsTaken >= eve.NbSpotsMax {
-		TheLogger().LogInfo("event", "No spot available.")
-		http.Error(w, "No spot available.", http.StatusBadRequest)
-
-		return
-	}
-
-	eve.NbSpotsTaken += 1
-
-	w.WriteHeader(http.StatusOK)
-	UpdateSpotsTakenEvent(eve)
-
-	err = json.NewEncoder(w).Encode(eve)
-	if err != nil {
-		TheLogger().LogError("event", "problem with encoder.", err)
-	} else {
-		TheLogger().LogInfo("event", "request PUT : "+r.RequestURI)
-	}
-}
-
 func EventsUpdate(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 
@@ -195,7 +165,18 @@ func AttendeesCreate(w http.ResponseWriter, r *http.Request) {
 		TheLogger().LogError("attendee", "problem with unmarshal.", err)
 	}
 
+	eve := FindEventById(att.Id_event)
+	if eve.NbSpotsTaken >= eve.NbSpotsMax {
+		TheLogger().LogInfo("event", "No spot available.")
+		http.Error(w, "No spot available.", http.StatusBadRequest)
+
+		return
+	} else {
+		eve.NbSpotsTaken += 1
+	}
+
 	w.WriteHeader(http.StatusOK)
+	UpdateSpotsTakenEvent(eve)
 	NewAttendee(&att)
 
 	err = json.NewEncoder(w).Encode(att)
@@ -288,6 +269,10 @@ func AttendeesDelete(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		TheLogger().LogError("attendee", "unable to get id.", err)
 	}
+
+	eve := FindEventById(id)
+	eve.NbSpotsTaken -= 1
+	UpdateSpotsTakenEvent(eve)
 
 	w.WriteHeader(http.StatusOK)
 	err = DeleteAttendeeById(id)
