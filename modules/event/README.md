@@ -11,16 +11,16 @@ title: Module Event / Event Attendees
 
 **Object description**
 
-- Id            int     `json:"id"`                 - Id of the event
-- Name          string  `json:"name"`               - Name of the event
-- Date          string  `json:"date"`               - Date of the event
-- Location      string  `json:"location"`           - Location of the event
-- NbSpotsMax    int     `json:"nb_spots_max"`       - Number Spots Max of the event
-- NbSpotsAvai   int     `json:"nb_spots_available"` - Number Spots Available of the event
-- Type          string  `json:"type"`               - Type of the event
-- Price         float64 `json:"price"`              - Price of the event
-- Url           string  `json:"url_facebook"`       - Url of the event
-- Actif         bool    `json:"actif"`              - Status of the event
+- Id            int     `json:"id"`             - Id of the event
+- Name          string  `json:"name"`           - Name of the event
+- Date          string  `json:"date"`           - Date of the event
+- Location      string  `json:"location"`       - Location of the event
+- NbSpotsMax    int     `json:"nb_spots_max"`   - Number Spots Max of the event
+- NbSpotsTaken  int     `json:"nb_spots_taken"` - Number Spots Taken of the event
+- Type          string  `json:"type"`           - Type of the event
+- Price         float64 `json:"price"`          - Price of the event
+- Url           string  `json:"url_facebook"`   - Url of the event
+- Actif         bool    `json:"actif"`          - Status of the event
 
 The parameter `id` is calculated automatically.
 
@@ -58,7 +58,7 @@ curl -X POST "https://${MYSERVER}/${SECURE}/events" \
         "date": "2023-05-23",
         "location": "Plateau indigo, Johto",
         "nb_spots_max": 30,
-        "nb_spots_available": 30,
+        "nb_spots_taken": 30,
         "type": "sport",
         "price": 0,
         "url_facebook": "https://facebook.com/ligue",
@@ -91,7 +91,7 @@ curl -X PUT "https://${MYSERVER}/${SECURE}/events/update/3" \
         "date": "2023-05-23",
         "location": "Plateau indigo, Kanto",
         "nb_spots_max": 30,
-        "nb_spots_available": 30,
+        "nb_spots_taken": 30,
         "type": "sport",
         "price": 0,
         "url_facebook": "https://facebook.com/ligue",
