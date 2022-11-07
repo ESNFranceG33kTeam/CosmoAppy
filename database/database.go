@@ -42,7 +42,7 @@ func initSchema(dbserver *sql.DB, namedb string) {
 	if err != nil {
 		logger.GetLogger().LogCritical("database", "create database got a problem.", err)
 	} else {
-		logger.GetLogger().LogInfo("database", "database successfully created.")
+		logger.GetLogger().LogInfo("database", "database successfully init.")
 	}
 }
 

@@ -13,6 +13,6 @@ usersapi:
 tokensapi:
   - "test"
 # specimen data
-specimen: false
+specimen: true
 # name api
 nameapi: "CosmoAppy"
