@@ -8,6 +8,12 @@ type Health struct {
 	// Version of the api
 	// in: string
 	Version string `json:"version"`
+	// Name of the api
+	// in: string
+	Name string `json:"name"`
+	// Message of the api
+	// in: string
+	Message string `json:"message"`
 }
 
 func GetHealth() *Health {
@@ -15,6 +21,8 @@ func GetHealth() *Health {
 
 	hea.Title = "IT works !"
 	hea.Version = "0.0.1"
+	hea.Name = TheAppConfig().Nameapi
+	hea.Message = "Gosmo is feeling API today :)"
 
 	return &hea
 }

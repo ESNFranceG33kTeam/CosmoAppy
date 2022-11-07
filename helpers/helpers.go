@@ -21,6 +21,7 @@ type Cfg struct {
 	Usersapi  []string `yaml:"usersapi"`
 	Tokensapi []string `yaml:"tokensapi"`
 	Specimen  bool     `yaml:"specimen"`
+	Nameapi   string   `yaml:"nameapi"`
 }
 
 var AppConfig Cfg

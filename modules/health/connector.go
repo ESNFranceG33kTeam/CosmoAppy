@@ -1,6 +1,7 @@
 package health
 
 import (
+	"github.com/ESNFranceG33kTeam/CosmoAppy/helpers"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/logger"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/router"
 	"github.com/gorilla/mux"
@@ -20,4 +21,8 @@ func TheRouter() *mux.Router {
 
 func TheSecureRouter() *mux.Router {
 	return router.GetSecureRouter()
+}
+
+func TheAppConfig() *helpers.Cfg {
+	return helpers.TheAppConfig()
 }
