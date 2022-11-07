@@ -77,7 +77,7 @@ func EventsShow(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func EventsUpdateSpotsAvai(w http.ResponseWriter, r *http.Request) {
+func EventsUpdateSpotsTaken(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 
 	vars := mux.Vars(r)
@@ -87,17 +87,17 @@ func EventsUpdateSpotsAvai(w http.ResponseWriter, r *http.Request) {
 	}
 
 	eve := FindEventById(id)
-	if eve.NbSpotsAvai <= 0 {
+	if eve.NbSpotsTaken >= eve.NbSpotsMax {
 		TheLogger().LogInfo("event", "No spot available.")
 		http.Error(w, "No spot available.", http.StatusBadRequest)
 
 		return
 	}
 
-	eve.NbSpotsAvai -= 1
+	eve.NbSpotsTaken += 1
 
 	w.WriteHeader(http.StatusOK)
-	UpdateSpotsAvaiEvent(eve)
+	UpdateSpotsTakenEvent(eve)
 
 	err = json.NewEncoder(w).Encode(eve)
 	if err != nil {

@@ -429,7 +429,7 @@ paths:
         - event
   /auth/events/take_spot/{id}:
     put:
-      operationId: EventsUpdateSpotsAvai
+      operationId: EventsUpdateSpotsTaken
       parameters:
         - in: path
           name: id

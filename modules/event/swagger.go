@@ -33,7 +33,7 @@ package event
 //	400: CommonError
 //	200: CommonSuccess
 
-// swagger:route PUT /auth/events/take_spot/{id} event EventsUpdateSpotsAvai
+// swagger:route PUT /auth/events/take_spot/{id} event EventsUpdateSpotsTaken
 // Take a spot in an event.
 //
 // parameters:

@@ -8,7 +8,7 @@ func CreateEventsTable() {
 			date VARCHAR(45) NOT NULL,
 			location VARCHAR(45) NOT NULL,
 			nb_spots_max INT NOT NULL,
-			nb_spots_available INT NOT NULL,
+			nb_spots_taken INT NOT NULL,
 			type VARCHAR(45) NOT NULL,
 			price DECIMAL NOT NULL,
 			url_facebook VARCHAR(45) NULL DEFAULT NULL,
