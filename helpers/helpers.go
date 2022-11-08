@@ -7,8 +7,6 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-//const configPath = "conf.yml"
-
 type Cfg struct {
 	ConfPath  string
 	Userdb    string   `yaml:"userdb"`
@@ -21,6 +19,7 @@ type Cfg struct {
 	Usersapi  []string `yaml:"usersapi"`
 	Tokensapi []string `yaml:"tokensapi"`
 	Specimen  bool     `yaml:"specimen"`
+	Nameapi   string   `yaml:"nameapi"`
 }
 
 var AppConfig Cfg
@@ -42,7 +41,6 @@ func ReadConfig() {
 
 	decoder := yaml.NewDecoder(f)
 	err = decoder.Decode(&AppConfig)
-
 	if err != nil {
 		fmt.Println(err)
 	}

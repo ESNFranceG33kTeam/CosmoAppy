@@ -1,3 +1,9 @@
+# The Go(smo) API
+
+![Gopher image](docs/gosmix.png)
+
+*Gopher image by [Renee French][rf], licensed under [Creative Commons 3.0 Attributions license][cc3-by].*
+
 # Table of Contents
 
 - [Setup](#setup)
@@ -26,14 +32,14 @@ Usage :
 - **Build**
 
 ```bash
-docker build . -f docker/Dockerfile --tag sapi:latest
+docker build . -f docker/Dockerfile --tag cosmoappy:latest
 ```
 
 - **Run**
 
 ```bash
-docker run -v $PWD/conf/folder:/etc/sAPI/conf -p 8080:8080 sapi:latest \
-    -conf=/etc/sAPI/conf/conf_docker.yaml
+docker run -v $PWD/test/:/etc/CosmoAppy/conf -p 8080:8080 cosmoappy:latest \
+    -conf=/etc/CosmoAppy/conf/conf_docker.yaml
 ```
 
 # API Documentation
@@ -44,6 +50,8 @@ docker run -v $PWD/conf/folder:/etc/sAPI/conf -p 8080:8080 sapi:latest \
 ## HealthCheck
 
 - The healthcheck is available at the `/health` endpoint.
+- The status resume is available at the `/auth/status` endpoint.
+- The profile resume is available at the `/auth/profile` endpoint.
 
 ## Authentication
 
@@ -61,10 +69,10 @@ If you want to contribute to the project, please referred yourself at the [contr
 
 ## Database
 
-The db schema is available in [database/sapi_db.mwb](database/sapi_db.mwb).
+The db schema is available in [database/cosmoappy_db.mwb](database/cosmoappy_db.mwb).
 It can be edit with [MySQL Workbench](https://www.mysql.com/products/workbench/).
 
-![DB schematique](./database/sapi_db.png)
+![DB schematique](./database/cosmoappy_db.png)
 
 > ⚠ Actually the db creation is coded by hand.
 > But in a near future we would like to generated it automatically.

@@ -6,14 +6,14 @@ import (
 )
 
 func setUpModel() {
-	NewEvent(&Event{Name: "Voyage a Hawai", Date: "2023-04-23", Location: "Hawai", Type: "voyage", Price: 120.42, Url: "facebook.com/voyageHawai", Actif: true})
-	NewEvent(&Event{Name: "Saturday Night Fever", Date: "2023-05-23", Location: "3 rue Albert 1er, 69000 Lyon", Type: "soiree", Price: 20, Url: "facebook.com/sturdayfever", Actif: false})
+	NewEvent(&Event{Name: "Voyage a Hawai", Date: "2023-04-23", Location: "Hawai", NbSpotsMax: 30, NbSpotsTaken: 0, Type: "voyage", Price: 120.42, Url: "facebook.com/voyageHawai", Actif: true})
+	NewEvent(&Event{Name: "Saturday Night Fever", Date: "2023-05-23", Location: "3 rue Albert 1er, 69000 Lyon", NbSpotsMax: 30, NbSpotsTaken: 0, Type: "soiree", Price: 20, Url: "facebook.com/sturdayfever", Actif: false})
 	NewAttendee(&Attendee{Id_event: 1, Id_adherent: 2, Staff: true})
 	NewAttendee(&Attendee{Id_event: 1, Id_adherent: 3, Staff: false})
 }
 
 func TestNewEvent(t *testing.T) {
-	NewEvent(&Event{Name: "Barathon", Date: "2023-05-12", Location: "Hotel de Ville, 69000 Lyon", Type: "soiree", Price: 20, Url: "facebook.com/barathon", Actif: true})
+	NewEvent(&Event{Name: "Barathon", Date: "2023-05-12", Location: "Hotel de Ville, 69000 Lyon", NbSpotsMax: 30, NbSpotsTaken: 0, Type: "soiree", Price: 20, Url: "facebook.com/barathon", Actif: true})
 }
 
 func TestFindEventById(t *testing.T) {
@@ -33,8 +33,19 @@ func TestAllEvents(t *testing.T) {
 	}
 }
 
+func TestUpdateSpotsAvaiEvent(t *testing.T) {
+	eve := FindEventById(2)
+	eve.NbSpotsTaken += 1
+	UpdateSpotsTakenEvent(eve)
+
+	eve_2 := FindEventById(2)
+	if eve_2.NbSpotsTaken != 1 {
+		log.Fatal("Eve_2 Spots available didn't updated !")
+	}
+}
+
 func TestUpdateEvent(t *testing.T) {
-	eve := Event{Id: 2, Name: "Barathon", Date: "2023-05-12", Location: "Hotel de Ville, 69000 Lyon", Type: "soiree", Price: 0, Url: "facebook.com/barathon", Actif: true}
+	eve := Event{Id: 2, Name: "Barathon", Date: "2023-05-12", Location: "Hotel de Ville, 69000 Lyon", NbSpotsMax: 30, NbSpotsTaken: 0, Type: "soiree", Price: 0, Url: "facebook.com/barathon", Actif: true}
 	UpdateEvent(&eve)
 
 	eve_2 := FindEventById(2)

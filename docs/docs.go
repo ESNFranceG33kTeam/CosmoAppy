@@ -1,4 +1,4 @@
-// Package documentation ESN super API.
+// Package documentation CosmoAppy.
 //
 // the purpose of this application is to provide an application
 // that is using plain go code to define an API

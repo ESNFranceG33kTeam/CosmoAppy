@@ -33,11 +33,14 @@ jobs:
         with:
           host port: 3306
           container port: 3306
-          mysql database: 'sapi'
+          mysql database: 'cosmoappy'
           mysql root password: 'root'
           mysql user: 'root'
           mysql password: 'root'
       - name: run tests
+        env:
+          TOKEN_API_TEST: "test"
+          PASS_DB: "root"
         run: |
           go test ./... -covermode=count -coverprofile ./coverage.out
       - name: coverage

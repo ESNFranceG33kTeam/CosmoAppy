@@ -7,11 +7,12 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/ESNFranceG33kTeam/sAPI/database"
-	"github.com/ESNFranceG33kTeam/sAPI/helpers"
-	"github.com/ESNFranceG33kTeam/sAPI/logger"
-	"github.com/ESNFranceG33kTeam/sAPI/modules/launcher"
-	"github.com/ESNFranceG33kTeam/sAPI/router"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/database"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/docs"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/helpers"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/logger"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/launcher"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/router"
 )
 
 func startoptions() {
@@ -33,6 +34,7 @@ func InitConf() {
 }
 
 func main() {
+	docs.DrawStart()
 	startoptions()
 	InitConf()
 	database.DatabaseInit()

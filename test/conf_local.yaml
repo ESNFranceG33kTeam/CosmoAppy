@@ -1,9 +1,10 @@
+---
 # database
 userdb: "root"
-passdb: "root"
+passdb: "PASS_DB"
 ipdb: "127.0.0.1"
 portdb: "3306"
-namedb: "sapi"
+namedb: "cosmoappy"
 extradb: "?parseTime=true"
 # log
 loglevel: 0
@@ -11,6 +12,8 @@ loglevel: 0
 usersapi:
   - "test"
 tokensapi:
-  - "test"
+  - "TOKEN_API_TEST"
 # specimen data
-specimen: true
+specimen: false
+# name api
+nameapi: "CosmoAppy"

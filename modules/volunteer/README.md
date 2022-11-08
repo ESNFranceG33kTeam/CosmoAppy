@@ -4,6 +4,15 @@ title: Module Volunteer
 
 # Volunteers endpoint
 
+**Object description**
+
+- Id            int     `json:"id"`             - Id of the volunteer
+- Id_adherent   int     `json:"id_adherent"`    - Id of the adherent
+- Actif         bool    `json:"actif"`          - Status of the volunteer
+- Bureau        bool    `json:"bureau"`         - Does the volunteer has a bureau role
+
+The parameters `id` is calculated automatically.
+
 ## Requirements
 
 This module is dependant of the `adherent` module and need it to works.

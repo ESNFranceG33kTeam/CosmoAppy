@@ -5,8 +5,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ESNFranceG33kTeam/sAPI/database"
-	"github.com/ESNFranceG33kTeam/sAPI/helpers"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/database"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/helpers"
 )
 
 func TestMain(m *testing.M) {

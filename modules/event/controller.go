@@ -165,7 +165,18 @@ func AttendeesCreate(w http.ResponseWriter, r *http.Request) {
 		TheLogger().LogError("attendee", "problem with unmarshal.", err)
 	}
 
+	eve := FindEventById(att.Id_event)
+	if eve.NbSpotsTaken >= eve.NbSpotsMax {
+		TheLogger().LogInfo("event", "No spot available.")
+		http.Error(w, "No spot available.", http.StatusBadRequest)
+
+		return
+	} else {
+		eve.NbSpotsTaken += 1
+	}
+
 	w.WriteHeader(http.StatusOK)
+	UpdateSpotsTakenEvent(eve)
 	NewAttendee(&att)
 
 	err = json.NewEncoder(w).Encode(att)
@@ -258,6 +269,10 @@ func AttendeesDelete(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		TheLogger().LogError("attendee", "unable to get id.", err)
 	}
+
+	eve := FindEventById(id)
+	eve.NbSpotsTaken -= 1
+	UpdateSpotsTakenEvent(eve)
 
 	w.WriteHeader(http.StatusOK)
 	err = DeleteAttendeeById(id)

@@ -9,6 +9,18 @@ title: Module Planning / Planning Attendees
 
 # Plannings endpoint
 
+**Object description**
+
+- Id            int     `json:"id"`             - Id of the planning
+- Name          string  `json:"name"`           - Name of the planning
+- Location      string  `json:"location"`       - Location of the planning
+- Date_begins   string  `json:"date_begins"`    - Start date of the planning
+- Date_end      string  `json:"date_end"`       - End date of the planning
+- Hour_begins   string  `json:"hour_begins"`    - Start hour of the planning
+- Hour_end      string  `json:"hour_end"`       - End hour of the planning
+
+The parameters `id` is calculated automatically.
+
 ## Get
 
 - Get full list of plannings :
@@ -83,6 +95,17 @@ curl -X DELETE "https://${MYSERVER}/${SECURE}/plannings/3" \
 Output : no output
 
 # Planning Attendees endpoint
+
+**Object description**
+
+- Id            int     `json:"id"`             - Id of the attendee
+- Id_planning   int     `json:"id_planning"`    - Id of the planning
+- Id_adherent   int     `json:"id_adherent"`    - Id of the adherent
+- Date          string  `json:"date"`           - Date of the shift
+- Hour_begins   string  `json:"hour_begins"`    - Start hour of the shift
+- Hour_end      string  `json:"hour_end"`       - End hour of the shift
+
+The parameters `id` is calculated automatically.
 
 ## Requirements
 

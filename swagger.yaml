@@ -3,36 +3,38 @@ consumes:
   - application/json
 definitions:
   Adherent:
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/adherent
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/adherent
   CommonError:
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/docs
   CommonSuccess:
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/docs
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/docs
   ESNcard:
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/esncard
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/esncard
   Event:
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/event
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
   Event_Attendee:
     x-go-name: Attendee
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/event
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
   Health:
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/health
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/health
   Money:
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/money
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/money
   Planning:
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/planning
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
   Planning_Attendee:
     x-go-name: Attendee
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/planning
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
+  Status:
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/health
   Volunteer:
-    x-go-package: github.com/ESNFranceG33kTeam/sAPI/modules/volunteer
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/volunteer
 host: 127.0.0.1:8080
 info:
   description: |-
     the purpose of this application is to provide an application
     that is using plain go code to define an API
   termsOfService: not yet...
-  title: ESN super API.
+  title: CosmoAppy.
   version: 0.0.1
 paths:
   /auth/adherents:
@@ -729,6 +731,36 @@ paths:
       summary: Update an planning.
       tags:
         - planning
+  /auth/profile:
+    get:
+      operationId: ProfileCheck
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "404":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get the profile.
+      tags:
+        - heath
+  /auth/status:
+    get:
+      operationId: StatusCheck
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "404":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get the status.
+      tags:
+        - heath
   /auth/volunteers:
     get:
       operationId: VolunteersIndex
