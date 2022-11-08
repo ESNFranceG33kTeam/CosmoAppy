@@ -1,6 +1,9 @@
 package health
 
 import (
+	"database/sql"
+
+	"github.com/ESNFranceG33kTeam/CosmoAppy/database"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/helpers"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/logger"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/router"
@@ -25,4 +28,8 @@ func TheSecureRouter() *mux.Router {
 
 func TheAppConfig() *helpers.Cfg {
 	return helpers.TheAppConfig()
+}
+
+func TheDb() *sql.DB {
+	return database.Db()
 }

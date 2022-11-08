@@ -24,6 +24,8 @@ definitions:
   Planning_Attendee:
     x-go-name: Attendee
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
+  Status:
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/health
   Volunteer:
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/volunteer
 host: 127.0.0.1:8080
@@ -729,6 +731,21 @@ paths:
       summary: Update an planning.
       tags:
         - planning
+  /auth/status:
+    get:
+      operationId: StatusCheck
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "404":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get the status.
+      tags:
+        - heath
   /auth/volunteers:
     get:
       operationId: VolunteersIndex
