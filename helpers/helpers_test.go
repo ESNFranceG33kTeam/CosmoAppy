@@ -34,7 +34,7 @@ func TestReadconfig(t *testing.T) {
 	ReadConfig()
 
 	userdb := TheAppConfig().Userdb
-	passdb := TheAppConfig().Passdb
+	passdb := os.Getenv(TheAppConfig().Passdb)
 	ipdb := TheAppConfig().Ipdb
 	portdb := TheAppConfig().Portdb
 	namedb := TheAppConfig().Namedb
