@@ -43,10 +43,16 @@ func ReadConfig() {
 
 	decoder := yaml.NewDecoder(f)
 	err = decoder.Decode(&AppConfig)
-
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	AppConfig.Passdb = os.Getenv(AppConfig.Passdb)
+
+	for ind, token_var := range AppConfig.Tokensapi {
+		AppConfig.Tokensapi[ind] = os.Getenv(token_var)
+	}
+
 }
 
 func TheAppConfig() *Cfg {

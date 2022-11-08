@@ -47,6 +47,8 @@ docker run -v $PWD/test/:/etc/CosmoAppy/conf -p 8080:8080 cosmoappy:latest \
 go run .
 ```
 
+You will also to install (`direnv`)[https://direnv.net/].
+
 Some commands are also available in the [`makefile`](makefile).
 
 ## API documentation
