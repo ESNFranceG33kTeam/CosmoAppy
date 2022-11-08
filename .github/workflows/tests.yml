@@ -41,6 +41,7 @@ jobs:
         run: |
           sudo apt-get install direnv -yq && eval "$(direnv hook bash)"
           direnv allow
+          echo ${TOKEN_API_TEST}
           go test ./... -covermode=count -coverprofile ./coverage.out
       - name: coverage
         run: |
