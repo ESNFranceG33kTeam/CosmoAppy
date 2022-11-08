@@ -38,10 +38,10 @@ jobs:
           mysql user: 'root'
           mysql password: 'root'
       - name: run tests
+        env:
+          TOKEN_API_TEST: "test"
+          PASS_DB: "root"
         run: |
-          sudo apt-get install direnv -yq && eval "$(direnv hook bash)"
-          direnv allow
-          echo ${TOKEN_API_TEST}
           go test ./... -covermode=count -coverprofile ./coverage.out
       - name: coverage
         run: |
