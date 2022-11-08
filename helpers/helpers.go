@@ -7,8 +7,6 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-//const configPath = "conf.yml"
-
 type Cfg struct {
 	ConfPath  string
 	Userdb    string   `yaml:"userdb"`
@@ -46,13 +44,6 @@ func ReadConfig() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
-	AppConfig.Passdb = os.Getenv(AppConfig.Passdb)
-
-	for ind, token_var := range AppConfig.Tokensapi {
-		AppConfig.Tokensapi[ind] = os.Getenv(token_var)
-	}
-
 }
 
 func TheAppConfig() *Cfg {

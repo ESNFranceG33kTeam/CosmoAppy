@@ -32,3 +32,17 @@ func StatusCheck(w http.ResponseWriter, r *http.Request) {
 		TheLogger().LogInfo("health", "request GET : "+r.RequestURI)
 	}
 }
+
+func ProfileCheck(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+
+	w.WriteHeader(http.StatusOK)
+	profile := TheAppConfig()
+
+	err := json.NewEncoder(w).Encode(profile)
+	if err != nil {
+		TheLogger().LogError("health", "problem with encoder.", err)
+	} else {
+		TheLogger().LogInfo("health", "request GET : "+r.RequestURI)
+	}
+}

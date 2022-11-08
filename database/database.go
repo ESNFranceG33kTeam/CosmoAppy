@@ -3,6 +3,7 @@ package database
 import (
 	"database/sql"
 	"fmt"
+	"os"
 
 	"github.com/ESNFranceG33kTeam/CosmoAppy/helpers"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/logger"
@@ -53,7 +54,7 @@ func initSchema(dbserver *sql.DB) {
 
 func (conf *ConfDb) InitConfDb() {
 	conf.Userdb = helpers.TheAppConfig().Userdb
-	conf.Passdb = helpers.TheAppConfig().Passdb
+	conf.Passdb = os.Getenv(helpers.TheAppConfig().Passdb)
 	conf.Ipdb = helpers.TheAppConfig().Ipdb
 	conf.Portdb = helpers.TheAppConfig().Portdb
 	conf.Namedb = helpers.TheAppConfig().Namedb

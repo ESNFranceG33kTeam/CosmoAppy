@@ -51,6 +51,7 @@ docker run -v $PWD/test/:/etc/CosmoAppy/conf -p 8080:8080 cosmoappy:latest \
 
 - The healthcheck is available at the `/health` endpoint.
 - The status resume is available at the `/auth/status` endpoint.
+- The profile resume is available at the `/auth/profile` endpoint.
 
 ## Authentication
 

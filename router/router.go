@@ -2,6 +2,7 @@ package router
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/ESNFranceG33kTeam/CosmoAppy/helpers"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/logger"
@@ -10,6 +11,7 @@ import (
 )
 
 var router *mux.Router
+var secure *mux.Router
 
 // Define our struct
 type authenticationMiddleware struct {
@@ -19,7 +21,7 @@ type authenticationMiddleware struct {
 // Initialize it somewhere
 func (amw *authenticationMiddleware) Populate(usersapi []string, tokensapi []string) {
 	for induser, valuser := range usersapi {
-		amw.tokenUsers[tokensapi[induser]] = valuser
+		amw.tokenUsers[os.Getenv(tokensapi[induser])] = valuser
 	}
 }
 
@@ -57,6 +59,12 @@ func InitializeRouter() {
 	opts1 := middleware.RedocOpts{SpecURL: helpers.Swaggerpathflag, Path: "docs"}
 	sh1 := middleware.Redoc(opts1, nil)
 	router.Handle("/docs", sh1)
+
+	// authentication into /auth
+	amw := authenticationMiddleware{tokenUsers: make(map[string]string)}
+	amw.Populate(helpers.TheAppConfig().Usersapi, helpers.TheAppConfig().Tokensapi)
+	secure = router.PathPrefix("/auth").Subrouter()
+	secure.Use(amw.Middleware)
 }
 
 func GetRouter() *mux.Router {
@@ -64,10 +72,5 @@ func GetRouter() *mux.Router {
 }
 
 func GetSecureRouter() *mux.Router {
-	// authentication into /auth
-	amw := authenticationMiddleware{tokenUsers: make(map[string]string)}
-	amw.Populate(helpers.TheAppConfig().Usersapi, helpers.TheAppConfig().Tokensapi)
-	secure := router.PathPrefix("/auth").Subrouter()
-	secure.Use(amw.Middleware)
 	return secure
 }
