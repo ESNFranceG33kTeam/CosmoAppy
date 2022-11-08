@@ -39,7 +39,8 @@ jobs:
           mysql password: 'root'
       - name: run tests
         run: |
-          sudo apt-get install direnv && eval "$(direnv hook bash)"
+          sudo apt-get install direnv -yq && eval "$(direnv hook bash)"
+          direnv allow
           go test ./... -covermode=count -coverprofile ./coverage.out
       - name: coverage
         run: |
