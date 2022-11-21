@@ -7,6 +7,10 @@ portdb: "3306"
 namedb: "cosmoappy"
 extradb: "?parseTime=true"
 # log
+## 0 : Informational
+## 1 : Warning
+## 2 : Error --> Always
+## 3 : Critical --> Always
 loglevel: 0
 # access api
 usersapi:
