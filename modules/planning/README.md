@@ -55,8 +55,8 @@ curl -X POST "https://${MYSERVER}/${SECURE}/plannings" \
         "location": "Labo Prof Chen",
         "date_begins": "2023-05-23",
         "date_end": "2023-05-23",
-        "hour_begins": "9-00",
-        "hour_end": "18-00"
+        "hour_begins": "9:00:00",
+        "hour_end": "18:00:00"
     }'
 ```
 
@@ -76,8 +76,8 @@ curl -X PUT "https://${MYSERVER}/${SECURE}/plannings/3" \
         "location": "Labo Prof Chen",
         "date_begins": "2023-05-23",
         "date_end": "2023-05-23",
-        "hour_begins": "9-00",
-        "hour_end": "12-00"
+        "hour_begins": "9:00:00",
+        "hour_end": "12:00:00"
     }'
 ```
 
@@ -153,8 +153,8 @@ curl -X POST "https://${MYSERVER}/${SECURE}/planning_attendees" \
         "id_planning": 2,
         "id_adherent": 1,
         "date": "2023-05-23",
-        "hour_begins": "10-00",
-        "hour_end": "12-00"
+        "hour_begins": "10:00:00",
+        "hour_end": "12:00:00"
     }'
 ```
 
@@ -173,8 +173,8 @@ curl -X POST "https://${MYSERVER}/${SECURE}/planning_attendees/3" \
         "id_planning": 2,
         "id_adherent": 1,
         "date": "2023-05-23",
-        "hour_begins": "12-00",
-        "hour_end": "14-00"
+        "hour_begins": "12:00:00",
+        "hour_end": "14:00:00"
     }'
 ```
 

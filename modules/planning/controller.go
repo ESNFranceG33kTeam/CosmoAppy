@@ -52,7 +52,7 @@ func PlanningsCreate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = time.Parse("15-04", pla.Hour_begins)
+	_, err = time.Parse("15:04:00", pla.Hour_begins)
 	if err != nil {
 		TheLogger().LogInfo("planning", "Hour format wrong.")
 		http.Error(w, "Hour format wrong : "+err.Error(), http.StatusBadRequest)
@@ -60,7 +60,7 @@ func PlanningsCreate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = time.Parse("15-04", pla.Hour_end)
+	_, err = time.Parse("15:04:00", pla.Hour_end)
 	if err != nil {
 		TheLogger().LogInfo("planning", "Hour format wrong.")
 		http.Error(w, "Hour format wrong : "+err.Error(), http.StatusBadRequest)
@@ -135,7 +135,7 @@ func PlanningsUpdate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = time.Parse("15-04", pla.Hour_begins)
+	_, err = time.Parse("15:04:00", pla.Hour_begins)
 	if err != nil {
 		TheLogger().LogInfo("planning", "Hour format wrong.")
 		http.Error(w, "Hour format wrong : "+err.Error(), http.StatusBadRequest)
@@ -143,7 +143,7 @@ func PlanningsUpdate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = time.Parse("15-04", pla.Hour_end)
+	_, err = time.Parse("15:04:00", pla.Hour_end)
 	if err != nil {
 		TheLogger().LogInfo("planning", "Hour format wrong.")
 		http.Error(w, "Hour format wrong : "+err.Error(), http.StatusBadRequest)
@@ -217,7 +217,7 @@ func AttendeesCreate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = time.Parse("15-04", att.Hour_end)
+	_, err = time.Parse("15:04:00", att.Hour_end)
 	if err != nil {
 		TheLogger().LogInfo("attendee", "Hour format wrong.")
 		http.Error(w, "Hour format wrong : "+err.Error(), http.StatusBadRequest)
@@ -225,7 +225,7 @@ func AttendeesCreate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = time.Parse("15-04", att.Hour_begins)
+	_, err = time.Parse("15:04:00", att.Hour_begins)
 	if err != nil {
 		TheLogger().LogInfo("attendee", "Hour format wrong.")
 		http.Error(w, "Hour format wrong : "+err.Error(), http.StatusBadRequest)
@@ -313,7 +313,7 @@ func AttendeesUpdate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = time.Parse("15-04", att.Hour_end)
+	_, err = time.Parse("15:04:00", att.Hour_end)
 	if err != nil {
 		TheLogger().LogInfo("attendee", "Hour format wrong.")
 		http.Error(w, "Hour format wrong : "+err.Error(), http.StatusBadRequest)
@@ -321,7 +321,7 @@ func AttendeesUpdate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = time.Parse("15-04", att.Hour_begins)
+	_, err = time.Parse("15:04:00", att.Hour_begins)
 	if err != nil {
 		TheLogger().LogInfo("attendee", "Hour format wrong.")
 		http.Error(w, "Hour format wrong : "+err.Error(), http.StatusBadRequest)
