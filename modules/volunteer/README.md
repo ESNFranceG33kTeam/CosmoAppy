@@ -7,15 +7,13 @@ title: Module Volunteer
 **Object description**
 
 - Id            int     `json:"id"`             - Id of the volunteer
-- Id_adherent   int     `json:"id_adherent"`    - Id of the adherent
+- Firstname     string  `json:"firstname"`      - Firstname of the volunteer
+- Lastname      string  `json:"lastname"`       - Lastname of the volunteer
+- Email         string  `json:"email"`          - Email of the volunteer
 - Actif         bool    `json:"actif"`          - Status of the volunteer
 - Bureau        bool    `json:"bureau"`         - Does the volunteer has a bureau role
 
 The parameters `id` is calculated automatically.
-
-## Requirements
-
-This module is dependant of the `adherent` module and need it to works.
 
 ## Get
 
@@ -28,10 +26,10 @@ curl -X GET "https://${MYSERVER}/${SECURE}/volunteers" \
 
 Output : (`[json]`) list of volunteers objects
 
-- Get only the volunteer status of a specific adherent :
+- Get only the volunteer status :
 
 ```bash
-curl -X  GET "https://${MYSERVER}/${SECURE}/volunteers/id_adherent/1" \
+curl -X  GET "https://${MYSERVER}/${SECURE}/volunteers/1" \
     -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
 ```
 
@@ -47,7 +45,9 @@ curl -X POST "https://${MYSERVER}/${SECURE}/volunteers" \
     -H "X-Session-Token: ${MYTOKEN}" \
     -H "Content-Type: application/json" \
     -d '{
-        "id_adherent": 2,
+        "firstname": "Ash",
+        "lastname": "Ketchum",
+        "email": "ash.ketchum@indego.com"
         "actif": true,
         "bureau": false
     }'
@@ -60,12 +60,14 @@ Output : (`json`) volunteer object
 - To update a volunteer :
 
 ```bash
-curl -X POST "https://${MYSERVER}/${SECURE}/volunteers/id_adherent/2" \
+curl -X POST "https://${MYSERVER}/${SECURE}/volunteers/2" \
     -H "accept: application/json" \
     -H "X-Session-Token: ${MYTOKEN}" \
     -H "Content-Type: application/json" \
     -d '{
-        "id_adherent": 2,
+        "firstname": "Ash",
+        "lastname": "Ketchum",
+        "email": "ash.ketchum@indego.com"
         "actif": false,
         "bureau": false
     }'
@@ -83,7 +85,3 @@ curl -X DELETE "https://${MYSERVER}/${SECURE}/volunteers/1" \
 ```
 
 Output : no output
-
-## Data Dependances
-
-In case of suppressing an `adherent` on who has a link a `volunteer`, **this `volunteer` will be delete as well**.

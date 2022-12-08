@@ -7,11 +7,11 @@ package volunteer
 //	400: CommonError
 //	200: CommonSuccess
 
-// swagger:route GET /auth/volunteers/id_adherent/{id_adherent} volunteer VolunteersShowByIdAdherent
-// Show an volunteer by the id_adherent.
+// swagger:route GET /auth/volunteers/{id} volunteer VolunteersShowById
+// Show an volunteer by the id.
 //
 // parameters:
-//	+ name: id_adherent
+//	+ name: id
 //    in: path
 //    type: integer
 //    required: true
@@ -33,11 +33,11 @@ package volunteer
 //	400: CommonError
 //	200: CommonSuccess
 
-// swagger:route PUT /auth/volunteers/id_adherent/{id_adherent} volunteer VolunteersUpdate
+// swagger:route PUT /auth/volunteers/{id} volunteer VolunteersUpdate
 // Update a volunteer.
 //
 // parameters:
-//	+ name: id_adherent
+//	+ name: id
 //    in: path
 //    type: integer
 //    required: true
