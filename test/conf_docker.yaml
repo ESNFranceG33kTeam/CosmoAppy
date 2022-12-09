@@ -1,4 +1,3 @@
----
 # database
 userdb: "root"
 passdb: "PASS_DB"

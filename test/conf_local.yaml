@@ -1,4 +1,3 @@
----
 # database
 userdb: "root"
 passdb: "PASS_DB"
@@ -18,6 +17,6 @@ usersapi:
 tokensapi:
   - "TOKEN_API_TEST"
 # specimen data
-specimen: false
+specimen: true
 # name api
 nameapi: "CosmoAppy"
