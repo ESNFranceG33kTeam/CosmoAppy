@@ -12,3 +12,11 @@ func TestGetHealth(t *testing.T) {
 		log.Fatal("Not the good title")
 	}
 }
+
+func TestGetStatus(t *testing.T) {
+	sta := GetStatus()
+
+	if sta.Title != "Status" {
+		log.Fatal("Not the good title")
+	}
+}

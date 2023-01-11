@@ -1,4 +1,4 @@
-package volunteer
+package health
 
 import (
 	"log"
@@ -26,11 +26,6 @@ func testMainSetup() {
 	helpers.ReadConfig()
 	TheLogger().LogInit()
 	database.DatabaseInit()
-
-	CreateVolunteersTable()
-
-	setUpModel()
-	setUpController()
 }
 
 func testMainTeardown() {

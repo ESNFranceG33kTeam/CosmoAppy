@@ -817,12 +817,11 @@ paths:
       summary: Delete a volunteer.
       tags:
         - volunteer
-  /auth/volunteers/id_adherent/{id_adherent}:
     get:
-      operationId: VolunteersShowByIdAdherent
+      operationId: VolunteersShowById
       parameters:
         - in: path
-          name: id_adherent
+          name: id
           required: true
           type: integer
       responses:
@@ -834,14 +833,14 @@ paths:
           description: CommonError
           schema:
             $ref: '#/definitions/CommonError'
-      summary: Show an volunteer by the id_adherent.
+      summary: Show an volunteer by the id.
       tags:
         - volunteer
     put:
       operationId: VolunteersUpdate
       parameters:
         - in: path
-          name: id_adherent
+          name: id
           required: true
           type: integer
         - in: body

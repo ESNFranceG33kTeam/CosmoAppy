@@ -37,4 +37,8 @@ docker-build:
 	docker build . -f docker/Dockerfile --tag $(PROJECT_NAME):latest
 
 docker-start: docker-build
-	docker run -v $(PWD)/test:/etc/$(1)/conf -p 8080:8080 $(PROJECT_NAME):latest -conf=/etc/$(1)/conf/conf_docker.yaml
+	docker run \
+		-v $(PWD)/test:/etc/$(1)/conf \
+		-e PASS_DB=${PASS_DB} -e TOKEN_API_TEST=${TOKEN_API_TEST} \
+		-p 8080:8080 $(PROJECT_NAME):latest \
+		-conf=/etc/$(1)/conf/conf_docker.yaml

@@ -1,18 +1,22 @@
 # database
 userdb: "root"
-passdb: "root"
+passdb: "PASS_DB"
 ipdb: "host.docker.internal"
 portdb: "3306"
 namedb: "cosmoappy"
 extradb: "?parseTime=true"
 # log
-loglevel: 0
+## 0 : Informational
+## 1 : Warning
+## 2 : Error --> Always
+## 3 : Critical --> Always
+loglevel: 1
 # access api
 usersapi:
   - "test"
 tokensapi:
-  - "test"
+  - "TOKEN_API_TEST"
 # specimen data
-specimen: true
+specimen: false
 # name api
 nameapi: "CosmoAppy"

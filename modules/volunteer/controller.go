@@ -47,17 +47,17 @@ func VolunteersCreate(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func VolunteersShowByIdAdherent(w http.ResponseWriter, r *http.Request) {
+func VolunteersShowById(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 
 	vars := mux.Vars(r)
-	id_adherent, err := strconv.Atoi(vars["id_adherent"])
+	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("volunteer", "unable to get id_adherent.", err)
+		TheLogger().LogError("volunteer", "unable to get id.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
-	vlt := FindVolunteerByIdadherent(id_adherent)
+	vlt := FindVolunteerById(id)
 
 	err = json.NewEncoder(w).Encode(vlt)
 	if err != nil {
@@ -71,9 +71,9 @@ func VolunteersUpdate(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 
 	vars := mux.Vars(r)
-	id_adherent, err := strconv.Atoi(vars["id_adherent"])
+	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("volunteer", "unable to get id_adherent.", err)
+		TheLogger().LogError("volunteer", "unable to get id.", err)
 	}
 
 	body, err := io.ReadAll(r.Body)
@@ -81,7 +81,7 @@ func VolunteersUpdate(w http.ResponseWriter, r *http.Request) {
 		TheLogger().LogError("volunteer", "problem with update.", err)
 	}
 
-	vlt := FindVolunteerByIdadherent(id_adherent)
+	vlt := FindVolunteerById(id)
 
 	err = json.Unmarshal(body, &vlt)
 	if err != nil {
