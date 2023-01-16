@@ -11,11 +11,12 @@ title: Module Adherent
 - **Lastname**      string      `json:"lastname"`       - Lastname of the adherent
 - **Email**         string      `json:"email"`          - Email of the adherent
 - **Dateofbirth**   string      `json:"dateofbirth"`    - Date of birth of the adherent
-- **Student**       bool        `json:"student"`        - Student status of the adherent
+- **Situation**     string      `json:"situation"`      - Situation status of the adherent
 - **University**    string      `json:"university"`     - University of the adherent
 - **Homeland**      string      `json:"homeland"`       - Homeland of the adherent
 - **Speakabout**    string      `json:"speakabout"`     - How the adherent learn about the association
 - **Newsletter**    bool        `json:"newsletter"`     - Newsletter status of the adherent
+- **AdhesionDate**  string      `jsjon:"adhesion_date"` - Date of the adhesion
 - **CreatedAt**     time.Time   `json:"created_at"`     - Created date of the adherent
 - **UpdatedAt**     time.Time   `json:"updated_at"`     - Updated date of the adherent
 
@@ -56,11 +57,12 @@ curl -X POST "https://${MYSERVER}/${SECURE}/adherents" \
         "lastname": "Ketchum",
         "email": "dresseur@indigo.com",
         "dateofbirth": "1987-05-22",
-        "student": true,
+        "situation": "student",
         "university": "League indigo",
         "homeland": "Kanto",
         "speakabout": "Twitter",
-        "newsletter": false
+        "newsletter": false,
+        "adhesion_date": "1990-05-22"
     }'
 ```
 
@@ -80,11 +82,12 @@ curl -X PUT "https://${MYSERVER}/${SECURE}/adherents/3" \
         "lastname": "Ketchum",
         "email": "dresseur@indigo.com",
         "dateofbirth": "1987-05-22",
-        "student": false,
+        "situation": "worker",
         "university": "League indigo",
         "homeland": "Kanto",
         "speakabout": "Twitter",
-        "newsletter": false
+        "newsletter": false,
+        "adhesion_date": "1990-05-22"
     }'
 ```
 

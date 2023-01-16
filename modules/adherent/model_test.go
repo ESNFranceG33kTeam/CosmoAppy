@@ -6,14 +6,14 @@ import (
 )
 
 func setUpModel() {
-	NewAdherent(&Adherent{Firstname: "Test1", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false, University: "Nancy", Homeland: "Pologne", Speakabout: "Facebook", Newsletter: false})
-	NewAdherent(&Adherent{Firstname: "Test2", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false, University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false})
-	NewAdherent(&Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false, University: "Lyon lumiere", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: true})
-	NewAdherent(&Adherent{Firstname: "Test4", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false, University: "MIT", Homeland: "USA", Speakabout: "Twitter", Newsletter: false})
+	NewAdherent(&Adherent{Firstname: "Test1", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "Nancy", Homeland: "Pologne", Speakabout: "Facebook", Newsletter: false, AdhesionDate: "1995-04-24"})
+	NewAdherent(&Adherent{Firstname: "Test2", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false, AdhesionDate: "1995-04-24"})
+	NewAdherent(&Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "Lyon lumiere", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: true, AdhesionDate: "1995-04-24"})
+	NewAdherent(&Adherent{Firstname: "Test4", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "MIT", Homeland: "USA", Speakabout: "Twitter", Newsletter: false, AdhesionDate: "1995-04-24"})
 }
 
 func TestNewAdherent(t *testing.T) {
-	NewAdherent(&Adherent{Firstname: "Test", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false, University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false})
+	NewAdherent(&Adherent{Firstname: "Test", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false, AdhesionDate: "1995-04-24"})
 }
 
 func TestFindAdherentById(t *testing.T) {
@@ -42,7 +42,7 @@ func TestAllAdherents(t *testing.T) {
 }
 
 func TestUpdateAdherent(t *testing.T) {
-	adh := Adherent{Id: 3, Firstname: "Mario", Lastname: "Bros", Email: "toto@toto.fr", Dateofbirth: "24-04-1995", Student: false, University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false}
+	adh := Adherent{Id: 3, Firstname: "Mario", Lastname: "Bros", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "UBFC", Homeland: "Mexique", Speakabout: "Twitter", Newsletter: false, AdhesionDate: "1995-04-24"}
 	UpdateAdherent(&adh)
 
 	adh_3 := FindAdherentById(3)

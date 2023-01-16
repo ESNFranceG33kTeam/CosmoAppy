@@ -46,6 +46,15 @@ func AdherentsCreate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	_, err = time.Parse("2006-01-02", adh.AdhesionDate)
+
+	if err != nil {
+		TheLogger().LogInfo("adherent", "Date format wrong.")
+		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
+
+		return
+	}
+
 	w.WriteHeader(http.StatusOK)
 	NewAdherent(&adh)
 
@@ -99,6 +108,15 @@ func AdherentsUpdate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	_, err = time.Parse("2006-01-02", adh.Dateofbirth)
+
+	if err != nil {
+		TheLogger().LogInfo("adherent", "Date format wrong.")
+		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
+
+		return
+	}
+
+	_, err = time.Parse("2006-01-02", adh.AdhesionDate)
 
 	if err != nil {
 		TheLogger().LogInfo("adherent", "Date format wrong.")
