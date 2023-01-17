@@ -111,7 +111,6 @@ Output : no output
 - Id            int     `json:"id"`             - Id of the attendee
 - Id_event      int     `json:"id_event"`       - Id of the event
 - Id_adherent   int     `json:"id_adherent"`    - Id of the adherent
-- Staff         bool    `json:"staff"`          - Status of the event
 
 The parameter `id` is calculated automatically.
 
@@ -198,3 +197,95 @@ Output : no output
 ## Data Dependances
 
 In case of suppressing the a `planning` or an `adherent` on who has a link an `attendee`, **this `attendee` will be delete as well**.
+
+# Event Staffs endpoint
+
+**Object description**
+
+- Id            int     `json:"id"`             - Id of the staff
+- Id_event      int     `json:"id_event"`       - Id of the event
+- Id_volunteer  int     `json:"id_volunteer"`   - Id of the volunteer
+
+The parameter `id` is calculated automatically.
+
+## Requirements
+
+This part of the module is dependant of the `volunteer` module and need it to works.
+
+## Get
+
+- Get full list of staffs :
+
+```bash
+curl -X GET "https://${MYSERVER}/${SECURE}/event_staffs" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`[json]`) list of attendees objects
+
+- Get only the staffs of a specific volunteer :
+
+```bash
+curl -X  GET "https://${MYSERVER}/${SECURE}/event_staffs/id_volunteer/2" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`[json]`) list of staffs object
+
+- Get only the staffs of a specific event :
+
+```bash
+curl -X  GET "https://${MYSERVER}/${SECURE}/event_staffs/id_event/1" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`[json]`) list of staffs object
+
+## Post
+
+- To create a new staff and increment the spot taken of the event :
+
+```bash
+curl -X POST "https://${MYSERVER}/${SECURE}/event_staffs" \
+    -H "accept: application/json" \
+    -H "X-Session-Token: ${MYTOKEN}" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "id_event": 2,
+        "id_volunteer": 1,
+    }'
+```
+
+Output : (`json`) staff object
+
+## Put
+
+- To update a staff :
+
+```bash
+curl -X POST "https://${MYSERVER}/${SECURE}/event_staffs/3" \
+    -H "accept: application/json" \
+    -H "X-Session-Token: ${MYTOKEN}" \
+    -H "Content-Type: application/json" \
+    -d '{
+        "id_event": 2,
+        "id_volunteer": 1,
+    }'
+```
+
+Output : (`json`) staff object
+
+## Delete
+
+- To delete a staff and desincrement a spot taken in the event :
+
+```bash
+curl -X DELETE "https://${MYSERVER}/${SECURE}/event_staffs/3" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : no output
+
+## Data Dependances
+
+In case of suppressing the a `planning` or an `volunteer` on who has a link an `staff`, **this `staff` will be delete as well**.

@@ -15,4 +15,9 @@ func TestCreateEventsTable(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	_, err = TheDb().Exec("SHOW TABLES LIKE 'event_staffs';")
+	if err != nil {
+		log.Fatal(err)
+	}
 }

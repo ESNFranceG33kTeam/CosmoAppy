@@ -8,8 +8,10 @@ import (
 func setUpModel() {
 	NewEvent(&Event{Name: "Voyage a Hawai", Date: "2023-04-23", Location: "Hawai", NbSpotsMax: 30, NbSpotsTaken: 0, Type: "voyage", Price: 120.42, Url: "facebook.com/voyageHawai", Actif: true})
 	NewEvent(&Event{Name: "Saturday Night Fever", Date: "2023-05-23", Location: "3 rue Albert 1er, 69000 Lyon", NbSpotsMax: 30, NbSpotsTaken: 0, Type: "soiree", Price: 20, Url: "facebook.com/sturdayfever", Actif: false})
-	NewAttendee(&Attendee{Id_event: 1, Id_adherent: 2, Staff: true})
-	NewAttendee(&Attendee{Id_event: 1, Id_adherent: 3, Staff: false})
+	NewAttendee(&Attendee{Id_event: 1, Id_adherent: 2})
+	NewAttendee(&Attendee{Id_event: 1, Id_adherent: 3})
+	NewStaff(&Staff{Id_event: 1, Id_volunteer: 2})
+	NewStaff(&Staff{Id_event: 1, Id_volunteer: 3})
 }
 
 func TestNewEvent(t *testing.T) {
@@ -69,8 +71,9 @@ func TestDeleteEventById(t *testing.T) {
 		}
 	}
 }
+
 func TestNewAttendee(t *testing.T) {
-	NewAttendee(&Attendee{Id_event: 2, Id_adherent: 3, Staff: false})
+	NewAttendee(&Attendee{Id_event: 2, Id_adherent: 3})
 }
 
 func TestAllAttendees(t *testing.T) {
@@ -83,7 +86,7 @@ func TestAllAttendees(t *testing.T) {
 }
 
 func TestFindAttendeeById(t *testing.T) {
-	att := FindEventById(2)
+	att := FindAttendeeById(2)
 
 	if att.Id != 2 {
 		log.Fatal("Attendee is not him")
@@ -107,13 +110,8 @@ func TestFindAttendeeByAdherentId(t *testing.T) {
 }
 
 func TestUpdateAttendee(t *testing.T) {
-	att := Attendee{Id: 1, Id_event: 1, Id_adherent: 2, Staff: false}
+	att := Attendee{Id: 1, Id_event: 1, Id_adherent: 2}
 	UpdateAttendee(&att)
-
-	att_1 := FindAttendeeById(1)
-	if att_1.Staff != false {
-		log.Fatal("att_1 didn't updated !")
-	}
 }
 
 func TestDeleteAttendeeById(t *testing.T) {
@@ -128,6 +126,64 @@ func TestDeleteAttendeeById(t *testing.T) {
 	for _, att := range *atts {
 		if att.Id == 3 {
 			log.Fatal("Att_3 didn't be removed !")
+		}
+	}
+}
+
+func TestNewStaff(t *testing.T) {
+	NewStaff(&Staff{Id_event: 2, Id_volunteer: 3})
+}
+
+func TestAllStaffs(t *testing.T) {
+	stas := AllStaffs()
+
+	//log.Println(adhs)
+	if len(*stas) == 0 {
+		log.Fatal("Staff is empty")
+	}
+}
+
+func TestFindStaffById(t *testing.T) {
+	sta := FindStaffById(2)
+
+	if sta.Id != 2 {
+		log.Fatal("Staff is not him")
+	}
+}
+
+func TestFindStaffByEventId(t *testing.T) {
+	stas := FindStaffByEventId(1)
+
+	if len(*stas) == 0 {
+		log.Fatal("Staff is empty")
+	}
+}
+
+func TestFindStaffByVolunterreId(t *testing.T) {
+	stas := FindStaffByVolunteerId(3)
+
+	if len(*stas) == 0 {
+		log.Fatal("Staff is empty")
+	}
+}
+
+func TestUpdateStaff(t *testing.T) {
+	sta := Staff{Id: 1, Id_event: 1, Id_volunteer: 2}
+	UpdateStaff(&sta)
+}
+
+func TestDeleteStaffById(t *testing.T) {
+	err := DeleteStaffById(3)
+
+	if err != nil {
+		log.Fatal("Delete had a problem : ", err)
+	}
+
+	stas := AllStaffs()
+
+	for _, sta := range *stas {
+		if sta.Id == 3 {
+			log.Fatal("Sta_3 didn't be removed !")
 		}
 	}
 }

@@ -15,6 +15,9 @@ definitions:
     Event_Attendee:
         x-go-name: Attendee
         x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
+    Event_Staff:
+        x-go-name: Staff
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
     Health:
         x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/health
     Money:
@@ -354,6 +357,127 @@ paths:
             summary: Show an attendee by event id.
             tags:
                 - event_attendee
+    /auth/event_staffs:
+        get:
+            operationId: StaffsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get staffs list.
+            tags:
+                - event_staff
+        post:
+            operationId: StaffsCreate
+            parameters:
+                - in: body
+                  name: staff
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Event_Staff'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Create a new staff.
+            tags:
+                - event_staff
+    /auth/event_staffs/{id}:
+        delete:
+            operationId: StaffsDelete
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Delete an staff.
+            tags:
+                - event_staff
+        put:
+            operationId: StaffsUpdate
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+                - in: body
+                  name: staff
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Event_Staff'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Update an staff.
+            tags:
+                - event_staff
+    /auth/event_staffs/id_adherent/{id_volunteer}:
+        get:
+            operationId: StaffsShowByIdAdherent
+            parameters:
+                - in: path
+                  name: id_volunteer
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an staff by volunteer id.
+            tags:
+                - event_staff
+    /auth/event_staffs/id_event/{id_event}:
+        get:
+            operationId: StaffsShowByIdEvent
+            parameters:
+                - in: path
+                  name: id_event
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an staff by event id.
+            tags:
+                - event_staff
     /auth/events:
         get:
             operationId: EventsIndex
