@@ -11,8 +11,10 @@ import (
 func setUpController() {
 	NewEvent(&Event{Name: "Voyage a Hawai", Date: "2023-04-23", Location: "Hawai", Type: "voyage", Price: 120.42, Url: "facebook.com/voyageHawai", Actif: true})
 	NewEvent(&Event{Name: "Saturday Night Fever", Date: "2023-05-23", Location: "3 rue Albert 1er, 69000 Lyon", Type: "soiree", Price: 20, Url: "facebook.com/sturdayfever", Actif: false})
-	NewAttendee(&Attendee{Id_event: 1, Id_adherent: 2, Staff: true})
-	NewAttendee(&Attendee{Id_event: 1, Id_adherent: 3, Staff: false})
+	NewAttendee(&Attendee{Id_event: 1, Id_adherent: 2})
+	NewAttendee(&Attendee{Id_event: 1, Id_adherent: 3})
+	NewStaff(&Staff{Id_event: 1, Id_volunteer: 2})
+	NewStaff(&Staff{Id_event: 1, Id_volunteer: 3})
 }
 
 func TestEventsIndex(t *testing.T) {
@@ -57,11 +59,39 @@ func TestAttendeesIndex(t *testing.T) {
 }
 
 func TestAttendeesCreate(t *testing.T) {
-	var jsonStr = []byte(`{"id_event": 1, "id_adherent": 2, "staff": true}`)
+	var jsonStr = []byte(`{"id_event": 1, "id_adherent": 2}`)
 
 	req := httptest.NewRequest("POST", "/event_attendees", bytes.NewBuffer(jsonStr))
 	w := httptest.NewRecorder()
 	AttendeesCreate(w, req)
+
+	res := w.Result()
+	defer res.Body.Close()
+	_, err := io.ReadAll(res.Body)
+	if err != nil {
+		t.Errorf("expected error to be nil got %v", err)
+	}
+}
+
+func TestStaffsIndex(t *testing.T) {
+	req := httptest.NewRequest(http.MethodGet, "/event_staffs", nil)
+	w := httptest.NewRecorder()
+	StaffsIndex(w, req)
+
+	res := w.Result()
+	defer res.Body.Close()
+	_, err := io.ReadAll(res.Body)
+	if err != nil {
+		t.Errorf("expected error to be nil got %v", err)
+	}
+}
+
+func TestStaffsCreate(t *testing.T) {
+	var jsonStr = []byte(`{"id_event": 1, "id_volunteer": 2}`)
+
+	req := httptest.NewRequest("POST", "/event_staffs", bytes.NewBuffer(jsonStr))
+	w := httptest.NewRecorder()
+	StaffsCreate(w, req)
 
 	res := w.Result()
 	defer res.Body.Close()

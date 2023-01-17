@@ -14,4 +14,11 @@ func InitRoutes() {
 	TheSecureRouter().Methods("GET").Path("/event_attendees/id_adherent/{id_adherent}").Name("Show").HandlerFunc(AttendeesShowByIdAdherent)
 	TheSecureRouter().Methods("PUT").Path("/event_attendees/{id}").Name("Update").HandlerFunc(AttendeesUpdate)
 	TheSecureRouter().Methods("DELETE").Path("/event_attendees/{id}").Name("DELETE").HandlerFunc(AttendeesDelete)
+
+	TheSecureRouter().Methods("GET").Path("/event_staffs").Name("Index").HandlerFunc(StaffsIndex)
+	TheSecureRouter().Methods("POST").Path("/event_staffs").Name("Create").HandlerFunc(StaffsCreate)
+	TheSecureRouter().Methods("GET").Path("/event_staffs/id_event/{id_event}").Name("Show").HandlerFunc(StaffsShowByIdEvent)
+	TheSecureRouter().Methods("GET").Path("/event_staffs/id_volunteer/{id_volunteer}").Name("Show").HandlerFunc(StaffsShowByIdVolunteer)
+	TheSecureRouter().Methods("PUT").Path("/event_staffs/{id}").Name("Update").HandlerFunc(StaffsUpdate)
+	TheSecureRouter().Methods("DELETE").Path("/event_staffs/{id}").Name("DELETE").HandlerFunc(StaffsDelete)
 }

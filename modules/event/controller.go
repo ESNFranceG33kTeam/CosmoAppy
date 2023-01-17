@@ -282,3 +282,148 @@ func AttendeesDelete(w http.ResponseWriter, r *http.Request) {
 		TheLogger().LogInfo("attendee", "request DELETE : "+r.RequestURI)
 	}
 }
+
+func StaffsIndex(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+
+	err := json.NewEncoder(w).Encode(AllStaffs())
+	if err != nil {
+		TheLogger().LogError("staff", "problem with indexation.", err)
+	} else {
+		TheLogger().LogInfo("staff", "request GET : "+r.RequestURI)
+	}
+}
+
+func StaffsCreate(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		TheLogger().LogError("staff", "problem with create.", err)
+	}
+
+	var sta Staff
+
+	err = json.Unmarshal(body, &sta)
+	if err != nil {
+		TheLogger().LogError("staff", "problem with unmarshal.", err)
+	}
+
+	eve := FindEventById(sta.Id_event)
+	if eve.NbSpotsTaken >= eve.NbSpotsMax {
+		TheLogger().LogInfo("event", "No spot available.")
+		http.Error(w, "No spot available.", http.StatusBadRequest)
+
+		return
+	} else {
+		eve.NbSpotsTaken += 1
+	}
+
+	w.WriteHeader(http.StatusOK)
+	UpdateSpotsTakenEvent(eve)
+	NewStaff(&sta)
+
+	err = json.NewEncoder(w).Encode(sta)
+	if err != nil {
+		TheLogger().LogError("staff", "problem with encoder.", err)
+	} else {
+		TheLogger().LogInfo("staff", "request POST : "+r.RequestURI)
+	}
+}
+
+func StaffsShowByIdEvent(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+
+	vars := mux.Vars(r)
+	id_event, err := strconv.Atoi(vars["id_event"])
+	if err != nil {
+		TheLogger().LogError("staff", "unable to get id_event.", err)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	sta := FindStaffByEventId(id_event)
+
+	err = json.NewEncoder(w).Encode(sta)
+	if err != nil {
+		TheLogger().LogError("staff", "problem with encoder.", err)
+	} else {
+		TheLogger().LogInfo("staff", "request GET : "+r.RequestURI)
+	}
+}
+
+func StaffsShowByIdVolunteer(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+
+	vars := mux.Vars(r)
+	id_volunteer, err := strconv.Atoi(vars["id_volunteer"])
+	if err != nil {
+		TheLogger().LogError("staff", "unable to get id_volunteer.", err)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	vlt := FindStaffByVolunteerId(id_volunteer)
+
+	err = json.NewEncoder(w).Encode(vlt)
+	if err != nil {
+		TheLogger().LogError("staff", "problem with encoder.", err)
+	} else {
+		TheLogger().LogInfo("staff", "request GET : "+r.RequestURI)
+	}
+}
+
+func StaffsUpdate(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		TheLogger().LogError("staff", "unable to get id_adherent.", err)
+	}
+
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		TheLogger().LogError("staff", "problem with update.", err)
+	}
+
+	sta := FindStaffById(id)
+
+	err = json.Unmarshal(body, &sta)
+	if err != nil {
+		TheLogger().LogError("staff", "problem with unmarshal.", err)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	UpdateStaff(sta)
+
+	err = json.NewEncoder(w).Encode(sta)
+	if err != nil {
+		TheLogger().LogError("staff", "problem with encoder.", err)
+	} else {
+		TheLogger().LogInfo("staff", "request PUT : "+r.RequestURI)
+	}
+}
+
+func StaffsDelete(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+
+	vars := mux.Vars(r)
+
+	// strconv.Atoi is shorthand for ParseInt
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		TheLogger().LogError("staff", "unable to get id.", err)
+	}
+
+	eve := FindEventById(id)
+	eve.NbSpotsTaken -= 1
+	UpdateSpotsTakenEvent(eve)
+
+	w.WriteHeader(http.StatusOK)
+	err = DeleteStaffById(id)
+	if err != nil {
+		TheLogger().LogError("staff", "unable to delete attendee.", err)
+	} else {
+		TheLogger().LogInfo("staff", "request DELETE : "+r.RequestURI)
+	}
+}
