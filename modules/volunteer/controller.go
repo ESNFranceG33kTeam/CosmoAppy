@@ -5,6 +5,7 @@ import (
 	"io"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -34,6 +35,15 @@ func VolunteersCreate(w http.ResponseWriter, r *http.Request) {
 	err = json.Unmarshal(body, &vlt)
 	if err != nil {
 		TheLogger().LogError("volunteer", "problem with unmarshal.", err)
+	}
+
+	_, err = time.Parse("2006-01-02", vlt.StartedDate)
+
+	if err != nil {
+		TheLogger().LogInfo("volunteer", "Date format wrong.")
+		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
+
+		return
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -86,6 +96,15 @@ func VolunteersUpdate(w http.ResponseWriter, r *http.Request) {
 	err = json.Unmarshal(body, &vlt)
 	if err != nil {
 		TheLogger().LogError("volunteer", "problem with unmarshal.", err)
+	}
+
+	_, err = time.Parse("2006-01-02", vlt.StartedDate)
+
+	if err != nil {
+		TheLogger().LogInfo("volunteer", "Date format wrong.")
+		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
+
+		return
 	}
 
 	w.WriteHeader(http.StatusOK)

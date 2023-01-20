@@ -6,13 +6,13 @@ import (
 )
 
 func setUpModel() {
-	NewVolunteer(&Volunteer{Firstname: "Toto", Lastname: "Bob", Email: "toto.toto@bob.com", Actif: true, Bureau: false})
-	NewVolunteer(&Volunteer{Firstname: "Tata", Lastname: "Bob", Email: "toto.toto@bob.com", Actif: false, Bureau: false})
-	NewVolunteer(&Volunteer{Firstname: "Toto", Lastname: "Bob", Email: "toto.toto@bob.com", Actif: true, Bureau: true})
+	NewVolunteer(&Volunteer{Firstname: "Toto", Lastname: "Bob", Email: "toto.toto@bob.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: true, Bureau: false, StartedDate: "2016-04-14"})
+	NewVolunteer(&Volunteer{Firstname: "Tata", Lastname: "Bob", Email: "toto.toto@bob.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: false, Bureau: false, StartedDate: "2016-04-14"})
+	NewVolunteer(&Volunteer{Firstname: "Toto", Lastname: "Bob", Email: "toto.toto@bob.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: true, Bureau: true, StartedDate: "2016-04-14"})
 }
 
 func TestNewVolunteer(t *testing.T) {
-	NewVolunteer(&Volunteer{Firstname: "Toto", Lastname: "Bob", Email: "toto.toto@bob.com", Actif: false, Bureau: true})
+	NewVolunteer(&Volunteer{Firstname: "Toto", Lastname: "Bob", Email: "toto.toto@bob.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: false, Bureau: true, StartedDate: "2016-04-14"})
 }
 
 func TestFindVolunteerById(t *testing.T) {
@@ -33,7 +33,7 @@ func TestAllVolunteers(t *testing.T) {
 }
 
 func TestUpdateVolunteer(t *testing.T) {
-	vlt := Volunteer{Id: 3, Firstname: "Titi", Lastname: "titi", Email: "titi@titi.com", Actif: false, Bureau: false}
+	vlt := Volunteer{Id: 3, Firstname: "Titi", Lastname: "titi", Email: "titi@titi.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: false, Bureau: false, StartedDate: "2016-04-14"}
 	UpdateVolunteer(&vlt)
 
 	vlt_3 := FindVolunteerById(3)
