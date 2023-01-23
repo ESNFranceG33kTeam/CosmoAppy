@@ -16,6 +16,7 @@ title: Module Volunteer
 - Postal address    string  `json:"postal_address"` - Postal address
 - Actif             bool    `json:"actif"`          - Status of the volunteer
 - Bureau            bool    `json:"bureau"`         - Does the volunteer has a bureau role
+- Employee          bool    `json:"employee"`       - Does the volunteer is an employee
 - Started date      string  `json:"started_date"`   - Date of volunteering started
 
 The parameters `id` is calculated automatically.
@@ -59,6 +60,7 @@ curl -X POST "https://${MYSERVER}/${SECURE}/volunteers" \
         "postal_address": "01 bis house, 00001 Pallet Town, Kanto",
         "actif": true,
         "bureau": false,
+        "employee": false,
         "started_date": "1997-04-01"
     }'
 ```
@@ -84,6 +86,7 @@ curl -X POST "https://${MYSERVER}/${SECURE}/volunteers/2" \
         "postal_address": "01 bis house, 00001 Pallet Town, Kanto",
         "actif": false,
         "bureau": false,
+        "employee": false,
         "started_date": "1997-04-01"
     }'
 ```
