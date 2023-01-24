@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"time"
 
 	"github.com/gorilla/mux"
 )
@@ -33,6 +34,15 @@ func MoneysCreate(w http.ResponseWriter, r *http.Request) {
 	err = json.Unmarshal(body, &mon)
 	if err != nil {
 		TheLogger().LogError("money", "problem with unmarshal.", err)
+	}
+
+	_, err = time.Parse("2006-01-02", mon.PaymentDate)
+
+	if err != nil {
+		TheLogger().LogInfo("money", "Date format wrong.")
+		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
+
+		return
 	}
 
 	w.WriteHeader(http.StatusOK)

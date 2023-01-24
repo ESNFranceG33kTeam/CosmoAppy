@@ -6,6 +6,7 @@ func CreateMoneysTable() {
 			id INT NOT NULL AUTO_INCREMENT,
 			label VARCHAR(45) NOT NULL,
 			price DECIMAL(6,2) NOT NULL,
+			payment_date VARCHAR(45) NOT NULL,
 			created_at TIMESTAMP NOT NULL,
 			PRIMARY KEY (id),
 			UNIQUE INDEX id_UNIQUE (id ASC)
