@@ -11,7 +11,7 @@ func InitRoutes() {
 	TheSecureRouter().Methods("GET").Path("/planning_attendees").Name("Index").HandlerFunc(AttendeesIndex)
 	TheSecureRouter().Methods("POST").Path("/planning_attendees").Name("Create").HandlerFunc(AttendeesCreate)
 	TheSecureRouter().Methods("GET").Path("/planning_attendees/id_planning/{id_planning}").Name("Show").HandlerFunc(AttendeesShowByIdPlanning)
-	TheSecureRouter().Methods("GET").Path("/planning_attendees/id_adherent/{id_adherent}").Name("Show").HandlerFunc(AttendeesShowByIdAdherent)
+	TheSecureRouter().Methods("GET").Path("/planning_attendees/id_volunteer/{id_volunteer}").Name("Show").HandlerFunc(AttendeesShowByIdVolunteer)
 	TheSecureRouter().Methods("PUT").Path("/planning_attendees/{id}").Name("Update").HandlerFunc(AttendeesUpdate)
 	TheSecureRouter().Methods("DELETE").Path("/planning_attendees/{id}").Name("DELETE").HandlerFunc(AttendeesDelete)
 }

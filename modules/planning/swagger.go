@@ -83,11 +83,11 @@ package planning
 //	400: CommonError
 //	200: CommonSuccess
 
-// swagger:route GET /auth/planning_attendees/id_adherent/{id_adherent} planning_attendee AttendeesShowByIdAdherent
-// Show an attendee by adherent id.
+// swagger:route GET /auth/planning_attendees/id_volunteer/{id_volunteer} planning_attendee AttendeesShowByIdVolunteer
+// Show an attendee by volunteer id.
 //
 // parameters:
-//	+ name: id_adherent
+//	+ name: id_volunteer
 //    in: path
 //    type: integer
 //    required: true

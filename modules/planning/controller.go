@@ -264,17 +264,17 @@ func AttendeesShowByIdPlanning(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func AttendeesShowByIdAdherent(w http.ResponseWriter, r *http.Request) {
+func AttendeesShowByIdVolunteer(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 
 	vars := mux.Vars(r)
-	id_adherent, err := strconv.Atoi(vars["id_adherent"])
+	id_volunteer, err := strconv.Atoi(vars["id_volunteer"])
 	if err != nil {
-		TheLogger().LogError("attendee", "unable to get id_adherent.", err)
+		TheLogger().LogError("attendee", "unable to get id_volunteer.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
-	vlt := FindAttendeeByAdherentId(id_adherent)
+	vlt := FindAttendeeByVolunteerId(id_volunteer)
 
 	err = json.NewEncoder(w).Encode(vlt)
 	if err != nil {
@@ -290,7 +290,7 @@ func AttendeesUpdate(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("attendee", "unable to get id_adherent.", err)
+		TheLogger().LogError("attendee", "unable to get id_volunteer.", err)
 	}
 
 	body, err := io.ReadAll(r.Body)

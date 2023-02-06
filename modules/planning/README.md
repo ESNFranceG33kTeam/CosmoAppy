@@ -13,6 +13,7 @@ title: Module Planning / Planning Attendees
 
 - Id            int     `json:"id"`             - Id of the planning
 - Name          string  `json:"name"`           - Name of the planning
+- Type          string  `json:"type"`           - Type of the planning
 - Location      string  `json:"location"`       - Location of the planning
 - Date_begins   string  `json:"date_begins"`    - Start date of the planning
 - Date_end      string  `json:"date_end"`       - End date of the planning
@@ -52,6 +53,7 @@ curl -X POST "https://${MYSERVER}/${SECURE}/plannings" \
     -H "Content-Type: application/json" \
     -d '{
         "name": "Permanence",
+        "type": "Permanence",
         "location": "Labo Prof Chen",
         "date_begins": "2023-05-23",
         "date_end": "2023-05-23",
@@ -73,6 +75,7 @@ curl -X PUT "https://${MYSERVER}/${SECURE}/plannings/3" \
     -H "Content-Type: application/json" \
     -d '{
         "name": "Permanence",
+        "type": "Permanence",
         "location": "Labo Prof Chen",
         "date_begins": "2023-05-23",
         "date_end": "2023-05-23",
@@ -100,7 +103,8 @@ Output : no output
 
 - Id            int     `json:"id"`             - Id of the attendee
 - Id_planning   int     `json:"id_planning"`    - Id of the planning
-- Id_adherent   int     `json:"id_adherent"`    - Id of the adherent
+- Id_volunteer  int     `json:"id_volunteer"`   - Id of the volunteer
+- Job           string  `json:"job"`            - Job of the shift
 - Date          string  `json:"date"`           - Date of the shift
 - Hour_begins   string  `json:"hour_begins"`    - Start hour of the shift
 - Hour_end      string  `json:"hour_end"`       - End hour of the shift
@@ -109,7 +113,7 @@ The parameters `id` is calculated automatically.
 
 ## Requirements
 
-This part of the module is dependant of the `adherent` module and need it to works.
+This part of the module is dependant of the `volunteer` module and need it to works.
 
 ## Get
 
@@ -122,10 +126,10 @@ curl -X GET "https://${MYSERVER}/${SECURE}/planning_attendees" \
 
 Output : (`[json]`) list of attendees objects
 
-- Get only the attendees of a specific adherent :
+- Get only the attendees of a specific volunteer :
 
 ```bash
-curl -X  GET "https://${MYSERVER}/${SECURE}/planning_attendees/id_adherent/2" \
+curl -X  GET "https://${MYSERVER}/${SECURE}/planning_attendees/id_volunteer/2" \
     -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
 ```
 
@@ -151,7 +155,8 @@ curl -X POST "https://${MYSERVER}/${SECURE}/planning_attendees" \
     -H "Content-Type: application/json" \
     -d '{
         "id_planning": 2,
-        "id_adherent": 1,
+        "id_volunteer": 1,
+        "job": "Staff",
         "date": "2023-05-23",
         "hour_begins": "10:00:00",
         "hour_end": "12:00:00"
@@ -171,7 +176,8 @@ curl -X POST "https://${MYSERVER}/${SECURE}/planning_attendees/3" \
     -H "Content-Type: application/json" \
     -d '{
         "id_planning": 2,
-        "id_adherent": 1,
+        "id_volunteer": 1,
+        "job": "Staff",
         "date": "2023-05-23",
         "hour_begins": "12:00:00",
         "hour_end": "14:00:00"
@@ -193,4 +199,4 @@ Output : no output
 
 ## Data Dependances
 
-In case of suppressing the a `planning` or an `adherent` on who has a link an `attendee`, **this `attendee` will be delete as well**.
+In case of suppressing the a `planning` or an `volunteer` on who has a link an `attendee`, **this `attendee` will be delete as well**.
