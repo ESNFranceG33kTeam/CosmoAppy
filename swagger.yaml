@@ -715,26 +715,6 @@ paths:
             summary: Update an attendee.
             tags:
                 - planning_attendee
-    /auth/planning_attendees/id_adherent/{id_adherent}:
-        get:
-            operationId: AttendeesShowByIdAdherent
-            parameters:
-                - in: path
-                  name: id_adherent
-                  required: true
-                  type: integer
-            responses:
-                "200":
-                    description: CommonSuccess
-                    schema:
-                        $ref: '#/definitions/CommonSuccess'
-                "400":
-                    description: CommonError
-                    schema:
-                        $ref: '#/definitions/CommonError'
-            summary: Show an attendee by adherent id.
-            tags:
-                - planning_attendee
     /auth/planning_attendees/id_planning/{id_planning}:
         get:
             operationId: AttendeesShowByIdPlanning
@@ -753,6 +733,26 @@ paths:
                     schema:
                         $ref: '#/definitions/CommonError'
             summary: Show an attendee by planning id.
+            tags:
+                - planning_attendee
+    /auth/planning_attendees/id_volunteer/{id_volunteer}:
+        get:
+            operationId: AttendeesShowByIdVolunteer
+            parameters:
+                - in: path
+                  name: id_volunteer
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an attendee by volunteer id.
             tags:
                 - planning_attendee
     /auth/plannings:

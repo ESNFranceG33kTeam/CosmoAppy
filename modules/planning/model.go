@@ -8,6 +8,9 @@ type Planning struct {
 	// Name of the planning
 	// in: string
 	Name string `json:"name"`
+	// Type of the planning
+	// in: string
+	Type string `json:"type"`
 	// Location of the planning
 	// in: string
 	Location string `json:"location"`
@@ -35,9 +38,12 @@ type Attendee struct {
 	// Id of the planning
 	// in: int64
 	Id_planning int `json:"id_planning"`
-	// Id of the adherent
+	// Id of the volunteer
 	// in: int64
-	Id_adherent int `json:"id_adherent"`
+	Id_volunteer int `json:"id_volunteer"`
+	// Job of the shift
+	// in: string
+	Job string `json:"job"`
 	// Date of the shift
 	// in: string
 	Date string `json:"date"`
@@ -53,8 +59,8 @@ type Attendees []Attendee
 
 func NewPlanning(pla *Planning) {
 
-	stmt, _ := TheDb().Prepare("INSERT INTO plannings (name, location, date_begins, date_end, hour_begins, hour_end) VALUES (?,?,?,?,?,?);")
-	_, err := stmt.Exec(pla.Name, pla.Location, pla.Date_begins, pla.Date_end, pla.Hour_begins, pla.Hour_end)
+	stmt, _ := TheDb().Prepare("INSERT INTO plannings (name, type, location, date_begins, date_end, hour_begins, hour_end) VALUES (?,?,?,?,?,?,?);")
+	_, err := stmt.Exec(pla.Name, pla.Type, pla.Location, pla.Date_begins, pla.Date_end, pla.Hour_begins, pla.Hour_end)
 	if err != nil {
 		TheLogger().LogError("planning", "can't create new planning.", err)
 	}
@@ -64,7 +70,7 @@ func FindPlanningById(id int) *Planning {
 	var pla Planning
 
 	row := TheDb().QueryRow("SELECT * FROM plannings WHERE id = ?;", id)
-	err := row.Scan(&pla.Id, &pla.Name, &pla.Location, &pla.Date_begins, &pla.Date_end, &pla.Hour_begins, &pla.Hour_end)
+	err := row.Scan(&pla.Id, &pla.Name, &pla.Type, &pla.Location, &pla.Date_begins, &pla.Date_end, &pla.Hour_begins, &pla.Hour_end)
 
 	if err != nil {
 		TheLogger().LogWarning("planning", "event not found.", err)
@@ -88,7 +94,7 @@ func AllPlannings() *Plannings {
 	for rows.Next() {
 		var pla Planning
 
-		err := rows.Scan(&pla.Id, &pla.Name, &pla.Location, &pla.Date_begins, &pla.Date_end, &pla.Hour_begins, &pla.Hour_end)
+		err := rows.Scan(&pla.Id, &pla.Name, &pla.Type, &pla.Location, &pla.Date_begins, &pla.Date_end, &pla.Hour_begins, &pla.Hour_end)
 
 		if err != nil {
 			TheLogger().LogError("planning", "planning not found.", err)
@@ -101,13 +107,13 @@ func AllPlannings() *Plannings {
 }
 
 func UpdatePlanning(pla *Planning) {
-	stmt, err := TheDb().Prepare("UPDATE plannings SET name=?, location=?, date_begins=?, date_end=?, hour_begins=?, hour_end=? WHERE id=?;")
+	stmt, err := TheDb().Prepare("UPDATE plannings SET name=?, type=?, location=?, date_begins=?, date_end=?, hour_begins=?, hour_end=? WHERE id=?;")
 
 	if err != nil {
 		TheLogger().LogError("planning", "problem with the db.", err)
 	}
 
-	_, err = stmt.Exec(pla.Name, pla.Location, pla.Date_begins, pla.Date_end, pla.Hour_begins, pla.Hour_end, pla.Id)
+	_, err = stmt.Exec(pla.Name, pla.Type, pla.Location, pla.Date_begins, pla.Date_end, pla.Hour_begins, pla.Hour_end, pla.Id)
 
 	if err != nil {
 		TheLogger().LogError("planning", "planning can't be updated.", err)
@@ -144,7 +150,7 @@ func AllAttendees() *Attendees {
 	for rows.Next() {
 		var att Attendee
 
-		err := rows.Scan(&att.Id, &att.Id_planning, &att.Id_adherent, &att.Date, &att.Hour_begins, &att.Hour_end)
+		err := rows.Scan(&att.Id, &att.Id_planning, &att.Id_volunteer, &att.Job, &att.Date, &att.Hour_begins, &att.Hour_end)
 
 		if err != nil {
 			TheLogger().LogError("planning", "attendee not found.", err)
@@ -157,8 +163,8 @@ func AllAttendees() *Attendees {
 }
 
 func NewAttendee(att *Attendee) {
-	stmt, _ := TheDb().Prepare("INSERT INTO planning_attendees (id_planning, id_adherent, date, hour_begins, hour_end) VALUES (?,?,?,?,?);")
-	_, err := stmt.Exec(att.Id_planning, att.Id_adherent, att.Date, att.Hour_begins, att.Hour_end)
+	stmt, _ := TheDb().Prepare("INSERT INTO planning_attendees (id_planning, id_volunteer, job, date, hour_begins, hour_end) VALUES (?,?,?,?,?,?);")
+	_, err := stmt.Exec(att.Id_planning, att.Id_volunteer, att.Job, att.Date, att.Hour_begins, att.Hour_end)
 	if err != nil {
 		TheLogger().LogError("planning", "can't create new attendee.", err)
 	}
@@ -168,7 +174,7 @@ func FindAttendeeById(id int) *Attendee {
 	var att Attendee
 
 	row := TheDb().QueryRow("SELECT * FROM planning_attendees WHERE id = ?;", id)
-	err := row.Scan(&att.Id, &att.Id_planning, &att.Id_adherent, &att.Date, &att.Hour_begins, &att.Hour_end)
+	err := row.Scan(&att.Id, &att.Id_planning, &att.Id_volunteer, &att.Job, &att.Date, &att.Hour_begins, &att.Hour_end)
 
 	if err != nil {
 		TheLogger().LogWarning("planning", "attendee not found.", err)
@@ -189,7 +195,7 @@ func FindAttendeeByPlanningId(id_planning int) *Attendees {
 	for rows.Next() {
 		var att Attendee
 
-		err := rows.Scan(&att.Id, &att.Id_planning, &att.Id_adherent, &att.Date, &att.Hour_begins, &att.Hour_end)
+		err := rows.Scan(&att.Id, &att.Id_planning, &att.Id_volunteer, &att.Job, &att.Date, &att.Hour_begins, &att.Hour_end)
 
 		if err != nil {
 			TheLogger().LogError("planning", "attendee not found.", err)
@@ -201,19 +207,19 @@ func FindAttendeeByPlanningId(id_planning int) *Attendees {
 	return &atts
 }
 
-func FindAttendeeByAdherentId(id_adherent int) *Attendees {
+func FindAttendeeByVolunteerId(id_volunteer int) *Attendees {
 	var atts Attendees
 
-	rows, err := TheDb().Query("SELECT * FROM planning_attendees WHERE id_adherent = ?;", id_adherent)
+	rows, err := TheDb().Query("SELECT * FROM planning_attendees WHERE id_volunteer = ?;", id_volunteer)
 
 	if err != nil {
-		TheLogger().LogWarning("planning", "attendees with id adherent not found.", err)
+		TheLogger().LogWarning("planning", "attendees with id volunteer not found.", err)
 	}
 
 	for rows.Next() {
 		var att Attendee
 
-		err := rows.Scan(&att.Id, &att.Id_planning, &att.Id_adherent, &att.Date, &att.Hour_begins, &att.Hour_end)
+		err := rows.Scan(&att.Id, &att.Id_planning, &att.Id_volunteer, &att.Job, &att.Date, &att.Hour_begins, &att.Hour_end)
 
 		if err != nil {
 			TheLogger().LogError("planning", "attendee not found.", err)
@@ -226,13 +232,13 @@ func FindAttendeeByAdherentId(id_adherent int) *Attendees {
 }
 
 func UpdateAttendee(att *Attendee) {
-	stmt, err := TheDb().Prepare("UPDATE planning_attendees SET id_planning=?, id_adherent=?, date=?, hour_begins=?, hour_end=? WHERE id=?;")
+	stmt, err := TheDb().Prepare("UPDATE planning_attendees SET id_planning=?, id_volunteer=?, job=?, date=?, hour_begins=?, hour_end=? WHERE id=?;")
 
 	if err != nil {
 		TheLogger().LogError("planning", "problem with the db.", err)
 	}
 
-	_, err = stmt.Exec(att.Id_planning, att.Id_adherent, att.Date, att.Hour_begins, att.Hour_end, att.Id)
+	_, err = stmt.Exec(att.Id_planning, att.Id_volunteer, att.Job, att.Date, att.Hour_begins, att.Hour_end, att.Id)
 
 	if err != nil {
 		TheLogger().LogError("planning", "attendee can't be updated.", err)
