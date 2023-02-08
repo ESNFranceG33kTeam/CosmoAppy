@@ -9,6 +9,7 @@ title: Module Money
 - Id            int         `json:"id"`             - Id of the entry
 - Label         string      `json:"label"`          - Label of the operation
 - Price         float64     `json:"price"`          - Price of the operation
+- PaymentType   string      `json:"payment_type"`   - Payment type of the operation
 - PaymentDate   string      `json:"payment_date"`   - Payment date of the operation
 - CreatedAt     time.Time   `json:"created_at"`     - Created date of the operation
 
@@ -45,7 +46,9 @@ curl -X POST "https://${MYSERVER}/${SECURE}/moneys" \
     -H "Content-Type: application/json" \
     -d '{
         "label": Event,
-        "price": 5
+        "price": 5,
+        "payment_type": "cash",
+        "payment_date": "2023-01-23"
     }'
 ```
 
