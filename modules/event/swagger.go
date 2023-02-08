@@ -159,7 +159,7 @@ package event
 //	400: CommonError
 //	200: CommonSuccess
 
-// swagger:route GET /auth/event_staffs/id_adherent/{id_volunteer} event_staff StaffsShowByIdAdherent
+// swagger:route GET /auth/event_staffs/id_volunteer/{id_volunteer} event_staff StaffsShowByIdValunteer
 // Show an staff by volunteer id.
 //
 // parameters:

@@ -6,13 +6,13 @@ import (
 )
 
 func setUpModel() {
-	NewMoney(&Money{Label: "ESNcard", Price: 5, PaymentDate: "2023-01-10"})
-	NewMoney(&Money{Label: "Event", Price: 2, PaymentDate: "2023-01-10"})
-	NewMoney(&Money{Label: "Travel", Price: 15, PaymentDate: "2023-01-10"})
+	NewMoney(&Money{Label: "ESNcard", Price: 5, PaymentType: "cb", PaymentDate: "2023-01-10"})
+	NewMoney(&Money{Label: "Event", Price: 2, PaymentType: "cash", PaymentDate: "2023-01-10"})
+	NewMoney(&Money{Label: "Travel", Price: 15, PaymentType: "cb", PaymentDate: "2023-01-10"})
 }
 
 func TestNewMoney(t *testing.T) {
-	NewMoney(&Money{Label: "ESNcard", Price: 5, PaymentDate: "2023-01-10"})
+	NewMoney(&Money{Label: "ESNcard", Price: 5, PaymentType: "cb", PaymentDate: "2023-01-10"})
 }
 
 func TestFindMoneybyLabel(t *testing.T) {
