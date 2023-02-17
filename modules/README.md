@@ -32,4 +32,5 @@ If you want to create a new module, you only need to inspire yourself from alrea
 - [event](event/README.md)
 - [planning](planning/README.md)
 - [money](money/README.md)
+- [report](report/README.md)
 - [stock](stock/README.md)
