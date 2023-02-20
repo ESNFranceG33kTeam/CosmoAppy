@@ -12,7 +12,7 @@ title: Module Report
 - Name              string  `json:"name"`                   - Name of the report
 - Date              string  `json:"date"`                   - Date of the event/planning/custom
 - Comment           string  `json:"comment"`                - Comment of the report
-- NbReelAtt         int     `json:"nb_reel_attendees"`      - Number reel of attendees of the event/planning/custom 
+- NbReelAtt         int     `json:"nb_reel_attendees"`      - Number reel of attendees of the event/planning/custom
 - NbSubsAtt         int     `json:"nb_subscribe_attendees"` - Number subscribes of attendees of the event/planning/custom
 - StaffsList        string  `json:"staffs_list"`            - List of staffs of the event/planning/custom
 - NbHoursPrepa      float   `json:"nb_hours_prepa"`         - Number of hours of preparation
