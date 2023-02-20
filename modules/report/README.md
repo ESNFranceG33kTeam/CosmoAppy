@@ -16,9 +16,9 @@ title: Module Report
 - NbSubsAtt         int     `json:"nb_subscribe_attendees"` - Number subscribes of attendees of the event/planning/custom
 - StaffsList        string  `json:"staffs_list"`            - List of staffs of the event/planning/custom
 - NbHoursPrepa      float   `json:"nb_hours_prepa"`         - Number of hours of preparation
-- NbHours           string  `json:"nb_hours"`               - Number of hours of the event/planning/custom
-- NbStaffs          string  `json:"nb_staffs"`              - Number of staffs of the event/planning/custom
-- TauxValorisation  string  `json:"taux_valorisation"`      - Taux Valorisation of the event/planning/custom
+- NbHours           float  `json:"nb_hours"`                - Number of hours of the event/planning/custom
+- NbStaffs          float  `json:"nb_staffs"`               - Number of staffs of the event/planning/custom
+- TauxValorisation  float  `json:"taux_valorisation"`       - Taux Valorisation of the event/planning/custom
 - CodePublic        string  `json:"code_public"`            - Public code of the report
 - CodeProject       string  `json:"code_project"`           - Project code of the report
 
