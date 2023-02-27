@@ -1,3 +1,4 @@
+---
 # database
 userdb: "root"
 passdb: "PASS_DB"
@@ -20,6 +21,8 @@ tokensapi:
 specimen: false
 # name api
 nameapi: "CosmoAppy"
+portapi: "8080"
+portcas: "8181"
 # Country api
 country: "FR"
 # G33kTeam username url
