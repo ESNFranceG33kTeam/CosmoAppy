@@ -1,7 +1,6 @@
 package cocas
 
 import (
-	"fmt"
 	"net/http"
 
 	"gopkg.in/cas.v2"
@@ -49,8 +48,10 @@ func GetProfile(r *http.Request) *Profile {
 
 	// Rules for Super Admin
 	for _, role := range ESNer.ExtendedRoles {
-		if role == "IT.it_support" || role == fmt.Sprintf("National.webmaster:%s", GalaxyUsers.Country) {
-			ESNer.Admin = true
+		for _, defrole := range GalaxyUsers.Roles {
+			if role == defrole {
+				ESNer.Admin = true
+			}
 		}
 	}
 	for _, geek := range GalaxyUsers.G33kTeam {

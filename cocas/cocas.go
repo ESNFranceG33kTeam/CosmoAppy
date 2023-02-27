@@ -23,6 +23,7 @@ type GalaxyConf struct {
 	ConfUrl       string
 	CASServer     string   `yaml:"cas_server"`
 	Country       string   `yaml:"country"`
+	Roles         []string `yaml:"roles"`
 	G33kTeam      []string `yaml:"galaxy_username"`
 	ExtraUsername []string `yaml:"extra_username"`
 }
