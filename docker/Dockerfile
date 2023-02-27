@@ -42,6 +42,7 @@ USER user
 
 VOLUME /etc/${PROJECT_NAME}/conf/
 EXPOSE 8080
+EXPOSE 8181
 
 WORKDIR /usr/local/bin/
 
