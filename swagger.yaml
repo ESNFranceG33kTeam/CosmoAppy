@@ -18,6 +18,8 @@ definitions:
     Event_Staff:
         x-go-name: Staff
         x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
+    GalaxyConf:
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/cocas
     Health:
         x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/health
     Money:
@@ -27,6 +29,8 @@ definitions:
     Planning_Attendee:
         x-go-name: Attendee
         x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
+    Profile:
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/cocas
     Status:
         x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/health
     Volunteer:

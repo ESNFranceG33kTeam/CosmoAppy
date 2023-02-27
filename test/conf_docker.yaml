@@ -20,3 +20,12 @@ tokensapi:
 specimen: false
 # name api
 nameapi: "CosmoAppy"
+# Country api
+country: "FR"
+# G33kTeam username url
+geekteam_url: "https://raw.githubusercontent.com/ESNFranceG33kTeam/.github/main/members/galaxy.yaml"
+# Galaxy username for Super Admin
+extra_admin:
+  - "P1chu"
+  - "M3wtw0"
+  - "Cynth1@"
