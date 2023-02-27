@@ -36,6 +36,8 @@ require (
 
 replace github.com/ESNFranceG33kTeam/CosmoAppy/router => ../router
 
+replace github.com/ESNFranceG33kTeam/CosmoAppy/cocas => ../cocas
+
 replace github.com/ESNFranceG33kTeam/CosmoAppy/database => ../database
 
 replace github.com/ESNFranceG33kTeam/CosmoAppy/helpers => ../helpers
