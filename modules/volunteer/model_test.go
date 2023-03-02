@@ -6,13 +6,13 @@ import (
 )
 
 func setUpModel() {
-	NewVolunteer(&Volunteer{Firstname: "Toto", Lastname: "Bob", Email: "toto.toto@bob.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: true, Bureau: false, Employee: true, StartedDate: "2016-04-14"})
-	NewVolunteer(&Volunteer{Firstname: "Tata", Lastname: "Bob", Email: "toto.toto@bob.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: false, Bureau: false, Employee: true, StartedDate: "2016-04-14"})
-	NewVolunteer(&Volunteer{Firstname: "Toto", Lastname: "Bob", Email: "toto.toto@bob.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: true, Bureau: true, Employee: false, StartedDate: "2016-04-14"})
+	NewVolunteer(&Volunteer{Firstname: "Toto", Lastname: "Bob", Email: "toto.toto@bob.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: true, Bureau: false, HrStatus: "employee", StartedDate: "2016-04-14"})
+	NewVolunteer(&Volunteer{Firstname: "Tata", Lastname: "Bob", Email: "toto.toto@bob.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: false, Bureau: false, HrStatus: "scv", StartedDate: "2016-04-14"})
+	NewVolunteer(&Volunteer{Firstname: "Toto", Lastname: "Bob", Email: "toto.toto@bob.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: true, Bureau: true, HrStatus: "volunteer", StartedDate: "2016-04-14"})
 }
 
 func TestNewVolunteer(t *testing.T) {
-	NewVolunteer(&Volunteer{Firstname: "Toto", Lastname: "Bob", Email: "toto.toto@bob.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: false, Bureau: true, Employee: false, StartedDate: "2016-04-14"})
+	NewVolunteer(&Volunteer{Firstname: "Toto", Lastname: "Bob", Email: "toto.toto@bob.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: false, Bureau: true, HrStatus: "volunteer", StartedDate: "2016-04-14"})
 }
 
 func TestFindVolunteerById(t *testing.T) {
@@ -33,7 +33,7 @@ func TestAllVolunteers(t *testing.T) {
 }
 
 func TestUpdateVolunteer(t *testing.T) {
-	vlt := Volunteer{Id: 3, Firstname: "Titi", Lastname: "titi", Email: "titi@titi.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: false, Bureau: false, Employee: false, StartedDate: "2016-04-14"}
+	vlt := Volunteer{Id: 3, Firstname: "Titi", Lastname: "titi", Email: "titi@titi.com", Discord: "Totot", Phone: "0123456789", University: "UBSB", PostalAddress: "32 rue du Soleil, 00001 Mars", Actif: false, Bureau: false, HrStatus: "volunteer", StartedDate: "2016-04-14"}
 	UpdateVolunteer(&vlt)
 
 	vlt_3 := FindVolunteerById(3)

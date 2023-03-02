@@ -13,7 +13,7 @@ func CreateVolunteersTable() {
 			postal_address VARCHAR(95) NOT NULL,
 			actif TINYINT NOT NULL,
 			bureau TINYINT NOT NULL,
-			employee TINYINT NOT NULL,
+			hr_status VARCHAR(45) NOT NULL,
 			started_date VARCHAR(45) NOT NULL,
 			PRIMARY KEY (id),
 			UNIQUE INDEX id_UNIQUE (id ASC)
