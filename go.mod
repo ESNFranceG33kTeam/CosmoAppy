@@ -31,6 +31,8 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
+// Packages system
+
 replace github.com/ESNFranceG33kTeam/CosmoAppy/router => ../router
 
 replace github.com/ESNFranceG33kTeam/CosmoAppy/database => ../database
@@ -45,6 +47,8 @@ replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/launcher => ../launcher
 
 replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/health => ../health
 
+// Packages applicatif
+
 replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/adherent => ../adherent
 
 replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/volunteer => ../volunteer
@@ -56,3 +60,5 @@ replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/event => ../event
 replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning => ../planning
 
 replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/money => ../money
+
+replace github.com/ESNFranceG33kTeam/CosmoAppy/modules/report => ../report

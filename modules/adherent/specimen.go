@@ -11,7 +11,7 @@ func dateofbirth(datebirth string) string {
 
 func Specimen() {
 	NewAdherent(&Adherent{Firstname: "Ash", Lastname: "Ketchum", Email: "ash.ketchum@master.com", Dateofbirth: dateofbirth("1987-05-22"), Situation: "student", University: "Indigo", Homeland: "Kanto", Speakabout: "Twitter", Newsletter: true, AdhesionDate: dateofbirth("2022-04-24")})
-	NewAdherent(&Adherent{Firstname: "Gary", Lastname: "Oak", Email: "gary.oak@rival.kt", Dateofbirth: dateofbirth("1984-04-06"), Situation: "internship", University: "Indigo", Homeland: "Kanto", Speakabout: "Twitter", Newsletter: true, AdhesionDate: dateofbirth("2022-04-24")})
+	NewAdherent(&Adherent{Firstname: "Gary", Lastname: "Oak", Email: "gary.oak@rival.kt", Dateofbirth: dateofbirth("1984-04-06"), Situation: "internship", University: "Indigo", Homeland: "Kanto", Speakabout: "Twitter", Newsletter: true, AdhesionDate: dateofbirth("2022-01-24")})
 
 	NewAdherent(&Adherent{Firstname: "Cynthia", Lastname: "Shirona", Email: "master@league.si", Dateofbirth: dateofbirth("1980-08-18"), Situation: "worker", University: "US", Homeland: "Sinnoh", Speakabout: "Twitter", Newsletter: false, AdhesionDate: dateofbirth("2022-04-24")})
 	NewAdherent(&Adherent{Firstname: "Peter", Lastname: "Wataru", Email: "master@indigo.kt", Dateofbirth: dateofbirth("1978-10-15"), Situation: "worker", University: "Indigo", Homeland: "Kanto", Speakabout: "Twitter", Newsletter: false, AdhesionDate: dateofbirth("2022-04-24")})

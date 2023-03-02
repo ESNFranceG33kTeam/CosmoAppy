@@ -8,6 +8,7 @@ import (
 	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/health"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/money"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/report"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/modules/volunteer"
 )
 
@@ -21,6 +22,7 @@ func LauncherModules() {
 	planning.Launcher()
 
 	money.Launcher()
+	report.Launcher()
 	//stock.Launcher()
 
 	// Always last
@@ -37,6 +39,7 @@ func SpecimenModules() {
 	planning.Specimen()
 
 	money.Specimen()
+	report.Specimen()
 	//stock.Specimen()
 
 	logger.GetLogger().LogInfo("Specimen", "Specimen data charged up.")

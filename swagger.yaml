@@ -27,6 +27,8 @@ definitions:
     Planning_Attendee:
         x-go-name: Attendee
         x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
+    Report:
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/report
     Status:
         x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/health
     Volunteer:
@@ -870,6 +872,106 @@ paths:
             summary: Get the profile.
             tags:
                 - heath
+    /auth/reports:
+        get:
+            operationId: ReportsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get reports list.
+            tags:
+                - report
+        post:
+            operationId: ReportsCreate
+            parameters:
+                - in: body
+                  name: report
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Report'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Create a new report.
+            tags:
+                - report
+    /auth/reports/{id}:
+        delete:
+            operationId: ReportsDelete
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Delete a report.
+            tags:
+                - report
+        get:
+            operationId: ReportsShowById
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an report by the id.
+            tags:
+                - report
+        put:
+            operationId: ReportsUpdate
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+                - in: body
+                  name: report
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Report'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Update a report.
+            tags:
+                - report
     /auth/status:
         get:
             operationId: StatusCheck
