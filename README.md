@@ -18,6 +18,15 @@
 # Setup
 
 The api is made in `Golang` aka `Go` and can be use from source or using `Docker`.
+- In order to run correctly, its need a database running, the database information are [`conf_local.yaml`](test/conf_local.yaml) or [`conf_docker.yaml`](test/conf_docker.yaml)
+- Some vars are also need :
+
+```
+export PASS_DB=root
+export TOKEN_API_TEST=test
+```
+
+Then you can run the apps using following commands or using the make command using the [local `makefile`](makefile).
 
 - **Helper**
 

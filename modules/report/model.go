@@ -35,12 +35,24 @@ type Report struct {
 	// Number of hours of the event/planning/custom
 	// in: float
 	NbHours float64 `json:"nb_hours"`
-	// Number of staffs of the event/planning/custom
+	// Number of volunteer staffs of the event/planning/custom
 	// in: float
-	NbStaffs float64 `json:"nb_staffs"`
-	// Taux Valorisation of the event/planning/custom
+	NbStaffsVlt float64 `json:"nb_staffs_vlt"`
+	// Number of employee staffs of the event/planning/custom
 	// in: float
-	TauxValorisation float64 `json:"taux_valorisation"`
+	NbStaffsEmp float64 `json:"nb_staffs_emp"`
+	// Number of Civic service staffs of the event/planning/custom
+	// in: float
+	NbStaffsScv float64 `json:"nb_staffs_scv"`
+	// Taux volunteer Valorisation of the event/planning/custom
+	// in: float
+	TauxValorisationVlt float64 `json:"taux_valorisation_vlt"`
+	// Taux employee Valorisation of the event/planning/custom
+	// in: float
+	TauxValorisationEmp float64 `json:"taux_valorisation_emp"`
+	// Taux civic service Valorisation of the event/planning/custom
+	// in: float
+	TauxValorisationScv float64 `json:"taux_valorisation_scv"`
 	// Code public of the event/planning/custom
 	// in: string
 	CodePublic string `json:"code_public"`
@@ -52,8 +64,8 @@ type Report struct {
 type Reports []Report
 
 func NewReport(rpt *Report) {
-	stmt, _ := TheDb().Prepare("INSERT INTO reports (type, ref_ext, name, date, comment, nb_reel_attendees, nb_subscribe_attendees, staffs_list, nb_hours_prepa, nb_hours, nb_staffs, taux_valorisation, code_public, code_project) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);")
-	_, err := stmt.Exec(rpt.Type, rpt.RefExt, rpt.Name, rpt.Date, rpt.Comment, rpt.NbReelAtt, rpt.NbSubsAtt, rpt.StaffsList, rpt.NbHoursPrepa, rpt.NbHours, rpt.NbStaffs, rpt.TauxValorisation, rpt.CodePublic, rpt.CodeProject)
+	stmt, _ := TheDb().Prepare("INSERT INTO reports (type, ref_ext, name, date, comment, nb_reel_attendees, nb_subscribe_attendees, staffs_list, nb_hours_prepa, nb_hours, nb_staffs_vlt, nb_staffs_emp, nb_staffs_scv, taux_valorisation_vlt, taux_valorisation_emp, taux_valorisation_scv, code_public, code_project) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);")
+	_, err := stmt.Exec(rpt.Type, rpt.RefExt, rpt.Name, rpt.Date, rpt.Comment, rpt.NbReelAtt, rpt.NbSubsAtt, rpt.StaffsList, rpt.NbHoursPrepa, rpt.NbHours, rpt.NbStaffsVlt, rpt.NbStaffsEmp, rpt.NbStaffsScv, rpt.TauxValorisationVlt, rpt.TauxValorisationEmp, rpt.TauxValorisationScv, rpt.CodePublic, rpt.CodeProject)
 	if err != nil {
 		TheLogger().LogError("report", "can't create new report.", err)
 	}
@@ -63,7 +75,7 @@ func FindReportById(id int) *Report {
 	var rpt Report
 
 	row := TheDb().QueryRow("SELECT * FROM reports WHERE id = ?;", id)
-	err := row.Scan(&rpt.Id, &rpt.Type, &rpt.RefExt, &rpt.Name, &rpt.Date, &rpt.Comment, &rpt.NbReelAtt, &rpt.NbSubsAtt, &rpt.StaffsList, &rpt.NbHoursPrepa, &rpt.NbHours, &rpt.NbStaffs, &rpt.TauxValorisation, &rpt.CodePublic, &rpt.CodeProject)
+	err := row.Scan(&rpt.Id, &rpt.Type, &rpt.RefExt, &rpt.Name, &rpt.Date, &rpt.Comment, &rpt.NbReelAtt, &rpt.NbSubsAtt, &rpt.StaffsList, &rpt.NbHoursPrepa, &rpt.NbHours, &rpt.NbStaffsVlt, &rpt.NbStaffsEmp, &rpt.NbStaffsScv, &rpt.TauxValorisationVlt, &rpt.TauxValorisationEmp, rpt.TauxValorisationScv, &rpt.CodePublic, &rpt.CodeProject)
 
 	if err != nil {
 		TheLogger().LogWarning("report", "report id not found.", err)
@@ -87,7 +99,7 @@ func AllReports() *Reports {
 	for rows.Next() {
 		var rpt Report
 
-		err := rows.Scan(&rpt.Id, &rpt.Type, &rpt.RefExt, &rpt.Name, &rpt.Date, &rpt.Comment, &rpt.NbReelAtt, &rpt.NbSubsAtt, &rpt.StaffsList, &rpt.NbHoursPrepa, &rpt.NbHours, &rpt.NbStaffs, &rpt.TauxValorisation, &rpt.CodePublic, &rpt.CodeProject)
+		err := rows.Scan(&rpt.Id, &rpt.Type, &rpt.RefExt, &rpt.Name, &rpt.Date, &rpt.Comment, &rpt.NbReelAtt, &rpt.NbSubsAtt, &rpt.StaffsList, &rpt.NbHoursPrepa, &rpt.NbHours, &rpt.NbStaffsVlt, &rpt.NbStaffsEmp, &rpt.NbStaffsScv, &rpt.TauxValorisationVlt, &rpt.TauxValorisationEmp, &rpt.TauxValorisationScv, &rpt.CodePublic, &rpt.CodeProject)
 
 		if err != nil {
 			TheLogger().LogError("report", "reports not found.", err)
@@ -100,13 +112,13 @@ func AllReports() *Reports {
 }
 
 func UpdateReport(rpt *Report) {
-	stmt, err := TheDb().Prepare("UPDATE reports SET type=?, ref_ext=?, name=?, date=?, comment=?, nb_reel_attendees=?, nb_subscribe_attendees=?, staffs_list=?, nb_hours_prepa=?, nb_hours=?, nb_staffs=?, taux_valorisation=?, code_public=?, code_project=? WHERE id=?;")
+	stmt, err := TheDb().Prepare("UPDATE reports SET type=?, ref_ext=?, name=?, date=?, comment=?, nb_reel_attendees=?, nb_subscribe_attendees=?, staffs_list=?, nb_hours_prepa=?, nb_hours=?, nb_staffs_vlt=?, nb_staffs_emp=?, nb_staffs_scv=?, taux_valorisation_vlt=?, taux_valorisation_emp=?, taux_valorisation_scv=?, code_public=?, code_project=? WHERE id=?;")
 
 	if err != nil {
 		TheLogger().LogError("report", "problem with the db.", err)
 	}
 
-	_, err = stmt.Exec(rpt.Type, rpt.RefExt, rpt.Name, rpt.Date, rpt.Comment, rpt.NbReelAtt, rpt.NbSubsAtt, rpt.StaffsList, rpt.NbHoursPrepa, rpt.NbHours, rpt.NbStaffs, rpt.TauxValorisation, rpt.CodePublic, rpt.CodeProject, rpt.Id)
+	_, err = stmt.Exec(rpt.Type, rpt.RefExt, rpt.Name, rpt.Date, rpt.Comment, rpt.NbReelAtt, rpt.NbSubsAtt, rpt.StaffsList, rpt.NbHoursPrepa, rpt.NbHours, rpt.NbStaffsVlt, rpt.NbStaffsEmp, rpt.NbStaffsScv, rpt.TauxValorisationVlt, rpt.TauxValorisationEmp, rpt.TauxValorisationScv, rpt.CodePublic, rpt.CodeProject, rpt.Id)
 
 	if err != nil {
 		TheLogger().LogError("report", "report can't be updated.", err)

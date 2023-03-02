@@ -17,8 +17,12 @@ title: Module Report
 - StaffsList        string  `json:"staffs_list"`            - List of staffs of the event/planning/custom
 - NbHoursPrepa      float   `json:"nb_hours_prepa"`         - Number of hours of preparation
 - NbHours           float  `json:"nb_hours"`                - Number of hours of the event/planning/custom
-- NbStaffs          float  `json:"nb_staffs"`               - Number of staffs of the event/planning/custom
-- TauxValorisation  float  `json:"taux_valorisation"`       - Taux Valorisation of the event/planning/custom
+- NbStaffsVlt          float  `json:"nb_staffs_vlt"`               - Number of volunteer staffs of the event/planning/custom
+- NbStaffsEmp          float  `json:"nb_staffs_emp"`               - Number of employee staffs of the event/planning/custom
+- NbStaffsScv          float  `json:"nb_staffs_scv"`               - Number of civic service staffs of the event/planning/custom
+- TauxValorisationVlt  float  `json:"taux_valorisation_vlt"`       - Taux volunteer Valorisation of the event/planning/custom
+- TauxValorisationEmp  float  `json:"taux_valorisation_emp"`       - Taux employee Valorisation of the event/planning/custom
+- TauxValorisationScv  float  `json:"taux_valorisation_scv"`       - Taux civic service Valorisation of the event/planning/custom
 - CodePublic        string  `json:"code_public"`            - Public code of the report
 - CodeProject       string  `json:"code_project"`           - Project code of the report
 
@@ -64,8 +68,12 @@ curl -X POST "https://${MYSERVER}/${SECURE}/reports" \
         "staffs_list": "John Smith, Toto titi, Ash Ketchum",
         "nb_hours_prepa": 4,
         "nb_hours": 12,
-        "nb_staffs": 3,
-        "taux_valorisation": 18,
+        "nb_staffs_vlt": 3,
+        "nb_staffs_emp": 0,
+        "nb_staffs_scv": 0,
+        "taux_valorisation_vlt": 18,
+        "taux_valorisation_emp": 18,
+        "taux_valorisation_scv": 18,
         "code_public": "ALL",
         "code_project": "PKM"
     }'
@@ -93,8 +101,12 @@ curl -X POST "https://${MYSERVER}/${SECURE}/reports/2" \
         "staffs_list": "John Smith, Toto titi, Ash Ketchum",
         "nb_hours_prepa": 4,
         "nb_hours": 12,
-        "nb_staffs": 10,
-        "taux_valorisation": 14,
+        "nb_staffs_vlt": 3,
+        "nb_staffs_emp": 0,
+        "nb_staffs_scv": 0,
+        "taux_valorisation_vlt": 18,
+        "taux_valorisation_emp": 18,
+        "taux_valorisation_scv": 18,
         "code_public": "ALL",
         "code_project": "PKM"
     }'
