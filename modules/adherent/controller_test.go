@@ -81,8 +81,10 @@ func TestAdherentsIndex(t *testing.T) {
 }
 
 func TestAdherentsCreate(t *testing.T) {
-	var jsonStr = []byte(`{"firstname": "Luigi", "lastname": "Bros", "dateofbirth": "1995-04-24", 
-							"adhesion_date": "1995-04-24"}`)
+	var jsonStr = []byte(`
+		{"firstname": "Luigi", "lastname": "Bros", "dateofbirth": "1995-04-24",
+		"adhesion_date": "1995-04-24"}`,
+	)
 
 	req := httptest.NewRequest("POST", "/adherents", bytes.NewBuffer(jsonStr))
 	w := httptest.NewRecorder()

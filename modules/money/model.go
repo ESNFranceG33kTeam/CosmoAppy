@@ -32,8 +32,8 @@ func NewMoney(mon *Money) {
 	mon.CreatedAt = time.Now()
 
 	stmt, _ := TheDb().Prepare(
-		`INSERT INTO moneys 
-		(label, price, payment_type, payment_date, created_at) 
+		`INSERT INTO moneys
+		(label, price, payment_type, payment_date, created_at)
 		VALUES (?,?,?,?,?);`,
 	)
 	_, err := stmt.Exec(mon.Label, mon.Price, mon.PaymentType, mon.PaymentDate, mon.CreatedAt)

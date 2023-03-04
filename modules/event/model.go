@@ -309,7 +309,7 @@ func FindAttendeeByAdherentId(id_adherent int) *Attendees {
 func UpdateAttendee(att *Attendee) {
 	stmt, err := TheDb().Prepare(
 		`UPDATE event_attendees SET
-			id_event=?, id_adherent=? 
+			id_event=?, id_adherent=?
 		WHERE id=?;`,
 	)
 
