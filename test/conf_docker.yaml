@@ -11,7 +11,7 @@ extradb: "?parseTime=true"
 ## 1 : Warning
 ## 2 : Error --> Always
 ## 3 : Critical --> Always
-loglevel: 1
+loglevel: 0
 # access api
 usersapi:
   - "test"

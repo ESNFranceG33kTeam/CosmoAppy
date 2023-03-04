@@ -6,19 +6,52 @@ func InitRoutes() {
 	TheSecureRouter().Methods("POST").Path("/events").Name("Create").HandlerFunc(EventsCreate)
 	TheSecureRouter().Methods("GET").Path("/events/{id}").Name("Show").HandlerFunc(EventsShow)
 	TheSecureRouter().Methods("PUT").Path("/events/{id}").Name("Update").HandlerFunc(EventsUpdate)
-	TheSecureRouter().Methods("DELETE").Path("/events/{id}").Name("DELETE").HandlerFunc(EventsDelete)
+	TheSecureRouter().Methods("DELETE").
+		Path("/events/{id}").
+		Name("DELETE").
+		HandlerFunc(EventsDelete)
 
-	TheSecureRouter().Methods("GET").Path("/event_attendees").Name("Index").HandlerFunc(AttendeesIndex)
-	TheSecureRouter().Methods("POST").Path("/event_attendees").Name("Create").HandlerFunc(AttendeesCreate)
-	TheSecureRouter().Methods("GET").Path("/event_attendees/id_event/{id_event}").Name("Show").HandlerFunc(AttendeesShowByIdEvent)
-	TheSecureRouter().Methods("GET").Path("/event_attendees/id_adherent/{id_adherent}").Name("Show").HandlerFunc(AttendeesShowByIdAdherent)
-	TheSecureRouter().Methods("PUT").Path("/event_attendees/{id}").Name("Update").HandlerFunc(AttendeesUpdate)
-	TheSecureRouter().Methods("DELETE").Path("/event_attendees/{id}").Name("DELETE").HandlerFunc(AttendeesDelete)
+	TheSecureRouter().Methods("GET").
+		Path("/event_attendees").
+		Name("Index").
+		HandlerFunc(AttendeesIndex)
+	TheSecureRouter().Methods("POST").
+		Path("/event_attendees").
+		Name("Create").
+		HandlerFunc(AttendeesCreate)
+	TheSecureRouter().Methods("GET").
+		Path("/event_attendees/id_event/{id_event}").
+		Name("Show").
+		HandlerFunc(AttendeesShowByIdEvent)
+	TheSecureRouter().Methods("GET").
+		Path("/event_attendees/id_adherent/{id_adherent}").
+		Name("Show").
+		HandlerFunc(AttendeesShowByIdAdherent)
+	TheSecureRouter().Methods("PUT").
+		Path("/event_attendees/{id}").
+		Name("Update").
+		HandlerFunc(AttendeesUpdate)
+	TheSecureRouter().Methods("DELETE").
+		Path("/event_attendees/{id}").
+		Name("DELETE").
+		HandlerFunc(AttendeesDelete)
 
 	TheSecureRouter().Methods("GET").Path("/event_staffs").Name("Index").HandlerFunc(StaffsIndex)
 	TheSecureRouter().Methods("POST").Path("/event_staffs").Name("Create").HandlerFunc(StaffsCreate)
-	TheSecureRouter().Methods("GET").Path("/event_staffs/id_event/{id_event}").Name("Show").HandlerFunc(StaffsShowByIdEvent)
-	TheSecureRouter().Methods("GET").Path("/event_staffs/id_volunteer/{id_volunteer}").Name("Show").HandlerFunc(StaffsShowByIdVolunteer)
-	TheSecureRouter().Methods("PUT").Path("/event_staffs/{id}").Name("Update").HandlerFunc(StaffsUpdate)
-	TheSecureRouter().Methods("DELETE").Path("/event_staffs/{id}").Name("DELETE").HandlerFunc(StaffsDelete)
+	TheSecureRouter().Methods("GET").
+		Path("/event_staffs/id_event/{id_event}").
+		Name("Show").
+		HandlerFunc(StaffsShowByIdEvent)
+	TheSecureRouter().Methods("GET").
+		Path("/event_staffs/id_volunteer/{id_volunteer}").
+		Name("Show").
+		HandlerFunc(StaffsShowByIdVolunteer)
+	TheSecureRouter().Methods("PUT").
+		Path("/event_staffs/{id}").
+		Name("Update").
+		HandlerFunc(StaffsUpdate)
+	TheSecureRouter().Methods("DELETE").
+		Path("/event_staffs/{id}").
+		Name("DELETE").
+		HandlerFunc(StaffsDelete)
 }

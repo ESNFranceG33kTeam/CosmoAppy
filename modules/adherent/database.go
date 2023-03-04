@@ -21,8 +21,8 @@ func CreateAdherentsTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical("database", "create table adherents got a problem.", err)
+		TheLogger().LogCritical("adherent", "create table adherents got a problem.", err)
 	} else {
-		TheLogger().LogInfo("database", "adherents table successfully created.")
+		TheLogger().LogInfo("adherent", "adherents table successfully created.")
 	}
 }

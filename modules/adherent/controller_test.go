@@ -9,10 +9,62 @@ import (
 )
 
 func setUpController() {
-	NewAdherent(&Adherent{Firstname: "Test1", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "Nancy", Homeland: "Pologne", Speakabout: "Facebook", Newsletter: false, AdhesionDate: "1995-04-24"})
-	NewAdherent(&Adherent{Firstname: "Test2", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "Nancy", Homeland: "Pologne", Speakabout: "Facebook", Newsletter: false, AdhesionDate: "1995-04-24"})
-	NewAdherent(&Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "Nancy", Homeland: "Pologne", Speakabout: "Facebook", Newsletter: false, AdhesionDate: "1995-04-24"})
-	NewAdherent(&Adherent{Firstname: "Test4", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "Nancy", Homeland: "Pologne", Speakabout: "Facebook", Newsletter: false, AdhesionDate: "1995-04-24"})
+	NewAdherent(
+		&Adherent{
+			Firstname:    "Test1",
+			Lastname:     "Tutu",
+			Email:        "toto@toto.fr",
+			Dateofbirth:  "1995-04-24",
+			Situation:    "worker",
+			University:   "Nancy",
+			Homeland:     "Pologne",
+			Speakabout:   "Facebook",
+			Newsletter:   false,
+			AdhesionDate: "1995-04-24",
+		},
+	)
+	NewAdherent(
+		&Adherent{
+			Firstname:    "Test2",
+			Lastname:     "Tutu",
+			Email:        "toto@toto.fr",
+			Dateofbirth:  "1995-04-24",
+			Situation:    "worker",
+			University:   "Nancy",
+			Homeland:     "Pologne",
+			Speakabout:   "Facebook",
+			Newsletter:   false,
+			AdhesionDate: "1995-04-24",
+		},
+	)
+	NewAdherent(
+		&Adherent{
+			Firstname:    "Test3",
+			Lastname:     "Tutu",
+			Email:        "toto@toto.fr",
+			Dateofbirth:  "1995-04-24",
+			Situation:    "worker",
+			University:   "Nancy",
+			Homeland:     "Pologne",
+			Speakabout:   "Facebook",
+			Newsletter:   false,
+			AdhesionDate: "1995-04-24",
+		},
+	)
+	NewAdherent(
+		&Adherent{
+			Firstname:    "Test4",
+			Lastname:     "Tutu",
+			Email:        "toto@toto.fr",
+			Dateofbirth:  "1995-04-24",
+			Situation:    "worker",
+			University:   "Nancy",
+			Homeland:     "Pologne",
+			Speakabout:   "Facebook",
+			Newsletter:   false,
+			AdhesionDate: "1995-04-24",
+		},
+	)
 }
 
 func TestAdherentsIndex(t *testing.T) {
@@ -29,7 +81,8 @@ func TestAdherentsIndex(t *testing.T) {
 }
 
 func TestAdherentsCreate(t *testing.T) {
-	var jsonStr = []byte(`{"firstname": "Luigi", "lastname": "Bros", "dateofbirth": "1995-04-24", "adhesion_date": "1995-04-24"}`)
+	var jsonStr = []byte(`{"firstname": "Luigi", "lastname": "Bros", "dateofbirth": "1995-04-24", 
+							"adhesion_date": "1995-04-24"}`)
 
 	req := httptest.NewRequest("POST", "/adherents", bytes.NewBuffer(jsonStr))
 	w := httptest.NewRecorder()

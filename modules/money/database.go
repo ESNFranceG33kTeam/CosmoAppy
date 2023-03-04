@@ -14,8 +14,8 @@ func CreateMoneysTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical("database", "create table moneys got a problem.", err)
+		TheLogger().LogCritical("money", "create table moneys got a problem.", err)
 	} else {
-		TheLogger().LogInfo("database", "moneys table successfully created.")
+		TheLogger().LogInfo("money", "moneys table successfully created.")
 	}
 }

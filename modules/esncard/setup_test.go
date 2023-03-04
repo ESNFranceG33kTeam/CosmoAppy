@@ -29,10 +29,62 @@ func testMainSetup() {
 	database.DatabaseInit()
 
 	adherent.CreateAdherentsTable()
-	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test1", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "Nancy", Homeland: "Pologne", Speakabout: "Facebook", Newsletter: false, AdhesionDate: "1995-04-24"})
-	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test2", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "Nancy", Homeland: "Pologne", Speakabout: "Facebook", Newsletter: false, AdhesionDate: "1995-04-24"})
-	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test3", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "Nancy", Homeland: "Pologne", Speakabout: "Facebook", Newsletter: false, AdhesionDate: "1995-04-24"})
-	adherent.NewAdherent(&adherent.Adherent{Firstname: "Test4", Lastname: "Tutu", Email: "toto@toto.fr", Dateofbirth: "1995-04-24", Situation: "worker", University: "Nancy", Homeland: "Pologne", Speakabout: "Facebook", Newsletter: false, AdhesionDate: "1995-04-24"})
+	adherent.NewAdherent(
+		&adherent.Adherent{
+			Firstname:    "Test1",
+			Lastname:     "Tutu",
+			Email:        "toto@toto.fr",
+			Dateofbirth:  "1995-04-24",
+			Situation:    "worker",
+			University:   "Nancy",
+			Homeland:     "Pologne",
+			Speakabout:   "Facebook",
+			Newsletter:   false,
+			AdhesionDate: "1995-04-24",
+		},
+	)
+	adherent.NewAdherent(
+		&adherent.Adherent{
+			Firstname:    "Test2",
+			Lastname:     "Tutu",
+			Email:        "toto@toto.fr",
+			Dateofbirth:  "1995-04-24",
+			Situation:    "worker",
+			University:   "Nancy",
+			Homeland:     "Pologne",
+			Speakabout:   "Facebook",
+			Newsletter:   false,
+			AdhesionDate: "1995-04-24",
+		},
+	)
+	adherent.NewAdherent(
+		&adherent.Adherent{
+			Firstname:    "Test3",
+			Lastname:     "Tutu",
+			Email:        "toto@toto.fr",
+			Dateofbirth:  "1995-04-24",
+			Situation:    "worker",
+			University:   "Nancy",
+			Homeland:     "Pologne",
+			Speakabout:   "Facebook",
+			Newsletter:   false,
+			AdhesionDate: "1995-04-24",
+		},
+	)
+	adherent.NewAdherent(
+		&adherent.Adherent{
+			Firstname:    "Test4",
+			Lastname:     "Tutu",
+			Email:        "toto@toto.fr",
+			Dateofbirth:  "1995-04-24",
+			Situation:    "worker",
+			University:   "Nancy",
+			Homeland:     "Pologne",
+			Speakabout:   "Facebook",
+			Newsletter:   false,
+			AdhesionDate: "1995-04-24",
+		},
+	)
 
 	CreateESNcardsTable()
 

@@ -19,8 +19,8 @@ func CreateESNcardsTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical("database", "create table esncards got a problem.", err)
+		TheLogger().LogCritical("esncard", "create table esncards got a problem.", err)
 	} else {
-		TheLogger().LogInfo("database", "esncards table successfully created.")
+		TheLogger().LogInfo("esncard", "esncards table successfully created.")
 	}
 }

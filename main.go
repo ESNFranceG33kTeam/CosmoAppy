@@ -22,8 +22,18 @@ func startoptions() {
 		log.Fatalln("Abs path doesn't exist !")
 	}
 
-	flag.StringVar(&helpers.Confpathflag, "conf", filepath.Join(path, "test/conf_local.yaml"), "path for the configuration file.")
-	flag.StringVar(&helpers.Swaggerpathflag, "swagger", "/swagger.yaml", "relative path for the swagger file.")
+	flag.StringVar(
+		&helpers.Confpathflag,
+		"conf",
+		filepath.Join(path, "test/conf_local.yaml"),
+		"path for the configuration file.",
+	)
+	flag.StringVar(
+		&helpers.Swaggerpathflag,
+		"swagger",
+		"/test/swagger.yaml",
+		"relative path for the swagger file.",
+	)
 
 	flag.Parse()
 }
@@ -64,7 +74,8 @@ func main() {
 		wg.Done()
 	}()
 	go func() {
-		logger.GetLogger().LogCritical("main", "listen cas error", cocas.GetCasServer().ListenAndServe())
+		logger.GetLogger().
+			LogCritical("main", "listen cas error", cocas.GetCasServer().ListenAndServe())
 		wg.Done()
 	}()
 

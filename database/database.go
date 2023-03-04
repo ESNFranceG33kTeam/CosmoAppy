@@ -29,7 +29,9 @@ func DatabaseInit() {
 	myconf.InitConfDb()
 
 	// Connect to server and create database
-	infodbserver := fmt.Sprintf(myconf.Userdb + ":" + myconf.Passdb + "@tcp(" + myconf.Ipdb + ":" + myconf.Portdb + ")/")
+	infodbserver := fmt.Sprintf(
+		myconf.Userdb + ":" + myconf.Passdb + "@tcp(" + myconf.Ipdb + ":" + myconf.Portdb + ")/",
+	)
 	dbserver, _ = sql.Open("mysql", infodbserver)
 	initSchema(dbserver)
 	dbserver.Close()
@@ -59,7 +61,10 @@ func (conf *ConfDb) InitConfDb() {
 	conf.Portdb = helpers.TheAppConfig().Portdb
 	conf.Namedb = helpers.TheAppConfig().Namedb
 	conf.Extradb = helpers.TheAppConfig().Extradb
-	conf.Infodb = fmt.Sprintf(conf.Userdb + ":" + conf.Passdb + "@tcp(" + conf.Ipdb + ":" + conf.Portdb + ")/" + conf.Namedb + conf.Extradb)
+	conf.Infodb = fmt.Sprintf(
+		conf.Userdb + ":" + conf.Passdb + "@tcp(" + conf.Ipdb + ":" + conf.Portdb + ")/" +
+			conf.Namedb + conf.Extradb,
+	)
 }
 
 // Getter for db var
@@ -69,7 +74,8 @@ func Db() *sql.DB {
 		logger.GetLogger().LogWarning("database", "reconnect to db.", err)
 		myconf.SqlDb, err = sql.Open("mysql", myconf.Infodb)
 		if err != nil {
-			logger.GetLogger().LogCritical("database", "reconnection with database got a problem.", err)
+			logger.GetLogger().
+				LogCritical("database", "reconnection with database got a problem.", err)
 		} else {
 			logger.GetLogger().LogInfo("database", "database is reconnected.")
 		}

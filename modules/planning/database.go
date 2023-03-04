@@ -16,9 +16,9 @@ func CreatePlanningsTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical("database", "create table plannings got a problem.", err)
+		TheLogger().LogCritical("planning", "create table plannings got a problem.", err)
 	} else {
-		TheLogger().LogInfo("database", "plannings table successfully created.")
+		TheLogger().LogInfo("planning", "plannings table successfully created.")
 	}
 
 	_, err = TheDb().Exec(`
@@ -47,8 +47,8 @@ func CreatePlanningsTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical("database", "create table planning_attendees got a problem.", err)
+		TheLogger().LogCritical("planning_attendee", "create table planning_attendees got a problem.", err)
 	} else {
-		TheLogger().LogInfo("database", "planning_attendees table successfully created.")
+		TheLogger().LogInfo("planning_attendee", "planning_attendees table successfully created.")
 	}
 }

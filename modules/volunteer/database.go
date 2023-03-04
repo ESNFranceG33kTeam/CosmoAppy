@@ -20,8 +20,8 @@ func CreateVolunteersTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical("database", "create table volunteers got a problem.", err)
+		TheLogger().LogCritical("volunteer", "create table volunteers got a problem.", err)
 	} else {
-		TheLogger().LogInfo("database", "volunteers table successfully created.")
+		TheLogger().LogInfo("volunteer", "volunteers table successfully created.")
 	}
 }

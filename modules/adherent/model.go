@@ -53,8 +53,26 @@ func NewAdherent(adh *Adherent) {
 	adh.CreatedAt = time.Now()
 	adh.UpdatedAt = time.Now()
 
-	stmt, _ := TheDb().Prepare("INSERT INTO adherents (firstname, lastname, email, dateofbirth, situation, university, homeland, speakabout, newsletter, adhesion_date, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);")
-	_, err := stmt.Exec(adh.Firstname, adh.Lastname, adh.Email, adh.Dateofbirth, adh.Situation, adh.University, adh.Homeland, adh.Speakabout, adh.Newsletter, adh.AdhesionDate, adh.CreatedAt, adh.UpdatedAt)
+	stmt, _ := TheDb().Prepare(
+		`INSERT INTO adherents
+			(firstname, lastname, email, dateofbirth, situation, university, homeland, speakabout,
+			newsletter, adhesion_date, created_at, updated_at)
+		VALUES (?,?,?,?,?,?,?,?,?,?,?,?);`,
+	)
+	_, err := stmt.Exec(
+		adh.Firstname,
+		adh.Lastname,
+		adh.Email,
+		adh.Dateofbirth,
+		adh.Situation,
+		adh.University,
+		adh.Homeland,
+		adh.Speakabout,
+		adh.Newsletter,
+		adh.AdhesionDate,
+		adh.CreatedAt,
+		adh.UpdatedAt,
+	)
 	if err != nil {
 		TheLogger().LogError("adherent", "can't create new adherent.", err)
 	}
@@ -64,7 +82,21 @@ func FindAdherentById(id int) *Adherent {
 	var adh Adherent
 
 	row := TheDb().QueryRow("SELECT * FROM adherents WHERE id = ?;", id)
-	err := row.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.Situation, &adh.University, &adh.Homeland, &adh.Speakabout, &adh.Newsletter, &adh.AdhesionDate, &adh.CreatedAt, &adh.UpdatedAt)
+	err := row.Scan(
+		&adh.Id,
+		&adh.Firstname,
+		&adh.Lastname,
+		&adh.Email,
+		&adh.Dateofbirth,
+		&adh.Situation,
+		&adh.University,
+		&adh.Homeland,
+		&adh.Speakabout,
+		&adh.Newsletter,
+		&adh.AdhesionDate,
+		&adh.CreatedAt,
+		&adh.UpdatedAt,
+	)
 
 	if err != nil {
 		TheLogger().LogWarning("adherent", "adherent not found.", err)
@@ -76,8 +108,23 @@ func FindAdherentById(id int) *Adherent {
 func FindAdherentByName(firstname string, lastname string) *Adherent {
 	var adh Adherent
 
-	row := TheDb().QueryRow("SELECT * FROM adherents WHERE firstname = ? AND lastname = ?;", firstname, lastname)
-	err := row.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.Situation, &adh.University, &adh.Homeland, &adh.Speakabout, &adh.Newsletter, &adh.AdhesionDate, &adh.CreatedAt, &adh.UpdatedAt)
+	row := TheDb().QueryRow("SELECT * FROM adherents WHERE firstname = ? AND lastname = ?;",
+		firstname, lastname)
+	err := row.Scan(
+		&adh.Id,
+		&adh.Firstname,
+		&adh.Lastname,
+		&adh.Email,
+		&adh.Dateofbirth,
+		&adh.Situation,
+		&adh.University,
+		&adh.Homeland,
+		&adh.Speakabout,
+		&adh.Newsletter,
+		&adh.AdhesionDate,
+		&adh.CreatedAt,
+		&adh.UpdatedAt,
+	)
 
 	if err != nil {
 		TheLogger().LogWarning("adherent", "adherent not found.", err)
@@ -101,7 +148,21 @@ func AllAdherents() *Adherents {
 	for rows.Next() {
 		var adh Adherent
 
-		err := rows.Scan(&adh.Id, &adh.Firstname, &adh.Lastname, &adh.Email, &adh.Dateofbirth, &adh.Situation, &adh.University, &adh.Homeland, &adh.Speakabout, &adh.Newsletter, &adh.AdhesionDate, &adh.CreatedAt, &adh.UpdatedAt)
+		err := rows.Scan(
+			&adh.Id,
+			&adh.Firstname,
+			&adh.Lastname,
+			&adh.Email,
+			&adh.Dateofbirth,
+			&adh.Situation,
+			&adh.University,
+			&adh.Homeland,
+			&adh.Speakabout,
+			&adh.Newsletter,
+			&adh.AdhesionDate,
+			&adh.CreatedAt,
+			&adh.UpdatedAt,
+		)
 
 		if err != nil {
 			TheLogger().LogError("adherent", "adherents not found.", err)
@@ -116,13 +177,31 @@ func AllAdherents() *Adherents {
 func UpdateAdherent(adh *Adherent) {
 	adh.UpdatedAt = time.Now()
 
-	stmt, err := TheDb().Prepare("UPDATE adherents SET firstname=?, lastname=?, email=?, dateofbirth=?, situation=?, university=?, homeland=?, speakabout=?, newsletter=?, adhesion_date=?, updated_at=? WHERE id=?;")
+	stmt, err := TheDb().Prepare(
+		`UPDATE adherents SET
+			firstname=?, lastname=?, email=?, dateofbirth=?, situation=?, university=?,
+			homeland=?, speakabout=?, newsletter=?, adhesion_date=?, updated_at=?
+		WHERE id=?;`,
+	)
 
 	if err != nil {
 		TheLogger().LogError("adherent", "problem with the db.", err)
 	}
 
-	_, err = stmt.Exec(adh.Firstname, adh.Lastname, adh.Email, adh.Dateofbirth, adh.Situation, adh.University, adh.Homeland, adh.Speakabout, adh.Newsletter, adh.AdhesionDate, adh.UpdatedAt, adh.Id)
+	_, err = stmt.Exec(
+		adh.Firstname,
+		adh.Lastname,
+		adh.Email,
+		adh.Dateofbirth,
+		adh.Situation,
+		adh.University,
+		adh.Homeland,
+		adh.Speakabout,
+		adh.Newsletter,
+		adh.AdhesionDate,
+		adh.UpdatedAt,
+		adh.Id,
+	)
 
 	if err != nil {
 		TheLogger().LogError("adherent", "adherent can't be updated.", err)

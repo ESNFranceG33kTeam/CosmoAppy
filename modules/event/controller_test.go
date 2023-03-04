@@ -9,8 +9,28 @@ import (
 )
 
 func setUpController() {
-	NewEvent(&Event{Name: "Voyage a Hawai", Date: "2023-04-23", Location: "Hawai", Type: "voyage", Price: 120.42, Url: "facebook.com/voyageHawai", Actif: true})
-	NewEvent(&Event{Name: "Saturday Night Fever", Date: "2023-05-23", Location: "3 rue Albert 1er, 69000 Lyon", Type: "soiree", Price: 20, Url: "facebook.com/sturdayfever", Actif: false})
+	NewEvent(
+		&Event{
+			Name:     "Voyage a Hawai",
+			Date:     "2023-04-23",
+			Location: "Hawai",
+			Type:     "voyage",
+			Price:    120.42,
+			Url:      "facebook.com/voyageHawai",
+			Actif:    true,
+		},
+	)
+	NewEvent(
+		&Event{
+			Name:     "Saturday Night Fever",
+			Date:     "2023-05-23",
+			Location: "3 rue Albert 1er, 69000 Lyon",
+			Type:     "soiree",
+			Price:    20,
+			Url:      "facebook.com/sturdayfever",
+			Actif:    false,
+		},
+	)
 	NewAttendee(&Attendee{Id_event: 1, Id_adherent: 2})
 	NewAttendee(&Attendee{Id_event: 1, Id_adherent: 3})
 	NewStaff(&Staff{Id_event: 1, Id_volunteer: 2})
@@ -31,7 +51,11 @@ func TestEventsIndex(t *testing.T) {
 }
 
 func TestEventsCreate(t *testing.T) {
-	var jsonStr = []byte(`{"name": "Visite au Musée", "date": "2024-12-25", "location": "Musée des miniatures, 69000 Lyon", "type": "culture", "price": 0, "url_facebook": "facebook.com/eventmusee", "actif": true}`)
+	var jsonStr = []byte(`{
+		"name": "Visite au Musée", "date": "2024-12-25",
+		"location": "Musée des miniatures, 69000 Lyon", "type": "culture", "price": 0,
+		"url_facebook": "facebook.com/eventmusee", "actif": true
+	}`)
 
 	req := httptest.NewRequest("POST", "/events", bytes.NewBuffer(jsonStr))
 	w := httptest.NewRecorder()

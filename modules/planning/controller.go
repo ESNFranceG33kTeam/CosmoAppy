@@ -188,9 +188,9 @@ func AttendeesIndex(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(AllAttendees())
 	if err != nil {
-		TheLogger().LogError("attendee", "problem with indexation.", err)
+		TheLogger().LogError("planning_attendee", "problem with indexation.", err)
 	} else {
-		TheLogger().LogInfo("attendee", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo("planning_attendee", "request GET : "+r.RequestURI)
 	}
 }
 
@@ -199,19 +199,19 @@ func AttendeesCreate(w http.ResponseWriter, r *http.Request) {
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("attendee", "problem with create.", err)
+		TheLogger().LogError("planning_attendee", "problem with create.", err)
 	}
 
 	var att Attendee
 
 	err = json.Unmarshal(body, &att)
 	if err != nil {
-		TheLogger().LogError("attendee", "problem with unmarshal.", err)
+		TheLogger().LogError("planning_attendee", "problem with unmarshal.", err)
 	}
 
 	_, err = time.Parse("2006-01-02", att.Date)
 	if err != nil {
-		TheLogger().LogInfo("attendee", "Date format wrong.")
+		TheLogger().LogInfo("planning_attendee", "Date format wrong.")
 		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -219,7 +219,7 @@ func AttendeesCreate(w http.ResponseWriter, r *http.Request) {
 
 	_, err = time.Parse("15:04:00", att.Hour_end)
 	if err != nil {
-		TheLogger().LogInfo("attendee", "Hour format wrong.")
+		TheLogger().LogInfo("planning_attendee", "Hour format wrong.")
 		http.Error(w, "Hour format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -227,7 +227,7 @@ func AttendeesCreate(w http.ResponseWriter, r *http.Request) {
 
 	_, err = time.Parse("15:04:00", att.Hour_begins)
 	if err != nil {
-		TheLogger().LogInfo("attendee", "Hour format wrong.")
+		TheLogger().LogInfo("planning_attendee", "Hour format wrong.")
 		http.Error(w, "Hour format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -238,9 +238,9 @@ func AttendeesCreate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(att)
 	if err != nil {
-		TheLogger().LogError("attendee", "problem with encoder.", err)
+		TheLogger().LogError("planning_attendee", "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("attendee", "request POST : "+r.RequestURI)
+		TheLogger().LogInfo("planning_attendee", "request POST : "+r.RequestURI)
 	}
 }
 
@@ -250,7 +250,7 @@ func AttendeesShowByIdPlanning(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id_planning, err := strconv.Atoi(vars["id_planning"])
 	if err != nil {
-		TheLogger().LogError("attendee", "unable to get id_planning.", err)
+		TheLogger().LogError("planning_attendee", "unable to get id_planning.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -258,9 +258,9 @@ func AttendeesShowByIdPlanning(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(vlt)
 	if err != nil {
-		TheLogger().LogError("attendee", "problem with encoder.", err)
+		TheLogger().LogError("planning_attendee", "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("attendee", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo("planning_attendee", "request GET : "+r.RequestURI)
 	}
 }
 
@@ -270,7 +270,7 @@ func AttendeesShowByIdVolunteer(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id_volunteer, err := strconv.Atoi(vars["id_volunteer"])
 	if err != nil {
-		TheLogger().LogError("attendee", "unable to get id_volunteer.", err)
+		TheLogger().LogError("planning_attendee", "unable to get id_volunteer.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -278,9 +278,9 @@ func AttendeesShowByIdVolunteer(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(vlt)
 	if err != nil {
-		TheLogger().LogError("attendee", "problem with encoder.", err)
+		TheLogger().LogError("planning_attendee", "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("attendee", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo("planning_attendee", "request GET : "+r.RequestURI)
 	}
 }
 
@@ -290,24 +290,24 @@ func AttendeesUpdate(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("attendee", "unable to get id_volunteer.", err)
+		TheLogger().LogError("planning_attendee", "unable to get id_volunteer.", err)
 	}
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("attendee", "problem with update.", err)
+		TheLogger().LogError("planning_attendee", "problem with update.", err)
 	}
 
 	att := FindAttendeeById(id)
 
 	err = json.Unmarshal(body, &att)
 	if err != nil {
-		TheLogger().LogError("attendee", "problem with unmarshal.", err)
+		TheLogger().LogError("planning_attendee", "problem with unmarshal.", err)
 	}
 
 	_, err = time.Parse("2006-01-02", att.Date)
 	if err != nil {
-		TheLogger().LogInfo("attendee", "Date format wrong.")
+		TheLogger().LogInfo("planning_attendee", "Date format wrong.")
 		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -315,7 +315,7 @@ func AttendeesUpdate(w http.ResponseWriter, r *http.Request) {
 
 	_, err = time.Parse("15:04:00", att.Hour_end)
 	if err != nil {
-		TheLogger().LogInfo("attendee", "Hour format wrong.")
+		TheLogger().LogInfo("planning_attendee", "Hour format wrong.")
 		http.Error(w, "Hour format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -323,7 +323,7 @@ func AttendeesUpdate(w http.ResponseWriter, r *http.Request) {
 
 	_, err = time.Parse("15:04:00", att.Hour_begins)
 	if err != nil {
-		TheLogger().LogInfo("attendee", "Hour format wrong.")
+		TheLogger().LogInfo("planning_attendee", "Hour format wrong.")
 		http.Error(w, "Hour format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -334,9 +334,9 @@ func AttendeesUpdate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(att)
 	if err != nil {
-		TheLogger().LogError("attendee", "problem with encoder.", err)
+		TheLogger().LogError("planning_attendee", "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("attendee", "request PUT : "+r.RequestURI)
+		TheLogger().LogInfo("planning_attendee", "request PUT : "+r.RequestURI)
 	}
 }
 
@@ -348,14 +348,14 @@ func AttendeesDelete(w http.ResponseWriter, r *http.Request) {
 	// strconv.Atoi is shorthand for ParseInt
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("attendee", "unable to get id.", err)
+		TheLogger().LogError("planning_attendee", "unable to get id.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
 	err = DeleteAttendeeById(id)
 	if err != nil {
-		TheLogger().LogError("attendee", "unable to delete attendee.", err)
+		TheLogger().LogError("planning_attendee", "unable to delete attendee.", err)
 	} else {
-		TheLogger().LogInfo("attendee", "request DELETE : "+r.RequestURI)
+		TheLogger().LogInfo("planning_attendee", "request DELETE : "+r.RequestURI)
 	}
 }
