@@ -11,21 +11,19 @@ setting-prepare:
 install-devtools: setting-prepare
 	go install github.com/google/yamlfmt/cmd/yamlfmt@latest
 	go install github.com/segmentio/golines@latest
-
-install-swagger: setting-prepare
 	which swagger || (GO111MODULE=on go get -u github.com/go-swagger/go-swagger/cmd/swagger)
 
 run-test:
 	go clean -testcache
 	go test ./... -covermode=count -coverprofile ./coverage.out
 
-run-fmt: install-devtools
-	go fmt
-	$(HOME)/go/bin/yamlfmt
-	$(HOME)/go/bin/golines . -w
-
-swagger: install-swagger
+swagger:
 	swagger generate spec -o test/swagger.yaml --scan-models
+
+run-fmt:
+	go fmt
+	$(HOME)/go/bin/yamlfmt test/
+	$(HOME)/go/bin/golines . -w
 
 start-app: setting-prepare
 	go run .
