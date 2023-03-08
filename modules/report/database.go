@@ -27,8 +27,8 @@ func CreateReportsTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical("database", "create table reports got a problem.", err)
+		TheLogger().LogCritical("report", "create table reports got a problem.", err)
 	} else {
-		TheLogger().LogInfo("database", "reports table successfully created.")
+		TheLogger().LogInfo("report", "reports table successfully created.")
 	}
 }

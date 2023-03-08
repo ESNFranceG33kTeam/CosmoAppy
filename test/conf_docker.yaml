@@ -10,7 +10,7 @@ extradb: "?parseTime=true"
 ## 1 : Warning
 ## 2 : Error --> Always
 ## 3 : Critical --> Always
-loglevel: 1
+loglevel: 0
 # access api
 usersapi:
   - "test"
@@ -20,3 +20,14 @@ tokensapi:
 specimen: false
 # name api
 nameapi: "CosmoAppy"
+portapi: "8080"
+portcas: "8181"
+# Country api
+country: "FR"
+# G33kTeam username url
+geekteam_url: "https://raw.githubusercontent.com/ESNFranceG33kTeam/.github/main/members/galaxy.yaml"
+# Galaxy username for Super Admin
+extra_admin:
+  - "P1chu"
+  - "M3wtw0"
+  - "Cynth1@"

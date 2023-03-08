@@ -44,7 +44,14 @@ func (log *Logger) LogInfo(endpoint string, message string) {
 	log.message = message
 
 	if log.loggerLevel == 0 {
-		fmt.Fprintln(os.Stdout, InfoColor, "timestamp=\""+log.timestamp.Format("2006-01-02 15:04:05")+"\" level="+log.level+" endpoint="+log.endpoint+" message=\""+log.message+"\"", NoneColor)
+		fmt.Fprintln(
+			os.Stdout,
+			InfoColor,
+			"timestamp=\""+log.timestamp.Format(
+				"2006-01-02 15:04:05",
+			)+"\" level="+log.level+" endpoint="+log.endpoint+" message=\""+log.message+"\"",
+			NoneColor,
+		)
 	}
 }
 
@@ -56,7 +63,15 @@ func (log *Logger) LogWarning(endpoint string, message string, detailes error) {
 	log.detailes = detailes
 
 	if log.loggerLevel <= 1 {
-		fmt.Fprintln(os.Stderr, WarningColor, "timestamp=\""+log.timestamp.Format("2006-01-02 15:04:05")+"\" level="+log.level+" endpoint="+log.endpoint+" message=\""+log.message+"\" detailes=\""+log.detailes.Error()+"\"", NoneColor)
+		fmt.Fprintln(
+			os.Stderr,
+			WarningColor,
+			"timestamp=\""+log.timestamp.Format(
+				"2006-01-02 15:04:05",
+			)+"\" level="+log.level+" endpoint="+log.endpoint+" message=\""+log.message+
+				"\" detailes=\""+log.detailes.Error()+"\"",
+			NoneColor,
+		)
 
 	}
 }
@@ -68,7 +83,15 @@ func (log *Logger) LogError(endpoint string, message string, detailes error) {
 	log.message = message
 	log.detailes = detailes
 
-	fmt.Fprintln(os.Stderr, ErrorColor, "timestamp=\""+log.timestamp.Format("2006-01-02 15:04:05")+"\" level="+log.level+" endpoint="+log.endpoint+" message=\""+log.message+"\" detailes=\""+log.detailes.Error()+"\"", NoneColor)
+	fmt.Fprintln(
+		os.Stderr,
+		ErrorColor,
+		"timestamp=\""+log.timestamp.Format(
+			"2006-01-02 15:04:05",
+		)+"\" level="+log.level+" endpoint="+log.endpoint+" message=\""+log.message+
+			"\" detailes=\""+log.detailes.Error()+"\"",
+		NoneColor,
+	)
 }
 
 func (log *Logger) LogCritical(endpoint string, message string, detailes error, exit ...bool) {
@@ -78,7 +101,15 @@ func (log *Logger) LogCritical(endpoint string, message string, detailes error, 
 	log.message = message
 	log.detailes = detailes
 
-	fmt.Fprintln(os.Stderr, CriticalColor, "timestamp=\""+log.timestamp.Format("2006-01-02 15:04:05")+"\" level="+log.level+" endpoint="+log.endpoint+" message=\""+log.message+"\" detailes=\""+log.detailes.Error()+"\"", NoneColor)
+	fmt.Fprintln(
+		os.Stderr,
+		CriticalColor,
+		"timestamp=\""+log.timestamp.Format(
+			"2006-01-02 15:04:05",
+		)+"\" level="+log.level+" endpoint="+log.endpoint+" message=\""+log.message+
+			"\" detailes=\""+log.detailes.Error()+"\"",
+		NoneColor,
+	)
 	if len(exit) == 0 {
 		os.Exit(1)
 	}

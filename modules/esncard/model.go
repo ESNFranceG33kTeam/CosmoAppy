@@ -25,7 +25,8 @@ type ESNcards []ESNcard
 func NewESNcard(card *ESNcard) {
 	card.CreatedAt = time.Now()
 
-	stmt, _ := TheDb().Prepare("INSERT INTO esncards (id_adherent, esncard, created_at) VALUES (?,?,?);")
+	stmt, _ := TheDb().Prepare(`INSERT INTO esncards
+		(id_adherent, esncard, created_at) VALUES (?,?,?);`)
 	_, err := stmt.Exec(card.Id_adherent, card.Esncard, card.CreatedAt)
 	if err != nil {
 		TheLogger().LogError("esncard", "can't create new esncard.", err)

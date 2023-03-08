@@ -6,14 +6,61 @@ import (
 )
 
 func setUpModel() {
-	NewPlanning(&Planning{Name: "Permanence", Type: "Permanence", Location: "MDE", Date_begins: "2023-04-23", Date_end: "2023-04-25", Hour_begins: "9-00", Hour_end: "18-00"})
-	NewPlanning(&Planning{Name: "NEM", Type: "Event", Location: "Transborder", Date_begins: "2023-04-23", Date_end: "2023-04-23", Hour_begins: "18-00", Hour_end: "23-00"})
-	NewAttendee(&Attendee{Id_planning: 1, Id_volunteer: 2, Job: "Photographer", Date: "2023-04-23", Hour_begins: "10-00", Hour_end: "12-00"})
-	NewAttendee(&Attendee{Id_planning: 1, Id_volunteer: 3, Job: "Staff", Date: "2023-04-24", Hour_begins: "16-00", Hour_end: "18-00"})
+	NewPlanning(
+		&Planning{
+			Name:        "Permanence",
+			Type:        "Permanence",
+			Location:    "MDE",
+			Date_begins: "2023-04-23",
+			Date_end:    "2023-04-25",
+			Hour_begins: "9-00",
+			Hour_end:    "18-00",
+		},
+	)
+	NewPlanning(
+		&Planning{
+			Name:        "NEM",
+			Type:        "Event",
+			Location:    "Transborder",
+			Date_begins: "2023-04-23",
+			Date_end:    "2023-04-23",
+			Hour_begins: "18-00",
+			Hour_end:    "23-00",
+		},
+	)
+	NewAttendee(
+		&Attendee{
+			Id_planning:  1,
+			Id_volunteer: 2,
+			Job:          "Photographer",
+			Date:         "2023-04-23",
+			Hour_begins:  "10-00",
+			Hour_end:     "12-00",
+		},
+	)
+	NewAttendee(
+		&Attendee{
+			Id_planning:  1,
+			Id_volunteer: 3,
+			Job:          "Staff",
+			Date:         "2023-04-24",
+			Hour_begins:  "16-00",
+			Hour_end:     "18-00",
+		},
+	)
 }
 
 func TestNewPlanning(t *testing.T) {
-	NewPlanning(&Planning{Name: "Permanence Special", Location: "MDE", Date_begins: "2023-04-22", Date_end: "2023-04-22", Hour_begins: "9-00", Hour_end: "12-00"})
+	NewPlanning(
+		&Planning{
+			Name:        "Permanence Special",
+			Location:    "MDE",
+			Date_begins: "2023-04-22",
+			Date_end:    "2023-04-22",
+			Hour_begins: "9-00",
+			Hour_end:    "12-00",
+		},
+	)
 }
 
 func TestFindPlanningById(t *testing.T) {
@@ -34,7 +81,15 @@ func TestAllPlannings(t *testing.T) {
 }
 
 func TestUpdatePlanning(t *testing.T) {
-	pla := Planning{Id: 2, Name: "NEM", Location: "Transborder", Date_begins: "2023-04-23", Date_end: "2023-04-23", Hour_begins: "18-00", Hour_end: "23-59"}
+	pla := Planning{
+		Id:          2,
+		Name:        "NEM",
+		Location:    "Transborder",
+		Date_begins: "2023-04-23",
+		Date_end:    "2023-04-23",
+		Hour_begins: "18-00",
+		Hour_end:    "23-59",
+	}
 	UpdatePlanning(&pla)
 
 	pla_2 := FindPlanningById(2)
@@ -59,7 +114,16 @@ func TestDeletePlanningById(t *testing.T) {
 	}
 }
 func TestNewAttendee(t *testing.T) {
-	NewAttendee(&Attendee{Id_planning: 2, Id_volunteer: 3, Job: "Staff", Date: "2023-04-24", Hour_begins: "16-00", Hour_end: "18-00"})
+	NewAttendee(
+		&Attendee{
+			Id_planning:  2,
+			Id_volunteer: 3,
+			Job:          "Staff",
+			Date:         "2023-04-24",
+			Hour_begins:  "16-00",
+			Hour_end:     "18-00",
+		},
+	)
 }
 
 func TestAllAttendees(t *testing.T) {
@@ -96,7 +160,15 @@ func TestFindAttendeeByVolunteerId(t *testing.T) {
 }
 
 func TestUpdateAttendee(t *testing.T) {
-	att := Attendee{Id: 1, Id_planning: 1, Id_volunteer: 2, Job: "Staff", Date: "2023-04-23", Hour_begins: "10-00", Hour_end: "14-00"}
+	att := Attendee{
+		Id:           1,
+		Id_planning:  1,
+		Id_volunteer: 2,
+		Job:          "Staff",
+		Date:         "2023-04-23",
+		Hour_begins:  "10-00",
+		Hour_end:     "14-00",
+	}
 	UpdateAttendee(&att)
 
 	att_1 := FindAttendeeById(1)

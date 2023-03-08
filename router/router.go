@@ -12,6 +12,7 @@ import (
 
 var router *mux.Router
 var secure *mux.Router
+var server *http.Server
 
 // Define our struct
 type authenticationMiddleware struct {
@@ -65,6 +66,12 @@ func InitializeRouter() {
 	amw.Populate(helpers.TheAppConfig().Usersapi, helpers.TheAppConfig().Tokensapi)
 	secure = router.PathPrefix("/auth").Subrouter()
 	secure.Use(amw.Middleware)
+
+	// http server
+	server = &http.Server{
+		Addr:    ":" + helpers.TheAppConfig().PortApi,
+		Handler: router,
+	}
 }
 
 func GetRouter() *mux.Router {
@@ -73,4 +80,8 @@ func GetRouter() *mux.Router {
 
 func GetSecureRouter() *mux.Router {
 	return secure
+}
+
+func GetServer() *http.Server {
+	return server
 }

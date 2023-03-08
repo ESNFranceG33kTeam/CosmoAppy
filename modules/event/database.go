@@ -18,9 +18,9 @@ func CreateEventsTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical("database", "create table events got a problem.", err)
+		TheLogger().LogCritical("event", "create table events got a problem.", err)
 	} else {
-		TheLogger().LogInfo("database", "events table successfully created.")
+		TheLogger().LogInfo("event", "events table successfully created.")
 	}
 
 	_, err = TheDb().Exec(`
@@ -45,9 +45,9 @@ func CreateEventsTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical("database", "create table event_attendees got a problem.", err)
+		TheLogger().LogCritical("event_attendee", "create table event_attendees got a problem.", err)
 	} else {
-		TheLogger().LogInfo("database", "event_attendees table successfully created.")
+		TheLogger().LogInfo("event_attendee", "event_attendees table successfully created.")
 	}
 
 	_, err = TheDb().Exec(`
@@ -72,8 +72,8 @@ func CreateEventsTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical("database", "create table event_staffs got a problem.", err)
+		TheLogger().LogCritical("event_staff", "create table event_staffs got a problem.", err)
 	} else {
-		TheLogger().LogInfo("database", "event_staffs table successfully created.")
+		TheLogger().LogInfo("event_staff", "event_staffs table successfully created.")
 	}
 }

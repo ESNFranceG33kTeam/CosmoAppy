@@ -41,14 +41,13 @@ Usage :
 - **Build**
 
 ```bash
-docker build . -f docker/Dockerfile --tag cosmoappy:latest
+make docker-build
 ```
 
 - **Run**
 
 ```bash
-docker run -v $PWD/test/:/etc/CosmoAppy/conf -p 8080:8080 cosmoappy:latest \
-    -conf=/etc/CosmoAppy/conf/conf_docker.yaml
+make docker-run
 ```
 
 # API Documentation
@@ -61,6 +60,10 @@ docker run -v $PWD/test/:/etc/CosmoAppy/conf -p 8080:8080 cosmoappy:latest \
 - The healthcheck is available at the `/health` endpoint.
 - The status resume is available at the `/auth/status` endpoint.
 - The profile resume is available at the `/auth/profile` endpoint.
+
+## Galaxy CAS
+
+A connexion with the galaxy is available in the [coCAS module](cocas/README.md).
 
 ## Authentication
 

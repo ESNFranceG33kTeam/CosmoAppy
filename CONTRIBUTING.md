@@ -16,7 +16,7 @@ The API is split in 2 parts :
 - The framework : The main structure is init as an entire framework from scratch and its design as fondation.
 - The modules : In the folder [`modules`](modules/README.md), you can find any modules who create the endpoints.
 
-From those parts, the idea is to have a collection of modules and being able to all them as module galaxy (factory module).
+From those parts, the idea is to have a collection of modules and being able to call all them as module galaxy (factory module).
 
 # Guidelines
 
@@ -26,30 +26,36 @@ If you want to contribute in the framework, check the issue and/or send [me](htt
 
 ## How to start
 
-The project if based on `Go=1.19` (currently the latest on date 2022/11). And its running using `Docker`, for testing developpment, it can also be run locally by setting up a local `database`.
+The project if based on `Go=1.19` (currently the latest on date 2022/11). And its running using `Docker`, for testing developpment, it can also be run locally. All it need is setting up a local `database`. And some variables from the `.envrc` file.
+
+```
+export PASS_DB=root
+export TOKEN_API_TEST=test
+```
+
+Then :
 
 - **Build with Docker**
 
 ```bash
-docker build . -f docker/Dockerfile --tag cosmoappy:latest
+make docker-build
 ```
 
 - **Run with Docker**
 
 ```bash
-docker run -v $PWD/test/:/etc/CosmoAppy/conf -p 8080:8080 cosmoappy:latest \
-    -conf=/etc/CosmoAppy/conf/conf_docker.yaml
+make docker-run
 ```
 
 - **Run locally**
 
 ```bash
-go run .
+make start-app
 ```
 
-You will also to install (`direnv`)[https://direnv.net/].
-
-Some commands are also available in the [`makefile`](makefile).
+You can now call your api using :
+- Swagger : `http://127.0.0.1:8080/swagger`
+- CAS client : `http://127.0.0.1:8181`
 
 ## API documentation
 
@@ -70,5 +76,5 @@ The goal is to have every part of the API tested `>=80%`, currently some modules
 To run the unit tests, locally you can run :
 
 ```bash
-go test ./... -v
+make run-test
 ```
