@@ -30,7 +30,7 @@ This allow to retrieve roles and give access through galaxy.
 
 In order to use this module, you need to first be connect with the galaxy to retrived information from those endpoints.
 
-In result you will get a json with every information of the user, you can filter any role or section you want in order to connect him. 
+In result you will get a json with every information of the user, you can filter any role or section you want in order to connect him.
 
 But please keep in mind that if the field `admin` is at `true` you should keep him as administrator and give him full permissions. That in order to the g33kteam be able to give you full support.
 
