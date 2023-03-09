@@ -57,7 +57,7 @@ curl -X POST "https://${MYSERVER}/${SECURE}/events" \
     -d '{
         "name": "Conseil des 4",
         "date": "2023-05-23",
-        "location": "Plateau indigo, Johto",
+        "location": "Plateau indigo, Kanto",
         "nb_spots_max": 30,
         "nb_spots_taken": 30,
         "type": "sport",
@@ -158,8 +158,7 @@ curl -X POST "https://${MYSERVER}/${SECURE}/event_attendees" \
     -H "Content-Type: application/json" \
     -d '{
         "id_event": 2,
-        "id_adherent": 1,
-        "staff": false
+        "id_adherent": 1
     }'
 ```
 

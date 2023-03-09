@@ -7,43 +7,66 @@ import (
 // swagger:model Adherent
 type Adherent struct {
 	// Id of the adherent
-	// in: int64
+	// in: int
+	// read only: true
 	Id int `json:"id"`
 	// Firstname of the adherent
 	// in: string
+	// required: true
+	// example: Pichu
 	Firstname string `json:"firstname"`
 	// Lastname of the adherent
 	// in: string
+	// required: true
+	// example: Ketchum
 	Lastname string `json:"lastname"`
 	// Email of the adherent
 	// in: string
+	// required: true
+	// example: pichu@kanto.kt
 	Email string `json:"email"`
 	// Dateofbirth of the adherent
 	// in: string
+	// required: true
+	// example: 2000-05-22
 	Dateofbirth string `json:"dateofbirth"`
 	// Situation status of the adherent
 	// in: string
+	// required: true
+	// example: student
 	Situation string `json:"situation"`
 	// University of the adherent
 	// in: string
+	// required: true
+	// example: Indigo
 	University string `json:"university"`
 	// Homeland of the adherent
 	// in: string
+	// required: true
+	// example: Kanto
 	Homeland string `json:"homeland"`
 	// Speakabout of the adherent
 	// in: string
+	// required: true
+	// example: Twitter
 	Speakabout string `json:"speakabout"`
 	// Newsletter status of the adherent
 	// in: bool
+	// required: true
+	// example: true
 	Newsletter bool `json:"newsletter"`
 	// AdhesionDate date of the adhesion
 	// in: string
+	// required: true
+	// example: 2022-05-22
 	AdhesionDate string `json:"adhesion_date"`
 	// CreatedAt date of the adherent
 	// in: time.Time
+	// read only: true
 	CreatedAt time.Time `json:"created_at"`
 	// UpdatedAt date of the adherent
 	// in: time.Time
+	// read only: true
 	UpdatedAt time.Time `json:"updated_at"`
 }
 

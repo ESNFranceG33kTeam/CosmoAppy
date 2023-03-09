@@ -4,27 +4,35 @@ package planning
 type Planning struct {
 	// Id of the planning
 	// in: int64
+	// read only: true
 	Id int `json:"id"`
 	// Name of the planning
 	// in: string
+	// example: Permanence
 	Name string `json:"name"`
 	// Type of the planning
 	// in: string
+	// example: permanence
 	Type string `json:"type"`
 	// Location of the planning
 	// in: string
+	// example: Labo Prof Chen
 	Location string `json:"location"`
 	// Date_begins of the planning
 	// in: string
+	// example: 2023-05-23
 	Date_begins string `json:"date_begins"`
 	// Date_end of the planning
 	// in: string
+	// example: 2023-05-23
 	Date_end string `json:"date_end"`
 	// Hour_begins of the planning
 	// in: string
+	// example: 9:00:00
 	Hour_begins string `json:"hour_begins"`
 	// Hour_end of the planning
 	// in: string
+	// example: 18:00:00
 	Hour_end string `json:"hour_end"`
 }
 
@@ -34,24 +42,37 @@ type Plannings []Planning
 type Attendee struct {
 	// Id of the attendee
 	// in: int64
+	// read only: true
 	Id int `json:"id"`
 	// Id of the planning
-	// in: int64
+	// in: int
+	// example: 2
+	// required: true
 	Id_planning int `json:"id_planning"`
 	// Id of the volunteer
-	// in: int64
+	// in: int
+	// example: 1
+	// required: true
 	Id_volunteer int `json:"id_volunteer"`
 	// Job of the shift
 	// in: string
+	// example: staff
+	// required: true
 	Job string `json:"job"`
 	// Date of the shift
 	// in: string
+	// example: 2023-05-23
+	// required: true
 	Date string `json:"date"`
 	// Hour_begins of the shift
 	// in: string
+	// example: 10:00:00
+	// required: true
 	Hour_begins string `json:"hour_begins"`
 	// Hour_end of the shift
 	// in: string
+	// example: 12:00:00
+	// required: true
 	Hour_end string `json:"hour_end"`
 }
 

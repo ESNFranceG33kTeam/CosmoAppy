@@ -7,16 +7,22 @@ import (
 // swagger:model ESNcard
 type ESNcard struct {
 	// Id of the esncard
-	// in: int64
+	// in: int
+	// read only: true
 	Id int `json:"id"`
 	// Id of the adherent
 	// in: int64
+	// required: true
+	// example: 2
 	Id_adherent int `json:"id_adherent"`
 	// Code of the esncard
 	// in: string
+	// required: true
+	// example: aVeryTooLongCode
 	Esncard string `json:"esncard"`
 	// CreatedAt date of the esncard
 	// in: time.Time
+	// read only: true
 	CreatedAt time.Time `json:"created_at"`
 }
 
