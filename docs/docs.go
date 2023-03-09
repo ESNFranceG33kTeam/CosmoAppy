@@ -1,4 +1,4 @@
-// Package documentation CosmoAppy.
+// Package documentation CosmoAppy
 //
 // the purpose of this application is to provide an application
 // that is using plain go code to define an API
@@ -8,9 +8,8 @@
 // not yet...
 //
 //	Schemes: http, https
-//	Host: 127.0.0.1:8080
 //	BasePath: /
-//	Version: 0.0.1
+//	Version: latest
 //
 //	Consumes:
 //	- application/json
@@ -34,9 +33,12 @@ package docs
 type CommonSuccess struct {
 	// Status of the error
 	// in: int64
+	// example: 200
+	// required: true
 	Status int64 `json:"status"`
 	// Message of the error
 	// in: string
+	// example: successed
 	Message string `json:"message"`
 }
 
@@ -44,8 +46,12 @@ type CommonSuccess struct {
 type CommonError struct {
 	// Status of the error
 	// in: int64
+	// example: 400
+	// required: true
 	Status int64 `json:"status"`
 	// Message of the error
 	// in: string
+	// example: error
+	// required: true
 	Message string `json:"message"`
 }

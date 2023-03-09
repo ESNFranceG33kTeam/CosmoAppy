@@ -3,48 +3,941 @@ consumes:
   - application/json
 definitions:
   Adherent:
+    properties:
+      adhesion_date:
+        description: |-
+          AdhesionDate date of the adhesion
+          in: string
+        example: "2022-05-22"
+        type: string
+        x-go-name: AdhesionDate
+      created_at:
+        description: |-
+          CreatedAt date of the adherent
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: CreatedAt
+      dateofbirth:
+        description: |-
+          Dateofbirth of the adherent
+          in: string
+        example: "2000-05-22"
+        type: string
+        x-go-name: Dateofbirth
+      email:
+        description: |-
+          Email of the adherent
+          in: string
+        example: pichu@kanto.kt
+        type: string
+        x-go-name: Email
+      firstname:
+        description: |-
+          Firstname of the adherent
+          in: string
+        example: Pichu
+        type: string
+        x-go-name: Firstname
+      homeland:
+        description: |-
+          Homeland of the adherent
+          in: string
+        example: Kanto
+        type: string
+        x-go-name: Homeland
+      id:
+        description: |-
+          Id of the adherent
+          in: int
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      lastname:
+        description: |-
+          Lastname of the adherent
+          in: string
+        example: Ketchum
+        type: string
+        x-go-name: Lastname
+      newsletter:
+        description: |-
+          Newsletter status of the adherent
+          in: bool
+        example: true
+        type: boolean
+        x-go-name: Newsletter
+      situation:
+        description: |-
+          Situation status of the adherent
+          in: string
+        example: student
+        type: string
+        x-go-name: Situation
+      speakabout:
+        description: |-
+          Speakabout of the adherent
+          in: string
+        example: Twitter
+        type: string
+        x-go-name: Speakabout
+      university:
+        description: |-
+          University of the adherent
+          in: string
+        example: Indigo
+        type: string
+        x-go-name: University
+      updated_at:
+        description: |-
+          UpdatedAt date of the adherent
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: UpdatedAt
+    required:
+      - firstname
+      - lastname
+      - email
+      - dateofbirth
+      - situation
+      - university
+      - homeland
+      - speakabout
+      - newsletter
+      - adhesion_date
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/adherent
   CommonError:
+    properties:
+      message:
+        description: |-
+          Message of the error
+          in: string
+        example: error
+        type: string
+        x-go-name: Message
+      status:
+        description: |-
+          Status of the error
+          in: int64
+        example: 400
+        format: int64
+        type: integer
+        x-go-name: Status
+    required:
+      - status
+      - message
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/docs
   CommonSuccess:
+    properties:
+      message:
+        description: |-
+          Message of the error
+          in: string
+        example: successed
+        type: string
+        x-go-name: Message
+      status:
+        description: |-
+          Status of the error
+          in: int64
+        example: 200
+        format: int64
+        type: integer
+        x-go-name: Status
+    required:
+      - status
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/docs
   ESNcard:
+    properties:
+      created_at:
+        description: |-
+          CreatedAt date of the esncard
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: CreatedAt
+      esncard:
+        description: |-
+          Code of the esncard
+          in: string
+        example: aVeryTooLongCode
+        type: string
+        x-go-name: Esncard
+      id:
+        description: |-
+          Id of the esncard
+          in: int
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      id_adherent:
+        description: |-
+          Id of the adherent
+          in: int64
+        example: 2
+        format: int64
+        type: integer
+        x-go-name: Id_adherent
+    required:
+      - id_adherent
+      - esncard
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/esncard
   Event:
+    properties:
+      actif:
+        description: |-
+          Status of the event
+          in: bool
+        example: true
+        type: boolean
+        x-go-name: Actif
+      date:
+        description: |-
+          Date of the event
+          in: string
+        example: "2023-05-23"
+        type: string
+        x-go-name: Date
+      id:
+        description: |-
+          Id of the event
+          in: int64
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      location:
+        description: |-
+          Location of the event
+          in: string
+        example: Plateau indigo, Kanto
+        type: string
+        x-go-name: Location
+      name:
+        description: |-
+          Name of the event
+          in: string
+        example: Conseil des 4
+        type: string
+        x-go-name: Name
+      nb_spots_max:
+        description: |-
+          Number Spots Max of the event
+          in: int
+        example: 30
+        format: int64
+        type: integer
+        x-go-name: NbSpotsMax
+      nb_spots_taken:
+        description: |-
+          Number Spots Taken of the event
+          in: int
+        example: 30
+        format: int64
+        type: integer
+        x-go-name: NbSpotsTaken
+      price:
+        description: |-
+          Price of the event
+          in: float
+        example: 0
+        format: double
+        type: number
+        x-go-name: Price
+      type:
+        description: |-
+          Type of the event
+          in: string
+        example: sport
+        type: string
+        x-go-name: Type
+      url_facebook:
+        description: |-
+          Url of the event
+          in: string
+        example: https://facebook.com/ligue
+        type: string
+        x-go-name: Url
+    required:
+      - name
+      - date
+      - location
+      - nb_spots_max
+      - nb_spots_taken
+      - type
+      - price
+      - url_facebook
+      - actif
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
   Event_Attendee:
+    properties:
+      id:
+        description: |-
+          Id of the attendee
+          in: int64
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      id_adherent:
+        description: |-
+          Id of the adherent
+          in: int64
+        example: 1
+        format: int64
+        type: integer
+        x-go-name: Id_adherent
+      id_event:
+        description: |-
+          Id of the event
+          in: int64
+        example: 2
+        format: int64
+        type: integer
+        x-go-name: Id_event
+    required:
+      - id_event
+      - id_adherent
+    type: object
     x-go-name: Attendee
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
   Event_Staff:
+    properties:
+      id:
+        description: |-
+          Id of the staff
+          in: int64
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      id_event:
+        description: |-
+          Id of the event
+          in: int
+        example: 2
+        format: int64
+        type: integer
+        x-go-name: Id_event
+      id_volunteer:
+        description: |-
+          Id of the volunteer
+          in: int
+        example: 1
+        format: int64
+        type: integer
+        x-go-name: Id_volunteer
+    required:
+      - id_event
+      - id_volunteer
+    type: object
     x-go-name: Staff
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
   GalaxyConf:
+    properties:
+      CASServer:
+        type: string
+      ConfUrl:
+        type: string
+      Country:
+        type: string
+      ExtraUsername:
+        items:
+          type: string
+        type: array
+      G33kTeam:
+        items:
+          type: string
+        type: array
+      Roles:
+        items:
+          type: string
+        type: array
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/cocas
   Health:
+    properties:
+      message:
+        description: |-
+          Message of the api
+          in: string
+        example: Gosmo is feeling happy today :)
+        type: string
+        x-go-name: Message
+      title:
+        description: |-
+          Title of the api page
+          in: string
+        example: IT works !
+        type: string
+        x-go-name: Title
+    required:
+      - title
+      - message
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/health
   Money:
+    properties:
+      created_at:
+        description: |-
+          CreatedAt date of the operation
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: CreatedAt
+      id:
+        description: |-
+          Id of the entry
+          in: int
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      label:
+        description: |-
+          Label of the operation
+          in: string
+        example: event
+        type: string
+        x-go-name: Label
+      payment_date:
+        description: |-
+          Payment date of the operation
+          in: string
+        example: "2023-01-23"
+        type: string
+        x-go-name: PaymentDate
+      payment_type:
+        description: |-
+          Payment type of the operation
+          in: string
+        example: cash
+        type: string
+        x-go-name: PaymentType
+      price:
+        description: |-
+          Price of the operation
+          in: float
+        example: 1.5
+        format: double
+        type: number
+        x-go-name: Price
+    required:
+      - label
+      - price
+      - payment_type
+      - payment_date
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/money
   Planning:
+    properties:
+      date_begins:
+        description: |-
+          Date_begins of the planning
+          in: string
+        example: "2023-05-23"
+        type: string
+        x-go-name: Date_begins
+      date_end:
+        description: |-
+          Date_end of the planning
+          in: string
+        example: "2023-05-23"
+        type: string
+        x-go-name: Date_end
+      hour_begins:
+        description: |-
+          Hour_begins of the planning
+          in: string
+        example: "9:00:00"
+        type: string
+        x-go-name: Hour_begins
+      hour_end:
+        description: |-
+          Hour_end of the planning
+          in: string
+        example: "18:00:00"
+        type: string
+        x-go-name: Hour_end
+      id:
+        description: |-
+          Id of the planning
+          in: int64
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      location:
+        description: |-
+          Location of the planning
+          in: string
+        example: Labo Prof Chen
+        type: string
+        x-go-name: Location
+      name:
+        description: |-
+          Name of the planning
+          in: string
+        example: Permanence
+        type: string
+        x-go-name: Name
+      type:
+        description: |-
+          Type of the planning
+          in: string
+        example: permanence
+        type: string
+        x-go-name: Type
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
   Planning_Attendee:
+    properties:
+      date:
+        description: |-
+          Date of the shift
+          in: string
+        example: "2023-05-23"
+        type: string
+        x-go-name: Date
+      hour_begins:
+        description: |-
+          Hour_begins of the shift
+          in: string
+        example: "10:00:00"
+        type: string
+        x-go-name: Hour_begins
+      hour_end:
+        description: |-
+          Hour_end of the shift
+          in: string
+        example: "12:00:00"
+        type: string
+        x-go-name: Hour_end
+      id:
+        description: |-
+          Id of the attendee
+          in: int64
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      id_planning:
+        description: |-
+          Id of the planning
+          in: int
+        example: 2
+        format: int64
+        type: integer
+        x-go-name: Id_planning
+      id_volunteer:
+        description: |-
+          Id of the volunteer
+          in: int
+        example: 1
+        format: int64
+        type: integer
+        x-go-name: Id_volunteer
+      job:
+        description: |-
+          Job of the shift
+          in: string
+        example: staff
+        type: string
+        x-go-name: Job
+    required:
+      - id_planning
+      - id_volunteer
+      - job
+      - date
+      - hour_begins
+      - hour_end
+    type: object
     x-go-name: Attendee
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
   Profile:
+    properties:
+      admin:
+        type: boolean
+        x-go-name: Admin
+      association:
+        type: string
+        x-go-name: Section
+      country:
+        type: string
+        x-go-name: Country
+      dateofbirth:
+        type: string
+        x-go-name: Birthdate
+      email:
+        type: string
+        x-go-name: Email
+      extended_roles:
+        items:
+          type: string
+        type: array
+        x-go-name: ExtendedRoles
+      firstname:
+        type: string
+        x-go-name: First
+      gender:
+        type: string
+        x-go-name: Gender
+      lastname:
+        type: string
+        x-go-name: Last
+      nationality:
+        type: string
+        x-go-name: Nationality
+      phone:
+        type: string
+        x-go-name: Phone
+      picture_url:
+        type: string
+        x-go-name: PictureURL
+      roles:
+        items:
+          type: string
+        type: array
+        x-go-name: Roles
+      section_code:
+        type: string
+        x-go-name: Sc
+      username:
+        type: string
+        x-go-name: Username
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/cocas
   Report:
+    properties:
+      code_project:
+        description: |-
+          Code projet of the event/planning/custom
+          in: string
+        example: PKMN
+        type: string
+        x-go-name: CodeProject
+      code_public:
+        description: |-
+          Code public of the event/planning/custom
+          in: string
+        example: ALL
+        type: string
+        x-go-name: CodePublic
+      comment:
+        description: |-
+          Comment of the report
+          in: string
+        example: It was amazing !
+        type: string
+        x-go-name: Comment
+      date:
+        description: |-
+          Date of the event/planning/custom
+          in: string
+        example: "2021-04-14"
+        type: string
+        x-go-name: Date
+      id:
+        description: |-
+          Id of the report
+          in: int
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      name:
+        description: |-
+          Name of the report
+          in: string
+        example: Report Ligue
+        type: string
+        x-go-name: Name
+      nb_hours:
+        description: |-
+          Number of hours of the event/planning/custom
+          in: float
+        example: 12
+        format: double
+        type: number
+        x-go-name: NbHours
+      nb_hours_prepa:
+        description: |-
+          Number of hours of preparation
+          in: float
+        example: 4
+        format: double
+        type: number
+        x-go-name: NbHoursPrepa
+      nb_reel_attendees:
+        description: |-
+          Number reel of attendees of the event/planning/custom
+          in: int
+        example: 20
+        format: int64
+        type: integer
+        x-go-name: NbReelAtt
+      nb_staffs_emp:
+        description: |-
+          Number of employee staffs of the event/planning/custom
+          in: float
+        example: 0
+        format: double
+        type: number
+        x-go-name: NbStaffsEmp
+      nb_staffs_scv:
+        description: |-
+          Number of Civic service staffs of the event/planning/custom
+          in: float
+        example: 0
+        format: double
+        type: number
+        x-go-name: NbStaffsScv
+      nb_staffs_vlt:
+        description: |-
+          Number of volunteer staffs of the event/planning/custom
+          in: float
+          excample: 3
+        format: double
+        type: number
+        x-go-name: NbStaffsVlt
+      nb_subscribe_attendees:
+        description: |-
+          Number subscribes of attendees of the event/planning/custom
+          in: int
+        example: 20
+        format: int64
+        type: integer
+        x-go-name: NbSubsAtt
+      ref_ext:
+        description: |-
+          External reference of the report
+          in: int
+        example: 1
+        format: int64
+        type: integer
+        x-go-name: RefExt
+      staffs_list:
+        description: |-
+          List of staffs of the event/planning/custom
+          in: string
+        example: John Smith, Toto titi, Ash Ketchum
+        type: string
+        x-go-name: StaffsList
+      taux_valorisation_emp:
+        description: |-
+          Taux employee Valorisation of the event/planning/custom
+          in: float
+        example: 18
+        format: double
+        type: number
+        x-go-name: TauxValorisationEmp
+      taux_valorisation_scv:
+        description: |-
+          Taux civic service Valorisation of the event/planning/custom
+          in: float
+        example: 18
+        format: double
+        type: number
+        x-go-name: TauxValorisationScv
+      taux_valorisation_vlt:
+        description: |-
+          Taux volunteer Valorisation of the event/planning/custom
+          in: float
+        example: 18
+        format: double
+        type: number
+        x-go-name: TauxValorisationVlt
+      type:
+        description: |-
+          Type of the report
+          in: string
+        example: event
+        type: string
+        x-go-name: Type
+    required:
+      - type
+      - ref_ext
+      - name
+      - date
+      - comment
+      - nb_reel_attendees
+      - nb_subscribe_attendees
+      - staffs_list
+      - nb_hours_prepa
+      - nb_hours
+      - nb_staffs_emp
+      - nb_staffs_scv
+      - taux_valorisation_vlt
+      - taux_valorisation_emp
+      - taux_valorisation_scv
+      - code_public
+      - code_project
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/report
   Status:
+    properties:
+      dbstatus:
+        description: |-
+          DbStatus of the api
+          in: string
+        example: everything is awesome <3
+        type: string
+        x-go-name: DbStatus
+      message:
+        description: |-
+          Message of the api
+          in: string
+        example: Gosmo is feeling happy today :)
+        type: string
+        x-go-name: Message
+      name:
+        description: |-
+          Name of the api
+          in: string
+        example: CosmoAppy
+        type: string
+        x-go-name: Name
+      title:
+        description: |-
+          Title of the api page
+          in: string
+        example: Status
+        type: string
+        x-go-name: Title
+      version:
+        description: |-
+          Version of the api
+          in: string
+        example: latest
+        type: string
+        x-go-name: Version
+    required:
+      - title
+      - name
+      - version
+      - message
+      - dbstatus
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/health
   Volunteer:
+    properties:
+      actif:
+        description: |-
+          Status of the volunteer
+          in: bool
+        type: boolean
+        x-go-name: Actif
+      bureau:
+        description: |-
+          Does the volunteer has a bureau role
+          in: bool
+        example: false
+        type: boolean
+        x-go-name: Bureau
+      discord:
+        description: |-
+          Discord pseudo
+          in: string
+        example: TheVeryBest
+        type: string
+        x-go-name: Discord
+      email:
+        description: |-
+          Email of the volunteer
+          in: string
+        example: ash.ketchum@indigo.kt
+        type: string
+        x-go-name: Email
+      firstname:
+        description: |-
+          Firstname of the volunteer
+          in: string
+        example: Ash
+        type: string
+        x-go-name: Firstname
+      hr_status:
+        description: |-
+          Status of the volunteer
+          in: string
+        example: volunteer
+        type: string
+        x-go-name: HrStatus
+      id:
+        description: |-
+          Id of the volunteer
+          in: int64
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      lastname:
+        description: |-
+          Lastname of the volunteer
+          in: string
+        example: Ketchum
+        type: string
+        x-go-name: Lastname
+      phone:
+        description: |-
+          Phone number
+          in: string
+        example: "0123456789"
+        type: string
+        x-go-name: Phone
+      postal_address:
+        description: |-
+          Postal address
+          in: string
+        example: 01 bis house, 00001 Pallet Town, Kanto
+        type: string
+        x-go-name: PostalAddress
+      started_date:
+        description: |-
+          Started of date of volunteering
+          in: string
+        example: "1997-04-01"
+        type: string
+        x-go-name: StartedDate
+      university:
+        description: |-
+          University name
+          in: string
+        example: Indigo
+        type: string
+        x-go-name: University
+    required:
+      - firstname
+      - lastname
+      - email
+      - discord
+      - phone
+      - university
+      - postal_address
+      - actif
+      - bureau
+      - hr_status
+      - started_date
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/volunteer
-host: 127.0.0.1:8080
 info:
   description: |-
     the purpose of this application is to provide an application
     that is using plain go code to define an API
   termsOfService: not yet...
-  title: CosmoAppy.
-  version: 0.0.1
+  title: CosmoAppy
+  version: latest
 paths:
   /auth/adherents:
     get:

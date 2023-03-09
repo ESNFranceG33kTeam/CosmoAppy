@@ -4,9 +4,13 @@ package health
 type Health struct {
 	// Title of the api page
 	// in: string
+	// required: true
+	// example: IT works !
 	Title string `json:"title"`
 	// Message of the api
 	// in: string
+	// required: true
+	// example: Gosmo is feeling happy today :)
 	Message string `json:"message"`
 }
 
@@ -14,18 +18,28 @@ type Health struct {
 type Status struct {
 	// Title of the api page
 	// in: string
+	// required: true
+	// example: Status
 	Title string `json:"title"`
 	// Name of the api
 	// in: string
+	// required: true
+	// example: CosmoAppy
 	Name string `json:"name"`
 	// Version of the api
 	// in: string
+	// required: true
+	// example: latest
 	Version string `json:"version"`
 	// Message of the api
 	// in: string
+	// required: true
+	// example: Gosmo is feeling happy today :)
 	Message string `json:"message"`
 	// DbStatus of the api
 	// in: string
+	// required: true
+	// example: everything is awesome <3
 	DbStatus string `json:"dbstatus"`
 }
 

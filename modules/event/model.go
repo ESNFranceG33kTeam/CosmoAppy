@@ -4,33 +4,52 @@ package event
 type Event struct {
 	// Id of the event
 	// in: int64
+	// read only: true
 	Id int `json:"id"`
 	// Name of the event
 	// in: string
+	// required: true
+	// example: Conseil des 4
 	Name string `json:"name"`
 	// Date of the event
 	// in: string
+	// required: true
+	// example: 2023-05-23
 	Date string `json:"date"`
 	// Location of the event
 	// in: string
+	// required: true
+	// example: Plateau indigo, Kanto
 	Location string `json:"location"`
 	// Number Spots Max of the event
 	// in: int
+	// required: true
+	// example: 30
 	NbSpotsMax int `json:"nb_spots_max"`
 	// Number Spots Taken of the event
 	// in: int
+	// required: true
+	// example: 30
 	NbSpotsTaken int `json:"nb_spots_taken"`
 	// Type of the event
 	// in: string
+	// required: true
+	// example: sport
 	Type string `json:"type"`
 	// Price of the event
 	// in: float
+	// required: true
+	// example: 0
 	Price float64 `json:"price"`
 	// Url of the event
 	// in: string
+	// required: true
+	// example: https://facebook.com/ligue
 	Url string `json:"url_facebook"`
 	// Status of the event
 	// in: bool
+	// required: true
+	// example: true
 	Actif bool `json:"actif"`
 }
 
@@ -40,12 +59,17 @@ type Events []Event
 type Attendee struct {
 	// Id of the attendee
 	// in: int64
+	// read only: true
 	Id int `json:"id"`
 	// Id of the event
 	// in: int64
+	// required: true
+	// example: 2
 	Id_event int `json:"id_event"`
 	// Id of the adherent
 	// in: int64
+	// required: true
+	// example: 1
 	Id_adherent int `json:"id_adherent"`
 }
 
@@ -55,12 +79,17 @@ type Attendees []Attendee
 type Staff struct {
 	// Id of the staff
 	// in: int64
+	// read only: true
 	Id int `json:"id"`
 	// Id of the event
-	// in: int64
+	// in: int
+	// required: true
+	// example: 2
 	Id_event int `json:"id_event"`
 	// Id of the volunteer
-	// in: int64
+	// in: int
+	// required: true
+	// example: 1
 	Id_volunteer int `json:"id_volunteer"`
 }
 

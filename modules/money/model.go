@@ -7,22 +7,32 @@ import (
 // swagger:model Money
 type Money struct {
 	// Id of the entry
-	// in: int64
+	// in: int
+	// read only: true
 	Id int `json:"id"`
 	// Label of the operation
 	// in: string
+	// example: event
+	// required: true
 	Label string `json:"label"`
 	// Price of the operation
 	// in: float
+	// example: 1.5
+	// required: true
 	Price float64 `json:"price"`
 	// Payment type of the operation
 	// in: string
+	// example: cash
+	// required: true
 	PaymentType string `json:"payment_type"`
 	// Payment date of the operation
 	// in: string
+	// example: 2023-01-23
+	// required: true
 	PaymentDate string `json:"payment_date"`
 	// CreatedAt date of the operation
 	// in: time.Time
+	// read only: true
 	CreatedAt time.Time `json:"created_at"`
 }
 

@@ -50,6 +50,8 @@ make docker-build
 make docker-run
 ```
 
+The default access port of the API is `8080`, so after it's running you should be able to access it from : `http://127.0.0.1:8080`.
+
 # API Documentation
 
 - A build-in interactive documentation is openly available at the `/docs` endpoint.

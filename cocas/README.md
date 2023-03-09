@@ -36,6 +36,8 @@ But please keep in mind that if the field `admin` is at `true` you should keep h
 
 ## Endpoints
 
+The default access port of coCAS is `8181`, so after it's running you should be able to access it from : `http://127.0.0.1:8181`.
+
 This API is callable without any authentication with `GET` call :
 
 - Login
