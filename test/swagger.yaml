@@ -441,6 +441,94 @@ definitions:
       - payment_date
     type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/money
+  Money_Stats:
+    properties:
+      archive_date:
+        description: |-
+          Archive date of the stat
+          in: string
+        example: 2023-01
+        type: string
+        x-go-name: ArchiveDate
+      avg_prices:
+        description: |-
+          Average prices per type of label
+          in: json
+        example:
+          adhesion: 12.5
+          esncard: 5
+        readOnly: true
+        type: object
+        x-go-name: AvgPrices
+      created_at:
+        description: |-
+          CreatedAt date of the operation
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: CreatedAt
+      id:
+        description: |-
+          Id of the entry
+          in: int
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      max_prices:
+        description: |-
+          Max prices per type of label
+          in: json
+        example:
+          adhesion: 20
+          esncard: 5
+        readOnly: true
+        type: object
+        x-go-name: MaxPrices
+      min_prices:
+        description: |-
+          Min prices per type of label
+          in: json
+        example:
+          adhesion: 1
+          esncard: 5
+        readOnly: true
+        type: object
+        x-go-name: MinPrices
+      nb_payments_type:
+        description: |-
+          Number of Payments type
+          in: json
+        example:
+          cash: 12
+          cb: 5
+        readOnly: true
+        type: object
+        x-go-name: NbPaymentTypes
+      nb_per_label:
+        description: |-
+          Number of each label
+          in: json
+        example:
+          esncard: 4
+          event: 12
+        readOnly: true
+        type: object
+        x-go-name: NbPerLabel
+      updated_at:
+        description: |-
+          UpdatedAt date of the operation
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: UpdatedAt
+    required:
+      - archive_date
+    type: object
+    x-go-name: Money_Stat
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/money
   Planning:
     properties:
       date_begins:
@@ -1531,6 +1619,76 @@ paths:
           schema:
             $ref: '#/definitions/CommonError'
       summary: Show a money operation.
+      tags:
+        - money
+  /auth/moneys/stats/monthly:
+    get:
+      operationId: MonthlyStatsIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get stats list.
+      tags:
+        - money
+  /auth/moneys/stats/monthly/{archive_date}:
+    get:
+      operationId: MonthlyStatsShowByDate
+      parameters:
+        - in: path
+          name: archive_date
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show stat for the archive_date.
+      tags:
+        - money
+  /auth/moneys/stats/monthly/create:
+    post:
+      operationId: AutoMonthlyStatCreate
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Generate stat of the past month.
+      tags:
+        - money
+  /auth/moneys/stats/monthly/force/{archive_date}:
+    post:
+      operationId: ForceMonthlyStatCreate
+      parameters:
+        - in: path
+          name: archive_date
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Generate stat of any past month.
       tags:
         - money
   /auth/planning_attendees:
