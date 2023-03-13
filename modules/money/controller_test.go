@@ -10,9 +10,30 @@ import (
 )
 
 func setUpController() {
-	NewMoney(&Money{Label: "ESNcard", Price: 5, PaymentType: "Carte bancaire", PaymentDate: time.Now().AddDate(0, -1, 0).Format("2006-01-02")})
-	NewMoney(&Money{Label: "Event", Price: 2, PaymentType: "Carte bancaire", PaymentDate: time.Now().AddDate(0, -1, 0).Format("2006-01-02")})
-	NewMoney(&Money{Label: "Travel", Price: 15, PaymentType: "Carte bancaire", PaymentDate: time.Now().AddDate(0, 0, 0).Format("2006-01-02")})
+	NewMoney(
+		&Money{
+			Label:       "ESNcard",
+			Price:       5,
+			PaymentType: "Carte bancaire",
+			PaymentDate: time.Now().AddDate(0, -1, 0).Format("2006-01-02"),
+		},
+	)
+	NewMoney(
+		&Money{
+			Label:       "Event",
+			Price:       2,
+			PaymentType: "Carte bancaire",
+			PaymentDate: time.Now().AddDate(0, -1, 0).Format("2006-01-02"),
+		},
+	)
+	NewMoney(
+		&Money{
+			Label:       "Travel",
+			Price:       15,
+			PaymentType: "Carte bancaire",
+			PaymentDate: time.Now().AddDate(0, 0, 0).Format("2006-01-02"),
+		},
+	)
 }
 
 func TestMoneysIndex(t *testing.T) {
