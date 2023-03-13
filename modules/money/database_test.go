@@ -10,4 +10,9 @@ func TestCreateMoneysTable(t *testing.T) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	_, err = TheDb().Exec("SHOW TABLES LIKE 'money_stats_monthly';")
+	if err != nil {
+		log.Fatal(err)
+	}
 }

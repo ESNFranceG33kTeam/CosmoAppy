@@ -38,9 +38,21 @@ func MonthlyStatShowByDate(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func MonthlyStatCreate(w http.ResponseWriter, r *http.Request) {
+func AutoMonthlyStatCreate(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json;charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
 
 	AutoNewMonthlyStat()
+	TheLogger().LogInfo("money_stat_monthly", "request GET : "+r.RequestURI)
+}
+
+func ForceMonthlyStatCreate(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json;charset=UTF-8")
+
+	vars := mux.Vars(r)
+	archive_date := vars["archive_date"]
+	w.WriteHeader(http.StatusOK)
+
+	AutoNewMonthlyStat(archive_date)
+	TheLogger().LogInfo("money_stat_monthly", "request GET : "+r.RequestURI)
 }

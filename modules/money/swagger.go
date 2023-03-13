@@ -40,8 +40,8 @@ package money
 //	400: CommonError
 //	200: CommonSuccess
 
-// swagger:route GET /auth/moneys/stats/monthly/archive_date/{archive_date} money MonthlyStatsShowByDate
-// Show stats for the archive_date.
+// swagger:route GET /auth/moneys/stats/monthly/{archive_date} money MonthlyStatsShowByDate
+// Show stat for the archive_date.
 //
 // parameters:
 //	+ name: archive_date
@@ -53,8 +53,21 @@ package money
 //	400: CommonError
 //	200: CommonSuccess
 
-// swagger:route POST /auth/moneys/stats/monthly/create money MonthlyStatCreate
-// Generate stats of the past month.
+// swagger:route POST /auth/moneys/stats/monthly/create money AutoMonthlyStatCreate
+// Generate stat of the past month.
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess
+
+// swagger:route POST /auth/moneys/stats/monthly/force/{archive_date} money ForceMonthlyStatCreate
+// Generate stat of any past month.
+//
+// parameters:
+//	+ name: archive_date
+//    in: path
+//    type: string
+//    required: true
 //
 // responses:
 //	400: CommonError

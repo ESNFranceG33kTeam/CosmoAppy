@@ -63,7 +63,7 @@ func MoneysShowByLabel(w http.ResponseWriter, r *http.Request) {
 	label := vars["label"]
 
 	w.WriteHeader(http.StatusOK)
-	mons := FindMoneyByLabel(label)
+	mons := FindMoneysByLabel(label)
 
 	err := json.NewEncoder(w).Encode(mons)
 	if err != nil {

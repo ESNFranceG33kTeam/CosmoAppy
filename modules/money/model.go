@@ -52,7 +52,7 @@ func NewMoney(mon *Money) {
 	}
 }
 
-func FindMoneyByLabel(label string) *Moneys {
+func FindMoneysByLabel(label string) *Moneys {
 	var mons Moneys
 
 	rows, err := TheDb().Query("SELECT * FROM moneys WHERE label = ?;", label)

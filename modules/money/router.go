@@ -16,12 +16,17 @@ func InitRoutes() {
 		HandlerFunc(MonthlyStatsIndex)
 
 	TheSecureRouter().Methods("GET").
-		Path("/moneys/stats/monthly/archive_date/{archive_date}").
+		Path("/moneys/stats/monthly/{archive_date}").
 		Name("Show").
 		HandlerFunc(MonthlyStatShowByDate)
 
 	TheSecureRouter().Methods("POST").
 		Path("/moneys/stats/monthly/create").
 		Name("Create").
-		HandlerFunc(MonthlyStatCreate)
+		HandlerFunc(AutoMonthlyStatCreate)
+
+	TheSecureRouter().Methods("POST").
+		Path("/moneys/stats/monthly/force/{archive_date}").
+		Name("Create").
+		HandlerFunc(ForceMonthlyStatCreate)
 }

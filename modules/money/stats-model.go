@@ -53,15 +53,68 @@ type Money_Stat struct {
 
 type Money_Stats []Money_Stat
 
-func AutoNewMonthlyStat() {
+func NewMonthlyStat(stat *Money_Stat) {
+	var err error
+	stmt, _ := TheDb().Prepare(
+		`INSERT INTO money_stats_monthly
+			(archive_date, nb_per_label, avg_prices, min_prices, max_prices, nb_payments_type,
+			created_at, updated_at)
+		VALUES (?,?,?,?,?,?,?,?);`,
+	)
+	_, err = stmt.Exec(
+		stat.ArchiveDate,
+		stat.NbPerLabel,
+		stat.AvgPrices,
+		stat.MinPrices,
+		stat.MaxPrices,
+		stat.NbPaymentTypes,
+		stat.CreatedAt,
+		stat.UpdatedAt,
+	)
+	if err != nil {
+		TheLogger().LogError("money_stat_monthly", "can't create new operation.", err)
+	}
+}
+
+func UpdateMonthlyStat(stat *Money_Stat) {
+	stmt, err := TheDb().Prepare(
+		`UPDATE money_stats_monthly SET
+			archive_date=?, nb_per_label=?, avg_prices=?, min_prices=?, max_prices=?,
+			nb_payments_type=?, updated_at=?
+		WHERE id=?;`,
+	)
+	if err != nil {
+		TheLogger().LogError("money_stat_monthly", "problem with the db.", err)
+	}
+
+	_, err = stmt.Exec(
+		stat.ArchiveDate,
+		stat.NbPerLabel,
+		stat.AvgPrices,
+		stat.MinPrices,
+		stat.MaxPrices,
+		stat.NbPaymentTypes,
+		stat.UpdatedAt,
+		stat.Id,
+	)
+
+	if err != nil {
+		TheLogger().LogError("money_stat_monthly", "stat can't be updated.", err)
+	}
+}
+
+func AutoNewMonthlyStat(archive_date ...string) {
 	var stat Money_Stat
 	var err error
 	stat.CreatedAt = time.Now()
 	stat.UpdatedAt = time.Now()
 
-	// Get data of past month
-	stat.ArchiveDate = stat.CreatedAt.AddDate(0, -1, 0).Format("2006-01")
-	//stat.ArchiveDate = "2022-04"
+	// Get data of the past
+	if archive_date != nil {
+		stat.ArchiveDate = archive_date[0]
+	} else {
+		stat.ArchiveDate = stat.CreatedAt.AddDate(0, -1, 0).Format("2006-01")
+	}
 	month_stats := FindMoneysByDate(stat.ArchiveDate)
 	if len(*month_stats) == 0 {
 		TheLogger().LogWarning("money_stat_monthly", "no data for this date.", err)
@@ -90,28 +143,23 @@ func AutoNewMonthlyStat() {
 		avgPrices[key] = float64(sumPrices[key]) / float64(value)
 	}
 
-	var countLabelsJson []byte
-	var avgPricesJson []byte
-	var minPricesJson []byte
-	var maxPricesJson []byte
-	var countPaymentsTypeJson []byte
-	countLabelsJson, err = json.Marshal(countLabels)
+	stat.NbPerLabel, err = json.Marshal(countLabels)
 	if err != nil {
 		TheLogger().LogError("money_stat_monthly", "problem with encoder.", err)
 	}
-	avgPricesJson, err = json.Marshal(avgPrices)
+	stat.AvgPrices, err = json.Marshal(avgPrices)
 	if err != nil {
 		TheLogger().LogError("money_stat_monthly", "problem with encoder.", err)
 	}
-	minPricesJson, err = json.Marshal(minPrices)
+	stat.MinPrices, err = json.Marshal(minPrices)
 	if err != nil {
 		TheLogger().LogError("money_stat_monthly", "problem with encoder.", err)
 	}
-	maxPricesJson, err = json.Marshal(maxPrices)
+	stat.MaxPrices, err = json.Marshal(maxPrices)
 	if err != nil {
 		TheLogger().LogError("money_stat_monthly", "problem with encoder.", err)
 	}
-	countPaymentsTypeJson, err = json.Marshal(countPaymentsType)
+	stat.NbPaymentTypes, err = json.Marshal(countPaymentsType)
 	if err != nil {
 		TheLogger().LogError("money_stat_monthly", "problem with encoder.", err)
 	}
@@ -120,49 +168,20 @@ func AutoNewMonthlyStat() {
 	previous_gen := FindMonthlyStatByDate(stat.ArchiveDate)
 	if previous_gen.Id != 0 {
 		TheLogger().LogInfo("money_stat_monthly", "this date has already been generated.")
-		stmt, err := TheDb().Prepare(
-			`UPDATE money_stats_monthly SET
-				archive_date=?, nb_per_label=?, avg_prices=?, min_prices=?, max_prices=?, nb_payments_type=?, updated_at=?
-			WHERE id=?;`,
-		)
-		if err != nil {
-			TheLogger().LogError("money_stat_monthly", "problem with the db.", err)
-		}
-
-		_, err = stmt.Exec(
-			stat.ArchiveDate,
-			string(countLabelsJson),
-			string(avgPricesJson),
-			string(minPricesJson),
-			string(maxPricesJson),
-			string(countPaymentsTypeJson),
-			stat.UpdatedAt,
-			previous_gen.Id,
-		)
-
-		if err != nil {
-			TheLogger().LogError("money_stat_monthly", "stat can't be updated.", err)
-		}
-
+		stat.Id = previous_gen.Id
+		UpdateMonthlyStat(&stat)
 	} else {
-		stmt, _ := TheDb().Prepare(
-			`INSERT INTO money_stats_monthly
-			(archive_date, nb_per_label, avg_prices, min_prices, max_prices, nb_payments_type, created_at, updated_at)
-			VALUES (?,?,?,?,?,?,?,?);`,
-		)
-		_, err = stmt.Exec(
-			stat.ArchiveDate, string(countLabelsJson), string(avgPricesJson), string(minPricesJson), string(maxPricesJson), string(countPaymentsTypeJson), stat.CreatedAt, stat.UpdatedAt,
-		)
-		if err != nil {
-			TheLogger().LogError("money_stat_monthly", "can't create new operation.", err)
-		}
+		NewMonthlyStat(&stat)
 	}
 }
 
 func FindMonthlyStatByDate(archive_date string) *Money_Stat {
 	var stat Money_Stat
 
-	rows := TheDb().QueryRow("SELECT * FROM money_stats_monthly WHERE archive_date = ?;", archive_date)
+	rows := TheDb().QueryRow(
+		"SELECT * FROM money_stats_monthly WHERE archive_date = ?;",
+		archive_date,
+	)
 	err := rows.Scan(
 		&stat.Id,
 		&stat.ArchiveDate,
