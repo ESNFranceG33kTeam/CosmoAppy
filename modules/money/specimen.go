@@ -148,4 +148,28 @@ func Specimen() {
 			PaymentDate: payment_date("2022-04-24"),
 		},
 	)
+	NewMoney(
+		&Money{
+			Label:       "Event",
+			Price:       80,
+			PaymentType: "Carte bancaire",
+			PaymentDate: payment_date("2023-02-24"),
+		},
+	)
+	NewMoney(
+		&Money{
+			Label:       "Event",
+			Price:       20,
+			PaymentType: "Carte bancaire",
+			PaymentDate: payment_date("2023-02-24"),
+		},
+	)
+	NewMoney(
+		&Money{
+			Label:       "ESNcard",
+			Price:       80,
+			PaymentType: "Carte bancaire",
+			PaymentDate: payment_date("2023-02-01"),
+		},
+	)
 }

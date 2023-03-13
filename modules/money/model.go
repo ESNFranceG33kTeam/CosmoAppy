@@ -83,6 +83,37 @@ func FindMoneyByLabel(label string) *Moneys {
 	return &mons
 }
 
+func FindMoneysByDate(payment_date string) *Moneys {
+	var mons Moneys
+
+	rows, err := TheDb().Query("SELECT * FROM moneys WHERE payment_date like ?;", payment_date+"%")
+
+	if err != nil {
+		TheLogger().LogWarning("money", "operations with payment_date not found.", err)
+	}
+
+	for rows.Next() {
+		var mon Money
+
+		err := rows.Scan(
+			&mon.Id,
+			&mon.Label,
+			&mon.Price,
+			&mon.PaymentType,
+			&mon.PaymentDate,
+			&mon.CreatedAt,
+		)
+
+		if err != nil {
+			TheLogger().LogError("money", "operations not found.", err)
+		}
+
+		mons = append(mons, mon)
+	}
+
+	return &mons
+}
+
 func AllMoneys() *Moneys {
 	var mons Moneys
 
