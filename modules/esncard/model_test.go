@@ -3,6 +3,7 @@ package esncard
 import (
 	"log"
 	"testing"
+	"time"
 )
 
 func setUpModel() {
@@ -31,6 +32,14 @@ func TestFindESNcardByESNcard(t *testing.T) {
 	}
 }
 
+func TestFindESNcardsbyDate(t *testing.T) {
+	cards := FindESNcardsByDate(time.Now().AddDate(0, 0, 0).Format("2006-01"))
+
+	if len(*cards) == 0 {
+		log.Fatal("Date is empty")
+	}
+}
+
 func TestAllESNcards(t *testing.T) {
 	cards := AllESNcards()
 
@@ -53,5 +62,26 @@ func TestDeleteESNcardById(t *testing.T) {
 		if card.Esncard == "AveryLittleCode" {
 			log.Fatal("Card_3 didn't be removed !")
 		}
+	}
+}
+
+func TestAutoNewMonthlyStat(t *testing.T) {
+	AutoNewMonthlyStat()
+	AutoNewMonthlyStat(time.Now().AddDate(0, 0, 0).Format("2006-01"))
+}
+
+func TestFindMonthlyStatByDate(t *testing.T) {
+	stat := FindMonthlyStatByDate(time.Now().AddDate(0, 0, 0).Format("2006-01"))
+
+	if stat.Id == 0 {
+		log.Fatal("Monthly stat of date is empty")
+	}
+}
+
+func TestAllMonthlyStats(t *testing.T) {
+	stats := AllMonthlyStats()
+
+	if len(*stats) == 0 {
+		log.Fatal("Monthly stat is empty")
 	}
 }

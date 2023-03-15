@@ -192,6 +192,52 @@ definitions:
       - esncard
     type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/esncard
+  ESNcard_Stat:
+    properties:
+      archive_date:
+        description: |-
+          Archive date of the stat
+          in: string
+        example: 2023-01
+        type: string
+        x-go-name: ArchiveDate
+      created_at:
+        description: |-
+          CreatedAt date of the stat
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: CreatedAt
+      id:
+        description: |-
+          Id of the entry
+          in: int
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      nb_esncard_sold:
+        description: |-
+          Number of esncard sold
+          in: json
+        example: 12
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: NbESNcardSold
+      updated_at:
+        description: |-
+          UpdatedAt date of the stat
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: UpdatedAt
+    required:
+      - archive_date
+    type: object
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/esncard
   Event:
     properties:
       actif:
@@ -1221,6 +1267,76 @@ paths:
           schema:
             $ref: '#/definitions/CommonError'
       summary: Show an esncard by the id_adherent.
+      tags:
+        - esncard
+  /auth/esncards/stats/monthly:
+    get:
+      operationId: MonthlyStatsIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get stats list.
+      tags:
+        - esncard
+  /auth/esncards/stats/monthly/{archive_date}:
+    get:
+      operationId: MonthlyStatsShowByDate
+      parameters:
+        - in: path
+          name: archive_date
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show stat for the archive_date.
+      tags:
+        - esncard
+  /auth/esncards/stats/monthly/create:
+    post:
+      operationId: AutoMonthlyStatCreate
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Generate stat of the past month.
+      tags:
+        - esncard
+  /auth/esncards/stats/monthly/force/{archive_date}:
+    post:
+      operationId: ForceMonthlyStatCreate
+      parameters:
+        - in: path
+          name: archive_date
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Generate stat of any past month.
       tags:
         - esncard
   /auth/event_attendees:

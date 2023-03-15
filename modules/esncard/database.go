@@ -2,7 +2,7 @@ package esncard
 
 func CreateESNcardsTable() {
 	_, err := TheDb().Exec(`
-		CREATE TABLE IF NOT EXISTS esncards (
+		CREATE TABLE IF NOT EXISTS ` + db_name + ` (
 			id INT NOT NULL AUTO_INCREMENT,
 			id_adherent INT NOT NULL,
 			esncard VARCHAR(45) NOT NULL,
@@ -19,8 +19,25 @@ func CreateESNcardsTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical("esncard", "create table esncards got a problem.", err)
+		TheLogger().LogCritical(log_name, "create table "+db_name+" got a problem.", err)
 	} else {
-		TheLogger().LogInfo("esncard", "esncards table successfully created.")
+		TheLogger().LogInfo(log_name, db_name+" table successfully created.")
+	}
+
+	_, err = TheDb().Exec(`
+		CREATE TABLE IF NOT EXISTS ` + db_name_monthly_stat + ` (
+			id INT NOT NULL AUTO_INCREMENT,
+			archive_date VARCHAR(45) NOT NULL,
+			nb_esncard_sold INT NOT NULL,
+			created_at TIMESTAMP NOT NULL,
+			updated_at TIMESTAMP NULL DEFAULT NULL,
+			PRIMARY KEY (id),
+			UNIQUE INDEX id_UNIQUE (id ASC)
+		);
+	`)
+	if err != nil {
+		TheLogger().LogCritical(log_name_monthly_stat, "create table "+db_name_monthly_stat+" got a problem.", err)
+	} else {
+		TheLogger().LogInfo(log_name_monthly_stat, db_name_monthly_stat+" table successfully created.")
 	}
 }

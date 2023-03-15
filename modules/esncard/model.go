@@ -31,22 +31,22 @@ type ESNcards []ESNcard
 func NewESNcard(card *ESNcard) {
 	card.CreatedAt = time.Now()
 
-	stmt, _ := TheDb().Prepare(`INSERT INTO esncards
+	stmt, _ := TheDb().Prepare(`INSERT INTO ` + db_name + `
 		(id_adherent, esncard, created_at) VALUES (?,?,?);`)
 	_, err := stmt.Exec(card.Id_adherent, card.Esncard, card.CreatedAt)
 	if err != nil {
-		TheLogger().LogError("esncard", "can't create new esncard.", err)
+		TheLogger().LogError(log_name, "can't create new esncard.", err)
 	}
 }
 
 func FindESNcardByIdadherent(id_adherent int) *ESNcard {
 	var card ESNcard
 
-	row := TheDb().QueryRow("SELECT * FROM esncards WHERE id_adherent = ?;", id_adherent)
+	row := TheDb().QueryRow("SELECT * FROM "+db_name+" WHERE id_adherent = ?;", id_adherent)
 	err := row.Scan(&card.Id, &card.Id_adherent, &card.Esncard, &card.CreatedAt)
 
 	if err != nil {
-		TheLogger().LogWarning("esncard", "esncard id_adherent not found.", err)
+		TheLogger().LogWarning(log_name, "esncard id_adherent not found.", err)
 	}
 
 	return &card
@@ -55,23 +55,52 @@ func FindESNcardByIdadherent(id_adherent int) *ESNcard {
 func FindESNcardByESNcard(esncard string) *ESNcard {
 	var card ESNcard
 
-	row := TheDb().QueryRow("SELECT * FROM esncards WHERE esncard = ?;", esncard)
+	row := TheDb().QueryRow("SELECT * FROM "+db_name+" WHERE esncard = ?;", esncard)
 	err := row.Scan(&card.Id, &card.Id_adherent, &card.Esncard, &card.CreatedAt)
 
 	if err != nil {
-		TheLogger().LogWarning("esncard", "esncard number not found.", err)
+		TheLogger().LogWarning(log_name, "esncard number not found.", err)
 	}
 
 	return &card
 }
 
+func FindESNcardsByDate(created_at string) *ESNcards {
+	var cards ESNcards
+
+	rows, err := TheDb().Query("SELECT * FROM "+db_name+" WHERE created_at like ?;", created_at+"%")
+
+	if err != nil {
+		TheLogger().LogWarning(log_name, "cards with created_at not found.", err)
+	}
+
+	for rows.Next() {
+		var card ESNcard
+
+		err := rows.Scan(
+			&card.Id,
+			&card.Id_adherent,
+			&card.Esncard,
+			&card.CreatedAt,
+		)
+
+		if err != nil {
+			TheLogger().LogInfo(log_name, "cards not found.")
+		}
+
+		cards = append(cards, card)
+	}
+
+	return &cards
+}
+
 func AllESNcards() *ESNcards {
 	var cards ESNcards
 
-	rows, err := TheDb().Query("SELECT * FROM esncards")
+	rows, err := TheDb().Query("SELECT * FROM " + db_name)
 
 	if err != nil {
-		TheLogger().LogError("esncard", "problem with the db.", err)
+		TheLogger().LogError(log_name, "problem with the db.", err)
 	}
 
 	// Close rows after all readed
@@ -83,7 +112,7 @@ func AllESNcards() *ESNcards {
 		err := rows.Scan(&card.Id, &card.Id_adherent, &card.Esncard, &card.CreatedAt)
 
 		if err != nil {
-			TheLogger().LogError("esncard", "esncards not found.", err)
+			TheLogger().LogError(log_name, "esncards not found.", err)
 		}
 
 		cards = append(cards, card)
@@ -93,15 +122,15 @@ func AllESNcards() *ESNcards {
 }
 
 func DeleteESNcardById(id int) error {
-	stmt, err := TheDb().Prepare("DELETE FROM esncards WHERE id=?;")
+	stmt, err := TheDb().Prepare("DELETE FROM " + db_name + " WHERE id=?;")
 
 	if err != nil {
-		TheLogger().LogError("esncard", "problem with the db.", err)
+		TheLogger().LogError(log_name, "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(id)
 	if err != nil {
-		TheLogger().LogError("esncard", "esncard can't be deleted.", err)
+		TheLogger().LogError(log_name, "esncard can't be deleted.", err)
 	}
 
 	return err

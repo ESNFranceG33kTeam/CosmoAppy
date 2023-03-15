@@ -5,47 +5,47 @@ Une stat est l'ensemble de tous les éléments d'un module sur 1 mois.
 Liste de statistiques disponible de base par module :
 
 ### Adherent
-- [ ] Nombre d'adherent total & /pays, /université, /situation
+- [ ] Nombre d'adherents total & /pays, /université, /situation
 - [ ] Nombre sur comment ils ont entendu parler de nous
 
 ### Volunteer
-- [ ] Nombre de bénévole total & /université, /ancienneté
+- [ ] Nombre de bénévoles total & /université, /ancienneté
 - [ ] Nombre d'alumnus
 - [ ] Nombre de bureau
 - [ ] Nombre de salarié, scv
 
 ### Mobilité
-- [ ] Nombre de mobilité total & /type, /destination
+- [ ] Nombre de mobilités total & /type, /destination
 
 ### Report
-- [ ] Nombre de report total & /code projet, /code public, /type
-- [ ] Nombre d'heure bénévole, salarié, scv
+- [ ] Nombre de reports total & /code projet, /code public, /type
+- [ ] Nombre d'heures bénévole, salarié, scv
 - [ ] Nb réel vs nb attendu de participants moyen/min/max (?)
 
 ### Chantier
-- [ ] Nombre de chantier & /code projet, /code public
-- [ ] Nombre de personne /chantier
+- [ ] Nombre de chantiers & /code projet, /code public
+- [ ] Nombre de personnes /chantier
 - [ ] ...
 :warning: besoin de définir un peu plus
 
 ### Planning
-- [ ] Nombre de planning total & /localisation, /type
+- [ ] Nombre de plannings total & /localisation, /type
 
 ### Event
-- [ ] Nombre d'event total & /localisation, /type, /prix(?)
-- [ ] Nombre d'event annulé
+- [ ] Nombre d'events total & /localisation, /type, /prix(?)
+- [ ] Nombre d'events annulé
 - [ ] Taux moyen/min/max de remplissable
 - [ ] Nombre de participants, staff
 
 ### Stock
-- [ ] Nombre de matériel dispo /type
-- [ ] Quantité utilisé de matériel /type
+- [ ] Nombre de matériels dispo /type
+- [ ] Quantité utilisé de matériels /type
 
 ### ESNcard
-- [ ] Nombre de cartes vendu
+- [x] Nombre de cartes vendu
 
 ### Money
-- [x] Nombre d'opération /label, /type
+- [x] Nombre d'opérations /label, /type
 - [x] Prix moyen/min/max /label
 
 ### SOS canapé
