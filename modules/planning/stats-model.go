@@ -1,12 +1,13 @@
-package esncard
+package planning
 
 import (
+	"encoding/json"
 	"errors"
 	"time"
 )
 
-// swagger:model ESNcard_Stat
-type ESNcard_Stat struct {
+// swagger:model Planning_Stat
+type Planning_Stat struct {
 	// Id of the entry
 	// in: int
 	// read only: true
@@ -16,11 +17,21 @@ type ESNcard_Stat struct {
 	// example: 2023-01
 	// required: true
 	ArchiveDate string `json:"archive_date"`
-	// Number of esncard sold
+	// Number of planning by location
+	// in: json
+	// example: {"MDE": 12, "MDEL": 4}
+	// read only: true
+	NbPerLocation json.RawMessage `json:"nb_per_location"`
+	// Number of planning by type
+	// in: json
+	// example: {"permanence": 12, "event": 4}
+	// read only: true
+	NbPerType json.RawMessage `json:"nb_per_type"`
+	// Number of planning total
 	// in: int
 	// example: 12
 	// read only: true
-	NbESNcardSold int `json:"nb_esncard_sold"`
+	NbTotal int `json:"nb_total"`
 	// CreatedAt date of the stat
 	// in: time.Time
 	// read only: true
@@ -31,18 +42,20 @@ type ESNcard_Stat struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-type ESNcard_Stats []ESNcard_Stat
+type Planning_Stats []Planning_Stat
 
-func NewMonthlyStat(stat *ESNcard_Stat) {
+func NewMonthlyStat(stat *Planning_Stat) {
 	var err error
 	stmt, _ := TheDb().Prepare(
 		"INSERT INTO " + db_name_monthly_stat + `
-			(archive_date, nb_esncard_sold, created_at, updated_at)
-		VALUES (?,?,?,?);`,
+			(archive_date, nb_per_location, nb_per_type, nb_total, created_at, updated_at)
+		VALUES (?,?,?,?,?,?);`,
 	)
 	_, err = stmt.Exec(
 		stat.ArchiveDate,
-		stat.NbESNcardSold,
+		stat.NbPerLocation,
+		stat.NbPerType,
+		stat.NbTotal,
 		stat.CreatedAt,
 		stat.UpdatedAt,
 	)
@@ -51,10 +64,10 @@ func NewMonthlyStat(stat *ESNcard_Stat) {
 	}
 }
 
-func UpdateMonthlyStat(stat *ESNcard_Stat) {
+func UpdateMonthlyStat(stat *Planning_Stat) {
 	stmt, err := TheDb().Prepare(
 		"UPDATE " + db_name_monthly_stat + ` SET
-			archive_date=?, nb_esncard_sold=?, updated_at=?
+			archive_date=?, nb_per_location=?, nb_per_type=?, nb_total=?, updated_at=?
 		WHERE id=?;`,
 	)
 	if err != nil {
@@ -63,7 +76,9 @@ func UpdateMonthlyStat(stat *ESNcard_Stat) {
 
 	_, err = stmt.Exec(
 		stat.ArchiveDate,
-		stat.NbESNcardSold,
+		stat.NbPerLocation,
+		stat.NbPerType,
+		stat.NbTotal,
 		stat.UpdatedAt,
 		stat.Id,
 	)
@@ -74,7 +89,8 @@ func UpdateMonthlyStat(stat *ESNcard_Stat) {
 }
 
 func AutoNewMonthlyStat(archive_date ...string) {
-	var stat ESNcard_Stat
+	var stat Planning_Stat
+	var err error
 	stat.CreatedAt = time.Now()
 	stat.UpdatedAt = time.Now()
 
@@ -84,14 +100,29 @@ func AutoNewMonthlyStat(archive_date ...string) {
 	} else {
 		stat.ArchiveDate = stat.CreatedAt.AddDate(0, -1, 0).Format("2006-01")
 	}
-	month_stats := FindESNcardsByDate(stat.ArchiveDate)
+	month_stats := FindPlanningsByDate(stat.ArchiveDate)
 	if len(*month_stats) == 0 {
 		TheLogger().LogWarning(log_name_monthly_stat, "no data for this date.", errors.New("no data"))
 		return
 	}
 
 	// Merge data
-	stat.NbESNcardSold = len(*month_stats)
+	countLocation := make(map[string]int)
+	countType := make(map[string]int)
+	for _, planning := range *month_stats {
+		countLocation[planning.Location]++
+		countType[planning.Type]++
+	}
+
+	stat.NbPerLocation, err = json.Marshal(countLocation)
+	if err != nil {
+		TheLogger().LogError(log_name_monthly_stat, "problem with encoder.", err)
+	}
+	stat.NbPerType, err = json.Marshal(countType)
+	if err != nil {
+		TheLogger().LogError(log_name_monthly_stat, "problem with encoder.", err)
+	}
+	stat.NbTotal = len(*month_stats)
 
 	// Add data into db
 	previous_gen := FindMonthlyStatByDate(stat.ArchiveDate)
@@ -104,8 +135,8 @@ func AutoNewMonthlyStat(archive_date ...string) {
 	}
 }
 
-func FindMonthlyStatByDate(archive_date string) *ESNcard_Stat {
-	var stat ESNcard_Stat
+func FindMonthlyStatByDate(archive_date string) *Planning_Stat {
+	var stat Planning_Stat
 
 	rows := TheDb().QueryRow(
 		"SELECT * FROM "+db_name_monthly_stat+" WHERE archive_date = ?;",
@@ -114,7 +145,9 @@ func FindMonthlyStatByDate(archive_date string) *ESNcard_Stat {
 	err := rows.Scan(
 		&stat.Id,
 		&stat.ArchiveDate,
-		&stat.NbESNcardSold,
+		&stat.NbPerLocation,
+		&stat.NbPerType,
+		&stat.NbTotal,
 		&stat.CreatedAt,
 		&stat.UpdatedAt,
 	)
@@ -126,8 +159,8 @@ func FindMonthlyStatByDate(archive_date string) *ESNcard_Stat {
 	return &stat
 }
 
-func AllMonthlyStats() *ESNcard_Stats {
-	var stats ESNcard_Stats
+func AllMonthlyStats() *Planning_Stats {
+	var stats Planning_Stats
 
 	rows, err := TheDb().Query("SELECT * FROM " + db_name_monthly_stat)
 
@@ -139,12 +172,14 @@ func AllMonthlyStats() *ESNcard_Stats {
 	defer rows.Close()
 
 	for rows.Next() {
-		var stat ESNcard_Stat
+		var stat Planning_Stat
 
 		err := rows.Scan(
 			&stat.Id,
 			&stat.ArchiveDate,
-			&stat.NbESNcardSold,
+			&stat.NbPerLocation,
+			&stat.NbPerType,
+			&stat.NbTotal,
 			&stat.CreatedAt,
 			&stat.UpdatedAt,
 		)

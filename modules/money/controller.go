@@ -15,9 +15,9 @@ func MoneysIndex(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(AllMoneys())
 	if err != nil {
-		TheLogger().LogError("money", "problem with indexation.", err)
+		TheLogger().LogError(log_name, "problem with indexation.", err)
 	} else {
-		TheLogger().LogInfo("money", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -26,20 +26,20 @@ func MoneysCreate(w http.ResponseWriter, r *http.Request) {
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("money", "problem with create.", err)
+		TheLogger().LogError(log_name, "problem with create.", err)
 	}
 
 	var mon Money
 
 	err = json.Unmarshal(body, &mon)
 	if err != nil {
-		TheLogger().LogError("money", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name, "problem with unmarshal.", err)
 	}
 
 	_, err = time.Parse("2006-01-02", mon.PaymentDate)
 
 	if err != nil {
-		TheLogger().LogInfo("money", "Date format wrong.")
+		TheLogger().LogInfo(log_name, "Date format wrong.")
 		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -50,9 +50,9 @@ func MoneysCreate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(mon)
 	if err != nil {
-		TheLogger().LogError("money", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("money", "request POST : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request POST : "+r.RequestURI)
 	}
 }
 
@@ -67,8 +67,8 @@ func MoneysShowByLabel(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(mons)
 	if err != nil {
-		TheLogger().LogError("money", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("money", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request GET : "+r.RequestURI)
 	}
 }

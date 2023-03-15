@@ -71,6 +71,14 @@ func TestFindPlanningById(t *testing.T) {
 	}
 }
 
+func TestFindPlanningsbyDate(t *testing.T) {
+	plas := FindPlanningsByDate("2023-04")
+
+	if len(*plas) == 0 {
+		log.Fatal("Date is empty")
+	}
+}
+
 func TestAllPlannings(t *testing.T) {
 	plas := AllPlannings()
 
@@ -190,5 +198,26 @@ func TestDeleteAttendeeById(t *testing.T) {
 		if att.Id == 3 {
 			log.Fatal("Att_3 didn't be removed !")
 		}
+	}
+}
+
+func TestAutoNewMonthlyStat(t *testing.T) {
+	AutoNewMonthlyStat()
+	AutoNewMonthlyStat("2023-04")
+}
+
+func TestFindMonthlyStatByDate(t *testing.T) {
+	stat := FindMonthlyStatByDate("2023-04")
+
+	if stat.Id == 0 {
+		log.Fatal("Monthly stat of date is empty")
+	}
+}
+
+func TestAllMonthlyStats(t *testing.T) {
+	stats := AllMonthlyStats()
+
+	if len(*stats) == 0 {
+		log.Fatal("Monthly stat is empty")
 	}
 }

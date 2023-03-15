@@ -42,23 +42,23 @@ func NewMoney(mon *Money) {
 	mon.CreatedAt = time.Now()
 
 	stmt, _ := TheDb().Prepare(
-		`INSERT INTO moneys
+		`INSERT INTO ` + db_name + `
 		(label, price, payment_type, payment_date, created_at)
 		VALUES (?,?,?,?,?);`,
 	)
 	_, err := stmt.Exec(mon.Label, mon.Price, mon.PaymentType, mon.PaymentDate, mon.CreatedAt)
 	if err != nil {
-		TheLogger().LogError("money", "can't create new operation.", err)
+		TheLogger().LogError(log_name, "can't create new operation.", err)
 	}
 }
 
 func FindMoneysByLabel(label string) *Moneys {
 	var mons Moneys
 
-	rows, err := TheDb().Query("SELECT * FROM moneys WHERE label = ?;", label)
+	rows, err := TheDb().Query("SELECT * FROM "+db_name+" WHERE label = ?;", label)
 
 	if err != nil {
-		TheLogger().LogWarning("money", "operations with label not found.", err)
+		TheLogger().LogWarning(log_name, "operations with label not found.", err)
 	}
 
 	for rows.Next() {
@@ -74,7 +74,7 @@ func FindMoneysByLabel(label string) *Moneys {
 		)
 
 		if err != nil {
-			TheLogger().LogError("money", "operations not found.", err)
+			TheLogger().LogError(log_name, "operations not found.", err)
 		}
 
 		mons = append(mons, mon)
@@ -86,10 +86,10 @@ func FindMoneysByLabel(label string) *Moneys {
 func FindMoneysByDate(payment_date string) *Moneys {
 	var mons Moneys
 
-	rows, err := TheDb().Query("SELECT * FROM moneys WHERE payment_date like ?;", payment_date+"%")
+	rows, err := TheDb().Query("SELECT * FROM "+db_name+" WHERE payment_date like ?;", payment_date+"%")
 
 	if err != nil {
-		TheLogger().LogWarning("money", "operations with payment_date not found.", err)
+		TheLogger().LogWarning(log_name, "operations with payment_date not found.", err)
 	}
 
 	for rows.Next() {
@@ -105,7 +105,7 @@ func FindMoneysByDate(payment_date string) *Moneys {
 		)
 
 		if err != nil {
-			TheLogger().LogInfo("money", "operations not found.")
+			TheLogger().LogInfo(log_name, "operations not found.")
 		}
 
 		mons = append(mons, mon)
@@ -117,10 +117,10 @@ func FindMoneysByDate(payment_date string) *Moneys {
 func AllMoneys() *Moneys {
 	var mons Moneys
 
-	rows, err := TheDb().Query("SELECT * FROM moneys")
+	rows, err := TheDb().Query("SELECT * FROM " + db_name)
 
 	if err != nil {
-		TheLogger().LogError("money", "problem with the db.", err)
+		TheLogger().LogError(log_name, "problem with the db.", err)
 	}
 
 	// Close rows after all readed
@@ -139,7 +139,7 @@ func AllMoneys() *Moneys {
 		)
 
 		if err != nil {
-			TheLogger().LogError("money", "operations not found.", err)
+			TheLogger().LogError(log_name, "operations not found.", err)
 		}
 
 		mons = append(mons, mon)

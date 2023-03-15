@@ -14,22 +14,13 @@ Liste de statistiques disponible de base par module :
 - [ ] Nombre de bureau
 - [ ] Nombre de salarié, scv
 
-### Mobilité
-- [ ] Nombre de mobilités total & /type, /destination
-
 ### Report
 - [ ] Nombre de reports total & /code projet, /code public, /type
 - [ ] Nombre d'heures bénévole, salarié, scv
 - [ ] Nb réel vs nb attendu de participants moyen/min/max (?)
 
-### Chantier
-- [ ] Nombre de chantiers & /code projet, /code public
-- [ ] Nombre de personnes /chantier
-- [ ] ...
-:warning: besoin de définir un peu plus
-
 ### Planning
-- [ ] Nombre de plannings total & /localisation, /type
+- [x] Nombre de plannings total & /localisation, /type
 
 ### Event
 - [ ] Nombre d'events total & /localisation, /type, /prix(?)
@@ -47,6 +38,17 @@ Liste de statistiques disponible de base par module :
 ### Money
 - [x] Nombre d'opérations /label, /type
 - [x] Prix moyen/min/max /label
+
+### Mobilité
+- [ ] Nombre de mobilités total & /type, /destination
+:warning: module non crée pour le moment
+
+### Chantier
+- [ ] Nombre de chantiers & /code projet, /code public
+- [ ] Nombre de personnes /chantier
+- [ ] ...
+:warning: besoin de définir un peu plus
+:warning: module non crée pour le moment
 
 ### SOS canapé
 :warning: module non défini pour le moment

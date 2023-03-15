@@ -43,4 +43,5 @@ func Specimen() {
 			Hour_end:     "18:00:00",
 		},
 	)
+	AutoNewMonthlyStat("2023-04")
 }

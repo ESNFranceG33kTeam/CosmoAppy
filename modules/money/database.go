@@ -2,7 +2,7 @@ package money
 
 func CreateMoneysTable() {
 	_, err := TheDb().Exec(`
-		CREATE TABLE IF NOT EXISTS moneys (
+		CREATE TABLE IF NOT EXISTS ` + db_name + ` (
 			id INT NOT NULL AUTO_INCREMENT,
 			label VARCHAR(45) NOT NULL,
 			price DECIMAL(6,2) NOT NULL,
@@ -14,13 +14,13 @@ func CreateMoneysTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical("money", "create table moneys got a problem.", err)
+		TheLogger().LogCritical(log_name, "create table "+db_name+" got a problem.", err)
 	} else {
-		TheLogger().LogInfo("money", "moneys table successfully created.")
+		TheLogger().LogInfo(log_name, db_name+" table successfully created.")
 	}
 
 	_, err = TheDb().Exec(`
-		CREATE TABLE IF NOT EXISTS money_stats_monthly (
+		CREATE TABLE IF NOT EXISTS ` + db_name_monthly_stat + ` (
 			id INT NOT NULL AUTO_INCREMENT,
 			archive_date VARCHAR(45) NOT NULL,
 			nb_per_label LONGTEXT NOT NULL,
@@ -35,8 +35,8 @@ func CreateMoneysTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical("money_stat_monthly", "create table money_stats_monthly got a problem.", err)
+		TheLogger().LogCritical(log_name_monthly_stat, "create table "+db_name_monthly_stat+" got a problem.", err)
 	} else {
-		TheLogger().LogInfo("money_stat_monthly", "money_stats_monthly table successfully created.")
+		TheLogger().LogInfo(log_name_monthly_stat, db_name_monthly_stat+" table successfully created.")
 	}
 }
