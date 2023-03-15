@@ -138,4 +138,3 @@ curl -X POST \
 ```
 
 Output : no output
-
