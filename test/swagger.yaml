@@ -220,7 +220,7 @@ definitions:
       nb_esncard_sold:
         description: |-
           Number of esncard sold
-          in: json
+          in: int
         example: 12
         format: int64
         readOnly: true
@@ -699,6 +699,72 @@ definitions:
       - hour_end
     type: object
     x-go-name: Attendee
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
+  Planning_Stat:
+    properties:
+      archive_date:
+        description: |-
+          Archive date of the stat
+          in: string
+        example: 2023-01
+        type: string
+        x-go-name: ArchiveDate
+      created_at:
+        description: |-
+          CreatedAt date of the stat
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: CreatedAt
+      id:
+        description: |-
+          Id of the entry
+          in: int
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      nb_per_location:
+        description: |-
+          Number of planning by location
+          in: json
+        example:
+          MDE: 12
+          MDEL: 4
+        readOnly: true
+        type: object
+        x-go-name: NbPerLocation
+      nb_per_type:
+        description: |-
+          Number of planning by type
+          in: json
+        example:
+          event: 4
+          permanence: 12
+        readOnly: true
+        type: object
+        x-go-name: NbPerType
+      nb_total:
+        description: |-
+          Number of planning total
+          in: int
+        example: 12
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: NbTotal
+      updated_at:
+        description: |-
+          UpdatedAt date of the stat
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: UpdatedAt
+    required:
+      - archive_date
+    type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
   Profile:
     properties:
@@ -2026,6 +2092,76 @@ paths:
           schema:
             $ref: '#/definitions/CommonError'
       summary: Update an planning.
+      tags:
+        - planning
+  /auth/plannings/stats/monthly:
+    get:
+      operationId: MonthlyStatsIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get stats list.
+      tags:
+        - planning
+  /auth/plannings/stats/monthly/{archive_date}:
+    get:
+      operationId: MonthlyStatsShowByDate
+      parameters:
+        - in: path
+          name: archive_date
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show stat for the archive_date.
+      tags:
+        - planning
+  /auth/plannings/stats/monthly/create:
+    post:
+      operationId: AutoMonthlyStatCreate
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Generate stat of the past month.
+      tags:
+        - planning
+  /auth/plannings/stats/monthly/force/{archive_date}:
+    post:
+      operationId: ForceMonthlyStatCreate
+      parameters:
+        - in: path
+          name: archive_date
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Generate stat of any past month.
       tags:
         - planning
   /auth/profile:

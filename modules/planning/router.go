@@ -1,7 +1,7 @@
 package planning
 
 func InitRoutes() {
-	// routes /events
+	// routes /plannings
 	TheSecureRouter().Methods("GET").Path("/plannings").Name("Index").HandlerFunc(PlanningsIndex)
 	TheSecureRouter().Methods("POST").
 		Path("/plannings").
@@ -20,6 +20,7 @@ func InitRoutes() {
 		Name("DELETE").
 		HandlerFunc(PlanningsDelete)
 
+	// /planning_attendees
 	TheSecureRouter().Methods("GET").
 		Path("/planning_attendees").
 		Name("Index").
@@ -44,4 +45,22 @@ func InitRoutes() {
 		Path("/planning_attendees/{id}").
 		Name("DELETE").
 		HandlerFunc(AttendeesDelete)
+
+	// stats
+	TheSecureRouter().Methods("GET").
+		Path("/plannings/stats/monthly").
+		Name("Index").
+		HandlerFunc(MonthlyStatsIndex)
+	TheSecureRouter().Methods("GET").
+		Path("/plannings/stats/monthly/{archive_date}").
+		Name("Show").
+		HandlerFunc(MonthlyStatShowByDate)
+	TheSecureRouter().Methods("POST").
+		Path("/plannings/stats/monthly/create").
+		Name("Create").
+		HandlerFunc(AutoMonthlyStatCreate)
+	TheSecureRouter().Methods("POST").
+		Path("/plannings/stats/monthly/force/{archive_date}").
+		Name("Create").
+		HandlerFunc(ForceMonthlyStatCreate)
 }

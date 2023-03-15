@@ -1,4 +1,4 @@
-package money
+package planning
 
 import (
 	"encoding/json"

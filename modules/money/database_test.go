@@ -6,12 +6,12 @@ import (
 )
 
 func TestCreateMoneysTable(t *testing.T) {
-	_, err := TheDb().Exec("SHOW TABLES LIKE 'moneys';")
+	_, err := TheDb().Exec("SHOW TABLES LIKE '" + db_name + "';")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	_, err = TheDb().Exec("SHOW TABLES LIKE 'money_stats_monthly';")
+	_, err = TheDb().Exec("SHOW TABLES LIKE '" + db_name_monthly_stat + "';")
 	if err != nil {
 		log.Fatal(err)
 	}

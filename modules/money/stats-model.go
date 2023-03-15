@@ -57,7 +57,7 @@ type Money_Stats []Money_Stat
 func NewMonthlyStat(stat *Money_Stat) {
 	var err error
 	stmt, _ := TheDb().Prepare(
-		`INSERT INTO money_stats_monthly
+		`INSERT INTO ` + db_name_monthly_stat + `
 			(archive_date, nb_per_label, avg_prices, min_prices, max_prices, nb_payments_type,
 			created_at, updated_at)
 		VALUES (?,?,?,?,?,?,?,?);`,
@@ -73,19 +73,19 @@ func NewMonthlyStat(stat *Money_Stat) {
 		stat.UpdatedAt,
 	)
 	if err != nil {
-		TheLogger().LogInfo("money_stat_monthly", "can't create new operation.")
+		TheLogger().LogInfo(log_name_monthly_stat, "can't create new stat.")
 	}
 }
 
 func UpdateMonthlyStat(stat *Money_Stat) {
 	stmt, err := TheDb().Prepare(
-		`UPDATE money_stats_monthly SET
+		`UPDATE ` + db_name_monthly_stat + ` SET
 			archive_date=?, nb_per_label=?, avg_prices=?, min_prices=?, max_prices=?,
 			nb_payments_type=?, updated_at=?
 		WHERE id=?;`,
 	)
 	if err != nil {
-		TheLogger().LogError("money_stat_monthly", "problem with the db.", err)
+		TheLogger().LogError(log_name_monthly_stat, "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(
@@ -100,7 +100,7 @@ func UpdateMonthlyStat(stat *Money_Stat) {
 	)
 
 	if err != nil {
-		TheLogger().LogInfo("money_stat_monthly", "stat can't be updated.")
+		TheLogger().LogInfo(log_name_monthly_stat, "stat can't be updated.")
 	}
 }
 
@@ -118,7 +118,7 @@ func AutoNewMonthlyStat(archive_date ...string) {
 	}
 	month_stats := FindMoneysByDate(stat.ArchiveDate)
 	if len(*month_stats) == 0 {
-		TheLogger().LogWarning("money_stat_monthly", "no data for this date.", errors.New("no data"))
+		TheLogger().LogWarning(log_name_monthly_stat, "no data for this date.", errors.New("no data"))
 		return
 	}
 
@@ -146,29 +146,29 @@ func AutoNewMonthlyStat(archive_date ...string) {
 
 	stat.NbPerLabel, err = json.Marshal(countLabels)
 	if err != nil {
-		TheLogger().LogError("money_stat_monthly", "problem with encoder.", err)
+		TheLogger().LogError(log_name_monthly_stat, "problem with encoder.", err)
 	}
 	stat.AvgPrices, err = json.Marshal(avgPrices)
 	if err != nil {
-		TheLogger().LogError("money_stat_monthly", "problem with encoder.", err)
+		TheLogger().LogError(log_name_monthly_stat, "problem with encoder.", err)
 	}
 	stat.MinPrices, err = json.Marshal(minPrices)
 	if err != nil {
-		TheLogger().LogError("money_stat_monthly", "problem with encoder.", err)
+		TheLogger().LogError(log_name_monthly_stat, "problem with encoder.", err)
 	}
 	stat.MaxPrices, err = json.Marshal(maxPrices)
 	if err != nil {
-		TheLogger().LogError("money_stat_monthly", "problem with encoder.", err)
+		TheLogger().LogError(log_name_monthly_stat, "problem with encoder.", err)
 	}
 	stat.NbPaymentTypes, err = json.Marshal(countPaymentsType)
 	if err != nil {
-		TheLogger().LogError("money_stat_monthly", "problem with encoder.", err)
+		TheLogger().LogError(log_name_monthly_stat, "problem with encoder.", err)
 	}
 
 	// Add data into db
 	previous_gen := FindMonthlyStatByDate(stat.ArchiveDate)
 	if previous_gen.Id != 0 {
-		TheLogger().LogInfo("money_stat_monthly", "this date has already been generated.")
+		TheLogger().LogInfo(log_name_monthly_stat, "this date has already been generated.")
 		stat.Id = previous_gen.Id
 		UpdateMonthlyStat(&stat)
 	} else {
@@ -180,7 +180,7 @@ func FindMonthlyStatByDate(archive_date string) *Money_Stat {
 	var stat Money_Stat
 
 	rows := TheDb().QueryRow(
-		"SELECT * FROM money_stats_monthly WHERE archive_date = ?;",
+		"SELECT * FROM "+db_name_monthly_stat+" WHERE archive_date = ?;",
 		archive_date,
 	)
 	err := rows.Scan(
@@ -196,7 +196,7 @@ func FindMonthlyStatByDate(archive_date string) *Money_Stat {
 	)
 
 	if err != nil {
-		TheLogger().LogInfo("money_stat_monthly", "operations not found.")
+		TheLogger().LogInfo(log_name_monthly_stat, "operations not found.")
 	}
 
 	return &stat
@@ -205,10 +205,10 @@ func FindMonthlyStatByDate(archive_date string) *Money_Stat {
 func AllMonthlyStats() *Money_Stats {
 	var stats Money_Stats
 
-	rows, err := TheDb().Query("SELECT * FROM money_stats_monthly")
+	rows, err := TheDb().Query("SELECT * FROM " + db_name_monthly_stat)
 
 	if err != nil {
-		TheLogger().LogError("money_stat_monthly", "problem with the db.", err)
+		TheLogger().LogError(log_name_monthly_stat, "problem with the db.", err)
 	}
 
 	// Close rows after all readed
@@ -230,7 +230,7 @@ func AllMonthlyStats() *Money_Stats {
 		)
 
 		if err != nil {
-			TheLogger().LogInfo("money_stat_monthly", "operations not found.")
+			TheLogger().LogInfo(log_name_monthly_stat, "stats not found.")
 		}
 
 		stats = append(stats, stat)

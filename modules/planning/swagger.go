@@ -138,3 +138,43 @@ package planning
 // responses:
 //	400: CommonError
 //	200: CommonSuccess
+
+// swagger:route GET /auth/plannings/stats/monthly planning MonthlyStatsIndex
+// Get stats list.
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess
+
+// swagger:route GET /auth/plannings/stats/monthly/{archive_date} planning MonthlyStatsShowByDate
+// Show stat for the archive_date.
+//
+// parameters:
+//	+ name: archive_date
+//    in: path
+//    type: string
+//    required: true
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess
+
+// swagger:route POST /auth/plannings/stats/monthly/create planning AutoMonthlyStatCreate
+// Generate stat of the past month.
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess
+
+// swagger:route POST /auth/plannings/stats/monthly/force/{archive_date} planning ForceMonthlyStatCreate
+// Generate stat of any past month.
+//
+// parameters:
+//	+ name: archive_date
+//    in: path
+//    type: string
+//    required: true
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess

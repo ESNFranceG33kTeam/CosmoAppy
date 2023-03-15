@@ -6,6 +6,7 @@ title: Module Planning / Planning Attendees
 
 - [Plannings endpoint](#plannings-endpoint)
 - [Planning Attendees endpoint](#planning-attendees-endpoint)
+- [Statistics endpoint](#statistics-endpoint)
 
 # Plannings endpoint
 
@@ -200,3 +201,61 @@ Output : no output
 ## Data Dependances
 
 In case of suppressing the a `planning` or an `volunteer` on who has a link an `attendee`, **this `attendee` will be delete as well**.
+
+# Statistics endpoint
+
+**Object description**
+
+- **Id**                int             `json:"id"`                 - Id of the stat
+- **ArchiveDate**       string          `json:"archive_date"`       - Date of the stat
+- **NbPerLocation**     json.RawMessage `json:"nb_per_location"`    - Number of planning by location
+- **NbPerType**         json.RawMessage `json:"nb_per_type"`        - Number of planning by type
+- **NbTotal**           int             `json:"nb_total"`           - Number of planning total
+- **CreatedAt**         time.Time       `json:"created_at"`         - Created date of the stat
+- **UpdatedAt**         time.Time       `json:"updated_at"`         - Updated date of the stat
+
+The parameters `id`, `created_at` and `updated_at` are calculated automatically.
+
+## Get
+
+- Get full list of stats :
+
+```bash
+curl -X GET \
+    "https://${MYSERVER}/${SECURE}/plannings/stats/monthly" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`[json]`) list of stats objects
+
+- Get only stat of a certain date :
+
+```bash
+curl -X GET \
+    "https://${MYSERVER}/${SECURE}/plannings/stats/monthly/2022-04" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`json`) stat object
+
+## Post
+
+- Generate stat of the last month :
+
+```bash
+curl -X POST \
+    "https://${MYSERVER}/${SECURE}/plannings/stats/monthly/create" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : no output
+
+- Generate stat of a certain past month :
+
+```bash
+curl -X POST \
+    "https://${MYSERVER}/${SECURE}/plannings/stats/monthly/force/2022-04" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : no output
