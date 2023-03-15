@@ -26,4 +26,25 @@ func InitRoutes() {
 		Path("/esncards/{id}").
 		Name("DELETE").
 		HandlerFunc(ESNcardsDelete)
+
+	// stats
+	TheSecureRouter().Methods("GET").
+		Path("/esncards/stats/monthly").
+		Name("Index").
+		HandlerFunc(MonthlyStatsIndex)
+
+	TheSecureRouter().Methods("GET").
+		Path("/esncards/stats/monthly/{archive_date}").
+		Name("Show").
+		HandlerFunc(MonthlyStatShowByDate)
+
+	TheSecureRouter().Methods("POST").
+		Path("/esncards/stats/monthly/create").
+		Name("Create").
+		HandlerFunc(AutoMonthlyStatCreate)
+
+	TheSecureRouter().Methods("POST").
+		Path("/esncards/stats/monthly/force/{archive_date}").
+		Name("Create").
+		HandlerFunc(ForceMonthlyStatCreate)
 }

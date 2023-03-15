@@ -58,3 +58,43 @@ package esncard
 // responses:
 //	400: CommonError
 //	200: CommonSuccess
+
+// swagger:route GET /auth/esncards/stats/monthly esncard MonthlyStatsIndex
+// Get stats list.
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess
+
+// swagger:route GET /auth/esncards/stats/monthly/{archive_date} esncard MonthlyStatsShowByDate
+// Show stat for the archive_date.
+//
+// parameters:
+//	+ name: archive_date
+//    in: path
+//    type: string
+//    required: true
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess
+
+// swagger:route POST /auth/esncards/stats/monthly/create esncard AutoMonthlyStatCreate
+// Generate stat of the past month.
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess
+
+// swagger:route POST /auth/esncards/stats/monthly/force/{archive_date} esncard ForceMonthlyStatCreate
+// Generate stat of any past month.
+//
+// parameters:
+//	+ name: archive_date
+//    in: path
+//    type: string
+//    required: true
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess

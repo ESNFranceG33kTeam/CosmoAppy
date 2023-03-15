@@ -15,9 +15,9 @@ func ESNcardsIndex(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(AllESNcards())
 	if err != nil {
-		TheLogger().LogError("esncard", "problem with indexation.", err)
+		TheLogger().LogError(log_name, "problem with indexation.", err)
 	} else {
-		TheLogger().LogInfo("esncard", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -26,14 +26,14 @@ func ESNcardsCreate(w http.ResponseWriter, r *http.Request) {
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("esncard", "problem with create.", err)
+		TheLogger().LogError(log_name, "problem with create.", err)
 	}
 
 	var card ESNcard
 
 	err = json.Unmarshal(body, &card)
 	if err != nil {
-		TheLogger().LogError("esncard", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name, "problem with unmarshal.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -41,9 +41,9 @@ func ESNcardsCreate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(card)
 	if err != nil {
-		TheLogger().LogError("esncard", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("esncard", "request POST : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request POST : "+r.RequestURI)
 	}
 }
 
@@ -53,7 +53,7 @@ func ESNcardsShowByIdAdherent(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id_adherent, err := strconv.Atoi(vars["id_adherent"])
 	if err != nil {
-		TheLogger().LogError("esncard", "unable to get id_adherent.", err)
+		TheLogger().LogError(log_name, "unable to get id_adherent.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -61,9 +61,9 @@ func ESNcardsShowByIdAdherent(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(card)
 	if err != nil {
-		TheLogger().LogError("esncard", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("esncard", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -78,9 +78,9 @@ func ESNcardsShowByESNcard(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(card)
 	if err != nil {
-		TheLogger().LogError("esncard", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("esncard", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -92,14 +92,14 @@ func ESNcardsDelete(w http.ResponseWriter, r *http.Request) {
 	// strconv.Atoi is shorthand for ParseInt
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("esncard", "unable to get id.", err)
+		TheLogger().LogError(log_name, "unable to get id.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
 	err = DeleteESNcardById(id)
 	if err != nil {
-		TheLogger().LogError("esncard", "unable to delete esncard.", err)
+		TheLogger().LogError(log_name, "unable to delete esncard.", err)
 	} else {
-		TheLogger().LogInfo("esncard", "request DELETE : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request DELETE : "+r.RequestURI)
 	}
 }

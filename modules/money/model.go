@@ -105,7 +105,7 @@ func FindMoneysByDate(payment_date string) *Moneys {
 		)
 
 		if err != nil {
-			TheLogger().LogError("money", "operations not found.", err)
+			TheLogger().LogInfo("money", "operations not found.")
 		}
 
 		mons = append(mons, mon)

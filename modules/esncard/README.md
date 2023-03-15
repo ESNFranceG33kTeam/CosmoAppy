@@ -2,6 +2,11 @@
 title: Module ESNcard
 ---
 
+# Table of Contents
+
+- [ESNcards endpoint](#esncards-endpoint)
+- [Statistics endpoint](#statistics-endpoint)
+
 # ESNcards endpoint
 
 **Object description**
@@ -77,3 +82,60 @@ Output : no output
 ## Data Dependances
 
 In case of suppressing an `adherent` on who has a link an `esncard`, **this `esncard` will be delete as well**.
+
+# Statistics endpoint
+
+**Object description**
+
+- **Id**                int             `json:"id"`                 - Id of the stat
+- **ArchiveDate**       string          `json:"archive_date"`       - Date of the stat
+- **NbESNcardSold**     int             `json:"nb_esncard_sold"`    - Number of esncard sold
+- **CreatedAt**         time.Time       `json:"created_at"`         - Created date of the stat
+- **UpdatedAt**         time.Time       `json:"updated_at"`         - Updated date of the stat
+
+The parameters `id`, `created_at` and `updated_at` are calculated automatically.
+
+## Get
+
+- Get full list of stats :
+
+```bash
+curl -X GET \
+    "https://${MYSERVER}/${SECURE}/esncards/stats/monthly" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`[json]`) list of stats objects
+
+- Get only stat of a certain date :
+
+```bash
+curl -X GET \
+    "https://${MYSERVER}/${SECURE}/esncards/stats/monthly/2022-04" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`json`) stat object
+
+## Post
+
+- Generate stat of the last month :
+
+```bash
+curl -X POST \
+    "https://${MYSERVER}/${SECURE}/esncards/stats/monthly/create" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : no output
+
+- Generate stat of a certain past month :
+
+```bash
+curl -X POST \
+    "https://${MYSERVER}/${SECURE}/esncards/stats/monthly/force/2022-04" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : no output
+

@@ -14,4 +14,6 @@ func Specimen() {
 
 	rand_numb = strconv.Itoa(rand.Intn(9999999-1000000) + 1000000)
 	NewESNcard(&ESNcard{Id_adherent: 2, Esncard: rand_numb})
+
+	AutoNewMonthlyStat(time.Now().AddDate(0, 0, 0).Format("2006-01"))
 }

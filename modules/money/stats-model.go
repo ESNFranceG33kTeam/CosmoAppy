@@ -2,6 +2,7 @@ package money
 
 import (
 	"encoding/json"
+	"errors"
 	"time"
 )
 
@@ -72,7 +73,7 @@ func NewMonthlyStat(stat *Money_Stat) {
 		stat.UpdatedAt,
 	)
 	if err != nil {
-		TheLogger().LogError("money_stat_monthly", "can't create new operation.", err)
+		TheLogger().LogInfo("money_stat_monthly", "can't create new operation.")
 	}
 }
 
@@ -99,7 +100,7 @@ func UpdateMonthlyStat(stat *Money_Stat) {
 	)
 
 	if err != nil {
-		TheLogger().LogError("money_stat_monthly", "stat can't be updated.", err)
+		TheLogger().LogInfo("money_stat_monthly", "stat can't be updated.")
 	}
 }
 
@@ -117,7 +118,7 @@ func AutoNewMonthlyStat(archive_date ...string) {
 	}
 	month_stats := FindMoneysByDate(stat.ArchiveDate)
 	if len(*month_stats) == 0 {
-		TheLogger().LogWarning("money_stat_monthly", "no data for this date.", err)
+		TheLogger().LogWarning("money_stat_monthly", "no data for this date.", errors.New("no data"))
 		return
 	}
 
@@ -195,7 +196,7 @@ func FindMonthlyStatByDate(archive_date string) *Money_Stat {
 	)
 
 	if err != nil {
-		TheLogger().LogError("money_stat_monthly", "operations not found.", err)
+		TheLogger().LogInfo("money_stat_monthly", "operations not found.")
 	}
 
 	return &stat
@@ -229,7 +230,7 @@ func AllMonthlyStats() *Money_Stats {
 		)
 
 		if err != nil {
-			TheLogger().LogError("money_stat_monthly", "operations not found.", err)
+			TheLogger().LogInfo("money_stat_monthly", "operations not found.")
 		}
 
 		stats = append(stats, stat)
