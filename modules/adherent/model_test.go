@@ -31,7 +31,7 @@ func setUpModel() {
 			Homeland:     "Mexique",
 			Speakabout:   "Twitter",
 			Newsletter:   false,
-			AdhesionDate: "1995-04-24",
+			AdhesionDate: "2022-04-24",
 		},
 	)
 	NewAdherent(
@@ -45,7 +45,7 @@ func setUpModel() {
 			Homeland:     "Mexique",
 			Speakabout:   "Twitter",
 			Newsletter:   true,
-			AdhesionDate: "1995-04-24",
+			AdhesionDate: "2022-04-24",
 		},
 	)
 	NewAdherent(
@@ -59,7 +59,7 @@ func setUpModel() {
 			Homeland:     "USA",
 			Speakabout:   "Twitter",
 			Newsletter:   false,
-			AdhesionDate: "1995-04-24",
+			AdhesionDate: "2022-04-24",
 		},
 	)
 }
@@ -141,5 +141,26 @@ func TestDeleteAdherentById(t *testing.T) {
 		if adh.Firstname == "Mario" {
 			log.Fatal("Adh_3 didn't be removed !")
 		}
+	}
+}
+
+func TestAutoNewMonthlyStat(t *testing.T) {
+	AutoNewMonthlyStat()
+	AutoNewMonthlyStat("2022-04")
+}
+
+func TestFindMonthlyStatByDate(t *testing.T) {
+	stat := FindMonthlyStatByDate("2022-04")
+
+	if stat.Id == 0 {
+		log.Fatal("Monthly stat of date is empty")
+	}
+}
+
+func TestAllMonthlyStats(t *testing.T) {
+	stats := AllMonthlyStats()
+
+	if len(*stats) == 0 {
+		log.Fatal("Monthly stat is empty")
 	}
 }

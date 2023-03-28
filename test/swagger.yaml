@@ -111,6 +111,92 @@ definitions:
       - adhesion_date
     type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/adherent
+  Adherent_Stat:
+    properties:
+      aboutus_per_type:
+        description: |-
+          Number of how adherent heared about us per type
+          in: json
+        example:
+          facebook: 4
+          twitter: 12
+        readOnly: true
+        type: object
+        x-go-name: AboutusPerType
+      archive_date:
+        description: |-
+          Archive date of the stat
+          in: string
+        example: 2023-01
+        type: string
+        x-go-name: ArchiveDate
+      created_at:
+        description: |-
+          CreatedAt date of the stat
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: CreatedAt
+      id:
+        description: |-
+          Id of the entry
+          in: int
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      nb_per_country:
+        description: |-
+          Number of adherent by country
+          in: json
+        example:
+          Belgium: 4
+          Poland: 12
+        readOnly: true
+        type: object
+        x-go-name: NbPerCountry
+      nb_per_situation:
+        description: |-
+          Number of adherent by situation
+          in: json
+        example:
+          student: 12
+          worker: 4
+        readOnly: true
+        type: object
+        x-go-name: NbPerSituation
+      nb_per_university:
+        description: |-
+          Number of adherent by university
+          in: json
+        example:
+          Lumiere: 1
+          SciencePo: 4
+        readOnly: true
+        type: object
+        x-go-name: NbPerUniversity
+      nb_total:
+        description: |-
+          Number of adherent total
+          in: int
+        example: 12
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: NbTotal
+      updated_at:
+        description: |-
+          UpdatedAt date of the stat
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: UpdatedAt
+    required:
+      - archive_date
+    type: object
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/adherent
   CommonError:
     properties:
       message:
@@ -1237,6 +1323,76 @@ paths:
           schema:
             $ref: '#/definitions/CommonError'
       summary: Update an adherent.
+      tags:
+        - adherent
+  /auth/adherents/stats/monthly:
+    get:
+      operationId: MonthlyStatsIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get stats list.
+      tags:
+        - adherent
+  /auth/adherents/stats/monthly/{archive_date}:
+    get:
+      operationId: MonthlyStatsShowByDate
+      parameters:
+        - in: path
+          name: archive_date
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show stat for the archive_date.
+      tags:
+        - adherent
+  /auth/adherents/stats/monthly/create:
+    post:
+      operationId: AutoMonthlyStatCreate
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Generate stat of the past month.
+      tags:
+        - adherent
+  /auth/adherents/stats/monthly/force/{archive_date}:
+    post:
+      operationId: ForceMonthlyStatCreate
+      parameters:
+        - in: path
+          name: archive_date
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Generate stat of any past month.
       tags:
         - adherent
   /auth/esncards:

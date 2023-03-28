@@ -5,8 +5,8 @@ Une stat est l'ensemble de tous les éléments d'un module sur 1 mois.
 Liste de statistiques disponible de base par module :
 
 ### Adherent
-- [ ] Nombre d'adherents total & /pays, /université, /situation
-- [ ] Nombre sur comment ils ont entendu parler de nous
+- [x] Nombre d'adherents total & /pays, /université, /situation
+- [x] Nombre sur comment ils ont entendu parler de nous
 
 ### Volunteer
 - [ ] Nombre de bénévoles total & /université, /ancienneté
@@ -25,12 +25,13 @@ Liste de statistiques disponible de base par module :
 ### Event
 - [ ] Nombre d'events total & /localisation, /type, /prix(?)
 - [ ] Nombre d'events annulé
-- [ ] Taux moyen/min/max de remplissable
+- [ ] Taux moyen/min/max de remplissage
 - [ ] Nombre de participants, staff
 
 ### Stock
 - [ ] Nombre de matériels dispo /type
 - [ ] Quantité utilisé de matériels /type
+:warning: module non crée pour le moment
 
 ### ESNcard
 - [x] Nombre de cartes vendu

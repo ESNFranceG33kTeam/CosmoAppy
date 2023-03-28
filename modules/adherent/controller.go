@@ -16,9 +16,9 @@ func AdherentsIndex(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(AllAdherents())
 	if err != nil {
-		TheLogger().LogError("adherent", "problem with indexation.", err)
+		TheLogger().LogError(log_name, "problem with indexation.", err)
 	} else {
-		TheLogger().LogInfo("adherent", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -27,20 +27,20 @@ func AdherentsCreate(w http.ResponseWriter, r *http.Request) {
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("adherent", "problem with create.", err)
+		TheLogger().LogError(log_name, "problem with create.", err)
 	}
 
 	var adh Adherent
 
 	err = json.Unmarshal(body, &adh)
 	if err != nil {
-		TheLogger().LogError("adherent", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name, "problem with unmarshal.", err)
 	}
 
 	_, err = time.Parse("2006-01-02", adh.Dateofbirth)
 
 	if err != nil {
-		TheLogger().LogInfo("adherent", "Date format wrong.")
+		TheLogger().LogInfo(log_name, "Date format wrong.")
 		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -49,7 +49,7 @@ func AdherentsCreate(w http.ResponseWriter, r *http.Request) {
 	_, err = time.Parse("2006-01-02", adh.AdhesionDate)
 
 	if err != nil {
-		TheLogger().LogInfo("adherent", "Date format wrong.")
+		TheLogger().LogInfo(log_name, "Date format wrong.")
 		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -60,9 +60,9 @@ func AdherentsCreate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(adh)
 	if err != nil {
-		TheLogger().LogError("adherent", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("adherent", "request POST : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request POST : "+r.RequestURI)
 	}
 }
 
@@ -72,7 +72,7 @@ func AdherentsShow(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("adherent", "unable to get id.", err)
+		TheLogger().LogError(log_name, "unable to get id.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -80,9 +80,9 @@ func AdherentsShow(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(adh)
 	if err != nil {
-		TheLogger().LogError("adherent", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("adherent", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -92,25 +92,25 @@ func AdherentsUpdate(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("adherent", "unable to get id.", err)
+		TheLogger().LogError(log_name, "unable to get id.", err)
 	}
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("adherent", "problem with update.", err)
+		TheLogger().LogError(log_name, "problem with update.", err)
 	}
 
 	adh := FindAdherentById(id)
 
 	err = json.Unmarshal(body, &adh)
 	if err != nil {
-		TheLogger().LogError("adherent", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name, "problem with unmarshal.", err)
 	}
 
 	_, err = time.Parse("2006-01-02", adh.Dateofbirth)
 
 	if err != nil {
-		TheLogger().LogInfo("adherent", "Date format wrong.")
+		TheLogger().LogInfo(log_name, "Date format wrong.")
 		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -119,7 +119,7 @@ func AdherentsUpdate(w http.ResponseWriter, r *http.Request) {
 	_, err = time.Parse("2006-01-02", adh.AdhesionDate)
 
 	if err != nil {
-		TheLogger().LogInfo("adherent", "Date format wrong.")
+		TheLogger().LogInfo(log_name, "Date format wrong.")
 		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -130,9 +130,9 @@ func AdherentsUpdate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(adh)
 	if err != nil {
-		TheLogger().LogError("adherent", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("adherent", "request PUT : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request PUT : "+r.RequestURI)
 	}
 }
 
@@ -144,14 +144,14 @@ func AdherentsDelete(w http.ResponseWriter, r *http.Request) {
 	// strconv.Atoi is shorthand for ParseInt
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("adherent", "unable to get id.", err)
+		TheLogger().LogError(log_name, "unable to get id.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
 	err = DeleteAdherentById(id)
 	if err != nil {
-		TheLogger().LogError("adherent", "unable to delete adherent.", err)
+		TheLogger().LogError(log_name, "unable to delete adherent.", err)
 	} else {
-		TheLogger().LogInfo("adherent", "request DELETE : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request DELETE : "+r.RequestURI)
 	}
 }
