@@ -138,5 +138,5 @@ func Specimen() {
 			AdhesionDate: dateofbirth("2022-04-24"),
 		},
 	)
-
+	AutoNewMonthlyStat("2022-04")
 }

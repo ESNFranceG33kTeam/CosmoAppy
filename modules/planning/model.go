@@ -218,7 +218,7 @@ func UpdatePlanning(pla *Planning) {
 }
 
 func DeletePlanningById(id int) error {
-	stmt, err := TheDb().Prepare("DELETE FROM plannings WHERE id=?;")
+	stmt, err := TheDb().Prepare("DELETE FROM " + db_name + " WHERE id=?;")
 
 	if err != nil {
 		TheLogger().LogError(log_name, "problem with the db.", err)
