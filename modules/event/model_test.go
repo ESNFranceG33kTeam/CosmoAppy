@@ -234,3 +234,24 @@ func TestDeleteStaffById(t *testing.T) {
 		}
 	}
 }
+
+func TestAutoNewMonthlyStat(t *testing.T) {
+	AutoNewMonthlyStat()
+	AutoNewMonthlyStat("2023-04")
+}
+
+func TestFindMonthlyStatByDate(t *testing.T) {
+	stat := FindMonthlyStatByDate("2023-04")
+
+	if stat.Id == 0 {
+		log.Fatal("Monthly stat of date is empty")
+	}
+}
+
+func TestAllMonthlyStats(t *testing.T) {
+	stats := AllMonthlyStats()
+
+	if len(*stats) == 0 {
+		log.Fatal("Monthly stat is empty")
+	}
+}

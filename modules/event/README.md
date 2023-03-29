@@ -288,3 +288,68 @@ Output : no output
 ## Data Dependances
 
 In case of suppressing the a `planning` or an `volunteer` on who has a link an `staff`, **this `staff` will be delete as well**.
+
+# Statistics endpoint
+
+**Object description**
+
+- **Id**                int             `json:"id"`                         - Id of the stat
+- **ArchiveDate**       string          `json:"archive_date"`               - Date of the stat
+- **NbPerLocation**     json.RawMessage `json:"nb_per_location"`            - Number of event by location
+- **NbPerType**         json.RawMessage `json:"nb_per_type"`                - Number of event by type
+- **NbPerPrice**        json.RawMessage `json:"nb_per_price"`               - Number of event by price
+- **NbCancel**          int             `json:"nb_cancel"`                  - Number of event cancel
+- **NbTotal**           int             `json:"nb_total"`                   - Number of event total
+- **FulfillAvgPerType** json.RawMessage `json:"tx_avg_fulfill_per_type"`    - Average fulfill per type of event
+- **AvgAttPerType**     json.RawMessage `json:"nb_avg_att_per_type"`        - Average attendee per type of event
+- **AvgStaPerType**     json.RawMessage `json:"nb_avg_sta_per_type"`        - Average staff per type of event
+- **NbAttTotal**        int             `json:"nb_att_total"`               - Number of event attendees total
+- **NbStaTotal**        int             `json:"nb_sta_total"`               - Number of event staffs total
+- **CreatedAt**         time.Time       `json:"created_at"`                 - Created date of the stat
+- **UpdatedAt**         time.Time       `json:"updated_at"`                 - Updated date of the stat
+
+The parameters `id`, `created_at` and `updated_at` are calculated automatically.
+
+## Get
+
+- Get full list of stats :
+
+```bash
+curl -X GET \
+    "https://${MYSERVER}/${SECURE}/events/stats/monthly" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`[json]`) list of stats objects
+
+- Get only stat of a certain date :
+
+```bash
+curl -X GET \
+    "https://${MYSERVER}/${SECURE}/events/stats/monthly/2022-04" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`json`) stat object
+
+## Post
+
+- Generate stat of the last month :
+
+```bash
+curl -X POST \
+    "https://${MYSERVER}/${SECURE}/events/stats/monthly/create" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : no output
+
+- Generate stat of a certain past month :
+
+```bash
+curl -X POST \
+    "https://${MYSERVER}/${SECURE}/events/stats/monthly/force/2022-04" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : no output

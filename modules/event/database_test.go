@@ -6,17 +6,22 @@ import (
 )
 
 func TestCreateEventsTable(t *testing.T) {
-	_, err := TheDb().Exec("SHOW TABLES LIKE 'events';")
+	_, err := TheDb().Exec("SHOW TABLES LIKE '" + db_name + "';")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	_, err = TheDb().Exec("SHOW TABLES LIKE 'event_attendees';")
+	_, err = TheDb().Exec("SHOW TABLES LIKE '" + db_name_att + "';")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	_, err = TheDb().Exec("SHOW TABLES LIKE 'event_staffs';")
+	_, err = TheDb().Exec("SHOW TABLES LIKE '" + db_name_sta + "';")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	_, err = TheDb().Exec("SHOW TABLES LIKE '" + db_name_monthly_stat + "';")
 	if err != nil {
 		log.Fatal(err)
 	}

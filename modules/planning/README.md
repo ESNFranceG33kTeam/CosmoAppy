@@ -206,13 +206,15 @@ In case of suppressing the a `planning` or an `volunteer` on who has a link an `
 
 **Object description**
 
-- **Id**                int             `json:"id"`                 - Id of the stat
-- **ArchiveDate**       string          `json:"archive_date"`       - Date of the stat
-- **NbPerLocation**     json.RawMessage `json:"nb_per_location"`    - Number of planning by location
-- **NbPerType**         json.RawMessage `json:"nb_per_type"`        - Number of planning by type
-- **NbTotal**           int             `json:"nb_total"`           - Number of planning total
-- **CreatedAt**         time.Time       `json:"created_at"`         - Created date of the stat
-- **UpdatedAt**         time.Time       `json:"updated_at"`         - Updated date of the stat
+- **Id**                int             `json:"id"`                     - Id of the stat
+- **ArchiveDate**       string          `json:"archive_date"`           - Date of the stat
+- **NbPerLocation**     json.RawMessage `json:"nb_per_location"`        - Number of planning by location
+- **NbPerType**         json.RawMessage `json:"nb_per_type"`            - Number of planning by type
+- **NbTotal**           int             `json:"nb_total"`               - Number of planning total
+- **AvgAttPerType**     json.RawMessage `json:"nb_avg_att_per_type"`    - Average attendee per type of planning
+- **NbAttTotal**        int             `json:"nb_att_total"`           - Number of planning attendees total
+- **CreatedAt**         time.Time       `json:"created_at"`             - Created date of the stat
+- **UpdatedAt**         time.Time       `json:"updated_at"`             - Updated date of the stat
 
 The parameters `id`, `created_at` and `updated_at` are calculated automatically.
 

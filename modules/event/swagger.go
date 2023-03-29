@@ -214,3 +214,43 @@ package event
 // responses:
 //	400: CommonError
 //	200: CommonSuccess
+
+// swagger:route GET /auth/events/stats/monthly event MonthlyStatsIndex
+// Get stats list.
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess
+
+// swagger:route GET /auth/events/stats/monthly/{archive_date} event MonthlyStatsShowByDate
+// Show stat for the archive_date.
+//
+// parameters:
+//	+ name: archive_date
+//    in: path
+//    type: string
+//    required: true
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess
+
+// swagger:route POST /auth/events/stats/monthly/create event AutoMonthlyStatCreate
+// Generate stat of the past month.
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess
+
+// swagger:route POST /auth/events/stats/monthly/force/{archive_date} event ForceMonthlyStatCreate
+// Generate stat of any past month.
+//
+// parameters:
+//	+ name: archive_date
+//    in: path
+//    type: string
+//    required: true
+//
+// responses:
+//	400: CommonError
+//	200: CommonSuccess
