@@ -42,8 +42,8 @@ func CreateAdherentsTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical(db_name_monthly_stat, "create table "+db_name_monthly_stat+" got a problem.", err)
+		TheLogger().LogCritical(log_name_monthly_stat, "create table "+db_name_monthly_stat+" got a problem.", err)
 	} else {
-		TheLogger().LogInfo(db_name_monthly_stat, db_name_monthly_stat+" table successfully created.")
+		TheLogger().LogInfo(log_name_monthly_stat, db_name_monthly_stat+" table successfully created.")
 	}
 }

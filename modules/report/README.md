@@ -2,6 +2,11 @@
 title: Module Report
 ---
 
+# Table of Contents
+
+- [Reports endpoint](#reports-endpoint)
+- [Statistics endpoint](#statistics-endpoint)
+
 # Reports endpoint
 
 **Object description**
@@ -120,6 +125,71 @@ Output : (`json`) report object
 
 ```bash
 curl -X DELETE "https://${MYSERVER}/${SECURE}/reports/1" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : no output
+
+# Statistics endpoint
+
+**Object description**
+
+- **Id**                int             `json:"id"`                     - Id of the stat
+- **ArchiveDate**       string          `json:"archive_date"`           - Date of the stat
+- **NbPerCodePublic**   json.RawMessage `json:"nb_per_codepublic"`      - Number of report by code public
+- **NbPerCodeProject**  json.RawMessage `json:"nb_per_codeproject"`     - Number of report by code project
+- **NbPerType**         json.RawMessage `json:"nb_per_type"`            - Number of report by type
+- **NbTotal**           int             `json:"nb_total"`               - Number of report total
+- **HoursVltCodes**     json.RawMessage `json:"hours_vlt_per_codes"`    - Number of hours for a volunteer by code
+- **HoursEmpCodes**     json.RawMessage `json:"hours_emp_per_codes"`    - Number of hours for an employee by code
+- **HoursScvCodes**     json.RawMessage `json:"hours_scv_per_codes"`    - Number of hours for a scv by code
+- **ValoVltCodes**      json.RawMessage `json:"valo_vlt_per_codes"`     - Valorisation for a volunteer by code
+- **ValoEmpCodes**      json.RawMessage `json:"valo_emp_per_codes"`     - Valorisation for an employee by code
+- **ValoScvCodes**      json.RawMessage `json:"valo_scv_per_codes"`     - Valorisation for a scv by code
+- **CreatedAt**         time.Time       `json:"created_at"`             - Created date of the stat
+- **UpdatedAt**         time.Time       `json:"updated_at"`             - Updated date of the stat
+
+The parameters `id`, `created_at` and `updated_at` are calculated automatically.
+
+## Get
+
+- Get full list of stats :
+
+```bash
+curl -X GET \
+    "https://${MYSERVER}/${SECURE}/reports/stats/monthly" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`[json]`) list of stats objects
+
+- Get only stat of a certain date :
+
+```bash
+curl -X GET \
+    "https://${MYSERVER}/${SECURE}/reports/stats/monthly/2022-04" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`json`) stat object
+
+## Post
+
+- Generate stat of the last month :
+
+```bash
+curl -X POST \
+    "https://${MYSERVER}/${SECURE}/reports/stats/monthly/create" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : no output
+
+- Generate stat of a certain past month :
+
+```bash
+curl -X POST \
+    "https://${MYSERVER}/${SECURE}/reports/stats/monthly/force/2022-04" \
     -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
 ```
 

@@ -16,9 +16,9 @@ func ReportsIndex(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(AllReports())
 	if err != nil {
-		TheLogger().LogError("report", "problem with indexation.", err)
+		TheLogger().LogError(log_name, "problem with indexation.", err)
 	} else {
-		TheLogger().LogInfo("report", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -27,20 +27,20 @@ func ReportsCreate(w http.ResponseWriter, r *http.Request) {
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("report", "problem with create.", err)
+		TheLogger().LogError(log_name, "problem with create.", err)
 	}
 
 	var rpt Report
 
 	err = json.Unmarshal(body, &rpt)
 	if err != nil {
-		TheLogger().LogError("report", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name, "problem with unmarshal.", err)
 	}
 
 	_, err = time.Parse("2006-01-02", rpt.Date)
 
 	if err != nil {
-		TheLogger().LogInfo("report", "Date format wrong.")
+		TheLogger().LogInfo(log_name, "Date format wrong.")
 		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -51,9 +51,9 @@ func ReportsCreate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(rpt)
 	if err != nil {
-		TheLogger().LogError("report", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("report", "request POST : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request POST : "+r.RequestURI)
 	}
 }
 
@@ -63,7 +63,7 @@ func ReportsShowById(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("report", "unable to get id.", err)
+		TheLogger().LogError(log_name, "unable to get id.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -71,9 +71,9 @@ func ReportsShowById(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(rpt)
 	if err != nil {
-		TheLogger().LogError("report", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("report", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -83,25 +83,25 @@ func ReportsUpdate(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("report", "unable to get id.", err)
+		TheLogger().LogError(log_name, "unable to get id.", err)
 	}
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("report", "problem with update.", err)
+		TheLogger().LogError(log_name, "problem with update.", err)
 	}
 
 	rpt := FindReportById(id)
 
 	err = json.Unmarshal(body, &rpt)
 	if err != nil {
-		TheLogger().LogError("report", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name, "problem with unmarshal.", err)
 	}
 
 	_, err = time.Parse("2006-01-02", rpt.Date)
 
 	if err != nil {
-		TheLogger().LogInfo("report", "Date format wrong.")
+		TheLogger().LogInfo(log_name, "Date format wrong.")
 		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -112,9 +112,9 @@ func ReportsUpdate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(rpt)
 	if err != nil {
-		TheLogger().LogError("report", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("report", "request PUT : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request PUT : "+r.RequestURI)
 	}
 }
 
@@ -126,14 +126,14 @@ func ReportsDelete(w http.ResponseWriter, r *http.Request) {
 	// strconv.Atoi is shorthand for ParseInt
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("report", "unable to get id.", err)
+		TheLogger().LogError(log_name, "unable to get id.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
 	err = DeleteReportById(id)
 	if err != nil {
-		TheLogger().LogError("report", "unable to delete report.", err)
+		TheLogger().LogError(log_name, "unable to delete report.", err)
 	} else {
-		TheLogger().LogInfo("report", "request DELETE : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request DELETE : "+r.RequestURI)
 	}
 }

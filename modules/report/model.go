@@ -101,7 +101,7 @@ type Reports []Report
 
 func NewReport(rpt *Report) {
 	stmt, _ := TheDb().Prepare(`
-		INSERT INTO reports
+		INSERT INTO ` + db_name + `
 			(type, ref_ext, name, date, comment, nb_reel_attendees, nb_subscribe_attendees,
 			staffs_list, nb_hours_prepa, nb_hours, nb_staffs_vlt, nb_staffs_emp, nb_staffs_scv,
 			taux_valorisation_vlt, taux_valorisation_emp, taux_valorisation_scv, code_public,
@@ -129,14 +129,14 @@ func NewReport(rpt *Report) {
 		rpt.CodeProject,
 	)
 	if err != nil {
-		TheLogger().LogError("report", "can't create new report.", err)
+		TheLogger().LogError(log_name, "can't create new report.", err)
 	}
 }
 
 func FindReportById(id int) *Report {
 	var rpt Report
 
-	row := TheDb().QueryRow("SELECT * FROM reports WHERE id = ?;", id)
+	row := TheDb().QueryRow("SELECT * FROM "+db_name+" WHERE id = ?;", id)
 	err := row.Scan(
 		&rpt.Id,
 		&rpt.Type,
@@ -160,19 +160,63 @@ func FindReportById(id int) *Report {
 	)
 
 	if err != nil {
-		TheLogger().LogWarning("report", "report id not found.", err)
+		TheLogger().LogWarning(log_name, "report id not found.", err)
 	}
 
 	return &rpt
 }
 
+func FindReportsByDate(date string) *Reports {
+	var rpts Reports
+
+	rows, err := TheDb().Query("SELECT * FROM "+db_name+" WHERE date like ?;", date+"%")
+
+	if err != nil {
+		TheLogger().LogWarning(log_name, "reports with date not found.", err)
+	}
+
+	for rows.Next() {
+		var rpt Report
+
+		err := rows.Scan(
+			&rpt.Id,
+			&rpt.Type,
+			&rpt.RefExt,
+			&rpt.Name,
+			&rpt.Date,
+			&rpt.Comment,
+			&rpt.NbReelAtt,
+			&rpt.NbSubsAtt,
+			&rpt.StaffsList,
+			&rpt.NbHoursPrepa,
+			&rpt.NbHours,
+			&rpt.NbStaffsVlt,
+			&rpt.NbStaffsEmp,
+			&rpt.NbStaffsScv,
+			&rpt.TauxValorisationVlt,
+			&rpt.TauxValorisationEmp,
+			&rpt.TauxValorisationScv,
+			&rpt.CodePublic,
+			&rpt.CodeProject,
+		)
+
+		if err != nil {
+			TheLogger().LogInfo(log_name, "rpts not found.")
+		}
+
+		rpts = append(rpts, rpt)
+	}
+
+	return &rpts
+}
+
 func AllReports() *Reports {
 	var rpts Reports
 
-	rows, err := TheDb().Query("SELECT * FROM reports")
+	rows, err := TheDb().Query("SELECT * FROM " + db_name)
 
 	if err != nil {
-		TheLogger().LogError("report", "problem with the db.", err)
+		TheLogger().LogError(log_name, "problem with the db.", err)
 	}
 
 	// Close rows after all readed
@@ -204,7 +248,7 @@ func AllReports() *Reports {
 		)
 
 		if err != nil {
-			TheLogger().LogError("report", "reports not found.", err)
+			TheLogger().LogError(log_name, "reports not found.", err)
 		}
 
 		rpts = append(rpts, rpt)
@@ -215,7 +259,7 @@ func AllReports() *Reports {
 
 func UpdateReport(rpt *Report) {
 	stmt, err := TheDb().Prepare(
-		`UPDATE reports SET
+		`UPDATE ` + db_name + ` SET
 			type=?, ref_ext=?, name=?, date=?, comment=?, nb_reel_attendees=?,
 			nb_subscribe_attendees=?, staffs_list=?, nb_hours_prepa=?, nb_hours=?, nb_staffs_vlt=?,
 			nb_staffs_emp=?, nb_staffs_scv=?, taux_valorisation_vlt=?, taux_valorisation_emp=?,
@@ -224,7 +268,7 @@ func UpdateReport(rpt *Report) {
 	)
 
 	if err != nil {
-		TheLogger().LogError("report", "problem with the db.", err)
+		TheLogger().LogError(log_name, "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(
@@ -250,20 +294,20 @@ func UpdateReport(rpt *Report) {
 	)
 
 	if err != nil {
-		TheLogger().LogError("report", "report can't be updated.", err)
+		TheLogger().LogError(log_name, "report can't be updated.", err)
 	}
 }
 
 func DeleteReportById(id int) error {
-	stmt, err := TheDb().Prepare("DELETE FROM reports WHERE id=?;")
+	stmt, err := TheDb().Prepare("DELETE FROM " + db_name + " WHERE id=?;")
 
 	if err != nil {
-		TheLogger().LogError("report", "problem with the db.", err)
+		TheLogger().LogError(log_name, "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(id)
 	if err != nil {
-		TheLogger().LogError("report", "report can't be deleted.", err)
+		TheLogger().LogError(log_name, "report can't be deleted.", err)
 	}
 
 	return err
