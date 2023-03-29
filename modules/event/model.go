@@ -98,7 +98,7 @@ type Staffs []Staff
 func NewEvent(eve *Event) {
 
 	stmt, _ := TheDb().Prepare(
-		`INSERT INTO events
+		`INSERT INTO ` + db_name + `
 			(name, date, location, nb_spots_max, nb_spots_taken, type, price, url_facebook, actif)
 		VALUES (?,?,?,?,?,?,?,?,?);`,
 	)
@@ -114,14 +114,14 @@ func NewEvent(eve *Event) {
 		eve.Actif,
 	)
 	if err != nil {
-		TheLogger().LogError("event", "can't create new event.", err)
+		TheLogger().LogError(log_name, "can't create new event.", err)
 	}
 }
 
 func FindEventById(id int) *Event {
 	var eve Event
 
-	row := TheDb().QueryRow("SELECT * FROM events WHERE id = ?;", id)
+	row := TheDb().QueryRow("SELECT * FROM "+db_name+" WHERE id = ?;", id)
 	err := row.Scan(
 		&eve.Id,
 		&eve.Name,
@@ -136,19 +136,54 @@ func FindEventById(id int) *Event {
 	)
 
 	if err != nil {
-		TheLogger().LogWarning("event", "event not found.", err)
+		TheLogger().LogWarning(log_name, "event not found.", err)
 	}
 
 	return &eve
 }
 
+func FindEventsByDate(date string) *Events {
+	var eves Events
+
+	rows, err := TheDb().Query("SELECT * FROM "+db_name+" WHERE date like ?;", date+"%")
+
+	if err != nil {
+		TheLogger().LogWarning(log_name, "events with date_begins not found.", err)
+	}
+
+	for rows.Next() {
+		var eve Event
+
+		err := rows.Scan(
+			&eve.Id,
+			&eve.Name,
+			&eve.Date,
+			&eve.Location,
+			&eve.NbSpotsMax,
+			&eve.NbSpotsTaken,
+			&eve.Type,
+			&eve.Price,
+			&eve.Url,
+			&eve.Actif,
+		)
+
+		if err != nil {
+			TheLogger().LogInfo(log_name, "eves not found.")
+		}
+
+		eves = append(eves, eve)
+	}
+
+	return &eves
+}
+
 func AllEvents() *Events {
 	var eves Events
 
-	rows, err := TheDb().Query("SELECT * FROM events")
+	rows, err := TheDb().Query("SELECT * FROM " + db_name)
 
 	if err != nil {
-		TheLogger().LogError("event", "problem with the db.", err)
+		TheLogger().LogError(log_name, "problem with the db.", err)
 	}
 
 	// Close rows after all readed
@@ -171,7 +206,7 @@ func AllEvents() *Events {
 		)
 
 		if err != nil {
-			TheLogger().LogError("event", "event not found.", err)
+			TheLogger().LogError(log_name, "event not found.", err)
 		}
 
 		eves = append(eves, eve)
@@ -181,29 +216,29 @@ func AllEvents() *Events {
 }
 
 func UpdateSpotsTakenEvent(eve *Event) {
-	stmt, err := TheDb().Prepare("UPDATE events SET nb_spots_taken=? WHERE id=?;")
+	stmt, err := TheDb().Prepare("UPDATE " + db_name + " SET nb_spots_taken=? WHERE id=?;")
 
 	if err != nil {
-		TheLogger().LogError("event", "problem with the db.", err)
+		TheLogger().LogError(log_name, "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(eve.NbSpotsTaken, eve.Id)
 
 	if err != nil {
-		TheLogger().LogError("event", "nb_spots_taken can't be updated.", err)
+		TheLogger().LogError(log_name, "nb_spots_taken can't be updated.", err)
 	}
 }
 
 func UpdateEvent(eve *Event) {
 	stmt, err := TheDb().Prepare(
-		`UPDATE events SET
+		`UPDATE ` + db_name + ` SET
 			name=?, date=?, location=?, nb_spots_max=?, nb_spots_taken=?, type=?, price=?,
 			url_facebook=?, actif=?
 		WHERE id=?;`,
 	)
 
 	if err != nil {
-		TheLogger().LogError("event", "problem with the db.", err)
+		TheLogger().LogError(log_name, "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(
@@ -220,20 +255,20 @@ func UpdateEvent(eve *Event) {
 	)
 
 	if err != nil {
-		TheLogger().LogError("event", "event can't be updated.", err)
+		TheLogger().LogError(log_name, "event can't be updated.", err)
 	}
 }
 
 func DeleteEventById(id int) error {
-	stmt, err := TheDb().Prepare("DELETE FROM events WHERE id=?;")
+	stmt, err := TheDb().Prepare("DELETE FROM " + db_name + " WHERE id=?;")
 
 	if err != nil {
-		TheLogger().LogError("event", "problem with the db.", err)
+		TheLogger().LogError(log_name, "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(id)
 	if err != nil {
-		TheLogger().LogError("event", "event can't be deleted.", err)
+		TheLogger().LogError(log_name, "event can't be deleted.", err)
 	}
 
 	return err
@@ -242,10 +277,10 @@ func DeleteEventById(id int) error {
 func AllAttendees() *Attendees {
 	var atts Attendees
 
-	rows, err := TheDb().Query("SELECT * FROM event_attendees;")
+	rows, err := TheDb().Query("SELECT * FROM " + db_name_att + ";")
 
 	if err != nil {
-		TheLogger().LogError("event_attendee", "problem with the db.", err)
+		TheLogger().LogError(log_name_att, "problem with the db.", err)
 	}
 
 	// Close rows after all readed
@@ -257,7 +292,7 @@ func AllAttendees() *Attendees {
 		err := rows.Scan(&att.Id, &att.Id_event, &att.Id_adherent)
 
 		if err != nil {
-			TheLogger().LogError("event_attendee", "attendee not found.", err)
+			TheLogger().LogError(log_name_att, "attendee not found.", err)
 		}
 
 		atts = append(atts, att)
@@ -267,21 +302,21 @@ func AllAttendees() *Attendees {
 }
 
 func NewAttendee(att *Attendee) {
-	stmt, _ := TheDb().Prepare("INSERT INTO event_attendees (id_event, id_adherent) VALUES (?,?);")
+	stmt, _ := TheDb().Prepare("INSERT INTO " + db_name_att + " (id_event, id_adherent) VALUES (?,?);")
 	_, err := stmt.Exec(att.Id_event, att.Id_adherent)
 	if err != nil {
-		TheLogger().LogError("event_attendee", "can't create new attendee.", err)
+		TheLogger().LogError(log_name_att, "can't create new attendee.", err)
 	}
 }
 
 func FindAttendeeById(id int) *Attendee {
 	var att Attendee
 
-	row := TheDb().QueryRow("SELECT * FROM event_attendees WHERE id = ?;", id)
+	row := TheDb().QueryRow("SELECT * FROM "+db_name_att+" WHERE id = ?;", id)
 	err := row.Scan(&att.Id, &att.Id_event, &att.Id_adherent)
 
 	if err != nil {
-		TheLogger().LogWarning("event_attendee", "attendee not found.", err)
+		TheLogger().LogWarning(log_name_att, "attendee not found.", err)
 	}
 
 	return &att
@@ -290,10 +325,10 @@ func FindAttendeeById(id int) *Attendee {
 func FindAttendeeByEventId(id_event int) *Attendees {
 	var atts Attendees
 
-	rows, err := TheDb().Query("SELECT * FROM event_attendees WHERE id_event = ?;", id_event)
+	rows, err := TheDb().Query("SELECT * FROM "+db_name_att+" WHERE id_event = ?;", id_event)
 
 	if err != nil {
-		TheLogger().LogWarning("event_attendee", "attendees with id event not found.", err)
+		TheLogger().LogWarning(log_name_att, "attendees with id event not found.", err)
 	}
 
 	for rows.Next() {
@@ -302,7 +337,7 @@ func FindAttendeeByEventId(id_event int) *Attendees {
 		err := rows.Scan(&att.Id, &att.Id_event, &att.Id_adherent)
 
 		if err != nil {
-			TheLogger().LogError("event_attendee", "attendee not found.", err)
+			TheLogger().LogError(log_name_att, "attendee not found.", err)
 		}
 
 		atts = append(atts, att)
@@ -314,10 +349,10 @@ func FindAttendeeByEventId(id_event int) *Attendees {
 func FindAttendeeByAdherentId(id_adherent int) *Attendees {
 	var atts Attendees
 
-	rows, err := TheDb().Query("SELECT * FROM event_attendees WHERE id_adherent = ?;", id_adherent)
+	rows, err := TheDb().Query("SELECT * FROM "+db_name_att+" WHERE id_adherent = ?;", id_adherent)
 
 	if err != nil {
-		TheLogger().LogWarning("event_attendee", "attendees with id adherent not found.", err)
+		TheLogger().LogWarning(log_name_att, "attendees with id adherent not found.", err)
 	}
 
 	for rows.Next() {
@@ -326,7 +361,7 @@ func FindAttendeeByAdherentId(id_adherent int) *Attendees {
 		err := rows.Scan(&att.Id, &att.Id_event, &att.Id_adherent)
 
 		if err != nil {
-			TheLogger().LogError("event_attendee", "attendee not found.", err)
+			TheLogger().LogError(log_name_att, "attendee not found.", err)
 		}
 
 		atts = append(atts, att)
@@ -337,32 +372,32 @@ func FindAttendeeByAdherentId(id_adherent int) *Attendees {
 
 func UpdateAttendee(att *Attendee) {
 	stmt, err := TheDb().Prepare(
-		`UPDATE event_attendees SET
+		`UPDATE ` + db_name_att + ` SET
 			id_event=?, id_adherent=?
 		WHERE id=?;`,
 	)
 
 	if err != nil {
-		TheLogger().LogError("event_attendee", "problem with the db.", err)
+		TheLogger().LogError(log_name_att, "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(att.Id_event, att.Id_adherent, att.Id)
 
 	if err != nil {
-		TheLogger().LogError("event_attendee", "attendee can't be updated.", err)
+		TheLogger().LogError(log_name_att, "attendee can't be updated.", err)
 	}
 }
 
 func DeleteAttendeeById(id int) error {
-	stmt, err := TheDb().Prepare("DELETE FROM event_attendees WHERE id=?;")
+	stmt, err := TheDb().Prepare("DELETE FROM " + db_name_att + " WHERE id=?;")
 
 	if err != nil {
-		TheLogger().LogError("event_attendee", "problem with the db.", err)
+		TheLogger().LogError(log_name_att, "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(id)
 	if err != nil {
-		TheLogger().LogError("event_attendee", "attendee can't be deleted.", err)
+		TheLogger().LogError(log_name_att, "attendee can't be deleted.", err)
 	}
 
 	return err
@@ -371,10 +406,10 @@ func DeleteAttendeeById(id int) error {
 func AllStaffs() *Staffs {
 	var stas Staffs
 
-	rows, err := TheDb().Query("SELECT * FROM event_staffs;")
+	rows, err := TheDb().Query("SELECT * FROM " + db_name_sta + ";")
 
 	if err != nil {
-		TheLogger().LogError("event_staff", "problem with the db.", err)
+		TheLogger().LogError(log_name_sta, "problem with the db.", err)
 	}
 
 	// Close rows after all readed
@@ -386,7 +421,7 @@ func AllStaffs() *Staffs {
 		err := rows.Scan(&sta.Id, &sta.Id_event, &sta.Id_volunteer)
 
 		if err != nil {
-			TheLogger().LogError("event_staff", "staff not found.", err)
+			TheLogger().LogError(log_name_sta, "staff not found.", err)
 		}
 
 		stas = append(stas, sta)
@@ -396,21 +431,21 @@ func AllStaffs() *Staffs {
 }
 
 func NewStaff(sta *Staff) {
-	stmt, _ := TheDb().Prepare("INSERT INTO event_staffs (id_event, id_volunteer) VALUES (?,?);")
+	stmt, _ := TheDb().Prepare("INSERT INTO " + db_name_sta + " (id_event, id_volunteer) VALUES (?,?);")
 	_, err := stmt.Exec(sta.Id_event, sta.Id_volunteer)
 	if err != nil {
-		TheLogger().LogError("event_staff", "can't create new attendee.", err)
+		TheLogger().LogError(log_name_sta, "can't create new attendee.", err)
 	}
 }
 
 func FindStaffById(id int) *Staff {
 	var sta Staff
 
-	row := TheDb().QueryRow("SELECT * FROM event_staffs WHERE id = ?;", id)
+	row := TheDb().QueryRow("SELECT * FROM "+db_name_sta+" WHERE id = ?;", id)
 	err := row.Scan(&sta.Id, &sta.Id_event, &sta.Id_volunteer)
 
 	if err != nil {
-		TheLogger().LogWarning("event_staff", "attendee not found.", err)
+		TheLogger().LogWarning(log_name_sta, "attendee not found.", err)
 	}
 
 	return &sta
@@ -419,10 +454,10 @@ func FindStaffById(id int) *Staff {
 func FindStaffByEventId(id_event int) *Staffs {
 	var stas Staffs
 
-	rows, err := TheDb().Query("SELECT * FROM event_staffs WHERE id_event = ?;", id_event)
+	rows, err := TheDb().Query("SELECT * FROM "+db_name_sta+" WHERE id_event = ?;", id_event)
 
 	if err != nil {
-		TheLogger().LogWarning("event_staff", "staffs with id event not found.", err)
+		TheLogger().LogWarning(log_name_sta, "staffs with id event not found.", err)
 	}
 
 	for rows.Next() {
@@ -431,7 +466,7 @@ func FindStaffByEventId(id_event int) *Staffs {
 		err := rows.Scan(&sta.Id, &sta.Id_event, &sta.Id_volunteer)
 
 		if err != nil {
-			TheLogger().LogError("event_staff", "attendee not found.", err)
+			TheLogger().LogError(log_name_sta, "attendee not found.", err)
 		}
 
 		stas = append(stas, sta)
@@ -443,10 +478,10 @@ func FindStaffByEventId(id_event int) *Staffs {
 func FindStaffByVolunteerId(id_volunteer int) *Staffs {
 	var stas Staffs
 
-	rows, err := TheDb().Query("SELECT * FROM event_staffs WHERE id_volunteer = ?;", id_volunteer)
+	rows, err := TheDb().Query("SELECT * FROM "+db_name_sta+" WHERE id_volunteer = ?;", id_volunteer)
 
 	if err != nil {
-		TheLogger().LogWarning("event_staff", "staffs with id adherent not found.", err)
+		TheLogger().LogWarning(log_name_sta, "staffs with id adherent not found.", err)
 	}
 
 	for rows.Next() {
@@ -455,7 +490,7 @@ func FindStaffByVolunteerId(id_volunteer int) *Staffs {
 		err := rows.Scan(&sta.Id, &sta.Id_event, &sta.Id_volunteer)
 
 		if err != nil {
-			TheLogger().LogError("event_staff", "staff not found.", err)
+			TheLogger().LogError(log_name_sta, "staff not found.", err)
 		}
 
 		stas = append(stas, sta)
@@ -465,29 +500,29 @@ func FindStaffByVolunteerId(id_volunteer int) *Staffs {
 }
 
 func UpdateStaff(sta *Staff) {
-	stmt, err := TheDb().Prepare("UPDATE event_staffs SET id_event=?, id_volunteer=? WHERE id=?;")
+	stmt, err := TheDb().Prepare("UPDATE " + db_name_sta + " SET id_event=?, id_volunteer=? WHERE id=?;")
 
 	if err != nil {
-		TheLogger().LogError("event_staff", "problem with the db.", err)
+		TheLogger().LogError(log_name_sta, "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(sta.Id_event, sta.Id_volunteer, sta.Id)
 
 	if err != nil {
-		TheLogger().LogError("event_staff", "staff can't be updated.", err)
+		TheLogger().LogError(log_name_sta, "staff can't be updated.", err)
 	}
 }
 
 func DeleteStaffById(id int) error {
-	stmt, err := TheDb().Prepare("DELETE FROM event_staffs WHERE id=?;")
+	stmt, err := TheDb().Prepare("DELETE FROM " + db_name_sta + " WHERE id=?;")
 
 	if err != nil {
-		TheLogger().LogError("event_staff", "problem with the db.", err)
+		TheLogger().LogError(log_name_sta, "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(id)
 	if err != nil {
-		TheLogger().LogError("event_staff", "staff can't be deleted.", err)
+		TheLogger().LogError(log_name_sta, "staff can't be deleted.", err)
 	}
 
 	return err

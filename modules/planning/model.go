@@ -157,7 +157,7 @@ func FindPlanningsByDate(date_begins string) *Plannings {
 func AllPlannings() *Plannings {
 	var plas Plannings
 
-	rows, err := TheDb().Query("SELECT * FROM " + db_name + "")
+	rows, err := TheDb().Query("SELECT * FROM " + db_name)
 
 	if err != nil {
 		TheLogger().LogError(log_name, "problem with the db.", err)

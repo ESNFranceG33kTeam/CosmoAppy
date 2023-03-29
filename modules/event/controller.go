@@ -16,9 +16,9 @@ func EventsIndex(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(AllEvents())
 	if err != nil {
-		TheLogger().LogError("event", "problem with indexation.", err)
+		TheLogger().LogError(log_name, "problem with indexation.", err)
 	} else {
-		TheLogger().LogInfo("event", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -27,20 +27,20 @@ func EventsCreate(w http.ResponseWriter, r *http.Request) {
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("event", "problem with create.", err)
+		TheLogger().LogError(log_name, "problem with create.", err)
 	}
 
 	var eve Event
 
 	err = json.Unmarshal(body, &eve)
 	if err != nil {
-		TheLogger().LogError("event", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name, "problem with unmarshal.", err)
 	}
 
 	_, err = time.Parse("2006-01-02", eve.Date)
 
 	if err != nil {
-		TheLogger().LogInfo("event", "Date format wrong.")
+		TheLogger().LogInfo(log_name, "Date format wrong.")
 		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -51,9 +51,9 @@ func EventsCreate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(eve)
 	if err != nil {
-		TheLogger().LogError("event", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("event", "request POST : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request POST : "+r.RequestURI)
 	}
 }
 
@@ -63,7 +63,7 @@ func EventsShow(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("event", "unable to get id.", err)
+		TheLogger().LogError(log_name, "unable to get id.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -71,9 +71,9 @@ func EventsShow(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(adh)
 	if err != nil {
-		TheLogger().LogError("event", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("event", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -83,25 +83,25 @@ func EventsUpdate(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("event", "unable to get id.", err)
+		TheLogger().LogError(log_name, "unable to get id.", err)
 	}
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("event", "problem with update.", err)
+		TheLogger().LogError(log_name, "problem with update.", err)
 	}
 
 	eve := FindEventById(id)
 
 	err = json.Unmarshal(body, &eve)
 	if err != nil {
-		TheLogger().LogError("event", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name, "problem with unmarshal.", err)
 	}
 
 	_, err = time.Parse("2006-01-02", eve.Date)
 
 	if err != nil {
-		TheLogger().LogInfo("event", "Date format wrong.")
+		TheLogger().LogInfo(log_name, "Date format wrong.")
 		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -112,9 +112,9 @@ func EventsUpdate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(eve)
 	if err != nil {
-		TheLogger().LogError("event", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("event", "request PUT : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request PUT : "+r.RequestURI)
 	}
 }
 
@@ -126,15 +126,15 @@ func EventsDelete(w http.ResponseWriter, r *http.Request) {
 	// strconv.Atoi is shorthand for ParseInt
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("event", "unable to get id.", err)
+		TheLogger().LogError(log_name, "unable to get id.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
 	err = DeleteEventById(id)
 	if err != nil {
-		TheLogger().LogError("event", "unable to delete event.", err)
+		TheLogger().LogError(log_name, "unable to delete event.", err)
 	} else {
-		TheLogger().LogInfo("event", "request DELETE : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request DELETE : "+r.RequestURI)
 	}
 }
 
@@ -144,9 +144,9 @@ func AttendeesIndex(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(AllAttendees())
 	if err != nil {
-		TheLogger().LogError("event_attendee", "problem with indexation.", err)
+		TheLogger().LogError(log_name_att, "problem with indexation.", err)
 	} else {
-		TheLogger().LogInfo("event_attendee", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name_att, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -155,19 +155,19 @@ func AttendeesCreate(w http.ResponseWriter, r *http.Request) {
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("event_attendee", "problem with create.", err)
+		TheLogger().LogError(log_name_att, "problem with create.", err)
 	}
 
 	var att Attendee
 
 	err = json.Unmarshal(body, &att)
 	if err != nil {
-		TheLogger().LogError("event_attendee", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name_att, "problem with unmarshal.", err)
 	}
 
 	eve := FindEventById(att.Id_event)
 	if eve.NbSpotsTaken >= eve.NbSpotsMax {
-		TheLogger().LogInfo("event", "No spot available.")
+		TheLogger().LogInfo(log_name, "No spot available.")
 		http.Error(w, "No spot available.", http.StatusBadRequest)
 
 		return
@@ -181,9 +181,9 @@ func AttendeesCreate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(att)
 	if err != nil {
-		TheLogger().LogError("event_attendee", "problem with encoder.", err)
+		TheLogger().LogError(log_name_att, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("event_attendee", "request POST : "+r.RequestURI)
+		TheLogger().LogInfo(log_name_att, "request POST : "+r.RequestURI)
 	}
 }
 
@@ -193,7 +193,7 @@ func AttendeesShowByIdEvent(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id_event, err := strconv.Atoi(vars["id_event"])
 	if err != nil {
-		TheLogger().LogError("event_attendee", "unable to get id_event.", err)
+		TheLogger().LogError(log_name_att, "unable to get id_event.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -201,9 +201,9 @@ func AttendeesShowByIdEvent(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(vlt)
 	if err != nil {
-		TheLogger().LogError("event_attendee", "problem with encoder.", err)
+		TheLogger().LogError(log_name_att, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("event_attendee", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name_att, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -213,7 +213,7 @@ func AttendeesShowByIdAdherent(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id_adherent, err := strconv.Atoi(vars["id_adherent"])
 	if err != nil {
-		TheLogger().LogError("event_attendee", "unable to get id_adherent.", err)
+		TheLogger().LogError(log_name_att, "unable to get id_adherent.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -221,9 +221,9 @@ func AttendeesShowByIdAdherent(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(vlt)
 	if err != nil {
-		TheLogger().LogError("event_attendee", "problem with encoder.", err)
+		TheLogger().LogError(log_name_att, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("event_attendee", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name_att, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -233,19 +233,19 @@ func AttendeesUpdate(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("event_attendee", "unable to get id_adherent.", err)
+		TheLogger().LogError(log_name_att, "unable to get id_adherent.", err)
 	}
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("event_attendee", "problem with update.", err)
+		TheLogger().LogError(log_name_att, "problem with update.", err)
 	}
 
 	att := FindAttendeeById(id)
 
 	err = json.Unmarshal(body, &att)
 	if err != nil {
-		TheLogger().LogError("event_attendee", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name_att, "problem with unmarshal.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -253,9 +253,9 @@ func AttendeesUpdate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(att)
 	if err != nil {
-		TheLogger().LogError("event_attendee", "problem with encoder.", err)
+		TheLogger().LogError(log_name_att, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("event_attendee", "request PUT : "+r.RequestURI)
+		TheLogger().LogInfo(log_name_att, "request PUT : "+r.RequestURI)
 	}
 }
 
@@ -267,7 +267,7 @@ func AttendeesDelete(w http.ResponseWriter, r *http.Request) {
 	// strconv.Atoi is shorthand for ParseInt
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("event_attendee", "unable to get id.", err)
+		TheLogger().LogError(log_name_att, "unable to get id.", err)
 	}
 
 	eve := FindEventById(id)
@@ -277,9 +277,9 @@ func AttendeesDelete(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	err = DeleteAttendeeById(id)
 	if err != nil {
-		TheLogger().LogError("event_attendee", "unable to delete attendee.", err)
+		TheLogger().LogError(log_name_att, "unable to delete attendee.", err)
 	} else {
-		TheLogger().LogInfo("event_attendee", "request DELETE : "+r.RequestURI)
+		TheLogger().LogInfo(log_name_att, "request DELETE : "+r.RequestURI)
 	}
 }
 
@@ -289,9 +289,9 @@ func StaffsIndex(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(AllStaffs())
 	if err != nil {
-		TheLogger().LogError("event_staff", "problem with indexation.", err)
+		TheLogger().LogError(log_name_sta, "problem with indexation.", err)
 	} else {
-		TheLogger().LogInfo("event_staff", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name_sta, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -300,19 +300,19 @@ func StaffsCreate(w http.ResponseWriter, r *http.Request) {
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("event_staff", "problem with create.", err)
+		TheLogger().LogError(log_name_sta, "problem with create.", err)
 	}
 
 	var sta Staff
 
 	err = json.Unmarshal(body, &sta)
 	if err != nil {
-		TheLogger().LogError("event_staff", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name_sta, "problem with unmarshal.", err)
 	}
 
 	eve := FindEventById(sta.Id_event)
 	if eve.NbSpotsTaken >= eve.NbSpotsMax {
-		TheLogger().LogInfo("event", "No spot available.")
+		TheLogger().LogInfo(log_name, "No spot available.")
 		http.Error(w, "No spot available.", http.StatusBadRequest)
 
 		return
@@ -326,9 +326,9 @@ func StaffsCreate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(sta)
 	if err != nil {
-		TheLogger().LogError("event_staff", "problem with encoder.", err)
+		TheLogger().LogError(log_name_sta, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("event_staff", "request POST : "+r.RequestURI)
+		TheLogger().LogInfo(log_name_sta, "request POST : "+r.RequestURI)
 	}
 }
 
@@ -338,7 +338,7 @@ func StaffsShowByIdEvent(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id_event, err := strconv.Atoi(vars["id_event"])
 	if err != nil {
-		TheLogger().LogError("event_staff", "unable to get id_event.", err)
+		TheLogger().LogError(log_name_sta, "unable to get id_event.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -346,9 +346,9 @@ func StaffsShowByIdEvent(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(sta)
 	if err != nil {
-		TheLogger().LogError("event_staff", "problem with encoder.", err)
+		TheLogger().LogError(log_name_sta, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("event_staff", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name_sta, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -358,7 +358,7 @@ func StaffsShowByIdVolunteer(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id_volunteer, err := strconv.Atoi(vars["id_volunteer"])
 	if err != nil {
-		TheLogger().LogError("event_staff", "unable to get id_volunteer.", err)
+		TheLogger().LogError(log_name_sta, "unable to get id_volunteer.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -366,9 +366,9 @@ func StaffsShowByIdVolunteer(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(vlt)
 	if err != nil {
-		TheLogger().LogError("event_staff", "problem with encoder.", err)
+		TheLogger().LogError(log_name_sta, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("event_staff", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name_sta, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -378,19 +378,19 @@ func StaffsUpdate(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("event_staff", "unable to get id_adherent.", err)
+		TheLogger().LogError(log_name_sta, "unable to get id_adherent.", err)
 	}
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("event_staff", "problem with update.", err)
+		TheLogger().LogError(log_name_sta, "problem with update.", err)
 	}
 
 	sta := FindStaffById(id)
 
 	err = json.Unmarshal(body, &sta)
 	if err != nil {
-		TheLogger().LogError("event_staff", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name_sta, "problem with unmarshal.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -398,9 +398,9 @@ func StaffsUpdate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(sta)
 	if err != nil {
-		TheLogger().LogError("event_staff", "problem with encoder.", err)
+		TheLogger().LogError(log_name_sta, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("event_staff", "request PUT : "+r.RequestURI)
+		TheLogger().LogInfo(log_name_sta, "request PUT : "+r.RequestURI)
 	}
 }
 
@@ -412,7 +412,7 @@ func StaffsDelete(w http.ResponseWriter, r *http.Request) {
 	// strconv.Atoi is shorthand for ParseInt
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("event_staff", "unable to get id.", err)
+		TheLogger().LogError(log_name_sta, "unable to get id.", err)
 	}
 
 	eve := FindEventById(id)
@@ -422,8 +422,8 @@ func StaffsDelete(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	err = DeleteStaffById(id)
 	if err != nil {
-		TheLogger().LogError("event_staff", "unable to delete attendee.", err)
+		TheLogger().LogError(log_name_sta, "unable to delete attendee.", err)
 	} else {
-		TheLogger().LogInfo("event_staff", "request DELETE : "+r.RequestURI)
+		TheLogger().LogInfo(log_name_sta, "request DELETE : "+r.RequestURI)
 	}
 }

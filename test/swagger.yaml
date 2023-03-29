@@ -476,6 +476,140 @@ definitions:
     type: object
     x-go-name: Staff
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
+  Event_Stat:
+    properties:
+      archive_date:
+        description: |-
+          Archive date of the stat
+          in: string
+        example: 2023-01
+        type: string
+        x-go-name: ArchiveDate
+      created_at:
+        description: |-
+          CreatedAt date of the stat
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: CreatedAt
+      id:
+        description: |-
+          Id of the entry
+          in: int
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      nb_att_total:
+        description: |-
+          Number of event attendees total
+          in: int
+        example: 12
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: NbAttTotal
+      nb_avg_att_per_type:
+        description: |-
+          Average attendee per type of event
+          in: json
+        example:
+          NEM: 12.5
+          gala: 5
+        readOnly: true
+        type: object
+        x-go-name: AvgAttPerType
+      nb_avg_sta_per_type:
+        description: |-
+          Average staff per type of event
+          in: json
+        example:
+          NEM: 12.5
+          gala: 5
+        readOnly: true
+        type: object
+        x-go-name: AvgStaPerType
+      nb_cancel:
+        description: |-
+          Number of event cancel
+          in: int
+        example: 12
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: NbCancel
+      nb_per_location:
+        description: |-
+          Number of event by location
+          in: json
+        example:
+          MDE: 12
+          MDEL: 4
+        readOnly: true
+        type: object
+        x-go-name: NbPerLocation
+      nb_per_price:
+        description: |-
+          Number of event by price
+          in: json
+        example:
+          "0": 1
+          "5": 4
+          "10": 2
+        readOnly: true
+        type: object
+        x-go-name: NbPerPrice
+      nb_per_type:
+        description: |-
+          Number of event by type
+          in: json
+        example:
+          Gala: 4
+          NEM: 12
+        readOnly: true
+        type: object
+        x-go-name: NbPerType
+      nb_sta_total:
+        description: |-
+          Number of event staffs total
+          in: int
+        example: 12
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: NbStaTotal
+      nb_total:
+        description: |-
+          Number of event total
+          in: int
+        example: 12
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: NbTotal
+      tx_avg_fulfill_per_type:
+        description: |-
+          Average fulfill per type of event
+          in: json
+        example:
+          NEM: 99.9
+          gala: 80
+        readOnly: true
+        type: object
+        x-go-name: FulfillAvgPerType
+      updated_at:
+        description: |-
+          UpdatedAt date of the stat
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: UpdatedAt
+    required:
+      - archive_date
+    type: object
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
   GalaxyConf:
     properties:
       CASServer:
@@ -811,6 +945,25 @@ definitions:
         readOnly: true
         type: integer
         x-go-name: Id
+      nb_att_total:
+        description: |-
+          Number of planning attendees total
+          in: int
+        example: 12
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: NbAttTotal
+      nb_avg_att_per_type:
+        description: |-
+          Average attendee per type of planning
+          in: json
+        example:
+          event: 12.5
+          permanence: 5
+        readOnly: true
+        type: object
+        x-go-name: AvgAttPerType
       nb_per_location:
         description: |-
           Number of planning by location
@@ -1901,6 +2054,76 @@ paths:
           schema:
             $ref: '#/definitions/CommonError'
       summary: Update an event.
+      tags:
+        - event
+  /auth/events/stats/monthly:
+    get:
+      operationId: MonthlyStatsIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get stats list.
+      tags:
+        - event
+  /auth/events/stats/monthly/{archive_date}:
+    get:
+      operationId: MonthlyStatsShowByDate
+      parameters:
+        - in: path
+          name: archive_date
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show stat for the archive_date.
+      tags:
+        - event
+  /auth/events/stats/monthly/create:
+    post:
+      operationId: AutoMonthlyStatCreate
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Generate stat of the past month.
+      tags:
+        - event
+  /auth/events/stats/monthly/force/{archive_date}:
+    post:
+      operationId: ForceMonthlyStatCreate
+      parameters:
+        - in: path
+          name: archive_date
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Generate stat of any past month.
       tags:
         - event
   /auth/moneys:

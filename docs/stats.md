@@ -21,17 +21,15 @@ Liste de statistiques disponible de base par module :
 
 ### Planning
 - [x] Nombre de plannings total & /localisation, /type
+- [x] Nombre moyen de participants /type
+- [x] Nombre total de participants
 
 ### Event
-- [ ] Nombre d'events total & /localisation, /type, /prix(?)
-- [ ] Nombre d'events annulé
-- [ ] Taux moyen/min/max de remplissage
-- [ ] Nombre de participants, staff
-
-### Stock
-- [ ] Nombre de matériels dispo /type
-- [ ] Quantité utilisé de matériels /type
-:warning: module non crée pour le moment
+- [x] Nombre d'events /localisation, /type, /prix
+- [x] Nombre d'events total, annulé
+- [x] Taux moyen de remplissage /type
+- [x] Nombre moyen de participants, staffs /type
+- [x] Nombre total de participants, staffs
 
 ### ESNcard
 - [x] Nombre de cartes vendu
@@ -39,6 +37,11 @@ Liste de statistiques disponible de base par module :
 ### Money
 - [x] Nombre d'opérations /label, /type
 - [x] Prix moyen/min/max /label
+
+### Stock
+- [ ] Nombre de matériels dispo /type
+- [ ] Quantité utilisé de matériels /type
+:warning: module non crée pour le moment
 
 ### Mobilité
 - [ ] Nombre de mobilités total & /type, /destination

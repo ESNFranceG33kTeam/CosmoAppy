@@ -11,6 +11,7 @@ func InitRoutes() {
 		Name("DELETE").
 		HandlerFunc(EventsDelete)
 
+	// /event_attendees
 	TheSecureRouter().Methods("GET").
 		Path("/event_attendees").
 		Name("Index").
@@ -36,6 +37,7 @@ func InitRoutes() {
 		Name("DELETE").
 		HandlerFunc(AttendeesDelete)
 
+	// /event_staffs
 	TheSecureRouter().Methods("GET").Path("/event_staffs").Name("Index").HandlerFunc(StaffsIndex)
 	TheSecureRouter().Methods("POST").Path("/event_staffs").Name("Create").HandlerFunc(StaffsCreate)
 	TheSecureRouter().Methods("GET").
@@ -54,4 +56,22 @@ func InitRoutes() {
 		Path("/event_staffs/{id}").
 		Name("DELETE").
 		HandlerFunc(StaffsDelete)
+
+	// stats
+	TheSecureRouter().Methods("GET").
+		Path("/events/stats/monthly").
+		Name("Index").
+		HandlerFunc(MonthlyStatsIndex)
+	TheSecureRouter().Methods("GET").
+		Path("/events/stats/monthly/{archive_date}").
+		Name("Show").
+		HandlerFunc(MonthlyStatShowByDate)
+	TheSecureRouter().Methods("POST").
+		Path("/events/stats/monthly/create").
+		Name("Create").
+		HandlerFunc(AutoMonthlyStatCreate)
+	TheSecureRouter().Methods("POST").
+		Path("/events/stats/monthly/force/{archive_date}").
+		Name("Create").
+		HandlerFunc(ForceMonthlyStatCreate)
 }

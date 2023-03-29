@@ -59,6 +59,8 @@ func CreatePlanningsTable() {
 			nb_per_location LONGTEXT NOT NULL,
 			nb_per_type LONGTEXT NOT NULL,
 			nb_total INT NOT NULL,
+			nb_avg_att_per_type LONGTEXT NOT NULL,
+			nb_att_total INT NOT NULL,
 			created_at TIMESTAMP NOT NULL,
 			updated_at TIMESTAMP NULL DEFAULT NULL,
 			PRIMARY KEY (id),
@@ -66,8 +68,8 @@ func CreatePlanningsTable() {
 		);
 	`)
 	if err != nil {
-		TheLogger().LogCritical(db_name_monthly_stat, "create table "+db_name_monthly_stat+" got a problem.", err)
+		TheLogger().LogCritical(log_name_monthly_stat, "create table "+db_name_monthly_stat+" got a problem.", err)
 	} else {
-		TheLogger().LogInfo(db_name_monthly_stat, db_name_monthly_stat+" table successfully created.")
+		TheLogger().LogInfo(log_name_monthly_stat, db_name_monthly_stat+" table successfully created.")
 	}
 }
