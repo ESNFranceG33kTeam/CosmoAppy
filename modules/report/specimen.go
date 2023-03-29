@@ -89,4 +89,5 @@ func Specimen() {
 			CodeProject:         "PKM",
 		},
 	)
+	AutoNewMonthlyStat("2020-04")
 }

@@ -15,9 +15,9 @@ Liste de statistiques disponible de base par module :
 - [ ] Nombre de salarié, scv
 
 ### Report
-- [ ] Nombre de reports total & /code projet, /code public, /type
-- [ ] Nombre d'heures bénévole, salarié, scv
-- [ ] Nb réel vs nb attendu de participants moyen/min/max (?)
+- [x] Nombre de reports total & /code projet, /code public, /type
+- [x] Nombre d'heures bénévole, salarié, scv /code projet, /code public
+- [x] Valorisation bénévole, employee, scv /code projet, /code public
 
 ### Planning
 - [x] Nombre de plannings total & /localisation, /type
@@ -61,4 +61,4 @@ Liste de statistiques disponible de base par module :
 :warning: module non défini pour le moment
 
 ## Info
-- Toute génération de stat se fait par tranche de 1 mois. Actuellemnt les récupérations se font par tranche de 1 mois également. Pour des raison d'optimisation, j'ouvrirai sur une tranche à l'année et sur 1 semestre.
+- Toute génération de stat se fait par tranche de 1 mois. Actuellemnt les récupérations se font par creneau de 1 mois également. Pour des raison d'optimisation, j'ouvrirai sur un creneau à l'année et sur 1 semestre pour les récupérations.

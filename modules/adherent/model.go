@@ -197,7 +197,7 @@ func FindAdherentsByDate(adhesion_date string) *Adherents {
 func AllAdherents() *Adherents {
 	var adhs Adherents
 
-	rows, err := TheDb().Query("SELECT * FROM " + db_name + "")
+	rows, err := TheDb().Query("SELECT * FROM " + db_name)
 
 	if err != nil {
 		TheLogger().LogError(log_name, "problem with the db.", err)

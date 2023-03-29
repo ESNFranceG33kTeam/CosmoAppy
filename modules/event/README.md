@@ -6,6 +6,7 @@ title: Module Event / Event Attendees
 
 - [Events endpoint](#events-endpoint)
 - [Event Attendees endpoint](#event-attendees-endpoint)
+- [Statistics endpoint](#statistics-endpoint)
 
 # Events endpoint
 

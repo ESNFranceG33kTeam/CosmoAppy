@@ -118,8 +118,8 @@ Output : no output
 - **NbPerCountry**      json.RawMessage `json:"nb_per_country"`     - Number of adherent by country
 - **NbPerUniversity**   json.RawMessage `json:"nb_per_university"`  - Number of adherent by university
 - **NbPerSituation**    json.RawMessage `json:"nb_per_situation"`   - Number of adherent by situation
-- **AboutusPerType**    json.RawMessage `json:"aboutus_per_type"`   - Number of how adherent heared about us per type
 - **NbTotal**           int             `json:"nb_total"`           - Number of adherent total
+- **AboutusPerType**    json.RawMessage `json:"aboutus_per_type"`   - Number of how adherent heared about us per type
 - **CreatedAt**         time.Time       `json:"created_at"`         - Created date of the stat
 - **UpdatedAt**         time.Time       `json:"updated_at"`         - Updated date of the stat
 

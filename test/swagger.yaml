@@ -1225,6 +1225,142 @@ definitions:
       - code_project
     type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/report
+  Report_Stat:
+    properties:
+      archive_date:
+        description: |-
+          Archive date of the stat
+          in: string
+        example: 2023-01
+        type: string
+        x-go-name: ArchiveDate
+      created_at:
+        description: |-
+          CreatedAt date of the stat
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: CreatedAt
+      hours_emp_per_codes:
+        description: |-
+          Number of hours for an employee by code
+          in: json
+        example:
+          PKM: 12
+          SMI: 4
+        readOnly: true
+        type: object
+        x-go-name: HoursEmpCodes
+      hours_scv_per_codes:
+        description: |-
+          Number of hours for a scv by code
+          in: json
+        example:
+          PKM: 12
+          SMI: 4
+        readOnly: true
+        type: object
+        x-go-name: HoursScvCodes
+      hours_vlt_per_codes:
+        description: |-
+          Number of hours for a volunteer by code
+          in: json
+        example:
+          PKM: 12
+          SMI: 4
+        readOnly: true
+        type: object
+        x-go-name: HoursVltCodes
+      id:
+        description: |-
+          Id of the entry
+          in: int
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: Id
+      nb_per_codeproject:
+        description: |-
+          Number of report by code project
+          in: json
+        example:
+          PKM: 1
+          SMI: 4
+        readOnly: true
+        type: object
+        x-go-name: NbPerCodeProject
+      nb_per_codepublic:
+        description: |-
+          Number of report by code public
+          in: json
+        example:
+          CHAMP: 12
+          MAST: 4
+        readOnly: true
+        type: object
+        x-go-name: NbPerCodePublic
+      nb_per_type:
+        description: |-
+          Number of report by type
+          in: json
+        example:
+          student: 12
+          worker: 4
+        readOnly: true
+        type: object
+        x-go-name: NbPerType
+      nb_total:
+        description: |-
+          Number of report total
+          in: int
+        example: 12
+        format: int64
+        readOnly: true
+        type: integer
+        x-go-name: NbTotal
+      updated_at:
+        description: |-
+          UpdatedAt date of the stat
+          in: time.Time
+        format: date-time
+        readOnly: true
+        type: string
+        x-go-name: UpdatedAt
+      valo_emp_per_codes:
+        description: |-
+          Valorisation for an employee by code
+          in: json
+        example:
+          PKM: 12
+          SMI: 4
+        readOnly: true
+        type: object
+        x-go-name: ValoEmpCodes
+      valo_scv_per_codes:
+        description: |-
+          Valorisation for a scv by code
+          in: json
+        example:
+          PKM: 12
+          SMI: 4
+        readOnly: true
+        type: object
+        x-go-name: ValoScvCodes
+      valo_vlt_per_codes:
+        description: |-
+          Valorisation for a volunteer by code
+          in: json
+        example:
+          PKM: 12
+          SMI: 4
+        readOnly: true
+        type: object
+        x-go-name: ValoVltCodes
+    required:
+      - archive_date
+    type: object
+    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/report
   Status:
     properties:
       dbstatus:
@@ -2656,6 +2792,76 @@ paths:
           schema:
             $ref: '#/definitions/CommonError'
       summary: Update a report.
+      tags:
+        - report
+  /auth/reports/stats/monthly:
+    get:
+      operationId: MonthlyStatsIndex
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Get stats list.
+      tags:
+        - report
+  /auth/reports/stats/monthly/{archive_date}:
+    get:
+      operationId: MonthlyStatsShowByDate
+      parameters:
+        - in: path
+          name: archive_date
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Show stat for the archive_date.
+      tags:
+        - report
+  /auth/reports/stats/monthly/create:
+    post:
+      operationId: AutoMonthlyStatCreate
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Generate stat of the past month.
+      tags:
+        - report
+  /auth/reports/stats/monthly/force/{archive_date}:
+    post:
+      operationId: ForceMonthlyStatCreate
+      parameters:
+        - in: path
+          name: archive_date
+          required: true
+          type: string
+      responses:
+        "200":
+          description: CommonSuccess
+          schema:
+            $ref: '#/definitions/CommonSuccess'
+        "400":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      summary: Generate stat of any past month.
       tags:
         - report
   /auth/status:

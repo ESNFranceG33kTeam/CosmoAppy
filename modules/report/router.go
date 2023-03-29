@@ -16,4 +16,22 @@ func InitRoutes() {
 		Path("/reports/{id}").
 		Name("DELETE").
 		HandlerFunc(ReportsDelete)
+
+	// stats
+	TheSecureRouter().Methods("GET").
+		Path("/reports/stats/monthly").
+		Name("Index").
+		HandlerFunc(MonthlyStatsIndex)
+	TheSecureRouter().Methods("GET").
+		Path("/reports/stats/monthly/{archive_date}").
+		Name("Show").
+		HandlerFunc(MonthlyStatShowByDate)
+	TheSecureRouter().Methods("POST").
+		Path("/reports/stats/monthly/create").
+		Name("Create").
+		HandlerFunc(AutoMonthlyStatCreate)
+	TheSecureRouter().Methods("POST").
+		Path("/reports/stats/monthly/force/{archive_date}").
+		Name("Create").
+		HandlerFunc(ForceMonthlyStatCreate)
 }
