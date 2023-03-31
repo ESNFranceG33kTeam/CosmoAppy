@@ -9,10 +9,11 @@ Liste de statistiques disponible de base par module :
 - [x] Nombre sur comment ils ont entendu parler de nous
 
 ### Volunteer
-- [ ] Nombre de bénévoles total & /université, /ancienneté
-- [ ] Nombre d'alumnus
-- [ ] Nombre de bureau
-- [ ] Nombre de salarié, scv
+- [x] Nombre de bénévoles actif /université
+- [x] Nombre de nouveaux bénévoles ce mois
+- [x] Nombre d'alumnus
+- [x] Nombre de bureau
+- [x] Nombre de salarié, scv
 
 ### Report
 - [x] Nombre de reports total & /code projet, /code public, /type

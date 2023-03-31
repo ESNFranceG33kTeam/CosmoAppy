@@ -3,6 +3,7 @@ package volunteer
 import (
 	"log"
 	"testing"
+	"time"
 )
 
 func setUpModel() {
@@ -124,5 +125,26 @@ func TestDeleteVolunteerById(t *testing.T) {
 		if vlt.Id == 3 {
 			log.Fatal("Volunteer_3 didn't be removed !")
 		}
+	}
+}
+
+func TestAutoNewMonthlyStat(t *testing.T) {
+	AutoNewMonthlyStat()
+	AutoNewMonthlyStat()
+}
+
+func TestFindMonthlyStatByDate(t *testing.T) {
+	stat := FindMonthlyStatByDate(time.Now().AddDate(0, -1, 0).Format("2006-01"))
+
+	if stat.Id == 0 {
+		log.Fatal("Monthly stat of date is empty")
+	}
+}
+
+func TestAllMonthlyStats(t *testing.T) {
+	stats := AllMonthlyStats()
+
+	if len(*stats) == 0 {
+		log.Fatal("Monthly stat is empty")
 	}
 }

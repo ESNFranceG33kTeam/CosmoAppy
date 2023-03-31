@@ -66,7 +66,7 @@ type Volunteers []Volunteer
 
 func NewVolunteer(vlt *Volunteer) {
 	stmt, _ := TheDb().Prepare(
-		`INSERT INTO volunteers
+		`INSERT INTO ` + db_name + `
 			(firstname, lastname, email, discord, phone, university, postal_address, actif, bureau,
 			hr_status, started_date)
 		VALUES (?,?,?,?,?,?,?,?,?,?,?);`,
@@ -85,14 +85,14 @@ func NewVolunteer(vlt *Volunteer) {
 		vlt.StartedDate,
 	)
 	if err != nil {
-		TheLogger().LogError("volunteer", "can't create new volunteer.", err)
+		TheLogger().LogError(log_name, "can't create new volunteer.", err)
 	}
 }
 
 func FindVolunteerById(id int) *Volunteer {
 	var vlt Volunteer
 
-	row := TheDb().QueryRow("SELECT * FROM volunteers WHERE id = ?;", id)
+	row := TheDb().QueryRow("SELECT * FROM "+db_name+" WHERE id = ?;", id)
 	err := row.Scan(
 		&vlt.Id,
 		&vlt.Firstname,
@@ -109,7 +109,7 @@ func FindVolunteerById(id int) *Volunteer {
 	)
 
 	if err != nil {
-		TheLogger().LogWarning("volunteer", "volunteer id not found.", err)
+		TheLogger().LogWarning(log_name, "volunteer id not found.", err)
 	}
 
 	return &vlt
@@ -118,10 +118,10 @@ func FindVolunteerById(id int) *Volunteer {
 func AllVolunteers() *Volunteers {
 	var vlts Volunteers
 
-	rows, err := TheDb().Query("SELECT * FROM volunteers")
+	rows, err := TheDb().Query("SELECT * FROM " + db_name)
 
 	if err != nil {
-		TheLogger().LogError("volunteer", "problem with the db.", err)
+		TheLogger().LogError(log_name, "problem with the db.", err)
 	}
 
 	// Close rows after all readed
@@ -146,7 +146,7 @@ func AllVolunteers() *Volunteers {
 		)
 
 		if err != nil {
-			TheLogger().LogError("volunteer", "volunteers not found.", err)
+			TheLogger().LogError(log_name, "volunteers not found.", err)
 		}
 
 		vlts = append(vlts, vlt)
@@ -157,14 +157,14 @@ func AllVolunteers() *Volunteers {
 
 func UpdateVolunteer(vlt *Volunteer) {
 	stmt, err := TheDb().Prepare(
-		`UPDATE volunteers SET
+		`UPDATE ` + db_name + ` SET
 			firstname=?, lastname=?, email=?, discord=?, phone=?, university=?, postal_address=?,
 			actif=?, bureau=?, hr_status=?, started_date=?
 		WHERE id=?;`,
 	)
 
 	if err != nil {
-		TheLogger().LogError("volunteer", "problem with the db.", err)
+		TheLogger().LogError(log_name, "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(
@@ -183,20 +183,20 @@ func UpdateVolunteer(vlt *Volunteer) {
 	)
 
 	if err != nil {
-		TheLogger().LogError("volunteer", "volunteer can't be updated.", err)
+		TheLogger().LogError(log_name, "volunteer can't be updated.", err)
 	}
 }
 
 func DeleteVolunteerById(id int) error {
-	stmt, err := TheDb().Prepare("DELETE FROM volunteers WHERE id=?;")
+	stmt, err := TheDb().Prepare("DELETE FROM " + db_name + " WHERE id=?;")
 
 	if err != nil {
-		TheLogger().LogError("volunteer", "problem with the db.", err)
+		TheLogger().LogError(log_name, "problem with the db.", err)
 	}
 
 	_, err = stmt.Exec(id)
 	if err != nil {
-		TheLogger().LogError("volunteer", "volunteer can't be deleted.", err)
+		TheLogger().LogError(log_name, "volunteer can't be deleted.", err)
 	}
 
 	return err

@@ -1,5 +1,7 @@
 package volunteer
 
+import "time"
+
 func Specimen() {
 	NewVolunteer(
 		&Volunteer{
@@ -89,7 +91,7 @@ func Specimen() {
 			Actif:         true,
 			Bureau:        true,
 			HrStatus:      "volunteer",
-			StartedDate:   "1988-04-01",
+			StartedDate:   time.Now().AddDate(0, -1, 0).Format("2006-01-02"),
 		},
 	)
 	NewVolunteer(
@@ -104,7 +106,7 @@ func Specimen() {
 			Actif:         true,
 			Bureau:        true,
 			HrStatus:      "volunteer",
-			StartedDate:   "1989-04-01",
+			StartedDate:   time.Now().AddDate(0, -1, 0).Format("2006-01-02"),
 		},
 	)
 
@@ -138,7 +140,6 @@ func Specimen() {
 			StartedDate:   "1980-04-01",
 		},
 	)
-
 	NewVolunteer(
 		&Volunteer{
 			Firstname:     "President",
@@ -151,7 +152,23 @@ func Specimen() {
 			Actif:         true,
 			Bureau:        false,
 			HrStatus:      "employee",
-			StartedDate:   "2023-01-01",
+			StartedDate:   time.Now().AddDate(0, -1, 0).Format("2006-01-2"),
 		},
 	)
+	NewVolunteer(
+		&Volunteer{
+			Firstname:     "Sonya",
+			Lastname:      "Magnolia",
+			Email:         "research.assitant@league.ga",
+			Discord:       "Voltoutou",
+			Phone:         "+49 0123456789",
+			University:    "Brasswick",
+			PostalAddress: "01 lab, 00003 Brasswick, Galar",
+			Actif:         true,
+			Bureau:        false,
+			HrStatus:      "scv",
+			StartedDate:   time.Now().AddDate(0, -1, 0).Format("2006-01-2"),
+		},
+	)
+	AutoNewMonthlyStat()
 }

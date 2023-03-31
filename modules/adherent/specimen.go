@@ -138,5 +138,19 @@ func Specimen() {
 			AdhesionDate: dateofbirth("2022-04-24"),
 		},
 	)
+	NewAdherent(
+		&Adherent{
+			Firstname:    "Poussifeu",
+			Lastname:     "Feuu",
+			Email:        "poussifeu@feu.pkm",
+			Dateofbirth:  dateofbirth("1991-02-12"),
+			Situation:    "student",
+			University:   "Bourg-en-Vol",
+			Homeland:     "Hoenn",
+			Speakabout:   "Event",
+			Newsletter:   false,
+			AdhesionDate: time.Now().AddDate(0, -1, 0).Format("2006-01-2"),
+		},
+	)
 	AutoNewMonthlyStat("2022-04")
 }

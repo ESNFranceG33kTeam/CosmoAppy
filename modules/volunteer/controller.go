@@ -16,9 +16,9 @@ func VolunteersIndex(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewEncoder(w).Encode(AllVolunteers())
 	if err != nil {
-		TheLogger().LogError("volunteer", "problem with indexation.", err)
+		TheLogger().LogError(log_name, "problem with indexation.", err)
 	} else {
-		TheLogger().LogInfo("volunteer", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -27,20 +27,20 @@ func VolunteersCreate(w http.ResponseWriter, r *http.Request) {
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("volunteer", "problem with create.", err)
+		TheLogger().LogError(log_name, "problem with create.", err)
 	}
 
 	var vlt Volunteer
 
 	err = json.Unmarshal(body, &vlt)
 	if err != nil {
-		TheLogger().LogError("volunteer", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name, "problem with unmarshal.", err)
 	}
 
 	_, err = time.Parse("2006-01-02", vlt.StartedDate)
 
 	if err != nil {
-		TheLogger().LogInfo("volunteer", "Date format wrong.")
+		TheLogger().LogInfo(log_name, "Date format wrong.")
 		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -51,9 +51,9 @@ func VolunteersCreate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(vlt)
 	if err != nil {
-		TheLogger().LogError("volunteer", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("volunteer", "request POST : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request POST : "+r.RequestURI)
 	}
 }
 
@@ -63,7 +63,7 @@ func VolunteersShowById(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("volunteer", "unable to get id.", err)
+		TheLogger().LogError(log_name, "unable to get id.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
@@ -71,9 +71,9 @@ func VolunteersShowById(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(vlt)
 	if err != nil {
-		TheLogger().LogError("volunteer", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("volunteer", "request GET : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request GET : "+r.RequestURI)
 	}
 }
 
@@ -83,25 +83,25 @@ func VolunteersUpdate(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("volunteer", "unable to get id.", err)
+		TheLogger().LogError(log_name, "unable to get id.", err)
 	}
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
-		TheLogger().LogError("volunteer", "problem with update.", err)
+		TheLogger().LogError(log_name, "problem with update.", err)
 	}
 
 	vlt := FindVolunteerById(id)
 
 	err = json.Unmarshal(body, &vlt)
 	if err != nil {
-		TheLogger().LogError("volunteer", "problem with unmarshal.", err)
+		TheLogger().LogError(log_name, "problem with unmarshal.", err)
 	}
 
 	_, err = time.Parse("2006-01-02", vlt.StartedDate)
 
 	if err != nil {
-		TheLogger().LogInfo("volunteer", "Date format wrong.")
+		TheLogger().LogInfo(log_name, "Date format wrong.")
 		http.Error(w, "Date format wrong : "+err.Error(), http.StatusBadRequest)
 
 		return
@@ -112,9 +112,9 @@ func VolunteersUpdate(w http.ResponseWriter, r *http.Request) {
 
 	err = json.NewEncoder(w).Encode(vlt)
 	if err != nil {
-		TheLogger().LogError("volunteer", "problem with encoder.", err)
+		TheLogger().LogError(log_name, "problem with encoder.", err)
 	} else {
-		TheLogger().LogInfo("volunteer", "request PUT : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request PUT : "+r.RequestURI)
 	}
 }
 
@@ -126,14 +126,14 @@ func VolunteersDelete(w http.ResponseWriter, r *http.Request) {
 	// strconv.Atoi is shorthand for ParseInt
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
-		TheLogger().LogError("volunteer", "unable to get id.", err)
+		TheLogger().LogError(log_name, "unable to get id.", err)
 	}
 
 	w.WriteHeader(http.StatusOK)
 	err = DeleteVolunteerById(id)
 	if err != nil {
-		TheLogger().LogError("volunteer", "unable to delete volunteer.", err)
+		TheLogger().LogError(log_name, "unable to delete volunteer.", err)
 	} else {
-		TheLogger().LogInfo("volunteer", "request DELETE : "+r.RequestURI)
+		TheLogger().LogInfo(log_name, "request DELETE : "+r.RequestURI)
 	}
 }
