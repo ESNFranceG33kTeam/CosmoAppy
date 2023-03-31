@@ -2,6 +2,11 @@
 title: Module Volunteer
 ---
 
+# Table of Contents
+
+- [Volunteers endpoint](#volunteers-endpoint)
+- [Statistics endpoint](#statistics-endpoint)
+
 # Volunteers endpoint
 
 **Object description**
@@ -99,6 +104,56 @@ Output : (`json`) volunteer object
 
 ```bash
 curl -X DELETE "https://${MYSERVER}/${SECURE}/volunteers/1" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : no output
+
+# Statistics endpoint
+
+**Object description**
+
+- **Id**                    int             `json:"id"`                         - Id of the stat
+- **ArchiveDate**           string          `json:"archive_date"`               - Date of the stat
+- **NbActivePerUniversity** json.RawMessage `json:"nb_active_per_university"`   - Number of active volunteer by university
+- **NbActivePerHrstatus**   json.RawMessage `json:"nb_active_per_hrstatus"`     - Number of active volunteer by hr status
+- **NbNewVlt**              int             `json:"nb_new_vlt_this_month"`      - Number of new volunteer this month
+- **NbAlumnus**             int             `json:"nb_alumnus"`                 - Number of alumnus
+- **NbBureau**              int             `json:"nb_bureau"`                  - Number of volunteer in the bureau
+- **CreatedAt**             time.Time       `json:"created_at"`                 - Created date of the stat
+- **UpdatedAt**             time.Time       `json:"updated_at"`                 - Updated date of the stat
+
+The parameters `id`, `created_at` and `updated_at` are calculated automatically.
+
+## Get
+
+- Get full list of stats :
+
+```bash
+curl -X GET \
+    "https://${MYSERVER}/${SECURE}/volunteers/stats/monthly" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`[json]`) list of stats objects
+
+- Get only stat of a certain date :
+
+```bash
+curl -X GET \
+    "https://${MYSERVER}/${SECURE}/volunteers/stats/monthly/2022-04" \
+    -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
+```
+
+Output : (`json`) stat object
+
+## Post
+
+- Generate stat of the last month :
+
+```bash
+curl -X POST \
+    "https://${MYSERVER}/${SECURE}/volunteers/stats/monthly/create" \
     -H "accept: application/json" -H "X-Session-Token: ${MYTOKEN}"
 ```
 

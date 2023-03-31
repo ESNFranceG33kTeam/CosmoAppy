@@ -68,3 +68,16 @@ func TestVolunteersCreate(t *testing.T) {
 		t.Errorf("expected error to be nil got %v", err)
 	}
 }
+
+func TestAutoMonthlyStatsIndex(t *testing.T) {
+	req := httptest.NewRequest(http.MethodGet, "/volunteers/stats/monthly", nil)
+	w := httptest.NewRecorder()
+	MonthlyStatsIndex(w, req)
+
+	res := w.Result()
+	defer res.Body.Close()
+	_, err := io.ReadAll(res.Body)
+	if err != nil {
+		t.Errorf("expected error to be nil got %v", err)
+	}
+}
