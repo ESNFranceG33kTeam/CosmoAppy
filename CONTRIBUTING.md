@@ -55,7 +55,6 @@ make start-app
 
 You can now call your api using :
 - Swagger : `http://127.0.0.1:8080/swagger`
-- CAS client : `http://127.0.0.1:8181`
 
 ## API documentation
 
