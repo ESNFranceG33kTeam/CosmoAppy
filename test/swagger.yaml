@@ -610,28 +610,6 @@ definitions:
       - archive_date
     type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
-  GalaxyConf:
-    properties:
-      CASServer:
-        type: string
-      ConfUrl:
-        type: string
-      Country:
-        type: string
-      ExtraUsername:
-        items:
-          type: string
-        type: array
-      G33kTeam:
-        items:
-          type: string
-        type: array
-      Roles:
-        items:
-          type: string
-        type: array
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/cocas
   Health:
     properties:
       message:
@@ -1005,59 +983,6 @@ definitions:
       - archive_date
     type: object
     x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
-  Profile:
-    properties:
-      admin:
-        type: boolean
-        x-go-name: Admin
-      association:
-        type: string
-        x-go-name: Section
-      country:
-        type: string
-        x-go-name: Country
-      dateofbirth:
-        type: string
-        x-go-name: Birthdate
-      email:
-        type: string
-        x-go-name: Email
-      extended_roles:
-        items:
-          type: string
-        type: array
-        x-go-name: ExtendedRoles
-      firstname:
-        type: string
-        x-go-name: First
-      gender:
-        type: string
-        x-go-name: Gender
-      lastname:
-        type: string
-        x-go-name: Last
-      nationality:
-        type: string
-        x-go-name: Nationality
-      phone:
-        type: string
-        x-go-name: Phone
-      picture_url:
-        type: string
-        x-go-name: PictureURL
-      roles:
-        items:
-          type: string
-        type: array
-        x-go-name: Roles
-      section_code:
-        type: string
-        x-go-name: Sc
-      username:
-        type: string
-        x-go-name: Username
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/cocas
   Report:
     properties:
       code_project:
