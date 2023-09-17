@@ -8,23 +8,20 @@ import (
 )
 
 type Cfg struct {
-	ConfPath   string
-	Userdb     string   `yaml:"userdb"`
-	Passdb     string   `yaml:"passdb"`
-	Ipdb       string   `yaml:"ipdb"`
-	Portdb     string   `yaml:"portdb"`
-	Namedb     string   `yaml:"namedb"`
-	Extradb    string   `yaml:"extradb"`
-	PortApi    string   `yaml:"portapi"`
-	PortCas    string   `yaml:"portcas"`
-	Loglevel   int      `yaml:"loglevel"`
-	Usersapi   []string `yaml:"usersapi"`
-	Tokensapi  []string `yaml:"tokensapi"`
-	Specimen   bool     `yaml:"specimen"`
-	Nameapi    string   `yaml:"nameapi"`
-	Country    string   `yaml:"country"`
-	G33kTeam   string   `yaml:"geekteam_url"`
-	ExtraAdmin []string `yaml:"extra_admin"`
+	ConfPath  string
+	Userdb    string   `yaml:"userdb"`
+	Passdb    string   `yaml:"passdb"`
+	Ipdb      string   `yaml:"ipdb"`
+	Portdb    string   `yaml:"portdb"`
+	Namedb    string   `yaml:"namedb"`
+	Extradb   string   `yaml:"extradb"`
+	PortApi   string   `yaml:"portapi"`
+	Loglevel  int      `yaml:"loglevel"`
+	Usersapi  []string `yaml:"usersapi"`
+	Tokensapi []string `yaml:"tokensapi"`
+	Specimen  bool     `yaml:"specimen"`
+	Nameapi   string   `yaml:"nameapi"`
+	Country   string   `yaml:"country"`
 }
 
 var AppConfig Cfg

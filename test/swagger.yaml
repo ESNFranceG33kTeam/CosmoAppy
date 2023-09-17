@@ -1,3146 +1,3071 @@
 basePath: /
 consumes:
-  - application/json
+    - application/json
 definitions:
-  Adherent:
-    properties:
-      adhesion_date:
-        description: |-
-          AdhesionDate date of the adhesion
-          in: string
-        example: "2022-05-22"
-        type: string
-        x-go-name: AdhesionDate
-      created_at:
-        description: |-
-          CreatedAt date of the adherent
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: CreatedAt
-      dateofbirth:
-        description: |-
-          Dateofbirth of the adherent
-          in: string
-        example: "2000-05-22"
-        type: string
-        x-go-name: Dateofbirth
-      email:
-        description: |-
-          Email of the adherent
-          in: string
-        example: pichu@kanto.kt
-        type: string
-        x-go-name: Email
-      firstname:
-        description: |-
-          Firstname of the adherent
-          in: string
-        example: Pichu
-        type: string
-        x-go-name: Firstname
-      homeland:
-        description: |-
-          Homeland of the adherent
-          in: string
-        example: Kanto
-        type: string
-        x-go-name: Homeland
-      id:
-        description: |-
-          Id of the adherent
-          in: int
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      lastname:
-        description: |-
-          Lastname of the adherent
-          in: string
-        example: Ketchum
-        type: string
-        x-go-name: Lastname
-      newsletter:
-        description: |-
-          Newsletter status of the adherent
-          in: bool
-        example: true
-        type: boolean
-        x-go-name: Newsletter
-      situation:
-        description: |-
-          Situation status of the adherent
-          in: string
-        example: student
-        type: string
-        x-go-name: Situation
-      speakabout:
-        description: |-
-          Speakabout of the adherent
-          in: string
-        example: Twitter
-        type: string
-        x-go-name: Speakabout
-      university:
-        description: |-
-          University of the adherent
-          in: string
-        example: Indigo
-        type: string
-        x-go-name: University
-      updated_at:
-        description: |-
-          UpdatedAt date of the adherent
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: UpdatedAt
-    required:
-      - firstname
-      - lastname
-      - email
-      - dateofbirth
-      - situation
-      - university
-      - homeland
-      - speakabout
-      - newsletter
-      - adhesion_date
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/adherent
-  Adherent_Stat:
-    properties:
-      aboutus_per_type:
-        description: |-
-          Number of how adherent heared about us per type
-          in: json
-        example:
-          facebook: 4
-          twitter: 12
-        readOnly: true
+    Adherent:
+        properties:
+            adhesion_date:
+                description: |-
+                    AdhesionDate date of the adhesion
+                    in: string
+                example: "2022-05-22"
+                type: string
+                x-go-name: AdhesionDate
+            created_at:
+                description: |-
+                    CreatedAt date of the adherent
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: CreatedAt
+            dateofbirth:
+                description: |-
+                    Dateofbirth of the adherent
+                    in: string
+                example: "2000-05-22"
+                type: string
+                x-go-name: Dateofbirth
+            email:
+                description: |-
+                    Email of the adherent
+                    in: string
+                example: pichu@kanto.kt
+                type: string
+                x-go-name: Email
+            firstname:
+                description: |-
+                    Firstname of the adherent
+                    in: string
+                example: Pichu
+                type: string
+                x-go-name: Firstname
+            homeland:
+                description: |-
+                    Homeland of the adherent
+                    in: string
+                example: Kanto
+                type: string
+                x-go-name: Homeland
+            id:
+                description: |-
+                    Id of the adherent
+                    in: int
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            lastname:
+                description: |-
+                    Lastname of the adherent
+                    in: string
+                example: Ketchum
+                type: string
+                x-go-name: Lastname
+            newsletter:
+                description: |-
+                    Newsletter status of the adherent
+                    in: bool
+                example: true
+                type: boolean
+                x-go-name: Newsletter
+            situation:
+                description: |-
+                    Situation status of the adherent
+                    in: string
+                example: student
+                type: string
+                x-go-name: Situation
+            speakabout:
+                description: |-
+                    Speakabout of the adherent
+                    in: string
+                example: Twitter
+                type: string
+                x-go-name: Speakabout
+            university:
+                description: |-
+                    University of the adherent
+                    in: string
+                example: Indigo
+                type: string
+                x-go-name: University
+            updated_at:
+                description: |-
+                    UpdatedAt date of the adherent
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: UpdatedAt
+        required:
+            - firstname
+            - lastname
+            - email
+            - dateofbirth
+            - situation
+            - university
+            - homeland
+            - speakabout
+            - newsletter
+            - adhesion_date
         type: object
-        x-go-name: AboutusPerType
-      archive_date:
-        description: |-
-          Archive date of the stat
-          in: string
-        example: 2023-01
-        type: string
-        x-go-name: ArchiveDate
-      created_at:
-        description: |-
-          CreatedAt date of the stat
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: CreatedAt
-      id:
-        description: |-
-          Id of the entry
-          in: int
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      nb_per_country:
-        description: |-
-          Number of adherent by country
-          in: json
-        example:
-          Belgium: 4
-          Poland: 12
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/adherent
+    Adherent_Stat:
+        properties:
+            aboutus_per_type:
+                description: |-
+                    Number of how adherent heared about us per type
+                    in: json
+                example:
+                    facebook: 4
+                    twitter: 12
+                readOnly: true
+                type: object
+                x-go-name: AboutusPerType
+            archive_date:
+                description: |-
+                    Archive date of the stat
+                    in: string
+                example: 2023-01
+                type: string
+                x-go-name: ArchiveDate
+            created_at:
+                description: |-
+                    CreatedAt date of the stat
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: CreatedAt
+            id:
+                description: |-
+                    Id of the entry
+                    in: int
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            nb_per_country:
+                description: |-
+                    Number of adherent by country
+                    in: json
+                example:
+                    Belgium: 4
+                    Poland: 12
+                readOnly: true
+                type: object
+                x-go-name: NbPerCountry
+            nb_per_situation:
+                description: |-
+                    Number of adherent by situation
+                    in: json
+                example:
+                    student: 12
+                    worker: 4
+                readOnly: true
+                type: object
+                x-go-name: NbPerSituation
+            nb_per_university:
+                description: |-
+                    Number of adherent by university
+                    in: json
+                example:
+                    Lumiere: 1
+                    SciencePo: 4
+                readOnly: true
+                type: object
+                x-go-name: NbPerUniversity
+            nb_total:
+                description: |-
+                    Number of adherent total
+                    in: int
+                example: 12
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: NbTotal
+            updated_at:
+                description: |-
+                    UpdatedAt date of the stat
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: UpdatedAt
+        required:
+            - archive_date
         type: object
-        x-go-name: NbPerCountry
-      nb_per_situation:
-        description: |-
-          Number of adherent by situation
-          in: json
-        example:
-          student: 12
-          worker: 4
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/adherent
+    CommonError:
+        properties:
+            message:
+                description: |-
+                    Message of the error
+                    in: string
+                example: error
+                type: string
+                x-go-name: Message
+            status:
+                description: |-
+                    Status of the error
+                    in: int64
+                example: 400
+                format: int64
+                type: integer
+                x-go-name: Status
+        required:
+            - status
+            - message
         type: object
-        x-go-name: NbPerSituation
-      nb_per_university:
-        description: |-
-          Number of adherent by university
-          in: json
-        example:
-          Lumiere: 1
-          SciencePo: 4
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/docs
+    CommonSuccess:
+        properties:
+            message:
+                description: |-
+                    Message of the error
+                    in: string
+                example: successed
+                type: string
+                x-go-name: Message
+            status:
+                description: |-
+                    Status of the error
+                    in: int64
+                example: 200
+                format: int64
+                type: integer
+                x-go-name: Status
+        required:
+            - status
         type: object
-        x-go-name: NbPerUniversity
-      nb_total:
-        description: |-
-          Number of adherent total
-          in: int
-        example: 12
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: NbTotal
-      updated_at:
-        description: |-
-          UpdatedAt date of the stat
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: UpdatedAt
-    required:
-      - archive_date
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/adherent
-  CommonError:
-    properties:
-      message:
-        description: |-
-          Message of the error
-          in: string
-        example: error
-        type: string
-        x-go-name: Message
-      status:
-        description: |-
-          Status of the error
-          in: int64
-        example: 400
-        format: int64
-        type: integer
-        x-go-name: Status
-    required:
-      - status
-      - message
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/docs
-  CommonSuccess:
-    properties:
-      message:
-        description: |-
-          Message of the error
-          in: string
-        example: successed
-        type: string
-        x-go-name: Message
-      status:
-        description: |-
-          Status of the error
-          in: int64
-        example: 200
-        format: int64
-        type: integer
-        x-go-name: Status
-    required:
-      - status
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/docs
-  ESNcard:
-    properties:
-      created_at:
-        description: |-
-          CreatedAt date of the esncard
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: CreatedAt
-      esncard:
-        description: |-
-          Code of the esncard
-          in: string
-        example: aVeryTooLongCode
-        type: string
-        x-go-name: Esncard
-      id:
-        description: |-
-          Id of the esncard
-          in: int
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      id_adherent:
-        description: |-
-          Id of the adherent
-          in: int64
-        example: 2
-        format: int64
-        type: integer
-        x-go-name: Id_adherent
-    required:
-      - id_adherent
-      - esncard
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/esncard
-  ESNcard_Stat:
-    properties:
-      archive_date:
-        description: |-
-          Archive date of the stat
-          in: string
-        example: 2023-01
-        type: string
-        x-go-name: ArchiveDate
-      created_at:
-        description: |-
-          CreatedAt date of the stat
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: CreatedAt
-      id:
-        description: |-
-          Id of the entry
-          in: int
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      nb_esncard_sold:
-        description: |-
-          Number of esncard sold
-          in: int
-        example: 12
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: NbESNcardSold
-      updated_at:
-        description: |-
-          UpdatedAt date of the stat
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: UpdatedAt
-    required:
-      - archive_date
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/esncard
-  Event:
-    properties:
-      actif:
-        description: |-
-          Status of the event
-          in: bool
-        example: true
-        type: boolean
-        x-go-name: Actif
-      date:
-        description: |-
-          Date of the event
-          in: string
-        example: "2023-05-23"
-        type: string
-        x-go-name: Date
-      id:
-        description: |-
-          Id of the event
-          in: int64
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      location:
-        description: |-
-          Location of the event
-          in: string
-        example: Plateau indigo, Kanto
-        type: string
-        x-go-name: Location
-      name:
-        description: |-
-          Name of the event
-          in: string
-        example: Conseil des 4
-        type: string
-        x-go-name: Name
-      nb_spots_max:
-        description: |-
-          Number Spots Max of the event
-          in: int
-        example: 30
-        format: int64
-        type: integer
-        x-go-name: NbSpotsMax
-      nb_spots_taken:
-        description: |-
-          Number Spots Taken of the event
-          in: int
-        example: 30
-        format: int64
-        type: integer
-        x-go-name: NbSpotsTaken
-      price:
-        description: |-
-          Price of the event
-          in: float
-        example: 0
-        format: double
-        type: number
-        x-go-name: Price
-      type:
-        description: |-
-          Type of the event
-          in: string
-        example: sport
-        type: string
-        x-go-name: Type
-      url_facebook:
-        description: |-
-          Url of the event
-          in: string
-        example: https://facebook.com/ligue
-        type: string
-        x-go-name: Url
-    required:
-      - name
-      - date
-      - location
-      - nb_spots_max
-      - nb_spots_taken
-      - type
-      - price
-      - url_facebook
-      - actif
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
-  Event_Attendee:
-    properties:
-      id:
-        description: |-
-          Id of the attendee
-          in: int64
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      id_adherent:
-        description: |-
-          Id of the adherent
-          in: int64
-        example: 1
-        format: int64
-        type: integer
-        x-go-name: Id_adherent
-      id_event:
-        description: |-
-          Id of the event
-          in: int64
-        example: 2
-        format: int64
-        type: integer
-        x-go-name: Id_event
-    required:
-      - id_event
-      - id_adherent
-    type: object
-    x-go-name: Attendee
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
-  Event_Staff:
-    properties:
-      id:
-        description: |-
-          Id of the staff
-          in: int64
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      id_event:
-        description: |-
-          Id of the event
-          in: int
-        example: 2
-        format: int64
-        type: integer
-        x-go-name: Id_event
-      id_volunteer:
-        description: |-
-          Id of the volunteer
-          in: int
-        example: 1
-        format: int64
-        type: integer
-        x-go-name: Id_volunteer
-    required:
-      - id_event
-      - id_volunteer
-    type: object
-    x-go-name: Staff
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
-  Event_Stat:
-    properties:
-      archive_date:
-        description: |-
-          Archive date of the stat
-          in: string
-        example: 2023-01
-        type: string
-        x-go-name: ArchiveDate
-      created_at:
-        description: |-
-          CreatedAt date of the stat
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: CreatedAt
-      id:
-        description: |-
-          Id of the entry
-          in: int
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      nb_att_total:
-        description: |-
-          Number of event attendees total
-          in: int
-        example: 12
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: NbAttTotal
-      nb_avg_att_per_type:
-        description: |-
-          Average attendee per type of event
-          in: json
-        example:
-          NEM: 12.5
-          gala: 5
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/docs
+    ESNcard:
+        properties:
+            created_at:
+                description: |-
+                    CreatedAt date of the esncard
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: CreatedAt
+            esncard:
+                description: |-
+                    Code of the esncard
+                    in: string
+                example: aVeryTooLongCode
+                type: string
+                x-go-name: Esncard
+            id:
+                description: |-
+                    Id of the esncard
+                    in: int
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            id_adherent:
+                description: |-
+                    Id of the adherent
+                    in: int64
+                example: 2
+                format: int64
+                type: integer
+                x-go-name: Id_adherent
+        required:
+            - id_adherent
+            - esncard
         type: object
-        x-go-name: AvgAttPerType
-      nb_avg_sta_per_type:
-        description: |-
-          Average staff per type of event
-          in: json
-        example:
-          NEM: 12.5
-          gala: 5
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/esncard
+    ESNcard_Stat:
+        properties:
+            archive_date:
+                description: |-
+                    Archive date of the stat
+                    in: string
+                example: 2023-01
+                type: string
+                x-go-name: ArchiveDate
+            created_at:
+                description: |-
+                    CreatedAt date of the stat
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: CreatedAt
+            id:
+                description: |-
+                    Id of the entry
+                    in: int
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            nb_esncard_sold:
+                description: |-
+                    Number of esncard sold
+                    in: int
+                example: 12
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: NbESNcardSold
+            updated_at:
+                description: |-
+                    UpdatedAt date of the stat
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: UpdatedAt
+        required:
+            - archive_date
         type: object
-        x-go-name: AvgStaPerType
-      nb_cancel:
-        description: |-
-          Number of event cancel
-          in: int
-        example: 12
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: NbCancel
-      nb_per_location:
-        description: |-
-          Number of event by location
-          in: json
-        example:
-          MDE: 12
-          MDEL: 4
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/esncard
+    Event:
+        properties:
+            actif:
+                description: |-
+                    Status of the event
+                    in: bool
+                example: true
+                type: boolean
+                x-go-name: Actif
+            date:
+                description: |-
+                    Date of the event
+                    in: string
+                example: "2023-05-23"
+                type: string
+                x-go-name: Date
+            id:
+                description: |-
+                    Id of the event
+                    in: int64
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            location:
+                description: |-
+                    Location of the event
+                    in: string
+                example: Plateau indigo, Kanto
+                type: string
+                x-go-name: Location
+            name:
+                description: |-
+                    Name of the event
+                    in: string
+                example: Conseil des 4
+                type: string
+                x-go-name: Name
+            nb_spots_max:
+                description: |-
+                    Number Spots Max of the event
+                    in: int
+                example: 30
+                format: int64
+                type: integer
+                x-go-name: NbSpotsMax
+            nb_spots_taken:
+                description: |-
+                    Number Spots Taken of the event
+                    in: int
+                example: 30
+                format: int64
+                type: integer
+                x-go-name: NbSpotsTaken
+            price:
+                description: |-
+                    Price of the event
+                    in: float
+                example: 0
+                format: double
+                type: number
+                x-go-name: Price
+            type:
+                description: |-
+                    Type of the event
+                    in: string
+                example: sport
+                type: string
+                x-go-name: Type
+            url_facebook:
+                description: |-
+                    Url of the event
+                    in: string
+                example: https://facebook.com/ligue
+                type: string
+                x-go-name: Url
+        required:
+            - name
+            - date
+            - location
+            - nb_spots_max
+            - nb_spots_taken
+            - type
+            - price
+            - url_facebook
+            - actif
         type: object
-        x-go-name: NbPerLocation
-      nb_per_price:
-        description: |-
-          Number of event by price
-          in: json
-        example:
-          "0": 1
-          "5": 4
-          "10": 2
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
+    Event_Attendee:
+        properties:
+            id:
+                description: |-
+                    Id of the attendee
+                    in: int64
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            id_adherent:
+                description: |-
+                    Id of the adherent
+                    in: int64
+                example: 1
+                format: int64
+                type: integer
+                x-go-name: Id_adherent
+            id_event:
+                description: |-
+                    Id of the event
+                    in: int64
+                example: 2
+                format: int64
+                type: integer
+                x-go-name: Id_event
+        required:
+            - id_event
+            - id_adherent
         type: object
-        x-go-name: NbPerPrice
-      nb_per_type:
-        description: |-
-          Number of event by type
-          in: json
-        example:
-          Gala: 4
-          NEM: 12
-        readOnly: true
+        x-go-name: Attendee
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
+    Event_Staff:
+        properties:
+            id:
+                description: |-
+                    Id of the staff
+                    in: int64
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            id_event:
+                description: |-
+                    Id of the event
+                    in: int
+                example: 2
+                format: int64
+                type: integer
+                x-go-name: Id_event
+            id_volunteer:
+                description: |-
+                    Id of the volunteer
+                    in: int
+                example: 1
+                format: int64
+                type: integer
+                x-go-name: Id_volunteer
+        required:
+            - id_event
+            - id_volunteer
         type: object
-        x-go-name: NbPerType
-      nb_sta_total:
-        description: |-
-          Number of event staffs total
-          in: int
-        example: 12
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: NbStaTotal
-      nb_total:
-        description: |-
-          Number of event total
-          in: int
-        example: 12
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: NbTotal
-      tx_avg_fulfill_per_type:
-        description: |-
-          Average fulfill per type of event
-          in: json
-        example:
-          NEM: 99.9
-          gala: 80
-        readOnly: true
+        x-go-name: Staff
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
+    Event_Stat:
+        properties:
+            archive_date:
+                description: |-
+                    Archive date of the stat
+                    in: string
+                example: 2023-01
+                type: string
+                x-go-name: ArchiveDate
+            created_at:
+                description: |-
+                    CreatedAt date of the stat
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: CreatedAt
+            id:
+                description: |-
+                    Id of the entry
+                    in: int
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            nb_att_total:
+                description: |-
+                    Number of event attendees total
+                    in: int
+                example: 12
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: NbAttTotal
+            nb_avg_att_per_type:
+                description: |-
+                    Average attendee per type of event
+                    in: json
+                example:
+                    NEM: 12.5
+                    gala: 5
+                readOnly: true
+                type: object
+                x-go-name: AvgAttPerType
+            nb_avg_sta_per_type:
+                description: |-
+                    Average staff per type of event
+                    in: json
+                example:
+                    NEM: 12.5
+                    gala: 5
+                readOnly: true
+                type: object
+                x-go-name: AvgStaPerType
+            nb_cancel:
+                description: |-
+                    Number of event cancel
+                    in: int
+                example: 12
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: NbCancel
+            nb_per_location:
+                description: |-
+                    Number of event by location
+                    in: json
+                example:
+                    MDE: 12
+                    MDEL: 4
+                readOnly: true
+                type: object
+                x-go-name: NbPerLocation
+            nb_per_price:
+                description: |-
+                    Number of event by price
+                    in: json
+                example:
+                    "0": 1
+                    "5": 4
+                    "10": 2
+                readOnly: true
+                type: object
+                x-go-name: NbPerPrice
+            nb_per_type:
+                description: |-
+                    Number of event by type
+                    in: json
+                example:
+                    Gala: 4
+                    NEM: 12
+                readOnly: true
+                type: object
+                x-go-name: NbPerType
+            nb_sta_total:
+                description: |-
+                    Number of event staffs total
+                    in: int
+                example: 12
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: NbStaTotal
+            nb_total:
+                description: |-
+                    Number of event total
+                    in: int
+                example: 12
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: NbTotal
+            tx_avg_fulfill_per_type:
+                description: |-
+                    Average fulfill per type of event
+                    in: json
+                example:
+                    NEM: 99.9
+                    gala: 80
+                readOnly: true
+                type: object
+                x-go-name: FulfillAvgPerType
+            updated_at:
+                description: |-
+                    UpdatedAt date of the stat
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: UpdatedAt
+        required:
+            - archive_date
         type: object
-        x-go-name: FulfillAvgPerType
-      updated_at:
-        description: |-
-          UpdatedAt date of the stat
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: UpdatedAt
-    required:
-      - archive_date
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
-  GalaxyConf:
-    properties:
-      CASServer:
-        type: string
-      ConfUrl:
-        type: string
-      Country:
-        type: string
-      ExtraUsername:
-        items:
-          type: string
-        type: array
-      G33kTeam:
-        items:
-          type: string
-        type: array
-      Roles:
-        items:
-          type: string
-        type: array
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/cocas
-  Health:
-    properties:
-      message:
-        description: |-
-          Message of the api
-          in: string
-        example: Gosmo is feeling happy today :)
-        type: string
-        x-go-name: Message
-      title:
-        description: |-
-          Title of the api page
-          in: string
-        example: IT works !
-        type: string
-        x-go-name: Title
-    required:
-      - title
-      - message
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/health
-  Money:
-    properties:
-      created_at:
-        description: |-
-          CreatedAt date of the operation
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: CreatedAt
-      id:
-        description: |-
-          Id of the entry
-          in: int
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      label:
-        description: |-
-          Label of the operation
-          in: string
-        example: event
-        type: string
-        x-go-name: Label
-      payment_date:
-        description: |-
-          Payment date of the operation
-          in: string
-        example: "2023-01-23"
-        type: string
-        x-go-name: PaymentDate
-      payment_type:
-        description: |-
-          Payment type of the operation
-          in: string
-        example: cash
-        type: string
-        x-go-name: PaymentType
-      price:
-        description: |-
-          Price of the operation
-          in: float
-        example: 1.5
-        format: double
-        type: number
-        x-go-name: Price
-    required:
-      - label
-      - price
-      - payment_type
-      - payment_date
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/money
-  Money_Stats:
-    properties:
-      archive_date:
-        description: |-
-          Archive date of the stat
-          in: string
-        example: 2023-01
-        type: string
-        x-go-name: ArchiveDate
-      avg_prices:
-        description: |-
-          Average prices per type of label
-          in: json
-        example:
-          adhesion: 12.5
-          esncard: 5
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/event
+    Health:
+        properties:
+            message:
+                description: |-
+                    Message of the api
+                    in: string
+                example: Gosmo is feeling happy today :)
+                type: string
+                x-go-name: Message
+            title:
+                description: |-
+                    Title of the api page
+                    in: string
+                example: IT works !
+                type: string
+                x-go-name: Title
+        required:
+            - title
+            - message
         type: object
-        x-go-name: AvgPrices
-      created_at:
-        description: |-
-          CreatedAt date of the operation
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: CreatedAt
-      id:
-        description: |-
-          Id of the entry
-          in: int
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      max_prices:
-        description: |-
-          Max prices per type of label
-          in: json
-        example:
-          adhesion: 20
-          esncard: 5
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/health
+    Money:
+        properties:
+            created_at:
+                description: |-
+                    CreatedAt date of the operation
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: CreatedAt
+            id:
+                description: |-
+                    Id of the entry
+                    in: int
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            label:
+                description: |-
+                    Label of the operation
+                    in: string
+                example: event
+                type: string
+                x-go-name: Label
+            payment_date:
+                description: |-
+                    Payment date of the operation
+                    in: string
+                example: "2023-01-23"
+                type: string
+                x-go-name: PaymentDate
+            payment_type:
+                description: |-
+                    Payment type of the operation
+                    in: string
+                example: cash
+                type: string
+                x-go-name: PaymentType
+            price:
+                description: |-
+                    Price of the operation
+                    in: float
+                example: 1.5
+                format: double
+                type: number
+                x-go-name: Price
+        required:
+            - label
+            - price
+            - payment_type
+            - payment_date
         type: object
-        x-go-name: MaxPrices
-      min_prices:
-        description: |-
-          Min prices per type of label
-          in: json
-        example:
-          adhesion: 1
-          esncard: 5
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/money
+    Money_Stats:
+        properties:
+            archive_date:
+                description: |-
+                    Archive date of the stat
+                    in: string
+                example: 2023-01
+                type: string
+                x-go-name: ArchiveDate
+            avg_prices:
+                description: |-
+                    Average prices per type of label
+                    in: json
+                example:
+                    adhesion: 12.5
+                    esncard: 5
+                readOnly: true
+                type: object
+                x-go-name: AvgPrices
+            created_at:
+                description: |-
+                    CreatedAt date of the operation
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: CreatedAt
+            id:
+                description: |-
+                    Id of the entry
+                    in: int
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            max_prices:
+                description: |-
+                    Max prices per type of label
+                    in: json
+                example:
+                    adhesion: 20
+                    esncard: 5
+                readOnly: true
+                type: object
+                x-go-name: MaxPrices
+            min_prices:
+                description: |-
+                    Min prices per type of label
+                    in: json
+                example:
+                    adhesion: 1
+                    esncard: 5
+                readOnly: true
+                type: object
+                x-go-name: MinPrices
+            nb_payments_type:
+                description: |-
+                    Number of Payments type
+                    in: json
+                example:
+                    cash: 12
+                    cb: 5
+                readOnly: true
+                type: object
+                x-go-name: NbPaymentTypes
+            nb_per_label:
+                description: |-
+                    Number of each label
+                    in: json
+                example:
+                    esncard: 4
+                    event: 12
+                readOnly: true
+                type: object
+                x-go-name: NbPerLabel
+            updated_at:
+                description: |-
+                    UpdatedAt date of the operation
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: UpdatedAt
+        required:
+            - archive_date
         type: object
-        x-go-name: MinPrices
-      nb_payments_type:
-        description: |-
-          Number of Payments type
-          in: json
-        example:
-          cash: 12
-          cb: 5
-        readOnly: true
+        x-go-name: Money_Stat
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/money
+    Planning:
+        properties:
+            date_begins:
+                description: |-
+                    Date_begins of the planning
+                    in: string
+                example: "2023-05-23"
+                type: string
+                x-go-name: Date_begins
+            date_end:
+                description: |-
+                    Date_end of the planning
+                    in: string
+                example: "2023-05-23"
+                type: string
+                x-go-name: Date_end
+            hour_begins:
+                description: |-
+                    Hour_begins of the planning
+                    in: string
+                example: "9:00:00"
+                type: string
+                x-go-name: Hour_begins
+            hour_end:
+                description: |-
+                    Hour_end of the planning
+                    in: string
+                example: "18:00:00"
+                type: string
+                x-go-name: Hour_end
+            id:
+                description: |-
+                    Id of the planning
+                    in: int64
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            location:
+                description: |-
+                    Location of the planning
+                    in: string
+                example: Labo Prof Chen
+                type: string
+                x-go-name: Location
+            name:
+                description: |-
+                    Name of the planning
+                    in: string
+                example: Permanence
+                type: string
+                x-go-name: Name
+            type:
+                description: |-
+                    Type of the planning
+                    in: string
+                example: permanence
+                type: string
+                x-go-name: Type
         type: object
-        x-go-name: NbPaymentTypes
-      nb_per_label:
-        description: |-
-          Number of each label
-          in: json
-        example:
-          esncard: 4
-          event: 12
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
+    Planning_Attendee:
+        properties:
+            date:
+                description: |-
+                    Date of the shift
+                    in: string
+                example: "2023-05-23"
+                type: string
+                x-go-name: Date
+            hour_begins:
+                description: |-
+                    Hour_begins of the shift
+                    in: string
+                example: "10:00:00"
+                type: string
+                x-go-name: Hour_begins
+            hour_end:
+                description: |-
+                    Hour_end of the shift
+                    in: string
+                example: "12:00:00"
+                type: string
+                x-go-name: Hour_end
+            id:
+                description: |-
+                    Id of the attendee
+                    in: int64
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            id_planning:
+                description: |-
+                    Id of the planning
+                    in: int
+                example: 2
+                format: int64
+                type: integer
+                x-go-name: Id_planning
+            id_volunteer:
+                description: |-
+                    Id of the volunteer
+                    in: int
+                example: 1
+                format: int64
+                type: integer
+                x-go-name: Id_volunteer
+            job:
+                description: |-
+                    Job of the shift
+                    in: string
+                example: staff
+                type: string
+                x-go-name: Job
+        required:
+            - id_planning
+            - id_volunteer
+            - job
+            - date
+            - hour_begins
+            - hour_end
         type: object
-        x-go-name: NbPerLabel
-      updated_at:
-        description: |-
-          UpdatedAt date of the operation
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: UpdatedAt
-    required:
-      - archive_date
-    type: object
-    x-go-name: Money_Stat
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/money
-  Planning:
-    properties:
-      date_begins:
-        description: |-
-          Date_begins of the planning
-          in: string
-        example: "2023-05-23"
-        type: string
-        x-go-name: Date_begins
-      date_end:
-        description: |-
-          Date_end of the planning
-          in: string
-        example: "2023-05-23"
-        type: string
-        x-go-name: Date_end
-      hour_begins:
-        description: |-
-          Hour_begins of the planning
-          in: string
-        example: "9:00:00"
-        type: string
-        x-go-name: Hour_begins
-      hour_end:
-        description: |-
-          Hour_end of the planning
-          in: string
-        example: "18:00:00"
-        type: string
-        x-go-name: Hour_end
-      id:
-        description: |-
-          Id of the planning
-          in: int64
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      location:
-        description: |-
-          Location of the planning
-          in: string
-        example: Labo Prof Chen
-        type: string
-        x-go-name: Location
-      name:
-        description: |-
-          Name of the planning
-          in: string
-        example: Permanence
-        type: string
-        x-go-name: Name
-      type:
-        description: |-
-          Type of the planning
-          in: string
-        example: permanence
-        type: string
-        x-go-name: Type
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
-  Planning_Attendee:
-    properties:
-      date:
-        description: |-
-          Date of the shift
-          in: string
-        example: "2023-05-23"
-        type: string
-        x-go-name: Date
-      hour_begins:
-        description: |-
-          Hour_begins of the shift
-          in: string
-        example: "10:00:00"
-        type: string
-        x-go-name: Hour_begins
-      hour_end:
-        description: |-
-          Hour_end of the shift
-          in: string
-        example: "12:00:00"
-        type: string
-        x-go-name: Hour_end
-      id:
-        description: |-
-          Id of the attendee
-          in: int64
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      id_planning:
-        description: |-
-          Id of the planning
-          in: int
-        example: 2
-        format: int64
-        type: integer
-        x-go-name: Id_planning
-      id_volunteer:
-        description: |-
-          Id of the volunteer
-          in: int
-        example: 1
-        format: int64
-        type: integer
-        x-go-name: Id_volunteer
-      job:
-        description: |-
-          Job of the shift
-          in: string
-        example: staff
-        type: string
-        x-go-name: Job
-    required:
-      - id_planning
-      - id_volunteer
-      - job
-      - date
-      - hour_begins
-      - hour_end
-    type: object
-    x-go-name: Attendee
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
-  Planning_Stat:
-    properties:
-      archive_date:
-        description: |-
-          Archive date of the stat
-          in: string
-        example: 2023-01
-        type: string
-        x-go-name: ArchiveDate
-      created_at:
-        description: |-
-          CreatedAt date of the stat
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: CreatedAt
-      id:
-        description: |-
-          Id of the entry
-          in: int
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      nb_att_total:
-        description: |-
-          Number of planning attendees total
-          in: int
-        example: 12
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: NbAttTotal
-      nb_avg_att_per_type:
-        description: |-
-          Average attendee per type of planning
-          in: json
-        example:
-          event: 12.5
-          permanence: 5
-        readOnly: true
+        x-go-name: Attendee
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
+    Planning_Stat:
+        properties:
+            archive_date:
+                description: |-
+                    Archive date of the stat
+                    in: string
+                example: 2023-01
+                type: string
+                x-go-name: ArchiveDate
+            created_at:
+                description: |-
+                    CreatedAt date of the stat
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: CreatedAt
+            id:
+                description: |-
+                    Id of the entry
+                    in: int
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            nb_att_total:
+                description: |-
+                    Number of planning attendees total
+                    in: int
+                example: 12
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: NbAttTotal
+            nb_avg_att_per_type:
+                description: |-
+                    Average attendee per type of planning
+                    in: json
+                example:
+                    event: 12.5
+                    permanence: 5
+                readOnly: true
+                type: object
+                x-go-name: AvgAttPerType
+            nb_per_location:
+                description: |-
+                    Number of planning by location
+                    in: json
+                example:
+                    MDE: 12
+                    MDEL: 4
+                readOnly: true
+                type: object
+                x-go-name: NbPerLocation
+            nb_per_type:
+                description: |-
+                    Number of planning by type
+                    in: json
+                example:
+                    event: 4
+                    permanence: 12
+                readOnly: true
+                type: object
+                x-go-name: NbPerType
+            nb_total:
+                description: |-
+                    Number of planning total
+                    in: int
+                example: 12
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: NbTotal
+            updated_at:
+                description: |-
+                    UpdatedAt date of the stat
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: UpdatedAt
+        required:
+            - archive_date
         type: object
-        x-go-name: AvgAttPerType
-      nb_per_location:
-        description: |-
-          Number of planning by location
-          in: json
-        example:
-          MDE: 12
-          MDEL: 4
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
+    Report:
+        properties:
+            code_project:
+                description: |-
+                    Code projet of the event/planning/custom
+                    in: string
+                example: PKMN
+                type: string
+                x-go-name: CodeProject
+            code_public:
+                description: |-
+                    Code public of the event/planning/custom
+                    in: string
+                example: ALL
+                type: string
+                x-go-name: CodePublic
+            comment:
+                description: |-
+                    Comment of the report
+                    in: string
+                example: It was amazing !
+                type: string
+                x-go-name: Comment
+            date:
+                description: |-
+                    Date of the event/planning/custom
+                    in: string
+                example: "2021-04-14"
+                type: string
+                x-go-name: Date
+            id:
+                description: |-
+                    Id of the report
+                    in: int
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            name:
+                description: |-
+                    Name of the report
+                    in: string
+                example: Report Ligue
+                type: string
+                x-go-name: Name
+            nb_hours:
+                description: |-
+                    Number of hours of the event/planning/custom
+                    in: float
+                example: 12
+                format: double
+                type: number
+                x-go-name: NbHours
+            nb_hours_prepa:
+                description: |-
+                    Number of hours of preparation
+                    in: float
+                example: 4
+                format: double
+                type: number
+                x-go-name: NbHoursPrepa
+            nb_reel_attendees:
+                description: |-
+                    Number reel of attendees of the event/planning/custom
+                    in: int
+                example: 20
+                format: int64
+                type: integer
+                x-go-name: NbReelAtt
+            nb_staffs_emp:
+                description: |-
+                    Number of employee staffs of the event/planning/custom
+                    in: float
+                example: 0
+                format: double
+                type: number
+                x-go-name: NbStaffsEmp
+            nb_staffs_scv:
+                description: |-
+                    Number of Civic service staffs of the event/planning/custom
+                    in: float
+                example: 0
+                format: double
+                type: number
+                x-go-name: NbStaffsScv
+            nb_staffs_vlt:
+                description: |-
+                    Number of volunteer staffs of the event/planning/custom
+                    in: float
+                    excample: 3
+                format: double
+                type: number
+                x-go-name: NbStaffsVlt
+            nb_subscribe_attendees:
+                description: |-
+                    Number subscribes of attendees of the event/planning/custom
+                    in: int
+                example: 20
+                format: int64
+                type: integer
+                x-go-name: NbSubsAtt
+            ref_ext:
+                description: |-
+                    External reference of the report
+                    in: int
+                example: 1
+                format: int64
+                type: integer
+                x-go-name: RefExt
+            staffs_list:
+                description: |-
+                    List of staffs of the event/planning/custom
+                    in: string
+                example: John Smith, Toto titi, Ash Ketchum
+                type: string
+                x-go-name: StaffsList
+            taux_valorisation_emp:
+                description: |-
+                    Taux employee Valorisation of the event/planning/custom
+                    in: float
+                example: 18
+                format: double
+                type: number
+                x-go-name: TauxValorisationEmp
+            taux_valorisation_scv:
+                description: |-
+                    Taux civic service Valorisation of the event/planning/custom
+                    in: float
+                example: 18
+                format: double
+                type: number
+                x-go-name: TauxValorisationScv
+            taux_valorisation_vlt:
+                description: |-
+                    Taux volunteer Valorisation of the event/planning/custom
+                    in: float
+                example: 18
+                format: double
+                type: number
+                x-go-name: TauxValorisationVlt
+            type:
+                description: |-
+                    Type of the report
+                    in: string
+                example: event
+                type: string
+                x-go-name: Type
+        required:
+            - type
+            - ref_ext
+            - name
+            - date
+            - comment
+            - nb_reel_attendees
+            - nb_subscribe_attendees
+            - staffs_list
+            - nb_hours_prepa
+            - nb_hours
+            - nb_staffs_emp
+            - nb_staffs_scv
+            - taux_valorisation_vlt
+            - taux_valorisation_emp
+            - taux_valorisation_scv
+            - code_public
+            - code_project
         type: object
-        x-go-name: NbPerLocation
-      nb_per_type:
-        description: |-
-          Number of planning by type
-          in: json
-        example:
-          event: 4
-          permanence: 12
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/report
+    Report_Stat:
+        properties:
+            archive_date:
+                description: |-
+                    Archive date of the stat
+                    in: string
+                example: 2023-01
+                type: string
+                x-go-name: ArchiveDate
+            created_at:
+                description: |-
+                    CreatedAt date of the stat
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: CreatedAt
+            hours_emp_per_codes:
+                description: |-
+                    Number of hours for an employee by code
+                    in: json
+                example:
+                    PKM: 12
+                    SMI: 4
+                readOnly: true
+                type: object
+                x-go-name: HoursEmpCodes
+            hours_scv_per_codes:
+                description: |-
+                    Number of hours for a scv by code
+                    in: json
+                example:
+                    PKM: 12
+                    SMI: 4
+                readOnly: true
+                type: object
+                x-go-name: HoursScvCodes
+            hours_vlt_per_codes:
+                description: |-
+                    Number of hours for a volunteer by code
+                    in: json
+                example:
+                    PKM: 12
+                    SMI: 4
+                readOnly: true
+                type: object
+                x-go-name: HoursVltCodes
+            id:
+                description: |-
+                    Id of the entry
+                    in: int
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            nb_per_codeproject:
+                description: |-
+                    Number of report by code project
+                    in: json
+                example:
+                    PKM: 1
+                    SMI: 4
+                readOnly: true
+                type: object
+                x-go-name: NbPerCodeProject
+            nb_per_codepublic:
+                description: |-
+                    Number of report by code public
+                    in: json
+                example:
+                    CHAMP: 12
+                    MAST: 4
+                readOnly: true
+                type: object
+                x-go-name: NbPerCodePublic
+            nb_per_type:
+                description: |-
+                    Number of report by type
+                    in: json
+                example:
+                    student: 12
+                    worker: 4
+                readOnly: true
+                type: object
+                x-go-name: NbPerType
+            nb_total:
+                description: |-
+                    Number of report total
+                    in: int
+                example: 12
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: NbTotal
+            updated_at:
+                description: |-
+                    UpdatedAt date of the stat
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: UpdatedAt
+            valo_emp_per_codes:
+                description: |-
+                    Valorisation for an employee by code
+                    in: json
+                example:
+                    PKM: 12
+                    SMI: 4
+                readOnly: true
+                type: object
+                x-go-name: ValoEmpCodes
+            valo_scv_per_codes:
+                description: |-
+                    Valorisation for a scv by code
+                    in: json
+                example:
+                    PKM: 12
+                    SMI: 4
+                readOnly: true
+                type: object
+                x-go-name: ValoScvCodes
+            valo_vlt_per_codes:
+                description: |-
+                    Valorisation for a volunteer by code
+                    in: json
+                example:
+                    PKM: 12
+                    SMI: 4
+                readOnly: true
+                type: object
+                x-go-name: ValoVltCodes
+        required:
+            - archive_date
         type: object
-        x-go-name: NbPerType
-      nb_total:
-        description: |-
-          Number of planning total
-          in: int
-        example: 12
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: NbTotal
-      updated_at:
-        description: |-
-          UpdatedAt date of the stat
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: UpdatedAt
-    required:
-      - archive_date
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/planning
-  Profile:
-    properties:
-      admin:
-        type: boolean
-        x-go-name: Admin
-      association:
-        type: string
-        x-go-name: Section
-      country:
-        type: string
-        x-go-name: Country
-      dateofbirth:
-        type: string
-        x-go-name: Birthdate
-      email:
-        type: string
-        x-go-name: Email
-      extended_roles:
-        items:
-          type: string
-        type: array
-        x-go-name: ExtendedRoles
-      firstname:
-        type: string
-        x-go-name: First
-      gender:
-        type: string
-        x-go-name: Gender
-      lastname:
-        type: string
-        x-go-name: Last
-      nationality:
-        type: string
-        x-go-name: Nationality
-      phone:
-        type: string
-        x-go-name: Phone
-      picture_url:
-        type: string
-        x-go-name: PictureURL
-      roles:
-        items:
-          type: string
-        type: array
-        x-go-name: Roles
-      section_code:
-        type: string
-        x-go-name: Sc
-      username:
-        type: string
-        x-go-name: Username
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/cocas
-  Report:
-    properties:
-      code_project:
-        description: |-
-          Code projet of the event/planning/custom
-          in: string
-        example: PKMN
-        type: string
-        x-go-name: CodeProject
-      code_public:
-        description: |-
-          Code public of the event/planning/custom
-          in: string
-        example: ALL
-        type: string
-        x-go-name: CodePublic
-      comment:
-        description: |-
-          Comment of the report
-          in: string
-        example: It was amazing !
-        type: string
-        x-go-name: Comment
-      date:
-        description: |-
-          Date of the event/planning/custom
-          in: string
-        example: "2021-04-14"
-        type: string
-        x-go-name: Date
-      id:
-        description: |-
-          Id of the report
-          in: int
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      name:
-        description: |-
-          Name of the report
-          in: string
-        example: Report Ligue
-        type: string
-        x-go-name: Name
-      nb_hours:
-        description: |-
-          Number of hours of the event/planning/custom
-          in: float
-        example: 12
-        format: double
-        type: number
-        x-go-name: NbHours
-      nb_hours_prepa:
-        description: |-
-          Number of hours of preparation
-          in: float
-        example: 4
-        format: double
-        type: number
-        x-go-name: NbHoursPrepa
-      nb_reel_attendees:
-        description: |-
-          Number reel of attendees of the event/planning/custom
-          in: int
-        example: 20
-        format: int64
-        type: integer
-        x-go-name: NbReelAtt
-      nb_staffs_emp:
-        description: |-
-          Number of employee staffs of the event/planning/custom
-          in: float
-        example: 0
-        format: double
-        type: number
-        x-go-name: NbStaffsEmp
-      nb_staffs_scv:
-        description: |-
-          Number of Civic service staffs of the event/planning/custom
-          in: float
-        example: 0
-        format: double
-        type: number
-        x-go-name: NbStaffsScv
-      nb_staffs_vlt:
-        description: |-
-          Number of volunteer staffs of the event/planning/custom
-          in: float
-          excample: 3
-        format: double
-        type: number
-        x-go-name: NbStaffsVlt
-      nb_subscribe_attendees:
-        description: |-
-          Number subscribes of attendees of the event/planning/custom
-          in: int
-        example: 20
-        format: int64
-        type: integer
-        x-go-name: NbSubsAtt
-      ref_ext:
-        description: |-
-          External reference of the report
-          in: int
-        example: 1
-        format: int64
-        type: integer
-        x-go-name: RefExt
-      staffs_list:
-        description: |-
-          List of staffs of the event/planning/custom
-          in: string
-        example: John Smith, Toto titi, Ash Ketchum
-        type: string
-        x-go-name: StaffsList
-      taux_valorisation_emp:
-        description: |-
-          Taux employee Valorisation of the event/planning/custom
-          in: float
-        example: 18
-        format: double
-        type: number
-        x-go-name: TauxValorisationEmp
-      taux_valorisation_scv:
-        description: |-
-          Taux civic service Valorisation of the event/planning/custom
-          in: float
-        example: 18
-        format: double
-        type: number
-        x-go-name: TauxValorisationScv
-      taux_valorisation_vlt:
-        description: |-
-          Taux volunteer Valorisation of the event/planning/custom
-          in: float
-        example: 18
-        format: double
-        type: number
-        x-go-name: TauxValorisationVlt
-      type:
-        description: |-
-          Type of the report
-          in: string
-        example: event
-        type: string
-        x-go-name: Type
-    required:
-      - type
-      - ref_ext
-      - name
-      - date
-      - comment
-      - nb_reel_attendees
-      - nb_subscribe_attendees
-      - staffs_list
-      - nb_hours_prepa
-      - nb_hours
-      - nb_staffs_emp
-      - nb_staffs_scv
-      - taux_valorisation_vlt
-      - taux_valorisation_emp
-      - taux_valorisation_scv
-      - code_public
-      - code_project
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/report
-  Report_Stat:
-    properties:
-      archive_date:
-        description: |-
-          Archive date of the stat
-          in: string
-        example: 2023-01
-        type: string
-        x-go-name: ArchiveDate
-      created_at:
-        description: |-
-          CreatedAt date of the stat
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: CreatedAt
-      hours_emp_per_codes:
-        description: |-
-          Number of hours for an employee by code
-          in: json
-        example:
-          PKM: 12
-          SMI: 4
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/report
+    Status:
+        properties:
+            dbstatus:
+                description: |-
+                    DbStatus of the api
+                    in: string
+                example: everything is awesome <3
+                type: string
+                x-go-name: DbStatus
+            message:
+                description: |-
+                    Message of the api
+                    in: string
+                example: Gosmo is feeling happy today :)
+                type: string
+                x-go-name: Message
+            name:
+                description: |-
+                    Name of the api
+                    in: string
+                example: CosmoAppy
+                type: string
+                x-go-name: Name
+            title:
+                description: |-
+                    Title of the api page
+                    in: string
+                example: Status
+                type: string
+                x-go-name: Title
+            version:
+                description: |-
+                    Version of the api
+                    in: string
+                example: latest
+                type: string
+                x-go-name: Version
+        required:
+            - title
+            - name
+            - version
+            - message
+            - dbstatus
         type: object
-        x-go-name: HoursEmpCodes
-      hours_scv_per_codes:
-        description: |-
-          Number of hours for a scv by code
-          in: json
-        example:
-          PKM: 12
-          SMI: 4
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/health
+    Volunteer:
+        properties:
+            actif:
+                description: |-
+                    Status of the volunteer
+                    in: bool
+                type: boolean
+                x-go-name: Actif
+            bureau:
+                description: |-
+                    Does the volunteer has a bureau role
+                    in: bool
+                example: false
+                type: boolean
+                x-go-name: Bureau
+            discord:
+                description: |-
+                    Discord pseudo
+                    in: string
+                example: TheVeryBest
+                type: string
+                x-go-name: Discord
+            email:
+                description: |-
+                    Email of the volunteer
+                    in: string
+                example: ash.ketchum@indigo.kt
+                type: string
+                x-go-name: Email
+            firstname:
+                description: |-
+                    Firstname of the volunteer
+                    in: string
+                example: Ash
+                type: string
+                x-go-name: Firstname
+            hr_status:
+                description: |-
+                    Status of the volunteer
+                    in: string
+                example: volunteer
+                type: string
+                x-go-name: HrStatus
+            id:
+                description: |-
+                    Id of the volunteer
+                    in: int64
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            lastname:
+                description: |-
+                    Lastname of the volunteer
+                    in: string
+                example: Ketchum
+                type: string
+                x-go-name: Lastname
+            phone:
+                description: |-
+                    Phone number
+                    in: string
+                example: "0123456789"
+                type: string
+                x-go-name: Phone
+            postal_address:
+                description: |-
+                    Postal address
+                    in: string
+                example: 01 bis house, 00001 Pallet Town, Kanto
+                type: string
+                x-go-name: PostalAddress
+            started_date:
+                description: |-
+                    Started of date of volunteering
+                    in: string
+                example: "1997-04-01"
+                type: string
+                x-go-name: StartedDate
+            university:
+                description: |-
+                    University name
+                    in: string
+                example: Indigo
+                type: string
+                x-go-name: University
+        required:
+            - firstname
+            - lastname
+            - email
+            - discord
+            - phone
+            - university
+            - postal_address
+            - actif
+            - bureau
+            - hr_status
+            - started_date
         type: object
-        x-go-name: HoursScvCodes
-      hours_vlt_per_codes:
-        description: |-
-          Number of hours for a volunteer by code
-          in: json
-        example:
-          PKM: 12
-          SMI: 4
-        readOnly: true
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/volunteer
+    Volunteer_Stat:
+        properties:
+            archive_date:
+                description: |-
+                    Archive date of the stat
+                    in: string
+                example: 2023-01
+                type: string
+                x-go-name: ArchiveDate
+            created_at:
+                description: |-
+                    CreatedAt date of the stat
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: CreatedAt
+            id:
+                description: |-
+                    Id of the entry
+                    in: int
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: Id
+            nb_active_per_hrstatus:
+                description: |-
+                    Number of active volunteer by hr status
+                    in: json
+                example:
+                    employee: 4
+                    volunteer: 1
+                readOnly: true
+                type: object
+                x-go-name: NbActivePerHrstatus
+            nb_active_per_university:
+                description: |-
+                    Number of active volunteer by university
+                    in: json
+                example:
+                    Lumiere: 1
+                    SciencePo: 4
+                readOnly: true
+                type: object
+                x-go-name: NbActivePerUniversity
+            nb_alumnus:
+                description: |-
+                    Number of alumnus
+                    in: int
+                example: 12
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: NbAlumnus
+            nb_bureau:
+                description: |-
+                    Number of volunteer in the bureau
+                    in: int
+                example: 12
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: NbBureau
+            nb_new_vlt_this_month:
+                description: |-
+                    Number of new volunteer this month
+                    in: int
+                example: 12
+                format: int64
+                readOnly: true
+                type: integer
+                x-go-name: NbNewVlt
+            updated_at:
+                description: |-
+                    UpdatedAt date of the stat
+                    in: time.Time
+                format: date-time
+                readOnly: true
+                type: string
+                x-go-name: UpdatedAt
+        required:
+            - archive_date
         type: object
-        x-go-name: HoursVltCodes
-      id:
-        description: |-
-          Id of the entry
-          in: int
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      nb_per_codeproject:
-        description: |-
-          Number of report by code project
-          in: json
-        example:
-          PKM: 1
-          SMI: 4
-        readOnly: true
-        type: object
-        x-go-name: NbPerCodeProject
-      nb_per_codepublic:
-        description: |-
-          Number of report by code public
-          in: json
-        example:
-          CHAMP: 12
-          MAST: 4
-        readOnly: true
-        type: object
-        x-go-name: NbPerCodePublic
-      nb_per_type:
-        description: |-
-          Number of report by type
-          in: json
-        example:
-          student: 12
-          worker: 4
-        readOnly: true
-        type: object
-        x-go-name: NbPerType
-      nb_total:
-        description: |-
-          Number of report total
-          in: int
-        example: 12
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: NbTotal
-      updated_at:
-        description: |-
-          UpdatedAt date of the stat
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: UpdatedAt
-      valo_emp_per_codes:
-        description: |-
-          Valorisation for an employee by code
-          in: json
-        example:
-          PKM: 12
-          SMI: 4
-        readOnly: true
-        type: object
-        x-go-name: ValoEmpCodes
-      valo_scv_per_codes:
-        description: |-
-          Valorisation for a scv by code
-          in: json
-        example:
-          PKM: 12
-          SMI: 4
-        readOnly: true
-        type: object
-        x-go-name: ValoScvCodes
-      valo_vlt_per_codes:
-        description: |-
-          Valorisation for a volunteer by code
-          in: json
-        example:
-          PKM: 12
-          SMI: 4
-        readOnly: true
-        type: object
-        x-go-name: ValoVltCodes
-    required:
-      - archive_date
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/report
-  Status:
-    properties:
-      dbstatus:
-        description: |-
-          DbStatus of the api
-          in: string
-        example: everything is awesome <3
-        type: string
-        x-go-name: DbStatus
-      message:
-        description: |-
-          Message of the api
-          in: string
-        example: Gosmo is feeling happy today :)
-        type: string
-        x-go-name: Message
-      name:
-        description: |-
-          Name of the api
-          in: string
-        example: CosmoAppy
-        type: string
-        x-go-name: Name
-      title:
-        description: |-
-          Title of the api page
-          in: string
-        example: Status
-        type: string
-        x-go-name: Title
-      version:
-        description: |-
-          Version of the api
-          in: string
-        example: latest
-        type: string
-        x-go-name: Version
-    required:
-      - title
-      - name
-      - version
-      - message
-      - dbstatus
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/health
-  Volunteer:
-    properties:
-      actif:
-        description: |-
-          Status of the volunteer
-          in: bool
-        type: boolean
-        x-go-name: Actif
-      bureau:
-        description: |-
-          Does the volunteer has a bureau role
-          in: bool
-        example: false
-        type: boolean
-        x-go-name: Bureau
-      discord:
-        description: |-
-          Discord pseudo
-          in: string
-        example: TheVeryBest
-        type: string
-        x-go-name: Discord
-      email:
-        description: |-
-          Email of the volunteer
-          in: string
-        example: ash.ketchum@indigo.kt
-        type: string
-        x-go-name: Email
-      firstname:
-        description: |-
-          Firstname of the volunteer
-          in: string
-        example: Ash
-        type: string
-        x-go-name: Firstname
-      hr_status:
-        description: |-
-          Status of the volunteer
-          in: string
-        example: volunteer
-        type: string
-        x-go-name: HrStatus
-      id:
-        description: |-
-          Id of the volunteer
-          in: int64
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      lastname:
-        description: |-
-          Lastname of the volunteer
-          in: string
-        example: Ketchum
-        type: string
-        x-go-name: Lastname
-      phone:
-        description: |-
-          Phone number
-          in: string
-        example: "0123456789"
-        type: string
-        x-go-name: Phone
-      postal_address:
-        description: |-
-          Postal address
-          in: string
-        example: 01 bis house, 00001 Pallet Town, Kanto
-        type: string
-        x-go-name: PostalAddress
-      started_date:
-        description: |-
-          Started of date of volunteering
-          in: string
-        example: "1997-04-01"
-        type: string
-        x-go-name: StartedDate
-      university:
-        description: |-
-          University name
-          in: string
-        example: Indigo
-        type: string
-        x-go-name: University
-    required:
-      - firstname
-      - lastname
-      - email
-      - discord
-      - phone
-      - university
-      - postal_address
-      - actif
-      - bureau
-      - hr_status
-      - started_date
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/volunteer
-  Volunteer_Stat:
-    properties:
-      archive_date:
-        description: |-
-          Archive date of the stat
-          in: string
-        example: 2023-01
-        type: string
-        x-go-name: ArchiveDate
-      created_at:
-        description: |-
-          CreatedAt date of the stat
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: CreatedAt
-      id:
-        description: |-
-          Id of the entry
-          in: int
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: Id
-      nb_active_per_hrstatus:
-        description: |-
-          Number of active volunteer by hr status
-          in: json
-        example:
-          employee: 4
-          volunteer: 1
-        readOnly: true
-        type: object
-        x-go-name: NbActivePerHrstatus
-      nb_active_per_university:
-        description: |-
-          Number of active volunteer by university
-          in: json
-        example:
-          Lumiere: 1
-          SciencePo: 4
-        readOnly: true
-        type: object
-        x-go-name: NbActivePerUniversity
-      nb_alumnus:
-        description: |-
-          Number of alumnus
-          in: int
-        example: 12
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: NbAlumnus
-      nb_bureau:
-        description: |-
-          Number of volunteer in the bureau
-          in: int
-        example: 12
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: NbBureau
-      nb_new_vlt_this_month:
-        description: |-
-          Number of new volunteer this month
-          in: int
-        example: 12
-        format: int64
-        readOnly: true
-        type: integer
-        x-go-name: NbNewVlt
-      updated_at:
-        description: |-
-          UpdatedAt date of the stat
-          in: time.Time
-        format: date-time
-        readOnly: true
-        type: string
-        x-go-name: UpdatedAt
-    required:
-      - archive_date
-    type: object
-    x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/volunteer
+        x-go-package: github.com/ESNFranceG33kTeam/CosmoAppy/modules/volunteer
 info:
-  description: |-
-    the purpose of this application is to provide an application
-    that is using plain go code to define an API
-  termsOfService: not yet...
-  title: CosmoAppy
-  version: latest
+    description: |-
+        the purpose of this application is to provide an application
+        that is using plain go code to define an API
+    termsOfService: not yet...
+    title: CosmoAppy
+    version: latest
 paths:
-  /auth/adherents:
-    get:
-      operationId: AdherentsIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get adherents list.
-      tags:
-        - adherent
-    post:
-      operationId: AdherentsCreate
-      parameters:
-        - in: body
-          name: adherent
-          required: true
-          schema:
-            $ref: '#/definitions/Adherent'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Create a new adherent.
-      tags:
-        - adherent
-  /auth/adherents/{id}:
-    delete:
-      operationId: AdherentsDelete
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Delete an adherent.
-      tags:
-        - adherent
-    get:
-      operationId: AdherentsShow
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show an adherent.
-      tags:
-        - adherent
-    put:
-      operationId: AdherentsUpdate
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-        - in: body
-          name: adherent
-          required: true
-          schema:
-            $ref: '#/definitions/Adherent'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Update an adherent.
-      tags:
-        - adherent
-  /auth/adherents/stats/monthly:
-    get:
-      operationId: MonthlyStatsIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get stats list.
-      tags:
-        - adherent
-  /auth/adherents/stats/monthly/{archive_date}:
-    get:
-      operationId: MonthlyStatsShowByDate
-      parameters:
-        - in: path
-          name: archive_date
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show stat for the archive_date.
-      tags:
-        - adherent
-  /auth/adherents/stats/monthly/create:
-    post:
-      operationId: AutoMonthlyStatCreate
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Generate stat of the past month.
-      tags:
-        - adherent
-  /auth/adherents/stats/monthly/force/{archive_date}:
-    post:
-      operationId: ForceMonthlyStatCreate
-      parameters:
-        - in: path
-          name: archive_date
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Generate stat of any past month.
-      tags:
-        - adherent
-  /auth/esncards:
-    get:
-      operationId: ESNcardsIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get esncards list.
-      tags:
-        - esncard
-    post:
-      operationId: ESNcardsCreate
-      parameters:
-        - in: body
-          name: esncard
-          required: true
-          schema:
-            $ref: '#/definitions/ESNcard'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Create a new esncard.
-      tags:
-        - esncard
-  /auth/esncards/{id}:
-    delete:
-      operationId: ESNcardsDelete
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Delete an esncard.
-      tags:
-        - esncard
-  /auth/esncards/esncard/{esncard}:
-    get:
-      operationId: ESNcardsShowByESNcard
-      parameters:
-        - in: path
-          name: esncard
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show an esncard by the esncard code.
-      tags:
-        - esncard
-  /auth/esncards/id_adherent/{id_adherent}:
-    get:
-      operationId: ESNcardsShowByIdAdherent
-      parameters:
-        - in: path
-          name: id_adherent
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show an esncard by the id_adherent.
-      tags:
-        - esncard
-  /auth/esncards/stats/monthly:
-    get:
-      operationId: MonthlyStatsIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get stats list.
-      tags:
-        - esncard
-  /auth/esncards/stats/monthly/{archive_date}:
-    get:
-      operationId: MonthlyStatsShowByDate
-      parameters:
-        - in: path
-          name: archive_date
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show stat for the archive_date.
-      tags:
-        - esncard
-  /auth/esncards/stats/monthly/create:
-    post:
-      operationId: AutoMonthlyStatCreate
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Generate stat of the past month.
-      tags:
-        - esncard
-  /auth/esncards/stats/monthly/force/{archive_date}:
-    post:
-      operationId: ForceMonthlyStatCreate
-      parameters:
-        - in: path
-          name: archive_date
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Generate stat of any past month.
-      tags:
-        - esncard
-  /auth/event_attendees:
-    get:
-      operationId: AttendeesIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get attendees list.
-      tags:
-        - event_attendee
-    post:
-      operationId: AttendeesCreate
-      parameters:
-        - in: body
-          name: attendee
-          required: true
-          schema:
-            $ref: '#/definitions/Event_Attendee'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Create a new attendee.
-      tags:
-        - event_attendee
-  /auth/event_attendees/{id}:
-    delete:
-      operationId: AttendeesDelete
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Delete an attendee.
-      tags:
-        - event_attendee
-    put:
-      operationId: AttendeesUpdate
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-        - in: body
-          name: attendee
-          required: true
-          schema:
-            $ref: '#/definitions/Event_Attendee'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Update an attendee.
-      tags:
-        - event_attendee
-  /auth/event_attendees/id_adherent/{id_adherent}:
-    get:
-      operationId: AttendeesShowByIdAdherent
-      parameters:
-        - in: path
-          name: id_adherent
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show an attendee by adherent id.
-      tags:
-        - event_attendee
-  /auth/event_attendees/id_event/{id_event}:
-    get:
-      operationId: AttendeesShowByIdEvent
-      parameters:
-        - in: path
-          name: id_event
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show an attendee by event id.
-      tags:
-        - event_attendee
-  /auth/event_staffs:
-    get:
-      operationId: StaffsIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get staffs list.
-      tags:
-        - event_staff
-    post:
-      operationId: StaffsCreate
-      parameters:
-        - in: body
-          name: staff
-          required: true
-          schema:
-            $ref: '#/definitions/Event_Staff'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Create a new staff.
-      tags:
-        - event_staff
-  /auth/event_staffs/{id}:
-    delete:
-      operationId: StaffsDelete
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Delete an staff.
-      tags:
-        - event_staff
-    put:
-      operationId: StaffsUpdate
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-        - in: body
-          name: staff
-          required: true
-          schema:
-            $ref: '#/definitions/Event_Staff'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Update an staff.
-      tags:
-        - event_staff
-  /auth/event_staffs/id_event/{id_event}:
-    get:
-      operationId: StaffsShowByIdEvent
-      parameters:
-        - in: path
-          name: id_event
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show an staff by event id.
-      tags:
-        - event_staff
-  /auth/event_staffs/id_volunteer/{id_volunteer}:
-    get:
-      operationId: StaffsShowByIdValunteer
-      parameters:
-        - in: path
-          name: id_volunteer
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show an staff by volunteer id.
-      tags:
-        - event_staff
-  /auth/events:
-    get:
-      operationId: EventsIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get events list.
-      tags:
-        - event
-    post:
-      operationId: EventsCreate
-      parameters:
-        - in: body
-          name: event
-          required: true
-          schema:
-            $ref: '#/definitions/Event'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Create a new event.
-      tags:
-        - event
-  /auth/events/{id}:
-    delete:
-      operationId: EventsDelete
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Delete an event.
-      tags:
-        - event
-    get:
-      operationId: EventsShow
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show an event.
-      tags:
-        - event
-    put:
-      operationId: EventsUpdate
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-        - in: body
-          name: event
-          required: true
-          schema:
-            $ref: '#/definitions/Event'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Update an event.
-      tags:
-        - event
-  /auth/events/stats/monthly:
-    get:
-      operationId: MonthlyStatsIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get stats list.
-      tags:
-        - event
-  /auth/events/stats/monthly/{archive_date}:
-    get:
-      operationId: MonthlyStatsShowByDate
-      parameters:
-        - in: path
-          name: archive_date
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show stat for the archive_date.
-      tags:
-        - event
-  /auth/events/stats/monthly/create:
-    post:
-      operationId: AutoMonthlyStatCreate
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Generate stat of the past month.
-      tags:
-        - event
-  /auth/events/stats/monthly/force/{archive_date}:
-    post:
-      operationId: ForceMonthlyStatCreate
-      parameters:
-        - in: path
-          name: archive_date
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Generate stat of any past month.
-      tags:
-        - event
-  /auth/moneys:
-    get:
-      operationId: MoneysIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get money operations list.
-      tags:
-        - money
-    post:
-      operationId: MoneysCreate
-      parameters:
-        - in: body
-          name: money
-          required: true
-          schema:
-            $ref: '#/definitions/Money'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Create a new money operation.
-      tags:
-        - money
-  /auth/moneys/label/{label}:
-    get:
-      operationId: MoneysShowByLabel
-      parameters:
-        - in: path
-          name: label
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show a money operation.
-      tags:
-        - money
-  /auth/moneys/stats/monthly:
-    get:
-      operationId: MonthlyStatsIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get stats list.
-      tags:
-        - money
-  /auth/moneys/stats/monthly/{archive_date}:
-    get:
-      operationId: MonthlyStatsShowByDate
-      parameters:
-        - in: path
-          name: archive_date
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show stat for the archive_date.
-      tags:
-        - money
-  /auth/moneys/stats/monthly/create:
-    post:
-      operationId: AutoMonthlyStatCreate
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Generate stat of the past month.
-      tags:
-        - money
-  /auth/moneys/stats/monthly/force/{archive_date}:
-    post:
-      operationId: ForceMonthlyStatCreate
-      parameters:
-        - in: path
-          name: archive_date
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Generate stat of any past month.
-      tags:
-        - money
-  /auth/planning_attendees:
-    get:
-      operationId: AttendeesIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get attendees list.
-      tags:
-        - planning_attendee
-    post:
-      operationId: AttendeesCreate
-      parameters:
-        - in: body
-          name: attendee
-          required: true
-          schema:
-            $ref: '#/definitions/Planning_Attendee'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Create a new attendee.
-      tags:
-        - planning_attendee
-  /auth/planning_attendees/{id}:
-    delete:
-      operationId: AttendeesDelete
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Delete an attendee.
-      tags:
-        - planning_attendee
-    put:
-      operationId: AttendeesUpdate
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-        - in: body
-          name: attendee
-          required: true
-          schema:
-            $ref: '#/definitions/Planning_Attendee'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Update an attendee.
-      tags:
-        - planning_attendee
-  /auth/planning_attendees/id_planning/{id_planning}:
-    get:
-      operationId: AttendeesShowByIdPlanning
-      parameters:
-        - in: path
-          name: id_planning
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show an attendee by planning id.
-      tags:
-        - planning_attendee
-  /auth/planning_attendees/id_volunteer/{id_volunteer}:
-    get:
-      operationId: AttendeesShowByIdVolunteer
-      parameters:
-        - in: path
-          name: id_volunteer
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show an attendee by volunteer id.
-      tags:
-        - planning_attendee
-  /auth/plannings:
-    get:
-      operationId: PlanningsIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get plannings list.
-      tags:
-        - planning
-    post:
-      operationId: PlanningsCreate
-      parameters:
-        - in: body
-          name: planning
-          required: true
-          schema:
-            $ref: '#/definitions/Planning'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Create a new planning.
-      tags:
-        - planning
-  /auth/plannings/{id}:
-    delete:
-      operationId: PlanningsDelete
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Delete an planning.
-      tags:
-        - planning
-    get:
-      operationId: PlanningsShow
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show an planning.
-      tags:
-        - planning
-    put:
-      operationId: PlanningsUpdate
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-        - in: body
-          name: planning
-          required: true
-          schema:
-            $ref: '#/definitions/Planning'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Update an planning.
-      tags:
-        - planning
-  /auth/plannings/stats/monthly:
-    get:
-      operationId: MonthlyStatsIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get stats list.
-      tags:
-        - planning
-  /auth/plannings/stats/monthly/{archive_date}:
-    get:
-      operationId: MonthlyStatsShowByDate
-      parameters:
-        - in: path
-          name: archive_date
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show stat for the archive_date.
-      tags:
-        - planning
-  /auth/plannings/stats/monthly/create:
-    post:
-      operationId: AutoMonthlyStatCreate
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Generate stat of the past month.
-      tags:
-        - planning
-  /auth/plannings/stats/monthly/force/{archive_date}:
-    post:
-      operationId: ForceMonthlyStatCreate
-      parameters:
-        - in: path
-          name: archive_date
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Generate stat of any past month.
-      tags:
-        - planning
-  /auth/profile:
-    get:
-      operationId: ProfileCheck
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "404":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get the profile.
-      tags:
-        - heath
-  /auth/reports:
-    get:
-      operationId: ReportsIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get reports list.
-      tags:
-        - report
-    post:
-      operationId: ReportsCreate
-      parameters:
-        - in: body
-          name: report
-          required: true
-          schema:
-            $ref: '#/definitions/Report'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Create a new report.
-      tags:
-        - report
-  /auth/reports/{id}:
-    delete:
-      operationId: ReportsDelete
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Delete a report.
-      tags:
-        - report
-    get:
-      operationId: ReportsShowById
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show an report by the id.
-      tags:
-        - report
-    put:
-      operationId: ReportsUpdate
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-        - in: body
-          name: report
-          required: true
-          schema:
-            $ref: '#/definitions/Report'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Update a report.
-      tags:
-        - report
-  /auth/reports/stats/monthly:
-    get:
-      operationId: MonthlyStatsIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get stats list.
-      tags:
-        - report
-  /auth/reports/stats/monthly/{archive_date}:
-    get:
-      operationId: MonthlyStatsShowByDate
-      parameters:
-        - in: path
-          name: archive_date
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show stat for the archive_date.
-      tags:
-        - report
-  /auth/reports/stats/monthly/create:
-    post:
-      operationId: AutoMonthlyStatCreate
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Generate stat of the past month.
-      tags:
-        - report
-  /auth/reports/stats/monthly/force/{archive_date}:
-    post:
-      operationId: ForceMonthlyStatCreate
-      parameters:
-        - in: path
-          name: archive_date
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Generate stat of any past month.
-      tags:
-        - report
-  /auth/status:
-    get:
-      operationId: StatusCheck
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "404":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get the status.
-      tags:
-        - heath
-  /auth/volunteers:
-    get:
-      operationId: VolunteersIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get volunteers list.
-      tags:
-        - volunteer
-    post:
-      operationId: VolunteersCreate
-      parameters:
-        - in: body
-          name: volunteer
-          required: true
-          schema:
-            $ref: '#/definitions/Volunteer'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Create a new volunteer.
-      tags:
-        - volunteer
-  /auth/volunteers/{id}:
-    delete:
-      operationId: VolunteersDelete
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Delete a volunteer.
-      tags:
-        - volunteer
-    get:
-      operationId: VolunteersShowById
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show an volunteer by the id.
-      tags:
-        - volunteer
-    put:
-      operationId: VolunteersUpdate
-      parameters:
-        - in: path
-          name: id
-          required: true
-          type: integer
-        - in: body
-          name: volunteer
-          required: true
-          schema:
-            $ref: '#/definitions/Volunteer'
-            type: object
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Update a volunteer.
-      tags:
-        - volunteer
-  /auth/volunteers/stats/monthly:
-    get:
-      operationId: MonthlyStatsIndex
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Get stats list.
-      tags:
-        - volunteer
-  /auth/volunteers/stats/monthly/{archive_date}:
-    get:
-      operationId: MonthlyStatsShowByDate
-      parameters:
-        - in: path
-          name: archive_date
-          required: true
-          type: string
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Show stat for the archive_date.
-      tags:
-        - volunteer
-  /auth/volunteers/stats/monthly/create:
-    post:
-      operationId: AutoMonthlyStatCreate
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "400":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      summary: Generate stat of the past month.
-      tags:
-        - volunteer
-  /health:
-    get:
-      operationId: HealthsCheck
-      responses:
-        "200":
-          description: CommonSuccess
-          schema:
-            $ref: '#/definitions/CommonSuccess'
-        "404":
-          description: CommonError
-          schema:
-            $ref: '#/definitions/CommonError'
-      security:
-        - apiKey:
-            - '[]'
-      summary: Get the health.
-      tags:
-        - heath
+    /auth/adherents:
+        get:
+            operationId: AdherentsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get adherents list.
+            tags:
+                - adherent
+        post:
+            operationId: AdherentsCreate
+            parameters:
+                - in: body
+                  name: adherent
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Adherent'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Create a new adherent.
+            tags:
+                - adherent
+    /auth/adherents/{id}:
+        delete:
+            operationId: AdherentsDelete
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Delete an adherent.
+            tags:
+                - adherent
+        get:
+            operationId: AdherentsShow
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an adherent.
+            tags:
+                - adherent
+        put:
+            operationId: AdherentsUpdate
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+                - in: body
+                  name: adherent
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Adherent'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Update an adherent.
+            tags:
+                - adherent
+    /auth/adherents/stats/monthly:
+        get:
+            operationId: MonthlyStatsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get stats list.
+            tags:
+                - adherent
+    /auth/adherents/stats/monthly/{archive_date}:
+        get:
+            operationId: MonthlyStatsShowByDate
+            parameters:
+                - in: path
+                  name: archive_date
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show stat for the archive_date.
+            tags:
+                - adherent
+    /auth/adherents/stats/monthly/create:
+        post:
+            operationId: AutoMonthlyStatCreate
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Generate stat of the past month.
+            tags:
+                - adherent
+    /auth/adherents/stats/monthly/force/{archive_date}:
+        post:
+            operationId: ForceMonthlyStatCreate
+            parameters:
+                - in: path
+                  name: archive_date
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Generate stat of any past month.
+            tags:
+                - adherent
+    /auth/esncards:
+        get:
+            operationId: ESNcardsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get esncards list.
+            tags:
+                - esncard
+        post:
+            operationId: ESNcardsCreate
+            parameters:
+                - in: body
+                  name: esncard
+                  required: true
+                  schema:
+                    $ref: '#/definitions/ESNcard'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Create a new esncard.
+            tags:
+                - esncard
+    /auth/esncards/{id}:
+        delete:
+            operationId: ESNcardsDelete
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Delete an esncard.
+            tags:
+                - esncard
+    /auth/esncards/esncard/{esncard}:
+        get:
+            operationId: ESNcardsShowByESNcard
+            parameters:
+                - in: path
+                  name: esncard
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an esncard by the esncard code.
+            tags:
+                - esncard
+    /auth/esncards/id_adherent/{id_adherent}:
+        get:
+            operationId: ESNcardsShowByIdAdherent
+            parameters:
+                - in: path
+                  name: id_adherent
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an esncard by the id_adherent.
+            tags:
+                - esncard
+    /auth/esncards/stats/monthly:
+        get:
+            operationId: MonthlyStatsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get stats list.
+            tags:
+                - esncard
+    /auth/esncards/stats/monthly/{archive_date}:
+        get:
+            operationId: MonthlyStatsShowByDate
+            parameters:
+                - in: path
+                  name: archive_date
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show stat for the archive_date.
+            tags:
+                - esncard
+    /auth/esncards/stats/monthly/create:
+        post:
+            operationId: AutoMonthlyStatCreate
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Generate stat of the past month.
+            tags:
+                - esncard
+    /auth/esncards/stats/monthly/force/{archive_date}:
+        post:
+            operationId: ForceMonthlyStatCreate
+            parameters:
+                - in: path
+                  name: archive_date
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Generate stat of any past month.
+            tags:
+                - esncard
+    /auth/event_attendees:
+        get:
+            operationId: AttendeesIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get attendees list.
+            tags:
+                - event_attendee
+        post:
+            operationId: AttendeesCreate
+            parameters:
+                - in: body
+                  name: attendee
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Event_Attendee'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Create a new attendee.
+            tags:
+                - event_attendee
+    /auth/event_attendees/{id}:
+        delete:
+            operationId: AttendeesDelete
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Delete an attendee.
+            tags:
+                - event_attendee
+        put:
+            operationId: AttendeesUpdate
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+                - in: body
+                  name: attendee
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Event_Attendee'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Update an attendee.
+            tags:
+                - event_attendee
+    /auth/event_attendees/id_adherent/{id_adherent}:
+        get:
+            operationId: AttendeesShowByIdAdherent
+            parameters:
+                - in: path
+                  name: id_adherent
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an attendee by adherent id.
+            tags:
+                - event_attendee
+    /auth/event_attendees/id_event/{id_event}:
+        get:
+            operationId: AttendeesShowByIdEvent
+            parameters:
+                - in: path
+                  name: id_event
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an attendee by event id.
+            tags:
+                - event_attendee
+    /auth/event_staffs:
+        get:
+            operationId: StaffsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get staffs list.
+            tags:
+                - event_staff
+        post:
+            operationId: StaffsCreate
+            parameters:
+                - in: body
+                  name: staff
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Event_Staff'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Create a new staff.
+            tags:
+                - event_staff
+    /auth/event_staffs/{id}:
+        delete:
+            operationId: StaffsDelete
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Delete an staff.
+            tags:
+                - event_staff
+        put:
+            operationId: StaffsUpdate
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+                - in: body
+                  name: staff
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Event_Staff'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Update an staff.
+            tags:
+                - event_staff
+    /auth/event_staffs/id_event/{id_event}:
+        get:
+            operationId: StaffsShowByIdEvent
+            parameters:
+                - in: path
+                  name: id_event
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an staff by event id.
+            tags:
+                - event_staff
+    /auth/event_staffs/id_volunteer/{id_volunteer}:
+        get:
+            operationId: StaffsShowByIdValunteer
+            parameters:
+                - in: path
+                  name: id_volunteer
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an staff by volunteer id.
+            tags:
+                - event_staff
+    /auth/events:
+        get:
+            operationId: EventsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get events list.
+            tags:
+                - event
+        post:
+            operationId: EventsCreate
+            parameters:
+                - in: body
+                  name: event
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Event'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Create a new event.
+            tags:
+                - event
+    /auth/events/{id}:
+        delete:
+            operationId: EventsDelete
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Delete an event.
+            tags:
+                - event
+        get:
+            operationId: EventsShow
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an event.
+            tags:
+                - event
+        put:
+            operationId: EventsUpdate
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+                - in: body
+                  name: event
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Event'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Update an event.
+            tags:
+                - event
+    /auth/events/stats/monthly:
+        get:
+            operationId: MonthlyStatsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get stats list.
+            tags:
+                - event
+    /auth/events/stats/monthly/{archive_date}:
+        get:
+            operationId: MonthlyStatsShowByDate
+            parameters:
+                - in: path
+                  name: archive_date
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show stat for the archive_date.
+            tags:
+                - event
+    /auth/events/stats/monthly/create:
+        post:
+            operationId: AutoMonthlyStatCreate
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Generate stat of the past month.
+            tags:
+                - event
+    /auth/events/stats/monthly/force/{archive_date}:
+        post:
+            operationId: ForceMonthlyStatCreate
+            parameters:
+                - in: path
+                  name: archive_date
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Generate stat of any past month.
+            tags:
+                - event
+    /auth/moneys:
+        get:
+            operationId: MoneysIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get money operations list.
+            tags:
+                - money
+        post:
+            operationId: MoneysCreate
+            parameters:
+                - in: body
+                  name: money
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Money'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Create a new money operation.
+            tags:
+                - money
+    /auth/moneys/label/{label}:
+        get:
+            operationId: MoneysShowByLabel
+            parameters:
+                - in: path
+                  name: label
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show a money operation.
+            tags:
+                - money
+    /auth/moneys/stats/monthly:
+        get:
+            operationId: MonthlyStatsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get stats list.
+            tags:
+                - money
+    /auth/moneys/stats/monthly/{archive_date}:
+        get:
+            operationId: MonthlyStatsShowByDate
+            parameters:
+                - in: path
+                  name: archive_date
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show stat for the archive_date.
+            tags:
+                - money
+    /auth/moneys/stats/monthly/create:
+        post:
+            operationId: AutoMonthlyStatCreate
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Generate stat of the past month.
+            tags:
+                - money
+    /auth/moneys/stats/monthly/force/{archive_date}:
+        post:
+            operationId: ForceMonthlyStatCreate
+            parameters:
+                - in: path
+                  name: archive_date
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Generate stat of any past month.
+            tags:
+                - money
+    /auth/planning_attendees:
+        get:
+            operationId: AttendeesIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get attendees list.
+            tags:
+                - planning_attendee
+        post:
+            operationId: AttendeesCreate
+            parameters:
+                - in: body
+                  name: attendee
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Planning_Attendee'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Create a new attendee.
+            tags:
+                - planning_attendee
+    /auth/planning_attendees/{id}:
+        delete:
+            operationId: AttendeesDelete
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Delete an attendee.
+            tags:
+                - planning_attendee
+        put:
+            operationId: AttendeesUpdate
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+                - in: body
+                  name: attendee
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Planning_Attendee'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Update an attendee.
+            tags:
+                - planning_attendee
+    /auth/planning_attendees/id_planning/{id_planning}:
+        get:
+            operationId: AttendeesShowByIdPlanning
+            parameters:
+                - in: path
+                  name: id_planning
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an attendee by planning id.
+            tags:
+                - planning_attendee
+    /auth/planning_attendees/id_volunteer/{id_volunteer}:
+        get:
+            operationId: AttendeesShowByIdVolunteer
+            parameters:
+                - in: path
+                  name: id_volunteer
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an attendee by volunteer id.
+            tags:
+                - planning_attendee
+    /auth/plannings:
+        get:
+            operationId: PlanningsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get plannings list.
+            tags:
+                - planning
+        post:
+            operationId: PlanningsCreate
+            parameters:
+                - in: body
+                  name: planning
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Planning'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Create a new planning.
+            tags:
+                - planning
+    /auth/plannings/{id}:
+        delete:
+            operationId: PlanningsDelete
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Delete an planning.
+            tags:
+                - planning
+        get:
+            operationId: PlanningsShow
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an planning.
+            tags:
+                - planning
+        put:
+            operationId: PlanningsUpdate
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+                - in: body
+                  name: planning
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Planning'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Update an planning.
+            tags:
+                - planning
+    /auth/plannings/stats/monthly:
+        get:
+            operationId: MonthlyStatsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get stats list.
+            tags:
+                - planning
+    /auth/plannings/stats/monthly/{archive_date}:
+        get:
+            operationId: MonthlyStatsShowByDate
+            parameters:
+                - in: path
+                  name: archive_date
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show stat for the archive_date.
+            tags:
+                - planning
+    /auth/plannings/stats/monthly/create:
+        post:
+            operationId: AutoMonthlyStatCreate
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Generate stat of the past month.
+            tags:
+                - planning
+    /auth/plannings/stats/monthly/force/{archive_date}:
+        post:
+            operationId: ForceMonthlyStatCreate
+            parameters:
+                - in: path
+                  name: archive_date
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Generate stat of any past month.
+            tags:
+                - planning
+    /auth/profile:
+        get:
+            operationId: ProfileCheck
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "404":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get the profile.
+            tags:
+                - heath
+    /auth/reports:
+        get:
+            operationId: ReportsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get reports list.
+            tags:
+                - report
+        post:
+            operationId: ReportsCreate
+            parameters:
+                - in: body
+                  name: report
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Report'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Create a new report.
+            tags:
+                - report
+    /auth/reports/{id}:
+        delete:
+            operationId: ReportsDelete
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Delete a report.
+            tags:
+                - report
+        get:
+            operationId: ReportsShowById
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an report by the id.
+            tags:
+                - report
+        put:
+            operationId: ReportsUpdate
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+                - in: body
+                  name: report
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Report'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Update a report.
+            tags:
+                - report
+    /auth/reports/stats/monthly:
+        get:
+            operationId: MonthlyStatsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get stats list.
+            tags:
+                - report
+    /auth/reports/stats/monthly/{archive_date}:
+        get:
+            operationId: MonthlyStatsShowByDate
+            parameters:
+                - in: path
+                  name: archive_date
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show stat for the archive_date.
+            tags:
+                - report
+    /auth/reports/stats/monthly/create:
+        post:
+            operationId: AutoMonthlyStatCreate
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Generate stat of the past month.
+            tags:
+                - report
+    /auth/reports/stats/monthly/force/{archive_date}:
+        post:
+            operationId: ForceMonthlyStatCreate
+            parameters:
+                - in: path
+                  name: archive_date
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Generate stat of any past month.
+            tags:
+                - report
+    /auth/status:
+        get:
+            operationId: StatusCheck
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "404":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get the status.
+            tags:
+                - heath
+    /auth/volunteers:
+        get:
+            operationId: VolunteersIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get volunteers list.
+            tags:
+                - volunteer
+        post:
+            operationId: VolunteersCreate
+            parameters:
+                - in: body
+                  name: volunteer
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Volunteer'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Create a new volunteer.
+            tags:
+                - volunteer
+    /auth/volunteers/{id}:
+        delete:
+            operationId: VolunteersDelete
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Delete a volunteer.
+            tags:
+                - volunteer
+        get:
+            operationId: VolunteersShowById
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show an volunteer by the id.
+            tags:
+                - volunteer
+        put:
+            operationId: VolunteersUpdate
+            parameters:
+                - in: path
+                  name: id
+                  required: true
+                  type: integer
+                - in: body
+                  name: volunteer
+                  required: true
+                  schema:
+                    $ref: '#/definitions/Volunteer'
+                    type: object
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Update a volunteer.
+            tags:
+                - volunteer
+    /auth/volunteers/stats/monthly:
+        get:
+            operationId: MonthlyStatsIndex
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Get stats list.
+            tags:
+                - volunteer
+    /auth/volunteers/stats/monthly/{archive_date}:
+        get:
+            operationId: MonthlyStatsShowByDate
+            parameters:
+                - in: path
+                  name: archive_date
+                  required: true
+                  type: string
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Show stat for the archive_date.
+            tags:
+                - volunteer
+    /auth/volunteers/stats/monthly/create:
+        post:
+            operationId: AutoMonthlyStatCreate
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "400":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            summary: Generate stat of the past month.
+            tags:
+                - volunteer
+    /health:
+        get:
+            operationId: HealthsCheck
+            responses:
+                "200":
+                    description: CommonSuccess
+                    schema:
+                        $ref: '#/definitions/CommonSuccess'
+                "404":
+                    description: CommonError
+                    schema:
+                        $ref: '#/definitions/CommonError'
+            security:
+                - apiKey:
+                    - '[]'
+            summary: Get the health.
+            tags:
+                - heath
 produces:
-  - application/json
+    - application/json
 schemes:
-  - http
-  - https
+    - http
+    - https
 security:
-  - key: []
+    - key: []
 securityDefinitions:
-  key:
-    in: header
-    name: X-Session-Token
-    type: apiKey
+    key:
+        in: header
+        name: X-Session-Token
+        type: apiKey
 swagger: "2.0"

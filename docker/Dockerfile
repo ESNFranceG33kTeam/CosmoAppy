@@ -37,7 +37,6 @@ USER user
 
 VOLUME /etc/CosmoAppy/conf/
 EXPOSE 8080
-EXPOSE 8181
 
 WORKDIR /usr/local/bin/
 

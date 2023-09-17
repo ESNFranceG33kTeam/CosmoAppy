@@ -6,11 +6,8 @@ require (
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/gorilla/mux v1.8.0
 	github.com/stretchr/testify v1.8.0
-	gopkg.in/cas.v2 v2.2.2
 	gopkg.in/yaml.v2 v2.4.0
 )
-
-require github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
 
 require (
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect

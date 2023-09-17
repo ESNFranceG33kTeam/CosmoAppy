@@ -7,7 +7,6 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/ESNFranceG33kTeam/CosmoAppy/cocas"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/database"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/docs"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/helpers"
@@ -50,7 +49,6 @@ func main() {
 	InitConf()
 	database.DatabaseInit()
 	router.InitializeRouter()
-	cocas.InitCas()
 
 	// Loading modules
 	launcher.LauncherModules()
@@ -71,11 +69,6 @@ func main() {
 
 	go func() {
 		logger.GetLogger().LogCritical("main", "listen error", router.GetServer().ListenAndServe())
-		wg.Done()
-	}()
-	go func() {
-		logger.GetLogger().
-			LogCritical("main", "listen cas error", cocas.GetCasServer().ListenAndServe())
 		wg.Done()
 	}()
 
