@@ -21,7 +21,7 @@ func TestMain(m *testing.M) {
 }
 
 func testMainSetup() {
-	helpers.Confpathflag = "../../test/conf_local.yaml"
+	helpers.Confpathflag = "../../conf/conf_local.yaml"
 	helpers.InitFile()
 	helpers.ReadConfig()
 	TheLogger().LogInit()
