@@ -58,7 +58,7 @@ jobs:
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: test
+          file_or_dir: conf
           config_data: "{extends: default, rules: {line-length: disable}}"
   pre-commit:
     runs-on: ubuntu-latest
