@@ -5,7 +5,7 @@ ENV GO111MODULE=on \
     GOOS=linux \
     GOARCH=amd64 \
     GOCACHE=/tmp \
-    HOME=/go \
+    HOME=/ \
     PROJECT_NAME=CosmoAppy
 
 LABEL org.opencontainers.image.title="${PROJECT_NAME}" \
@@ -18,19 +18,21 @@ LABEL org.opencontainers.image.title="${PROJECT_NAME}" \
       org.opencontainers.image.os="alpine" \
       org.opencontainers.image.version=${GITHUB_REF}
 
-RUN apk add --no-cache make gcc curl jq
+RUN apk add --no-cache make gcc curl jq musl-dev
 
 COPY . /src/
 WORKDIR /src/
 
 RUN make build-app
 
+RUN make install-devtools
+RUN make swagger
+
 # Runner stage
 FROM alpine:3.16 as runner
 
-COPY --from=builder /src/bin/CosmoAppy /usr/local/bin/CosmoAppy
-
-RUN ln -s /etc/CosmoAppy/conf/swagger.yaml /usr/local/bin/swagger.yaml
+COPY --from=builder /src/CosmoAppy /usr/local/bin/CosmoAppy
+COPY --from=builder /src/conf/swagger.yaml /usr/local/bin/conf/swagger.yaml
 
 RUN adduser --uid 1000 --disabled-password --shell /bin/bash user
 USER user

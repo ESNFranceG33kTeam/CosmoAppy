@@ -80,15 +80,3 @@ To create a new endpoints, check the [documentation module](modules/README.md).
 ## Contributing
 
 If you want to contribute to the project, please referred yourself at the [contributing doc](CONTRIBUTING.md).
-
-# Annexes
-
-## Database
-
-The db schema is available in [database/cosmoappy_db.mwb](database/cosmoappy_db.mwb).
-It can be edit with [MySQL Workbench](https://www.mysql.com/products/workbench/).
-
-![DB schematique](./database/cosmoappy_db.png)
-
-> ⚠ Actually the db creation is coded by hand.
-> But in a near future we would like to generated it automatically.

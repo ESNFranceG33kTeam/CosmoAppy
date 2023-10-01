@@ -1,5 +1,3 @@
-#GOBIN?=.
-GOBIN?=/src/bin
 GO111MODULE?=on
 PROJECT_NAME?=cosmoappy
 PROJECT_PATH?=CosmoAppy
@@ -18,18 +16,18 @@ run-test:
 	go test ./... -covermode=count -coverprofile ./coverage.out
 
 swagger:
-	$(HOME)/go/bin/swagger generate spec -o test/swagger.yaml --scan-models
+	$(HOME)/go/bin/swagger generate spec -o ./conf/swagger.yaml --scan-models
 
 run-fmt:
 	go fmt
-	$(HOME)/go/bin/yamlfmt test/
+	$(HOME)/go/bin/yamlfmt conf/
 	$(HOME)/go/bin/golines . -w
 
 start-app: setting-prepare
 	go run .
 
 build-app: setting-prepare
-	go build -mod=vendor -o $(GOBIN)/$(PROJECT_PATH)
+	go build -mod=vendor
 
 install-app: build-app
 	go install
@@ -38,11 +36,10 @@ docker-build:
 	docker build . -f docker/Dockerfile --tag $(PROJECT_NAME):latest
 
 docker-start:
-	docker run \
+	docker run --rm \
 		--name $(PROJECT_NAME) \
-		-v $(PWD)/test:/etc/$(PROJECT_PATH)/conf \
+		-v $(PWD)/conf:/etc/$(PROJECT_PATH)/conf \
 		-e PASS_DB=${PASS_DB} -e TOKEN_API_TEST=${TOKEN_API_TEST} \
-		-p 8080:8080 -p 8181:8181 \
+		-p 8080:8080 \
 		$(PROJECT_NAME):latest \
-		-conf=/etc/$(PROJECT_PATH)/conf/conf_docker.yaml \
-		-swagger=/swagger.yaml
+		-conf=/etc/$(PROJECT_PATH)/conf/conf_docker.yaml

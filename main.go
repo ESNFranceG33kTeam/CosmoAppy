@@ -24,13 +24,13 @@ func startoptions() {
 	flag.StringVar(
 		&helpers.Confpathflag,
 		"conf",
-		filepath.Join(path, "test/conf_local.yaml"),
+		filepath.Join(path, "conf/conf_local.yaml"),
 		"path for the configuration file.",
 	)
 	flag.StringVar(
 		&helpers.Swaggerpathflag,
 		"swagger",
-		"/test/swagger.yaml",
+		"/conf/swagger.yaml",
 		"relative path for the swagger file.",
 	)
 

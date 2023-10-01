@@ -4,6 +4,7 @@ import (
 	"database/sql"
 
 	"github.com/ESNFranceG33kTeam/CosmoAppy/database"
+	"github.com/ESNFranceG33kTeam/CosmoAppy/docs"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/helpers"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/logger"
 	"github.com/ESNFranceG33kTeam/CosmoAppy/router"
@@ -32,4 +33,8 @@ func TheAppConfig() *helpers.Cfg {
 
 func TheDb() *sql.DB {
 	return database.Db()
+}
+
+func TheVersion() string {
+	return docs.GetVersion()
 }

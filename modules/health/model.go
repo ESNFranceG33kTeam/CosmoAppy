@@ -57,7 +57,7 @@ func GetStatus() *Status {
 
 	sta.Title = "Status"
 	sta.Name = TheAppConfig().Nameapi
-	sta.Version = "0.0.1"
+	sta.Version = TheVersion()
 	sta.Message = "Gosmo is feeling API today :)"
 
 	err := TheDb().Ping()
